@@ -26,8 +26,8 @@ The project is organized into the following main sections:
 - **JavaScript:** For interactivity and dynamic features.
 - **ARIA (Accessible Rich Internet Applications):** To enhance accessibility for users with disabilities.
 
-## Setup Instructions
 
-To set up this project locally, follow these steps:
+### To view the incomplete visit here
+https://egbieandersonuku1.github.io/fruit-and-veg-store/
 
 
