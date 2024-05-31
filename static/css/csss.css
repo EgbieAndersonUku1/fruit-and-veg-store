@@ -123,7 +123,7 @@ nav {
     /* grid elements */
     display: grid;
     grid-template-columns: 25% 75%;
-    column-gap: 20px;
+    column-gap: 30px;
 
 
     margin: auto;
@@ -232,6 +232,48 @@ nav {
 }
 
 
+/* The featured */
+#featured .container {
+    width: var(--global-width-md);
+    margin: auto;
+
+}
+
+.featured__featured-categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+
+    column-gap: 5px;
+    margin-top: 10px;
+    
+}
+
+.featured__featured-categories__display-text {
+    position: relative;
+    top: 25%;
+    text-transform: capitalize;
+    font-weight: 300;
+}
+
+.featured__featured-categories_display_img {
+    height: 150px;
+    width: 150px;
+
+    top: 20%;
+}
+
+.img_2 {
+    display: none;
+}
+
+
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
 
 /* The site logo */
 .logo,
@@ -255,10 +297,12 @@ nav {
 
 }
 
+.nav-link:hover,
 .links a:hover {
     color: var(--light-green);
 
 }
+
 
 .account {
     display: flex;
@@ -306,6 +350,11 @@ nav {
 }
 
 
+.box {
+    border: 3px solid lavender;
+    cursor: pointer;
+  
+}
 
 /* Custom buttons */
 .button-md {

@@ -10,29 +10,29 @@
 
 <body>
 
+    <!-- The navigation  -->
     <nav aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-info nav-body">
-              
                 <div class="shipping">
                     <a href="#" aria-label="Free shipping information" class="nav-link">Free shipping</a>
                 </div>
             </div>
-
+    
             <div class="nav-info nav-footer">
                 <div class="account">
-                    <a href="#" aria-label="Login to your account" class="nav-link">login</a>
-                    <a href="#" aria-label="Register a new account" class="nav-link">register</a>
+                    <a href="#" aria-label="Login to your account" class="nav-link">Login</a>
+                    <a href="#" aria-label="Register a new account" class="nav-link">Register</a>
                 </div>
             </div>
         </div>
     </nav>
+    
 
     <main>
-
         <section id="main">
             <div class="container">
-
+        
                 <!-- The sidebar  -->
                 <div class="sidebar">
                     <div class="logo">
@@ -42,7 +42,7 @@
                         <div class="header">
                             <a href="#" aria-label="View all departments" class="bold text-upper">All departments</a>
                         </div>
-
+        
                         <div class="body">
                             <a href="#" aria-label="View Fresh menu">Fresh menu</a>
                             <a href="#" aria-label="View Vegetables">Vegetables</a>
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-
+        
                 <!-- The main body -->
                 <div class="main">
                     <div class="head space-between">
@@ -69,63 +69,109 @@
                             <a href="#" aria-label="Read our blog">Blog</a>
                             <a href="#" aria-label="Contact us">Contact</a>
                         </div>
-
+        
                         <div class="footer">
                             <a href="#" aria-label="View your wishlist" class="nav-icon-link">
                                 <img src="static/img/icons/red-heart.svg" alt="wishlist" class="nav-icon">
-                                    <span class="item-count"></span>
-                                </a>
+                                <span class="item-count" aria-hidden="true"></span>
+                            </a>
                             <a href="#" aria-label="View your cart" class="nav-icon-link">
                                 <img src="static/img/icons/cart.svg" alt="cart" class="nav-icon">
-                                    <span class="item-count"></span>
+                                <span class="item-count" aria-hidden="true"></span>
                             </a>
                             <a href="#" aria-label="Total items cost £150">Item: £150</a>
                         </div>
                     </div>
-
+        
                     <div class="body">
                         <div class="search">
                             <form action="" method="post">
-                                <input type="search" name="search" id="search" placeholder="search...."
-                                    aria-label="Search">
-                                <button type="submit" class="search-btn medium-btn green-bg"
-                                    aria-label="Submit search">Search</button>
+                                <input type="search" name="search" id="search" placeholder="search...." aria-label="Search">
+                                <button type="submit" class="search-btn medium-btn green-bg" aria-label="Submit search">Search</button>
                             </form>
                         </div>
-
+        
                         <div class="main-phone">
                             <div class="icon">
                                 <img src="static/img/icons/alternate-phone.svg" alt="A phone icon image" class="nav-icon">
                             </div>
-
+        
                             <div class="phone-info">
-                                <a href="tel:02076842569" aria-label="Call us at 0207 684 2569"><span>0207</span> 684
-                                    2569</a>
+                                <a href="tel:02076842569" aria-label="Call us at 0207 684 2569"><span>0207</span> 684 2569</a>
                             </div>
                         </div>
                     </div>
-
+        
                     <div class="call-to-action">
                         <div class="info">
-                            <p class="small-header bold" aria-label="Fresh Fruit">Fresh Fruit</p>
-                            <p class="large-header" aria-label="Vegetables">Vegetables</p>
-                            <p class="medium-header" aria-label="100% Organic">100% Organic</p>
-                            <p aria-label="Free Pickup and delivery available">Free Pickup and delivery available</p>
-
+                            <p class="small-header bold">Fresh Fruit</p>
+                            <p class="large-header">Vegetables</p>
+                            <p class="medium-header">100% Organic</p>
+                            <p>Free Pickup and delivery available</p>
+        
                             <button class="button-md shop-btn" aria-label="Shop now">Shop now</button>
                         </div>
-
+        
                         <div class="main-img">
                             <img src="static/img/main/main-bg.png" alt="The main background image" class="main-image">
                         </div>
                     </div>
+        
                 </div>
             </div>
         </section>
-
+        
+        <!-- The featured -->
+        <section id="featured">
+            <div class="container">
+                <div class="featured__featured-categories">
+        
+                    <div class="featured__featured-categories__coffee box">
+                        <div class="featured__featured-categories__display-text">
+                            <h2>Cuban coffee</h2>
+                            <p>The ultimate coffee</p>
+                        </div>
+                        <div class="img-box">
+                            <img src="static/img/display/jpg/whole-coffee-nut.jpg" alt="A whole coffee nut" 
+                                class="featured__featured-categories_display_img img_1">
+                            <img src="static/img/display/jpg/coffee.jpeg" alt="A coffee that has been split open"
+                                class="featured__featured-categories_display_img img_2">
+                        </div>
+                    </div>
+        
+                    <div class="featured__featured-categories__grapes box">
+                        <div class="featured__featured-categories__display-text">
+                            <h2>Tomatoes</h2>
+                            <p>Fresh Organic tomatoes</p>
+                        </div>
+                        <div class="img-box">
+                            <img src="static/img/display/jpg/whole-tomato.jpeg" alt="A whole tomato" 
+                                class="featured__featured-categories_display_img img_1">
+                            <img src="static/img/display/jpg/chopped-tomato.jpeg" alt="A tomato that has been split in half"
+                                class="featured__featured-categories_display_img img_2">
+                        </div>
+                    </div>
+        
+                    <div class="featured__featured-categories__meat box">
+                        <div class="featured__featured-categories__display-text">
+                            <h2>Oranges</h2>
+                            <p>Freshly picked organic oranges</p>
+                        </div>
+                        <div class="img-box">
+                            <img src="static/img/display/jpg/whole-orange.jpeg" alt="A whole orange" 
+                                class="featured__featured-categories_display_img img_1">
+                            <img src="static/img/display/jpg/half-an-orange.jpeg" alt="An orange that has been split open"
+                                class="featured__featured-categories_display_img img_2">
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </section>
+        
 
     </main>
-
+    <script src="static/js/script.js"></script>
 </body>
 
 </html>
