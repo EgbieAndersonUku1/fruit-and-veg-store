@@ -38,6 +38,9 @@ button {
     cursor: pointer;
 }
 
+li {
+    list-style-type: none;
+}
 
 /* The input fields */
 input[type="search"] {
@@ -48,6 +51,9 @@ input[type="search"] {
     font-size: var(--font-size-normal);
 }
 
+h1 {
+    text-transform: capitalize;
+}
 
 
 /* colors */
@@ -260,8 +266,62 @@ nav {
 .featured__featured-categories_display_img {
     height: 150px;
     width: 150px;
-
     top: 20%;
+}
+
+.featured_product__label {
+    font-size: 12px;
+    text-transform: uppercase;
+    padding-left: 4px;
+    padding-top: 4px;
+  }
+
+
+/* featured products */
+
+.featured-products__container h1{
+    width: var(--global-width-md);
+    margin: auto;
+
+    padding-top: 64px;
+}
+
+.featured-products__container__cards{
+
+    width: var(--global-width-md);
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+}
+
+.featured_product__label {
+    position: absolute;
+}
+
+.featured-products__container__cards__product_menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 20px;
+    padding-top: 10px;
+    display: none;
+}
+
+.featured-products__container__cards__product_menu.show {
+   display: flex;
+}
+
+.featured-products__container__cards .card {
+    position: relative;
+}
+
+
+
+
+.card-img {
+    height: 150px;
+    width: 200px;
 }
 
 .img_2 {
@@ -342,6 +402,13 @@ nav {
     text-align: center;
 }
 
+
+.p-title {
+    text-transform: capitalize;
+    color: black;
+    font-weight: bolder;
+}
+
 .text-upper {
     text-transform: uppercase;
 }
@@ -356,6 +423,20 @@ nav {
     cursor: pointer;
   
 }
+
+.word-wrap {
+    width: var(--global-width-md);
+    overflow-wrap: break-word;
+}
+
+
+hr {
+    width: var(--global-width-md);
+    margin: auto;
+    color: lavender;
+    margin-bottom: 32px;
+}
+
 
 /* Custom buttons */
 .button-md {
@@ -382,6 +463,18 @@ nav {
 /* icons */
 .email-icon {
     transform: translateY(8px);
+}
+
+.card-icon {
+    height: 35px;
+    width: 35px;
+  
+    border: 1px solid white;
+    border-radius: 50%;
+    padding: 4px;
+    background: white;
+    opacity: 0.8;
+      
 }
 
 

@@ -1,7 +1,10 @@
 
-const boxes     = document.querySelectorAll(".box");
-const MOUSEOUT  = "mouseout";
-const MOUSEOVER =  "mouseover";
+const cards        = document.querySelectorAll(".card");
+const productMenus = document.querySelectorAll(".featured-products__container__cards__product_menu");
+const boxes        = document.querySelectorAll(".box");
+const MOUSEOUT     = "mouseout";
+const MOUSEOVER    =  "mouseover";
+
 
 
 boxes.forEach((box) => {
@@ -9,16 +12,38 @@ boxes.forEach((box) => {
     const imgContainer = box.querySelector(".img-box");
     const images       = imgContainer ? imgContainer.querySelectorAll("img") : [];
 
-    if (images.length >=2) {
-
-        box.addEventListener(MOUSEOVER, (e) => handleImagesRotation(e.type, images));
-        box.addEventListener(MOUSEOUT, (e) => handleImagesRotation(e.type, images));
-    }
+    addImageRotationListeners(box, images);
    
 })
 
 
-function handleImagesRotation(type, images) {
+cards.forEach((card) => {
+
+    const cardMenu = card.querySelector(".head .featured-products__container__cards__product_menu");
+    const imgContainer = card.querySelector(".head .img-container");
+    const images       = imgContainer ? imgContainer.querySelectorAll("img") : [];
+
+    addImageRotationListeners(card, images, false);
+    
+    card.addEventListener(MOUSEOVER, () => handleCardMenuDisplay(cardMenu));
+    card.addEventListener(MOUSEOUT, () => handleCardMenuDisplayRemoval(cardMenu));
+   
+  
+})
+
+
+
+
+function addImageRotationListeners(element, images, rotateImageFlag=true) {
+    if (images.length >= 2) {
+        element.addEventListener('mouseover', (e) => handleImagesRotation(e.type, images, rotateImageFlag));
+        element.addEventListener('mouseout', (e) => handleImagesRotation(e.type, images, rotateImageFlag));
+    }
+}
+
+
+
+function handleImagesRotation(type, images, rotate=true) {
 
     const [img, img2]           = images;
     const DELAY_IN_MILLISECONDS = 400;
@@ -26,7 +51,10 @@ function handleImagesRotation(type, images) {
     switch (true) {
 
         case type === "mouseover":
-            img.style.transform = "rotate(180deg)";
+            if (rotate) {
+                img.style.transform = "rotate(180deg)";
+            }
+          
 
             setTimeout(() => {
                 img.style.display  = "none";
@@ -36,7 +64,10 @@ function handleImagesRotation(type, images) {
             break;
         
         case type === "mouseout":
-            img.style.transform = "rotate(360deg)";
+            if (rotate) {
+                img.style.transform = "rotate(360deg)";
+            }
+          
             
             setTimeout(() => {
                 img.style.display = "block";
@@ -45,4 +76,15 @@ function handleImagesRotation(type, images) {
             break;
     }
    
+}
+
+
+
+
+function handleCardMenuDisplay(cardMenu) {
+    cardMenu.classList.add("show");
+}
+
+function handleCardMenuDisplayRemoval(cardMenu){
+    cardMenu.classList.remove("show");
 }
