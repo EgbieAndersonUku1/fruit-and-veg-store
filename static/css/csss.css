@@ -20,6 +20,7 @@
 
     /* colors */
     --light-green:  #278827;
+    --dark-green: rgb(20, 97, 20);
 }
 
 
@@ -49,6 +50,10 @@ input[type="search"] {
     height: 40px;
     padding: 2px;
     font-size: var(--font-size-normal);
+}
+
+input[type="number"] {
+    text-align: center;
 }
 
 h1 {
@@ -479,5 +484,134 @@ hr {
 
 
 
+/* quick view container */
+
+#quick-view {
+    
+    background: white;
+    border: 6px solid #348634;
+    padding: 20px;
+
+    /* The positioning elements */
+    position: fixed;
+    top: 3%;
+    right: 10%;
+    left: 10%;
+    bottom: 45%;
+
+    /* The size elements */
+    height: 670px;
+    width: 84%;
+
+    /* box shadow */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+         
+}
+
+.quick-view__main-img {
+
+    position: relative;
+    height: 457px;
+    width: 96%;
+    border: 1px solid;
+    margin-right: 22px;
+}
 
 
+.quick-view .container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+}
+
+.side-img {
+    height: 100px;
+    width: 100px;
+}
+
+.quick-view__img {
+    display: grid;
+}
+
+.quick-view__side-img {
+    margin-top: 10px;
+}
+
+.quick-view__image-info p {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.quick-view__main-pic {
+    cursor: pointer;
+    object-fit: cover;
+    
+    /* postions */
+    position: absolute;
+
+    /* sizes */
+    width: 100%;
+    height: 100%;
+}
+
+.quick-view__choice {
+    display: flex;
+    gap: 2px;
+}
+
+.quick-view__item_quantity {
+    border: 1px solid green;
+    width: 50%;
+    height: 40px;
+    color: white;
+    background: var(--dark-green);
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    opacity: 0.4;
+    text-transform: uppercase;
+  }
+
+ 
+
+
+.link-btn {
+    color: black;
+    width: 25%;
+    border: 1px solid;
+    padding: 10px;
+}
+
+
+.active {
+    background: var(--dark-green);
+    color: white;
+}
+
+.add-to-cart >* {
+    height: 40px;
+    margin-top: 20px;
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+   
+}
+
+
+.button-lg {
+    width: 50%;
+    background: var(--dark-green);
+    color: white;
+}
+
+.item-choice {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.item-title {
+    margin-bottom: 15px;
+}
+
+.quick-view__image-info hr {
+    width: 100%;
+}
