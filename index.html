@@ -174,7 +174,6 @@
             <div class="featured-products__container">
 
                 <h1>Featured products</h1>
-
                 <hr>
 
                 <div class="featured-products__container__cards">
@@ -183,20 +182,21 @@
                         
                         <div class="img-container">
                             <p class="featured_product__label">new</p>
+                            <input type="hidden" name="id" id="hiddenInput" data-id="1">
                             <img src="static/img/display/jpg/whole-cabbage.jpg" alt="A whole cabbage" class="card-img img_1">
                             <img src="static/img/display/jpg/cabbage.jpg" alt="A cabbage image" class="card-img img_2">
                         </div>
                         <div class="featured-products__container__cards__product_menu">
                             <ul>
                                 <li><a href="#"><img src="static/img/icons/red-heart.svg" alt="" class="card-icon" title="Add to wishlist"></a></li>
-                                <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="" class="card-icon" title="Quick view"></a></li>
+                                <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="" class="card-icon" title="Quick view" data-id="1"></a></li>
                                 <li><a href="#"><img src="static/img/icons/cart.svg" alt="" class="card-icon" title="Add to cart"></a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="body">
                         <p class="p-title word-break">Cabbage Green Pattagobi Seed</p>
-                        <p class="price">£25.49</p>
+                        <p class="price">£7.99</p>
                     </div>
                 </div>
 
@@ -204,21 +204,21 @@
                     <div class="head">
                         <div class="img-container">
                             <p class="featured_product__label">new</p>
-                          
+                            <input type="hidden" name="id" id="hiddenInput" data-id="2">
                             <img src="static/img/display/jpg/banana.jpg" alt="A banana image" class="card-img img_1">
                             <img src="static/img/display/jpg/half-banana.jpg" alt="A banana img" class="card-img img_2">
                         </div>
                         <div class="featured-products__container__cards__product_menu">
                             <ul>
                                 <li><a href="#"><img src="static/img/icons/red-heart.svg" alt="" class="card-icon" title="Add to wishlist"></a></li>
-                                <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="" class="card-icon" title="Quick view"></a></li>
+                                <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="" class="card-icon" title="Quick view" data-id="2"></a></li>
                                 <li><a href="#"><img src="static/img/icons/cart.svg" alt="" class="card-icon" title="Add to cart"></a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="body">
                         <p class="p-title word-break">Organic bananas</p>
-                        <p class="price">£25.49</p>
+                        <p class="price">£12.99</p>
                     </div>
                 </div>
 
@@ -226,6 +226,8 @@
                     <div class="head">
                         <div class="img-container">
                             <p class="featured_product__label">new</p>
+                            <input type="hidden" name="id" id="hiddenInput" data-id="3">
+
                             <img src="static/img/display/jpg/green-bell-pepper.jpg" alt="A bell pepper image" class="card-img img_1">
                             <img src="static/img/display/jpg/bell-pepper.jpg" alt="A bell pepper image" class="card-img img_2">
                         </div>
@@ -248,6 +250,8 @@
                     <div class="head">
                         <div class="img-container">
                             <p class="featured_product__label">new</p>
+                            <input type="hidden" name="id" id="hiddenInput" data-id="4">
+
                             <img src="static/img/display/jpg/whole-cauliflower.jpg" alt="A cauliflower image" class="card-img img_1">
                             <img src="static/img/display/jpg/cauliflower.jpg" alt="A cauliflower image" class="card-img img_2">
                         </div>
@@ -261,7 +265,7 @@
                     </div>
                     <div class="body">
                         <p class="p-title word-break">cauliflower</p>
-                        <p class="price">£10.49</p>
+                        <p class="price">£8.99</p>
                     </div>
                 </div>
 
@@ -269,6 +273,8 @@
                     <div class="head">
                         <div class="img-container">
                             <p class="featured_product__label">new</p>
+                            <input type="hidden" name="id" id="hiddenInput" data-id="5">
+
                             <img src="static/img/display/jpg/red-onions.jpg" alt="A red onion image" class="card-img img_1">
                             <img src="static/img/display/jpg/red-sliced-onions.jpg" alt="A red onion image" class="card-img img_2">
                         </div>
@@ -282,7 +288,7 @@
                     </div>
                     <div class="body">
                         <p class="p-title word-break">Red onion</p>
-                        <p class="price">£7.49</p>
+                        <p class="price">£5.99</p>
                     </div>
                 </div>
 
@@ -290,6 +296,8 @@
                     <div class="head">
                         <div class="img-container">
                             <p class="featured_product__label">new</p>
+                            <input type="hidden" name="id" id="hiddenInput" data-id="6">
+
                             <img src="static/img/display/jpg/avacodo.jpg" alt="An avacodo image" class="card-img img_1">
                             <img src="static/img/display/jpg/avacodo-slice.jpg" alt="An avacodo image" class="card-img img_2">
                         </div>
@@ -312,79 +320,15 @@
 
         <div class="quick-view" id="quick-view">
             <div class="container">
-                <div class="quick-view__img">
-                   
-                    <div class="quick-view__main-img">
-                        <img src="static/img/display/jpg/apple-cart.jpg" alt="" srcset="" class="quick-view__main-pic">
-                    </div>
-
-                    <div class="quick-view__side-img">
-                        <img src="static/img/display/jpg/red-apple.jpg" alt="" class="side-img">
-                        <img src="static/img/display/jpg/whole-apple.jpg" alt="" class="side-img">
-                    </div>
-
-                </div>
-
-                <div class="quick-view__image-info">
-                    <h2 class="item-header">Red Apples</h2>
-                    <p class="item-description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. A sapiente amet quis beatae? Id voluptatum voluptates dolor. Inventore vitae voluptatem, enim optio adipisci veniam itaque quidem provident? Ullam, iste expedita?
-
-                    </p>
-
-                    <p class="item-price">
-                        £25.99
-                    </p>
-
-                    <p class="brand"><span class="display">Brand: </span> Vintage</p>
-                    <p class="reference"><span class="display">Reference: </span>demo_10</p>
-
-                    <hr>
-                    
-
-                    <div class="item-choice">
-                        <div class="item-title">
-                            <p class="item-size-title">Size: small</p>
-                        </div>
-
-                        <div class="quick-view__choice">
-                            <a href="#" class="link-btn active">Small</a>
-                            <a href="#" class="link-btn">Medium</a>
-                            <a href="#" class="link-btn">Large</a>
-                        </div>
-                     
-                    </div>
-
-                    <div class="item-choice">
-                        <div class="item-title">
-                            <p class="item-dimension-title">Dimension : 40x60cm</p>
-                        </div>
-
-                        <div class="quick-view__choice">
-                                <a href="#" class="link-btn active">40x60cm</a>
-                                <a href="#" class="link-btn">80x120cm</a>
-                        </div>
-                     
-                    </div>
-
-                    <div class="quick-view__item_quantity">
-                        <p class="item-size-title">In Stock </p>
-                    </div>
-
-                    <div class="quantity add-to-cart">
-                        <input type="number" name="quantity" id="quantity" min="1" max="400" step="1" value="1">
-                        <button class="button-lg">Add to cart</button>
-
-                    </div>
-
-                </div>
-
+           
 
             </div>
         </div>
 
     </main>
-    <script src="static/js/script.js"></script>
+
+    <script src="static/js/script.js" type="module"></script>
+
 </body>
 
 </html>
