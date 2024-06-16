@@ -1,9 +1,13 @@
+import buildQuickView from "./builder.js";
+import getItemByID from "../../data.js";
+
 
 const cards        = document.querySelectorAll(".card");
-const productMenus = document.querySelectorAll(".featured-products__container__cards__product_menu");
+const quickView    = document.getElementById("quick-view");
 const boxes        = document.querySelectorAll(".box");
 const MOUSEOUT     = "mouseout";
 const MOUSEOVER    =  "mouseover";
+
 
 
 
@@ -11,7 +15,6 @@ boxes.forEach((box) => {
 
     const imgContainer = box.querySelector(".img-box");
     const images       = imgContainer ? imgContainer.querySelectorAll("img") : [];
-
     addImageRotationListeners(box, images);
    
 })
@@ -19,9 +22,15 @@ boxes.forEach((box) => {
 
 cards.forEach((card) => {
 
-    const cardMenu = card.querySelector(".head .featured-products__container__cards__product_menu");
+    const cardMenu     = card.querySelector(".head .featured-products__container__cards__product_menu");
     const imgContainer = card.querySelector(".head .img-container");
     const images       = imgContainer ? imgContainer.querySelectorAll("img") : [];
+
+    const quickViewLinks = cardMenu.querySelectorAll("ul li");
+    const quickView      = quickViewLinks && quickViewLinks.length === 3 ? quickViewLinks[1]: [];
+
+    quickView.addEventListener("click", handleQuickView);
+    quickView?.querySelector("a").addEventListener("click", handleQuickView);
 
     addImageRotationListeners(card, images, false);
     
@@ -80,11 +89,26 @@ function handleImagesRotation(type, images, rotate=true) {
 
 
 
-
 function handleCardMenuDisplay(cardMenu) {
     cardMenu.classList.add("show");
 }
 
+
 function handleCardMenuDisplayRemoval(cardMenu){
     cardMenu.classList.remove("show");
 }
+
+
+function handleQuickView(e) {
+    e.preventDefault();
+    const id = e.target.dataset.id;
+
+    if (id) {
+        quickView.style.display = "block";
+        
+        buildQuickView(getItemByID(id))
+    }
+  
+}
+
+
