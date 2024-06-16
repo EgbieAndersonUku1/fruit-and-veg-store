@@ -2,14 +2,17 @@ import buildQuickView from "./builder.js";
 import getItemByID from "../../data.js";
 
 
-const cards        = document.querySelectorAll(".card");
-const quickView    = document.getElementById("quick-view");
-const boxes        = document.querySelectorAll(".box");
-const MOUSEOUT     = "mouseout";
-const MOUSEOVER    =  "mouseover";
+const cards                = document.querySelectorAll(".card");
+const quickView            = document.getElementById("quick-view");
+const boxes                = document.querySelectorAll(".box");
+const wishlistMsg          = document.querySelector(".wishlist-logged-msg");
+const wishListCloseIcon    = document.getElementById("wishlist-close-icon");
+const dimBackgroundElement = document.querySelector(".dim-overlay");
+const MOUSEOUT             = "mouseout";
+const MOUSEOVER            =  "mouseover";
 
 
-
+wishListCloseIcon.addEventListener("click", handleCloseWishlistMessage);
 
 boxes.forEach((box) => {
 
@@ -28,9 +31,13 @@ cards.forEach((card) => {
 
     const quickViewLinks = cardMenu.querySelectorAll("ul li");
     const quickView      = quickViewLinks && quickViewLinks.length === 3 ? quickViewLinks[1]: [];
+    const wishlistsLinks = quickViewLinks && quickViewLinks.length === 3 ? quickViewLinks[0]: [];
 
-    quickView.addEventListener("click", handleQuickView);
+    // quickView.addEventListener("click", handleQuickView);
+    // wishListsLinks.addEventListener("click", handleWishListClick);
+
     quickView?.querySelector("a").addEventListener("click", handleQuickView);
+    wishlistsLinks?.querySelector("a").addEventListener("click", handleWishlistClick);
 
     addImageRotationListeners(card, images, false);
     
@@ -105,10 +112,21 @@ function handleQuickView(e) {
 
     if (id) {
         quickView.style.display = "block";
-        
         buildQuickView(getItemByID(id))
     }
   
 }
 
 
+function handleWishlistClick(e) {
+    e.preventDefault();
+
+    // for now it will always display not logged in - will changed that after backend is created
+    dimBackgroundElement.style.display = "block";
+    wishlistMsg.style.display          = "flex";
+}
+
+function handleCloseWishlistMessage() {
+    dimBackgroundElement.style.display = "none";
+    wishlistMsg.style.display          = "none";
+}

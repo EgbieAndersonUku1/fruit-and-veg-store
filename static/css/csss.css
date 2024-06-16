@@ -719,3 +719,31 @@ button:hover,
     right: 0;
       
 }
+
+.wishlist-logged-msg {
+    
+    display: flex;
+    border: 3px solid lavender;
+    width: 60%;
+    justify-content: space-between;
+    position: fixed;
+    top: 26%;
+    left: 20%;
+    background: white;
+    right: 50%;
+    padding: 40px;
+    z-index: 10000;
+    display: none;
+  }
+
+
+  .dim-overlay  {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 9999;
+    display: none;
+}
