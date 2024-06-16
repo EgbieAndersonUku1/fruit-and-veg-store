@@ -1,3 +1,4 @@
+const quickViewDiv       = document.querySelector("#quick-view");
 const quickViewContainer = document.querySelector("#quick-view .container");
 
 
@@ -5,24 +6,22 @@ function buildQuickView(item) {
     if (!item) {
         throw new Error("Can't find the item");
     }
-
-    const imageDiv     = buildItemImageDiv(item);
-    const itemChoices  = buildItemInfo(item);
-    const inStockDiv   = buildIsItemInStockDiv(item);
-
+    
+    const imageDiv         = buildItemImageDiv(item);
+    const itemBodyInfoDiv  = buildItemInfo(item);
+    const closeIcon        = buildCloseIcon();
+ 
+    quickViewContainer.innerHTML = "";
+    quickViewContainer.appendChild(closeIcon);
     quickViewContainer.appendChild(imageDiv);
-    quickViewContainer.appendChild(itemChoices);
-    quickViewContainer.appendChild(inStockDiv);
-
-  
-
-
-
+    quickViewContainer.appendChild(itemBodyInfoDiv);
+   
 }
 
-function buildItemImageDiv(item) {
 
-  
+
+
+function buildItemImageDiv(item) {
 
     if (!item || !item.images.detail) {
         throw new Error("The item or the item.detail couldn't be found!!");
@@ -60,20 +59,47 @@ function buildItemImageDiv(item) {
 }
 
 
+function buildCloseIcon(){
+
+    const img     = document.createElement("img");
+    const mainDiv = document.createElement("div");
+    mainDiv.id    = "close-icon";
+
+    img.src        = "static/img/icons/window-close.svg";  // shows
+
+    img.alt        = "Window close icon";
+    img.className  = "close-icon";
+
+    img.addEventListener("click", handleCloseIconClick);
+
+    mainDiv.appendChild(img);
+    return mainDiv;
+}
+
 
 function buildItemInfo(item) {
     const mainDiv       = document.createElement("div");
     mainDiv.className   = "quick-view__image-info";
 
-    const titleDiv      = buildItemHeader(item);
-    const itemChoiceDiv = buildItemBody(item);
+    const titleDiv       = buildItemHeader(item);
+    const colorDiv       = buildItemChoiceDiv(item.color, "Color");
+    const sizeDiv        = buildItemChoiceDiv(item.sizes, "Sizes");
+    const dimensionsDiv  = buildItemChoiceDiv(item.dimensions, "Dimensions");
+    const inStockDiv     = buildIsItemInStockDiv(item);
+    const stockRemaining = buildStockRemainingDiv(item);
+    const addToCartDiv   = buildAddToCartDiv();
+    const buildToWishListDiv = buildAddToWishList();
 
     mainDiv.appendChild(titleDiv);
-    mainDiv.appendChild(itemChoiceDiv);
-  
+    mainDiv.appendChild(colorDiv);
+    mainDiv.appendChild(sizeDiv);
+    mainDiv.appendChild(dimensionsDiv);
+    mainDiv.appendChild(inStockDiv);
+    mainDiv.appendChild(stockRemaining);
+    mainDiv.appendChild(addToCartDiv);
+    mainDiv.appendChild(buildToWishListDiv);
     return mainDiv;
     
- 
 }
 
 function buildItemHeader(item) {
@@ -88,7 +114,7 @@ function buildItemHeader(item) {
     const hr                     = document.createElement("hr");
     const pBrandTag              = document.createElement("p");
     const pReferenceTag          = document.createElement("p");
-    const fragment               = document.createDocumentFragment();
+    const mainDiv                = document.createElement("div");
 
     h2.className                 = "quick-view__image-info__header";
     h2.textContent               = item.name ? item.name.toUpperCase() : "N/A";
@@ -101,7 +127,7 @@ function buildItemHeader(item) {
 
     pBrandTag.className          = "brand";
     const brandSpan              = document.createElement("span");
-    brandSpan.className          = "bold";
+    brandSpan.className          = "light-bold";
     brandSpan.textContent        = "Brand: ";
     pBrandTag.appendChild(brandSpan);
     pBrandTag.appendChild(document.createTextNode(item.brand ? item.brand : "Unknown"));
@@ -114,35 +140,28 @@ function buildItemHeader(item) {
     pReferenceTag.appendChild(referenceSpan);
     pReferenceTag.appendChild(document.createTextNode(item.reference ? item.reference : "N/A"));
 
-    fragment.appendChild(h2);
-    fragment.appendChild(pDescriptionTag);
-    fragment.appendChild(pItemPriceTag);
-    fragment.appendChild(pBrandTag);
-    fragment.appendChild(pReferenceTag);
-    fragment.appendChild(hr);
+    mainDiv.appendChild(h2);
+    mainDiv.appendChild(pDescriptionTag);
+    mainDiv.appendChild(pItemPriceTag);
+    mainDiv.appendChild(pBrandTag);
+    mainDiv.appendChild(pReferenceTag);
+    mainDiv.appendChild(hr);
 
-    return fragment;
+    return mainDiv;
 }
 
-function buildItemBody(item) {
 
-    const fragment      = document.createDocumentFragment();
-
-    const colorDiv      = buildItemChoiceDiv(item.color, "Color");
-    const sizeDiv       = buildItemChoiceDiv(item.sizes, "Sizes");
-    const dimensionsDiv = buildItemChoiceDiv(item.dimensions, "Dimensions");
-
-
-    fragment.appendChild(colorDiv);
-    fragment.appendChild(sizeDiv);
-    fragment.appendChild(dimensionsDiv);
-
-    return fragment;
-
-}
 
 
 function buildItemChoiceDiv(attributesArray, title) {
+
+    if (!attributesArray && !Array.isArray(attributesArray)) {
+        throw new Error("Something went wrong, check the attributesArray");
+    }
+
+    if (!title) {
+        throw new Error("The title attribute can't be empty!!!");
+    }
 
     const mainDiv        = document.createElement("div");
     mainDiv.className    = "item-choice";
@@ -152,13 +171,12 @@ function buildItemChoiceDiv(attributesArray, title) {
 
     const pTag           = document.createElement("p");
     const pSpan          = document.createElement("span");
+    pSpan.className      = "item-size-title";
+    pSpan.textContent    = "Color"; 
     
-    pTag.className   = "bold";
-    pSpan.className  = "item-size-title";
-
-    pSpan.textContent = "Color"; 
+    pTag.classList.add("light-bold", title);
     pTag.appendChild(document.createTextNode(`${title.toUpperCase()} : `));
-
+    
     titleDiv.appendChild(pTag);
 
     // the buttons div
@@ -170,9 +188,10 @@ function buildItemChoiceDiv(attributesArray, title) {
     for (let attribute of attributesArray) {
 
         const button = document.createElement("button");
-        button.classList.add("link-btn", "text-upper");
+        button.classList.add("link-btn", "text-upper", "quick-view__button-display");
 
-        button.dataset.color = attribute;  
+        button.dataset.key   = title;
+        button.dataset.value = attribute;  
         button.textContent   = attribute;
 
         button.addEventListener("click", handleButtonClick)
@@ -188,8 +207,6 @@ function buildItemChoiceDiv(attributesArray, title) {
 }
 
 
-
-
 function buildIsItemInStockDiv(item) {
     return buildStockHelper(item);
 }
@@ -198,32 +215,27 @@ function buildStockRemainingDiv(item) {
     return buildStockHelper(item, false);
 }
 
+
 function buildStockHelper(item, showStockStatus = true) {
-    const fragment = document.createDocumentFragment(); // Create a fragment to hold the elements
-    const pTitleTag = document.createElement("p"); 
+    const mainDiv         = document.createElement("div"); 
+    const pTitleTag       = document.createElement("p"); 
    
-    const pStockTag = document.createElement("p"); 
-    pStockTag.className = "item-size-title";
+    const pStockTag       = document.createElement("p"); 
+    pStockTag.className   = "item-size-title";
 
-    if (showStockStatus) {
-        // pTitleTag.textContent = "Stock";
-        // pTitleTag.className   = "bold";
-        pStockTag.textContent = item.remaining > 0 ? "In stock" : "Not in stock";
-    } else {
-        pTitleTag.textContent = "Stock remaining";
-        pStockTag.textContent = item.remaining;
-        pStockTag.classList.add("remaining");
-    }
+    pTitleTag.textContent = showStockStatus ? "STOCK" : "STOCK REMAINING";
+    pStockTag.textContent = showStockStatus ? (item.remaining > 0 ? "In stock" : "Not in stock") : item.remaining;
 
-    const quantityDiv = document.createElement("div");
+    pTitleTag.className   = "light-bold";
+    const quantityDiv     = document.createElement("div");
     quantityDiv.className = "quick-view__item_quantity";
 
     quantityDiv.appendChild(pStockTag);
 
-    fragment.appendChild(pTitleTag);
-    fragment.appendChild(quantityDiv);
+    mainDiv.appendChild(pTitleTag);
+    mainDiv.appendChild(quantityDiv);
     
-    return fragment;
+    return mainDiv;
 }
 
 
@@ -254,11 +266,13 @@ function buildAddToCartDiv() {
 
 }
 
-function addToWishList() {
+function buildAddToWishList() {
 
     const mainDiv          = document.createElement("div");
     const addToWishListBtn = document.createElement("button");
     const addToCompareBtn  = document.createElement("button");
+
+    mainDiv.classList.add("add-to-wishlist", "flex-row");
 
     addToWishListBtn.classList.add("button-lg", "padding-sm", "text-upper", "wishlist-btn");
     addToCompareBtn.classList.add("button-lg", "padding-sm", "text-upper", "compare-btn");
@@ -266,15 +280,43 @@ function addToWishList() {
     addToWishListBtn.textContent = "Add to wishlist";
     addToCompareBtn.textContent  = "Add to compare list";
 
-    mainDiv.appendChild(addToWishList);
+    mainDiv.appendChild(addToWishListBtn);
     mainDiv.appendChild(addToCompareBtn);
     return mainDiv
 
 }
 
 function handleButtonClick(e) {
-    console.log(e);
+    const key    = e.target.dataset.key;
+    const value  = e.target.dataset.value;
+    const pTag = document.querySelector(`.${key}`);
 
+    pTag.textContent = `${key.toUpperCase()}: ${value.toUpperCase()}`;
+
+    removeExistingActiveClass(e);
+    e.target.classList.add("active");
+   
 }
 
+
+function handleCloseIconClick() {
+    quickViewDiv.style.display = "none";
+}
+
+function removeExistingActiveClass(e) {
+   
+   const parentDiv = e.target.parentElement;
+
+   if (parentDiv) {
+        const buttons = parentDiv.querySelectorAll("button");
+        if (buttons) {
+            buttons.forEach((button) => {
+                if (button.classList.contains("active")) {
+                    button.classList.remove("active");
+                }
+            })
+        }
+   }
+  
+}
 export default buildQuickView;

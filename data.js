@@ -29,7 +29,7 @@ const FeaturedItems = [
                     alt: "A small image of the cabbage",
                 },
                 {
-                    imgSrc: "static/img/display/jpg/cabbage.jpg",
+                    imgSrc: "static/img/display/jpg/cabbage.png",
                     main: false,
                     alt: "A small image of the cabbage",
                 },
@@ -41,7 +41,7 @@ const FeaturedItems = [
      {
          id:   2,
          name: "Organic Bananas",
-         description: "Delicious and healthy, bananas are a great source of essential nutrients. Packed with potassium and energy, they are perfect for a quick snack or adding to smoothies and desserts. Enjoy the sweet and creamy taste of our premium bananas.",
+         description: "Delicious and nutritious, our premium bananas are rich in essential nutrients like potassium and energy. Perfect for snacks, smoothies, and desserts, enjoy their sweet and creamy taste anytime",
          brand: "Tropical",
          price: "12.99",
          reference_id: "demo_2",
@@ -58,7 +58,7 @@ const FeaturedItems = [
                     alt: "The main image of a banana",
                 },
                 {
-                    imgSrc: "static/img/display/jpg/banana.jpg",
+                    imgSrc: "static/img/display/jpg/half-banana.jpg",
                     main: false,
                     alt: "The main image of a banana",
                 },
@@ -75,7 +75,7 @@ const FeaturedItems = [
      {
         id:   3,
          name: "Bell Pepper",
-         description: "Vibrant, crisp, and packed with vitamins, our Bell Peppers add a burst of color and flavor to any dish. Perfect for salads, stir-fries, and grilling, these peppers are a versatile and healthy choice. Enjoy them raw or cooked for a delightful crunch and sweetness.",
+         description: "Vibrant and crisp, our Bell Peppers are packed with vitamins and add color and flavor to any dish. Perfect for salads, stir-fries, and grilling, enjoy them raw or cooked for a delightful crunch and sweetness..",
          brand: "Fresh Harvest",
          price: "5.49",
          reference_id: "demo_3",
@@ -87,20 +87,20 @@ const FeaturedItems = [
             detail: [
               
                 {
-                    imgSrc: "static/img/display/jpg/bell-pepper.jpg",
+                    imgSrc: "static/img/display/jpg/yellow-bell-pepper.jpg",
                     main: true,
-                    alt: "The main image of a banana",
+                    alt: "The image of a bell pepper",
         
                 },
                 {
-                    imgSrc: "static/img/display/jpg/bell-pepper.jpg",
+                    imgSrc: "static/img/display/jpg/green-bell-pepper.jpg",
                     main: false,
-                    alt: "The main image of a banana",
+                    alt: "The image of a bell pepper",
                 },
                 {
-                    imgSrc: "static/img/display/jpg/whole-bell-pepper.jpg",
+                    imgSrc: "static/img/display/jpg/red-pepper.webp",
                     main: false,
-                    alt: "The main image of a banana",
+                    alt: "The image of a bell pepper",
                 },
 
 
@@ -111,7 +111,7 @@ const FeaturedItems = [
      {
          id:   4,
          name: "Cauliflower",
-         description: "Fresh and crunchy, our Cauliflower is a versatile vegetable perfect for a variety of dishes. Whether roasted, steamed, or used in a stir-fry, cauliflower provides a healthy and tasty addition to your meals. Rich in vitamins and fiber, it's a nutritious choice.",
+         description: "Fresh and crunchy, our Cauliflower is perfect for various dishes. Whether roasted, steamed, or in a stir-fry, it adds a healthy, tasty touch to meals. Rich in vitamins and fiber, it's a nutritious choice.",
          brand: "Green Valley",
          price: "8.49",
          reference_id: "demo_4",
@@ -147,7 +147,7 @@ const FeaturedItems = [
      {
          id:   5,
          name: "Red Onions",
-         description: "Our Red Onions are full of flavor and add a beautiful color to any dish. Perfect for salads, grilling, or as a flavorful addition to cooked meals, these onions are a kitchen staple. Rich in antioxidants, they not only taste great but also provide health benefits.",
+         description: "Our flavorful Red Onions enhance any dish with their vibrant color and robust taste. Ideal for salads, grilling, or as a savory addition to cooked meals, they're a kitchen essential rich in antioxidants for both flavor and health",
          brand: "Organic Farm",
          price: "5.99",
          reference_id: "demo_5",
@@ -219,4 +219,9 @@ const FeaturedItems = [
      }
  ];
 
- export default FeaturedItems;
+
+ 
+ function getItemByID(id) {
+    return FeaturedItems.find((item) => item.id === parseInt(id))
+ }
+ export default getItemByID;

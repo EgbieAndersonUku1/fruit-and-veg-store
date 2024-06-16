@@ -47,6 +47,7 @@ button {
     cursor: pointer;
 }
 
+
 li {
     list-style-type: none;
 }
@@ -494,6 +495,9 @@ hr {
     font-weight: bold;
 }
 
+.light-bold {
+    font-weight: 500;
+}
 
 /* icons */
 .email-icon {
@@ -519,7 +523,7 @@ hr {
 #quick-view {
     
     background: white;
-    border: 3px solid #348634;
+    border: 1px solid #348634;
     padding: 20px;
 
     /* The positioning elements */
@@ -536,7 +540,20 @@ hr {
     /* box shadow */
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     
-    /* display: none; */
+    display: none;
+}
+
+
+.quick-view__button-display {
+    background: white;
+    border: 2px solid #348634;
+}
+
+
+button:hover,
+.quick-view__button-display:hover {
+    background: black;
+    color: white;
 }
 
 .quick-view__main-img {
@@ -546,6 +563,8 @@ hr {
     width: 96%;
     border: 1px solid;
     margin-right: 22px;
+
+    border: 2px solid lavender;
 }
 
 
@@ -558,14 +577,17 @@ hr {
 .side-img {
     height: 100px;
     width: 100px;
-}
+    margin-right: 2px;
+    border: 2px solid lavender;
+    background: lavender;
+  }
 
 .quick-view__img {
     display: grid;
 }
 
 .quick-view__side-img {
-    margin-top: 10px;
+    margin-top: 1px;
 }
 
 .quick-view__image-info p {
@@ -580,6 +602,7 @@ hr {
 .quick-view__main-pic {
     cursor: pointer;
     object-fit: cover;
+   
     
     /* postions */
     position: absolute;
@@ -610,10 +633,10 @@ hr {
 
 
 .link-btn {
-    color: black;
+    color: darkgreen;
     font-size: var(--font-size-sm);
-    width: 25%;
-    border: 1px solid;
+    width: 20%;
+    border: 1px solid black;
     padding: var(--padding-sm);
 }
 
@@ -676,4 +699,23 @@ hr {
 .compare-btn {
     background: var(--dodger-blue);
     color: white;
+}
+
+/* icons */
+.close-icon {
+    height: 40px;
+    width: 40px;
+}
+
+.close-icon:hover {
+    transform: rotate(360deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+#close-icon {
+
+    position: absolute;
+    top: 0;
+    right: 0;
+      
 }

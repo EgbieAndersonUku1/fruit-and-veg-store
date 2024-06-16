@@ -1,9 +1,9 @@
 import buildQuickView from "./builder.js";
-import FeaturedItems from "../../data.js";
+import getItemByID from "../../data.js";
 
 
 const cards        = document.querySelectorAll(".card");
-const productMenus = document.querySelectorAll(".featured-products__container__cards__product_menu");
+const quickView    = document.getElementById("quick-view");
 const boxes        = document.querySelectorAll(".box");
 const MOUSEOUT     = "mouseout";
 const MOUSEOVER    =  "mouseover";
@@ -101,9 +101,14 @@ function handleCardMenuDisplayRemoval(cardMenu){
 
 function handleQuickView(e) {
     e.preventDefault();
-    console.log("clicked")
+    const id = e.target.dataset.id;
+
+    if (id) {
+        quickView.style.display = "block";
+        
+        buildQuickView(getItemByID(id))
+    }
+  
 }
 
-
-buildQuickView(FeaturedItems[0]);
 
