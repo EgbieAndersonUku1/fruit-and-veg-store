@@ -159,18 +159,18 @@ const FeaturedItems = [
             detail: [
               
                 {
-                    imgSrc: "static/img/display/jpg/red-onion.jpg",
+                    imgSrc: "static/img/display/jpg/purple-onions.jpg",
                     main: true,
                     alt: "An image of red onion",
         
                 },
                 {
-                    imgSrc: "static/img/display/jpg/red-onion.jpg",
+                    imgSrc: "static/img/display/jpg/onions-set.jpg",
                     main: false,
                     alt: "An image of red onion",
                 },
                 {
-                    imgSrc: "static/img/display/jpg/whole-red-onion.jpg",
+                    imgSrc: "static/img/display/jpg/sliced-red-onion.jpg",
                     main: false,
                     alt: "An image of red onion",
                 },
@@ -196,22 +196,21 @@ const FeaturedItems = [
             detail: [
               
                 {
-                    imgSrc: "static/img/display/jpg/avocado.jpg",
+                    imgSrc: "static/img/display/jpg/avacodo-slice.jpg",
                     main: true,
                     alt: "An image of avocado",
         
                 },
                 {
-                    imgSrc: "static/img/display/jpg/avocado.jpg",
+                    imgSrc: "static/img/display/jpg/avacodo.jpg",
                     main: false,
                     alt: "An image of avocado",
                 },
                 {
-                    imgSrc: "static/img/display/jpg/whole-avocado.jpg",
+                    imgSrc: "static/img/display/jpg/green-avocados.jpg",
                     main: false,
                     alt: "An image of avocado",
                 },
-
 
             ]
            
