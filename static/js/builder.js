@@ -287,9 +287,11 @@ function buildAddToWishList() {
 }
 
 function handleButtonClick(e) {
+
+    // Update the title to reflect the button being clicked e.g. Color, size, dimension, etc
     const key    = e.target.dataset.key;
     const value  = e.target.dataset.value;
-    const pTag = document.querySelector(`.${key}`);
+    const pTag   = document.querySelector(`.${key}`);
 
     pTag.textContent = `${key.toUpperCase()}: ${value.toUpperCase()}`;
 
