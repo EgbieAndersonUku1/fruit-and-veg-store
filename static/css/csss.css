@@ -720,6 +720,7 @@ button:hover,
       
 }
 
+.addToItem-logged-msg,
 .wishlist-logged-msg {
     
     display: flex;
@@ -747,3 +748,27 @@ button:hover,
     z-index: 9999;
     display: none;
 }
+
+
+/* cart items */
+.item-cart-img {
+    height: 25px;
+    position: absolute;
+    position: relative;
+  
+}
+
+
+.item-cart {
+    background: red;
+    padding: 4px;
+    text-align: center;
+    width: 30px;
+    border-radius: 50%;
+    color: white;
+    position: absolute;
+    top: -23px;
+    right: -17px;
+    display: none;
+  }
+  
