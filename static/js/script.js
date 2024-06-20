@@ -1,18 +1,25 @@
 import buildQuickView from "./builder.js";
 import getItemByID from "../../data.js";
+import ItemCart from "../../cart.js";
 
 
 const cards                = document.querySelectorAll(".card");
 const quickView            = document.getElementById("quick-view");
 const boxes                = document.querySelectorAll(".box");
 const wishlistMsg          = document.querySelector(".wishlist-logged-msg");
+const addToCartMsg         = document.querySelector(".addToItem-logged-msg");
 const wishListCloseIcon    = document.getElementById("wishlist-close-icon");
+const addToItemCloseIcon   =  document.getElementById("addToItem-close-icon");
 const dimBackgroundElement = document.querySelector(".dim-overlay");
+const itemCart             = document.querySelector(".item-cart");
 const MOUSEOUT             = "mouseout";
 const MOUSEOVER            =  "mouseover";
 
 
-wishListCloseIcon.addEventListener("click", handleCloseWishlistMessage);
+const cart = new ItemCart();
+
+wishListCloseIcon.addEventListener("click", handleCloseWishlistMsg);
+addToItemCloseIcon.addEventListener("click", handleAddToCartCloseMsg)
 
 boxes.forEach((box) => {
 
@@ -30,20 +37,19 @@ cards.forEach((card) => {
     const images       = imgContainer ? imgContainer.querySelectorAll("img") : [];
 
     const quickViewLinks = cardMenu.querySelectorAll("ul li");
-    const quickView      = quickViewLinks && quickViewLinks.length === 3 ? quickViewLinks[1]: [];
-    const wishlistsLinks = quickViewLinks && quickViewLinks.length === 3 ? quickViewLinks[0]: [];
+    const wishlistsLinks = quickViewLinks && quickViewLinks.length === 3 ?  quickViewLinks[0]: [];
+    const quickView      = quickViewLinks && quickViewLinks.length === 3 ?  quickViewLinks[1]: [];
+    const addToCartLinks = quickViewLinks && quickViewLinks.length === 3 ?  quickViewLinks[2]: [];
 
-    // quickView.addEventListener("click", handleQuickView);
-    // wishListsLinks.addEventListener("click", handleWishListClick);
 
     quickView?.querySelector("a").addEventListener("click", handleQuickView);
     wishlistsLinks?.querySelector("a").addEventListener("click", handleWishlistClick);
+    addToCartLinks.querySelector("a").addEventListener("click", handleAddItemToCart);
 
     addImageRotationListeners(card, images, false);
     
     card.addEventListener(MOUSEOVER, () => handleCardMenuDisplay(cardMenu));
-    card.addEventListener(MOUSEOUT, () => handleCardMenuDisplayRemoval(cardMenu));
-   
+    card.addEventListener(MOUSEOUT, () => handleCardMenuDisplayRemoval(cardMenu));   
   
 })
 
@@ -126,7 +132,64 @@ function handleWishlistClick(e) {
     wishlistMsg.style.display          = "flex";
 }
 
-function handleCloseWishlistMessage() {
+function handleCloseWishlistMsg() {
     dimBackgroundElement.style.display = "none";
     wishlistMsg.style.display          = "none";
+}
+
+function handleAddToCartCloseMsg() {
+    dimBackgroundElement.style.display = "none";
+    addToCartMsg.style.display         = "none";
+}
+
+
+// For now there is no persistance storage (local storage) meaning once the
+// page is refreshed the item added to the cart is removed. Will add that later
+// during the backend
+function handleAddItemToCart(e) {
+    e.preventDefault();
+
+    const id    = e.target.dataset.id;
+    const title = e.target.dataset.title;
+    const price = parseFloat(e.target.dataset.price); 
+ 
+    if (id && title && !isNaN(price)) { 
+        const item = {
+            id: id, 
+            title: title,
+            price: price,
+        }
+
+        cart.add(item);
+        const numOfItems = cart.getCartQuantity();
+
+        if (numOfItems <= 0) {
+            return;
+        }
+
+        updateCartDisplay(numOfItems);
+        displayAddToCartMessage();
+
+    }
+}
+
+function updateCartDisplay(numOfItems) {
+    itemCart.textContent = numOfItems < 10 ? numOfItems : "10+";
+    itemCart.style.display = "block";
+}
+
+
+function displayAddToCartMessage() {
+
+     // Display the add-to-cart message and dim background
+     addToCartMsg.style.display         = "flex";
+     dimBackgroundElement.style.display = "block";
+     const DISPLAY_TIME_MS              = 3000; 
+
+
+     setTimeout(() => {
+         addToCartMsg.style.display = "none";
+         dimBackgroundElement.style.display = "none";
+     }, DISPLAY_TIME_MS);
+ 
 }
