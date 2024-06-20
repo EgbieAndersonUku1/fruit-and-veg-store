@@ -1,5 +1,5 @@
-// For now this will be stored as a mock DB but will be replaced later with a more
-// robust DB when the backend is built. Example of how the cart looks
+// For now this will be stored as a mock DB but will be replaced later
+// in the local storage when the backend is built. Example of how the cart looks
 // const itemCart = [
 //     {
 //         "id"  : "#id",
@@ -57,6 +57,15 @@ class ItemCart {
           
         })
         return itemsCount;
+    }
+
+    getTotalPrice() {
+        let totalPrice = 0;
+        this._cart.forEach((item) => {
+            const itemTotal = item.quantity * item.price; 
+            totalPrice += itemTotal;
+        });
+        return parseFloat(totalPrice.toFixed(2)); 
     }
 
     clearCart() {

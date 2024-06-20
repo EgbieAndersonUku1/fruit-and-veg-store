@@ -12,6 +12,7 @@ const wishListCloseIcon    = document.getElementById("wishlist-close-icon");
 const addToItemCloseIcon   =  document.getElementById("addToItem-close-icon");
 const dimBackgroundElement = document.querySelector(".dim-overlay");
 const itemCart             = document.querySelector(".item-cart");
+const itemCartTotal        = document.querySelector(".cart-item-total");
 const MOUSEOUT             = "mouseout";
 const MOUSEOVER            =  "mouseover";
 
@@ -167,15 +168,17 @@ function handleAddItemToCart(e) {
             return;
         }
 
-        updateCartDisplay(numOfItems);
+        updateCartDisplay(numOfItems, cart.getTotalPrice());
         displayAddToCartMessage();
 
     }
 }
 
-function updateCartDisplay(numOfItems) {
-    itemCart.textContent = numOfItems < 10 ? numOfItems : "10+";
-    itemCart.style.display = "block";
+function updateCartDisplay(numOfItems, totalPrice) {
+
+    itemCart.textContent      = numOfItems < 10 ? numOfItems : "10+";
+    itemCart.style.display    = "block";   
+    itemCartTotal.textContent = (parseInt(totalPrice) <= 0) ? "Items: £0.00" : `Items: £${totalPrice}`;
 }
 
 
