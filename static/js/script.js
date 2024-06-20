@@ -150,10 +150,12 @@ function handleAddToCartCloseMsg() {
 function handleAddItemToCart(e) {
     e.preventDefault();
 
-    const id    = e.target.dataset.id;
-    const title = e.target.dataset.title;
-    const price = parseFloat(e.target.dataset.price); 
- 
+    const {id, title, price } = {
+        id: e.target.dataset.id,
+        title: e.target.dataset.title,
+        price: parseFloat(e.target.dataset.price)
+    }
+   
     if (id && title && !isNaN(price)) { 
         const item = {
             id: id, 
