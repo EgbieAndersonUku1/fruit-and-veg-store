@@ -127,7 +127,7 @@ function handleQuickView(e) {
            item.quantity = quantity;
         }
       
-        buildQuickView(item, id);
+        buildQuickView(item, id, item.remaining);
 
         const addToCartBtn = quickView.querySelector(".add-to-cart-btn");
         const clearCartBtn = quickView.querySelector(".clear-cart-btn");
@@ -208,10 +208,12 @@ function handleCartItemQuantityChange(e) {
         const inputFieldHidden    = parentDiv.querySelector("#hidden");
         const itemCount           = itemQuantity ? itemQuantity.value : 1;
 
-        const {id, title, price } = inputFieldHidden.dataset;
+        const {id, title, price, stock } = inputFieldHidden.dataset;
+       
 
-        if (id && title && !isNaN(price)) {
+        if (id && title && !isNaN(price) && stock) {
 
+           
             const item = {
                 id: id,
                 title: title,

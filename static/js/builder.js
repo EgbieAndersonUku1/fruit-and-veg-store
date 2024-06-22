@@ -2,13 +2,13 @@ const quickViewDiv       = document.querySelector("#quick-view");
 const quickViewContainer = document.querySelector("#quick-view .container");
 
 
-function buildQuickView(item, id=null) {
+function buildQuickView(item, id=null, maxQuantity=400) {
     if (!item) {
         throw new Error("Can't find the item");
     }
     
     const imageDiv         = buildItemImageDiv(item);
-    const itemBodyInfoDiv  = buildItemInfo(item, id);
+    const itemBodyInfoDiv  = buildItemInfo(item, id, maxQuantity);
     const closeIcon        = buildCloseIcon();
  
     quickViewContainer.innerHTML = "";
@@ -82,7 +82,7 @@ function buildCloseIcon(){
 }
 
 
-function buildItemInfo(item, id) {
+function buildItemInfo(item, id, maxQuantity) {
     const mainDiv       = document.createElement("div");
     mainDiv.className   = "quick-view__image-info";
 
@@ -92,7 +92,7 @@ function buildItemInfo(item, id) {
     const dimensionsDiv  = buildItemChoiceDiv(item.dimensions, "Dimensions");
     const inStockDiv     = buildIsItemInStockDiv(item);
     const stockRemaining = buildStockRemainingDiv(item);
-    const addToCartDiv   = buildAddToCartDiv(item, id);
+    const addToCartDiv   = buildAddToCartDiv(item, id, maxQuantity);
     const buildToWishListDiv = buildAddToWishList();
 
     mainDiv.appendChild(titleDiv);
@@ -244,7 +244,7 @@ function buildStockHelper(item, showStockStatus = true) {
 }
 
 
-function buildAddToCartDiv(item, id = null, maxQuantity = 400) {
+function buildAddToCartDiv(item, id, maxQuantity) {
     if (!item || typeof item.id === 'undefined' || typeof item.name === 'undefined' || typeof item.price === 'undefined') {
         console.error('Invalid item provided');
         return null;
@@ -265,7 +265,7 @@ function buildAddToCartDiv(item, id = null, maxQuantity = 400) {
     inputFieldHidden.dataset.id = item.id;
     inputFieldHidden.dataset.title = item.name;
     inputFieldHidden.dataset.price = item.price;
-
+  
     inputElement.name = "quantity";
     inputElement.type = "number";
     inputElement.id = "quantity";
