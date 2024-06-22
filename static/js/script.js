@@ -132,7 +132,6 @@ function handleQuickView(e) {
         const addToCartBtn = quickView.querySelector(".add-to-cart-btn");
         const clearCartBtn = quickView.querySelector(".clear-cart-btn");
 
-        console.log(clearCartBtn);
         addToCartBtn.addEventListener("click", handleCartItemQuantityChange);
         if (clearCartBtn) {
             clearCartBtn.addEventListener("click", (event) => handleClearCart(event, id));
@@ -235,9 +234,7 @@ function handleCartItemQuantityChange(e) {
 function handleClearCart(e, id) {
   if (id) {
     cart.deleteByID(id);
-    closeItemQuickView();
-
-
+   
     const numOfItems = cart.getCartQuantity();
     ItemCart.updateCartDisplay(numOfItems, cart.getTotalPrice());
 
