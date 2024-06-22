@@ -477,9 +477,9 @@ hr {
 /* Custom buttons */
 .button-md {
   
-    width: 50%;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    width: 40%;
+    color: white;
+
     cursor: pointer;
       
 }
@@ -646,6 +646,7 @@ button:hover,
     color: white;
 }
 
+.clear-cart-btn,
 .add-to-cart >* {
     height: 30px;
     margin-top: 20px;
@@ -654,6 +655,12 @@ button:hover,
     width: 25%;
    
 }
+
+.clear-cart-btn {
+    background: #FF4500;
+    width: 40%;
+}
+
 
 
 .button-lg {

@@ -1,6 +1,7 @@
-import buildQuickView from "./builder.js";
+import {buildQuickView, closeItemQuickView} from "./builder.js";
+import { displayAddToCartMessage } from "./messages.js";
 import getItemByID from "../../data.js";
-import ItemCart from "../../cart.js";
+import ItemCart from "./cart.js";
 
 
 const cards                = document.querySelectorAll(".card");
@@ -11,8 +12,7 @@ const addToCartMsg         = document.querySelector(".addToItem-logged-msg");
 const wishListCloseIcon    = document.getElementById("wishlist-close-icon");
 const addToItemCloseIcon   =  document.getElementById("addToItem-close-icon");
 const dimBackgroundElement = document.querySelector(".dim-overlay");
-const itemCart             = document.querySelector(".item-cart");
-const itemCartTotal        = document.querySelector(".cart-item-total");
+
 const MOUSEOUT             = "mouseout";
 const MOUSEOVER            =  "mouseover";
 
@@ -34,6 +34,7 @@ boxes.forEach((box) => {
 cards.forEach((card) => {
 
     const cardMenu     = card.querySelector(".head .featured-products__container__cards__product_menu");
+   
     const imgContainer = card.querySelector(".head .img-container");
     const images       = imgContainer ? imgContainer.querySelectorAll("img") : [];
 
@@ -42,10 +43,9 @@ cards.forEach((card) => {
     const quickView      = quickViewLinks && quickViewLinks.length === 3 ?  quickViewLinks[1]: [];
     const addToCartLinks = quickViewLinks && quickViewLinks.length === 3 ?  quickViewLinks[2]: [];
 
-
     quickView?.querySelector("a").addEventListener("click", handleQuickView);
     wishlistsLinks?.querySelector("a").addEventListener("click", handleWishlistClick);
-    addToCartLinks.querySelector("a").addEventListener("click", handleAddItemToCart);
+    addToCartLinks?.querySelector("a").addEventListener("click", handleAddItemToCart);
 
     addImageRotationListeners(card, images, false);
     
@@ -78,7 +78,6 @@ function handleImagesRotation(type, images, rotate=true) {
                 img.style.transform = "rotate(180deg)";
             }
           
-
             setTimeout(() => {
                 img.style.display  = "none";
                 img2.style.display = "block";
@@ -90,7 +89,6 @@ function handleImagesRotation(type, images, rotate=true) {
             if (rotate) {
                 img.style.transform = "rotate(360deg)";
             }
-          
             
             setTimeout(() => {
                 img.style.display = "block";
@@ -116,12 +114,30 @@ function handleCardMenuDisplayRemoval(cardMenu){
 function handleQuickView(e) {
     e.preventDefault();
     const id = e.target.dataset.id;
-
+  
     if (id) {
         quickView.style.display = "block";
-        buildQuickView(getItemByID(id))
+        
+        const cartItem = cart.findByID(id);
+        const quantity = cartItem && cartItem.item ? cartItem.item.quantity : 0; // try to find the item quantity first
+   
+        const item     = getItemByID(id);
+
+        if (quantity > 0) {
+           item.quantity = quantity;
+        }
+      
+        buildQuickView(item, id);
+
+        const addToCartBtn = quickView.querySelector(".add-to-cart-btn");
+        const clearCartBtn = quickView.querySelector(".clear-cart-btn");
+
+        console.log(clearCartBtn);
+        addToCartBtn.addEventListener("click", handleCartItemQuantityChange);
+        if (clearCartBtn) {
+            clearCartBtn.addEventListener("click", (event) => handleClearCart(event, id));
+        }
     }
-  
 }
 
 
@@ -148,9 +164,11 @@ function handleAddToCartCloseMsg() {
 // page is refreshed the item added to the cart is removed. Will add that later
 // during the backend
 function handleAddItemToCart(e) {
+
     e.preventDefault();
 
     const {id, title, price } = {
+
         id: e.target.dataset.id,
         title: e.target.dataset.title,
         price: parseFloat(e.target.dataset.price)
@@ -170,31 +188,60 @@ function handleAddItemToCart(e) {
             return;
         }
 
-        updateCartDisplay(numOfItems, cart.getTotalPrice());
+        ItemCart.updateCartDisplay(numOfItems, cart.getTotalPrice());
         displayAddToCartMessage();
 
     }
 }
 
-function updateCartDisplay(numOfItems, totalPrice) {
 
-    itemCart.textContent      = numOfItems < 10 ? numOfItems : "10+";
-    itemCart.style.display    = "block";   
-    itemCartTotal.textContent = (parseInt(totalPrice) <= 0) ? "Items: £0.00" : `Items: £${totalPrice}`;
+
+
+
+function handleCartItemQuantityChange(e) {
+
+    e.preventDefault();
+    const parentDiv = event.target.parentElement;
+
+    if (parentDiv) {
+
+        const itemQuantity        = parentDiv.querySelector("input[type='number']");
+        const inputFieldHidden    = parentDiv.querySelector("#hidden");
+        const itemCount           = itemQuantity ? itemQuantity.value : 1;
+
+        const {id, title, price } = inputFieldHidden.dataset;
+
+        if (id && title && !isNaN(price)) {
+
+            const item = {
+                id: id,
+                title: title,
+                price: price,
+                quantity: parseInt(itemCount),
+            }
+            cart.updateCartItemQuantity(item);
+            const numOfItems = cart.getCartQuantity();
+
+            closeItemQuickView();
+            ItemCart.updateCartDisplay(numOfItems, cart.getTotalPrice());
+            displayAddToCartMessage();
+           
+        }
+       
+    } 
+  
 }
 
-
-function displayAddToCartMessage() {
-
-     // Display the add-to-cart message and dim background
-     addToCartMsg.style.display         = "flex";
-     dimBackgroundElement.style.display = "block";
-     const DISPLAY_TIME_MS              = 3000; 
+function handleClearCart(e, id) {
+  if (id) {
+    cart.deleteByID(id);
+    closeItemQuickView();
 
 
-     setTimeout(() => {
-         addToCartMsg.style.display = "none";
-         dimBackgroundElement.style.display = "none";
-     }, DISPLAY_TIME_MS);
- 
+    const numOfItems = cart.getCartQuantity();
+    ItemCart.updateCartDisplay(numOfItems, cart.getTotalPrice());
+
+    closeItemQuickView();
+    displayAddToCartMessage();
+  }
 }

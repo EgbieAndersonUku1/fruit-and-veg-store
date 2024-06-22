@@ -1,3 +1,6 @@
+const itemCart             = document.querySelector(".item-cart");
+const itemCartTotal        = document.querySelector(".cart-item-total");
+
 // For now this will be stored as a mock DB but will be replaced later
 // in the local storage when the backend is built. Example of how the cart looks
 // const itemCart = [
@@ -18,10 +21,18 @@ class ItemCart {
         this._cart      = []
     }
 
+    static updateCartDisplay(numOfItems, totalPrice) {
+
+        itemCart.textContent      = numOfItems < 10 ? numOfItems : "10+";
+        itemCart.style.display    = numOfItems <= 0 ? "none" : "block";   
+        itemCartTotal.textContent = (parseInt(totalPrice) <= 0) ? "Items: £0.00" : `Items: £${totalPrice}`;
+    }
+    
+
     add(item) {
 
-        const index = this._findByID(item.id).index;
-      
+        const index = this.findByID(item.id).index;
+       
         if (index === this._NOT_FOUND) {
            item.quantity = 1;
            this._cart.push(item);
@@ -38,8 +49,19 @@ class ItemCart {
        
     }
 
+    updateCartItemQuantity(item) {
+
+        const index = this.findByID(item.id).index;
+        if (index === this._NOT_FOUND) {
+            this._cart.push(item);
+        } else {
+            this._cart[index].quantity = item.quantity;         
+        }
+   
+    }
+
     deleteByID(id) {
-        const index = this._findByID(id).index;
+        const index = this.findByID(id).index;
 
         if (index != this._NOT_FOUND) {
            this._cart.splice(index, 1);
@@ -76,9 +98,9 @@ class ItemCart {
         return this._cart;
     }
 
-    _findByID(id) {
+    findByID(id) {
     
-        const index = this._cart.findIndex(item => item.id === parseInt(id))
+        const index = this._cart.findIndex(item => parseInt(item.id) === parseInt(id))
 
         if (index === this._NOT_FOUND) {
             return {item:null, index: this._NOT_FOUND}
@@ -89,5 +111,8 @@ class ItemCart {
     }
     
 }
+
+
+
 
 export default ItemCart;

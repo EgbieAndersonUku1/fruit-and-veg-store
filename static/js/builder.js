@@ -2,13 +2,13 @@ const quickViewDiv       = document.querySelector("#quick-view");
 const quickViewContainer = document.querySelector("#quick-view .container");
 
 
-function buildQuickView(item) {
+function buildQuickView(item, id=null) {
     if (!item) {
         throw new Error("Can't find the item");
     }
     
     const imageDiv         = buildItemImageDiv(item);
-    const itemBodyInfoDiv  = buildItemInfo(item);
+    const itemBodyInfoDiv  = buildItemInfo(item, id);
     const closeIcon        = buildCloseIcon();
  
     quickViewContainer.innerHTML = "";
@@ -16,6 +16,11 @@ function buildQuickView(item) {
     quickViewContainer.appendChild(imageDiv);
     quickViewContainer.appendChild(itemBodyInfoDiv);
    
+}
+
+
+function closeItemQuickView() {
+    quickViewDiv.style.display = "none";
 }
 
 
@@ -77,7 +82,7 @@ function buildCloseIcon(){
 }
 
 
-function buildItemInfo(item) {
+function buildItemInfo(item, id) {
     const mainDiv       = document.createElement("div");
     mainDiv.className   = "quick-view__image-info";
 
@@ -87,7 +92,7 @@ function buildItemInfo(item) {
     const dimensionsDiv  = buildItemChoiceDiv(item.dimensions, "Dimensions");
     const inStockDiv     = buildIsItemInStockDiv(item);
     const stockRemaining = buildStockRemainingDiv(item);
-    const addToCartDiv   = buildAddToCartDiv();
+    const addToCartDiv   = buildAddToCartDiv(item, id);
     const buildToWishListDiv = buildAddToWishList();
 
     mainDiv.appendChild(titleDiv);
@@ -138,7 +143,7 @@ function buildItemHeader(item) {
     referenceSpan.textContent    = "Reference: ";
 
     pReferenceTag.appendChild(referenceSpan);
-    pReferenceTag.appendChild(document.createTextNode(item.reference ? item.reference : "N/A"));
+    pReferenceTag.appendChild(document.createTextNode(item.referenceID ? item.referenceID : "N/A"));
 
     mainDiv.appendChild(h2);
     mainDiv.appendChild(pDescriptionTag);
@@ -239,32 +244,66 @@ function buildStockHelper(item, showStockStatus = true) {
 }
 
 
-function buildAddToCartDiv() {
+function buildAddToCartDiv(item, id = null, maxQuantity = 400) {
+    if (!item || typeof item.id === 'undefined' || typeof item.name === 'undefined' || typeof item.price === 'undefined') {
+        console.error('Invalid item provided');
+        return null;
+    }
 
-    const mainDiv       = document.createElement("div");
-    const inputElement  = document.createElement("input");
+    const mainDiv = document.createElement("div");
+    const inputElement = document.createElement("input");
+    const inputFieldHidden = document.createElement("input");
     const buttonElement = document.createElement("button");
-    
+    const clearCartButton = document.createElement("button");
+    let  itemInCart;
+   
+
     mainDiv.classList.add("quantity", "add-to-cart");
 
-    inputElement.name  = "quantity";
-    inputElement.type  = "number";
-    inputElement.id    = "quantity";
-    inputElement.min   = "1";
-    inputElement.max   = "400";
-    inputElement.step  = "1";
-    inputElement.value = "1"
+    inputFieldHidden.type = "hidden";
+    inputFieldHidden.id = "hidden";
+    inputFieldHidden.dataset.id = item.id;
+    inputFieldHidden.dataset.title = item.name;
+    inputFieldHidden.dataset.price = item.price;
 
-    buttonElement.className = "button-lg";
-    buttonElement.classList.add("button-lg", "add-to-cart-btn");
+    inputElement.name = "quantity";
+    inputElement.type = "number";
+    inputElement.id = "quantity";
+    inputElement.min = "1";
+    inputElement.max = maxQuantity.toString(); 
+    inputElement.step = "1";
+ 
+    if (id === null) {
+        inputElement.value = "1";
+    } else if (parseInt(item.id, 10) === parseInt(id, 10)) {
+        inputElement.value = item.quantity || "1"; 
+    } 
+    
+    if (id && item.quantity) {
+       
+        clearCartButton.classList.add("button-md",  "clear-cart-btn");
+        clearCartButton.textContent = `Clear Cart (${item.quantity > 1 ? `${item.quantity} items` : `${item.quantity} item`})`;
+
+        itemInCart = true;
+
+    }
+
+    buttonElement.className = "button-lg add-to-cart-btn";
     buttonElement.textContent = "Add to cart";
 
+    mainDiv.appendChild(inputFieldHidden);
     mainDiv.appendChild(inputElement);
     mainDiv.appendChild(buttonElement);
 
-    return mainDiv;
+    if (itemInCart) {
+        mainDiv.appendChild(clearCartButton)
+    }
 
+    
+
+    return mainDiv;
 }
+
 
 function buildAddToWishList() {
 
@@ -321,4 +360,7 @@ function removeExistingActiveClass(e) {
    }
   
 }
-export default buildQuickView;
+export {
+    buildQuickView,
+    closeItemQuickView
+} 
