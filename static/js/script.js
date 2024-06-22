@@ -200,13 +200,17 @@ function handleAddItemToCart(e) {
 function handleCartItemQuantityChange(e) {
 
     e.preventDefault();
-    const parentDiv = event.target.parentElement;
+    const parentDiv = e.target.parentElement;
 
     if (parentDiv) {
 
-        const itemQuantity        = parentDiv.querySelector("input[type='number']");
+        const itemQuantityNumberField  = parentDiv.querySelector("input[type='number']");
+        if (!itemQuantityNumberField) {
+            throw new Error("Something went wrong the input numbere field was found!!")
+        }
+
         const inputFieldHidden    = parentDiv.querySelector("#hidden");
-        const itemCount           = itemQuantity ? itemQuantity.value : 1;
+        const itemCount           = itemQuantityNumberField ? itemQuantityNumberField.value : 1;
 
         const {id, title, price, stock } = inputFieldHidden.dataset;
        
@@ -244,3 +248,6 @@ function handleClearCart(e, id) {
     displayAddToCartMessage();
   }
 }
+
+
+

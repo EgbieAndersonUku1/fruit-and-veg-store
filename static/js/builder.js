@@ -1,3 +1,5 @@
+import preventNumberInputTyping from "./numberInputRestrictor.js";
+
 const quickViewDiv       = document.querySelector("#quick-view");
 const quickViewContainer = document.querySelector("#quick-view .container");
 
@@ -265,6 +267,7 @@ function buildAddToCartDiv(item, id, maxQuantity) {
     inputFieldHidden.dataset.id = item.id;
     inputFieldHidden.dataset.title = item.name;
     inputFieldHidden.dataset.price = item.price;
+    inputFieldHidden.dataset.stock = item.remaining;
   
     inputElement.name = "quantity";
     inputElement.type = "number";
@@ -272,7 +275,8 @@ function buildAddToCartDiv(item, id, maxQuantity) {
     inputElement.min = "1";
     inputElement.max = maxQuantity.toString(); 
     inputElement.step = "1";
- 
+    
+    
     if (id === null) {
         inputElement.value = "1";
     } else if (parseInt(item.id, 10) === parseInt(id, 10)) {
@@ -287,6 +291,8 @@ function buildAddToCartDiv(item, id, maxQuantity) {
         itemInCart = true;
 
     }
+
+    inputElement.addEventListener("keydown", preventNumberInputTyping);
 
     buttonElement.className = "button-lg add-to-cart-btn";
     buttonElement.textContent = "Add to cart";
