@@ -14,9 +14,11 @@
     /* font sizes */
     --font-size-sm:  0.9375rem; 
     --font-size-normal: 1rem;
+    --font-size-md: 1.5rem;
+    --font-size-lg: 2rem;
 
     /* widths */
-    --global-width-md: 80%;
+    --global-width-md: 90%;
 
     /* colors */
     --light-green:  #278827;
@@ -69,6 +71,11 @@ h1 {
     text-transform: capitalize;
 }
 
+h2 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+
 
 /* The paddings */
 .padding-sm {
@@ -103,6 +110,7 @@ h1 {
     font-style: normal;
 
 }
+
 
 
 /* search button */
@@ -318,8 +326,10 @@ nav {
 .featured-products__container h1{
     width: var(--global-width-md);
     margin: auto;
-
     padding-top: 64px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 1.56rem;
 }
 
 .featured-products__container__cards{
@@ -357,7 +367,7 @@ nav {
 
 .card-img {
     height: 150px;
-    width: 200px;
+    width: 224px;
 }
 
 .img_2 {
@@ -390,7 +400,7 @@ nav {
 .links a {
     font-size: var(--font-size-sm);
     text-transform: uppercase;
-    font-weight: bold;
+    font-weight: 500;
 
 }
 
@@ -486,6 +496,7 @@ hr {
 
 .shop-btn {
     margin-top: 10px;
+    height: 40px;
     text-transform: uppercase;
     color: white;
     background: var(--light-green);
@@ -779,3 +790,64 @@ button:hover,
     display: none;
   }
   
+
+  /* The banner */
+  #banner {
+    width: var(--global-width-md);
+    margin: auto;
+  }
+
+  #banner .container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 10px;
+    margin-top: 100px;
+    cursor: pointer;
+  }
+
+
+  .banner {
+    position: relative;
+  }
+
+  .banner__text-overlay {
+    color: white;
+    position: absolute;
+    top: 20%;
+    left: 15px;
+    width: 50%;
+  }
+
+  .banner__text {
+    text-transform: capitalize;
+    font-size: var(--font-size-md);
+  }
+
+  .banner__text:nth-child(2) {
+    font-weight: 600;
+    padding-top: 5px;
+  }
+
+  .banner__text:last-child {
+    font-size: 1.125em;
+    margin-top: 5px;
+    text-decoration: underline;
+    text-transform: uppercase;
+  }
+
+  .banner__sales_display {
+    font-size: 1.15rem;
+    text-transform: uppercase;
+  }
+
+  .banner-img {
+    width: 100%;
+    border-radius: 2%;
+  }
+
+  .banner-img:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+    
+  }

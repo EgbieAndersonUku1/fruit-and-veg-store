@@ -14,7 +14,7 @@ const addToItemCloseIcon   =  document.getElementById("addToItem-close-icon");
 const dimBackgroundElement = document.querySelector(".dim-overlay");
 
 const MOUSEOUT             = "mouseout";
-const MOUSEOVER            =  "mouseover";
+const MOUSEOVER            = "mouseover";
 
 
 const cart = new ItemCart();
@@ -33,10 +33,10 @@ boxes.forEach((box) => {
 
 cards.forEach((card) => {
 
-    const cardMenu     = card.querySelector(".head .featured-products__container__cards__product_menu");
+    const cardMenu       = card.querySelector(".head .featured-products__container__cards__product_menu");
    
-    const imgContainer = card.querySelector(".head .img-container");
-    const images       = imgContainer ? imgContainer.querySelectorAll("img") : [];
+    const imgContainer   = card.querySelector(".head .img-container");
+    const images         = imgContainer ? imgContainer.querySelectorAll("img") : [];
 
     const quickViewLinks = cardMenu.querySelectorAll("ul li");
     const wishlistsLinks = quickViewLinks && quickViewLinks.length === 3 ?  quickViewLinks[0]: [];
@@ -55,15 +55,12 @@ cards.forEach((card) => {
 })
 
 
-
-
 function addImageRotationListeners(element, images, rotateImageFlag=true) {
     if (images.length >= 2) {
         element.addEventListener('mouseover', (e) => handleImagesRotation(e.type, images, rotateImageFlag));
         element.addEventListener('mouseout', (e) => handleImagesRotation(e.type, images, rotateImageFlag));
     }
 }
-
 
 
 function handleImagesRotation(type, images, rotate=true) {
@@ -116,6 +113,7 @@ function handleQuickView(e) {
     const id = e.target.dataset.id;
   
     if (id) {
+
         quickView.style.display = "block";
         
         const cartItem = cart.findByID(id);
@@ -133,6 +131,7 @@ function handleQuickView(e) {
         const clearCartBtn = quickView.querySelector(".clear-cart-btn");
 
         addToCartBtn.addEventListener("click", handleCartItemQuantityChange);
+
         if (clearCartBtn) {
             clearCartBtn.addEventListener("click", (event) => handleClearCart(event, id));
         }
@@ -148,10 +147,12 @@ function handleWishlistClick(e) {
     wishlistMsg.style.display          = "flex";
 }
 
+
 function handleCloseWishlistMsg() {
     dimBackgroundElement.style.display = "none";
     wishlistMsg.style.display          = "none";
 }
+
 
 function handleAddToCartCloseMsg() {
     dimBackgroundElement.style.display = "none";
@@ -194,9 +195,6 @@ function handleAddItemToCart(e) {
 }
 
 
-
-
-
 function handleCartItemQuantityChange(e) {
 
     e.preventDefault();
@@ -216,7 +214,6 @@ function handleCartItemQuantityChange(e) {
        
 
         if (id && title && !isNaN(price) && stock) {
-
            
             const item = {
                 id: id,
@@ -238,15 +235,15 @@ function handleCartItemQuantityChange(e) {
 }
 
 function handleClearCart(e, id) {
-  if (id) {
-    cart.deleteByID(id);
-   
-    const numOfItems = cart.getCartQuantity();
-    ItemCart.updateCartDisplay(numOfItems, cart.getTotalPrice());
+    if (id) {
+        cart.deleteByID(id);
+    
+        const numOfItems = cart.getCartQuantity();
+        ItemCart.updateCartDisplay(numOfItems, cart.getTotalPrice());
 
-    closeItemQuickView();
-    displayAddToCartMessage();
-  }
+        closeItemQuickView();
+        displayAddToCartMessage();
+    }
 }
 
 

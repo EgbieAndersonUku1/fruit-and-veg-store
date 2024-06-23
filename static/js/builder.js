@@ -146,7 +146,7 @@ function buildItemHeader(item) {
 
     pReferenceTag.appendChild(referenceSpan);
     pReferenceTag.appendChild(document.createTextNode(item.referenceID ? item.referenceID : "N/A"));
-
+    
     mainDiv.appendChild(h2);
     mainDiv.appendChild(pDescriptionTag);
     mainDiv.appendChild(pItemPriceTag);
