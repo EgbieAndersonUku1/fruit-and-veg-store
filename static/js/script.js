@@ -223,8 +223,7 @@ function handleCartItemQuantityChange(e) {
             }
             cart.updateCartItemQuantity(item);
             const numOfItems = cart.getCartQuantity();
-
-            closeItemQuickView();
+            
             ItemCart.updateCartDisplay(numOfItems, cart.getTotalPrice());
             displayAddToCartMessage();
            
