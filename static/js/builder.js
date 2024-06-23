@@ -46,9 +46,10 @@ function buildItemImageDiv(item) {
     // Create the image div
     for (let image of item.images.detail) {
 
-        const img = document.createElement("img");
-        img.src   = image.imgSrc;
-        img.alt   = image.alt;
+        const img   = document.createElement("img");
+        img.src     = image.imgSrc;
+        img.alt     = image.alt;
+        img.loading = "lazy";
 
         if (image.main) {
             img.className = "quick-view__main-pic";
