@@ -172,8 +172,8 @@ nav {
 
     /* grid elements */
     display: grid;
-    grid-template-columns: 25% 75%;
-    column-gap: 30px;
+    grid-template-columns: 18% 82%;
+    column-gap: 4px;
 
 
     margin: auto;
@@ -195,6 +195,21 @@ nav {
 
 #main {
     margin-top: 20px;
+}
+
+.logo-text {
+    color: green;
+    font-size: 1.3rem;
+    font-family: cursive;
+    font-weight: bold;
+    padding-bottom: 2px;
+
+  }
+
+
+.logo-img {
+    height: 200px;
+    width: 200px;
 }
 
 
