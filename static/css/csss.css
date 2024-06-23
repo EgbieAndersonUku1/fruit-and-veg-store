@@ -703,18 +703,18 @@ button:hover,
     width: 100%;
 }
 
-
+.checkout,
 .add-to-wishlist  {
     margin-top: 20px;
 }
 
 /* buttons */
-.wishlist-btn {
-    background: var(--secondary-color);
+.proceed-to-checkout-btn {
+    background: var(--dark-green);
     color: white;
 }
 
-.compare-btn {
+.continue-shopping-btn {
     background: var(--dodger-blue);
     color: white;
 }

@@ -95,7 +95,7 @@ function buildItemInfo(item, id, maxQuantity) {
     const inStockDiv     = buildIsItemInStockDiv(item);
     const stockRemaining = buildStockRemainingDiv(item);
     const addToCartDiv   = buildAddToCartDiv(item, id, maxQuantity);
-    const buildToWishListDiv = buildAddToWishList();
+    const buildCheckOutDiv = buildCheckOut();
 
     mainDiv.appendChild(titleDiv);
     mainDiv.appendChild(colorDiv);
@@ -104,7 +104,7 @@ function buildItemInfo(item, id, maxQuantity) {
     mainDiv.appendChild(inStockDiv);
     mainDiv.appendChild(stockRemaining);
     mainDiv.appendChild(addToCartDiv);
-    mainDiv.appendChild(buildToWishListDiv);
+    mainDiv.appendChild(buildCheckOutDiv);
     return mainDiv;
     
 }
@@ -311,22 +311,22 @@ function buildAddToCartDiv(item, id, maxQuantity) {
 }
 
 
-function buildAddToWishList() {
+function buildCheckOut() {
 
     const mainDiv          = document.createElement("div");
-    const addToWishListBtn = document.createElement("button");
-    const addToCompareBtn  = document.createElement("button");
+    const continueShoppingBtn = document.createElement("button");
+    const checkoutBtn  = document.createElement("button");
 
-    mainDiv.classList.add("add-to-wishlist", "flex-row");
+    mainDiv.classList.add("checkout", "flex-row");
 
-    addToWishListBtn.classList.add("button-lg", "padding-sm", "text-upper", "wishlist-btn");
-    addToCompareBtn.classList.add("button-lg", "padding-sm", "text-upper", "compare-btn");
+    continueShoppingBtn.classList.add("button-lg", "padding-sm", "text-upper", "continue-shopping-btn");
+    checkoutBtn.classList.add("button-lg", "padding-sm", "text-upper", "proceed-to-checkout-btn");
 
-    addToWishListBtn.textContent = "Add to wishlist";
-    addToCompareBtn.textContent  = "Add to compare list";
+    continueShoppingBtn.textContent = "Continue shopping";
+    checkoutBtn.textContent  = "Checkout";
 
-    mainDiv.appendChild(addToWishListBtn);
-    mainDiv.appendChild(addToCompareBtn);
+    mainDiv.appendChild(continueShoppingBtn);
+    mainDiv.appendChild(checkoutBtn);
     return mainDiv
 
 }
