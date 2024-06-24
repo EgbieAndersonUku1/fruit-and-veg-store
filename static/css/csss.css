@@ -869,7 +869,7 @@ button:hover,
 
 
   /* The subscribe section */
-  
+
   .subscribe {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -979,4 +979,6 @@ button:hover,
   }
 
 
-  
+.contact-us ul li a:first-child {
+    text-transform: lowercase;
+}
