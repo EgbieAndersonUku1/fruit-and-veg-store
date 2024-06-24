@@ -866,3 +866,117 @@ button:hover,
     opacity: 0.9;
     
   }
+
+
+  /* The subscribe section */
+  
+  .subscribe {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background: var(--light-green);
+    margin-top: 60px;
+    border-top: 1px solid green;
+    border-bottom: 2px solid green;
+    color: white;
+  }
+
+
+  .subscribe__form__input-field {
+    width: 60%;
+    font-size: var(--font-size-normal);
+    font-family: "Poppins", sans-serif;
+  }
+
+  .subscribe__information p:first-child {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  .subscribe__information p:last-child {
+    font-size: 1.125rem;
+    font-weight: 400;
+  }
+
+
+  .subscribe__form__input-field,
+  .subscribe-btn {
+    height: 40px;
+
+  }
+
+  .subscribe-btn {
+    width: 25%;
+    font-family: "Poppins", sans-serif;
+    background: var(--dark-green);
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .subscribe .container {
+    width: var(--global-width-md);
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+
+  footer {
+    background-color: #6B8E23; /* Olive Drab */
+    color: #FFFFFF; /* White text for readability */
+    font-weight: 700;
+    
+  }
+
+  footer .container {
+     width: var(--global-width-md);
+     margin: auto;
+
+     display: grid;
+     grid-template-columns: repeat(5, 1fr);
+     grid-template-rows: auto;
+
+     padding-top: 40px;
+  }
+
+
+  footer .container h4 {
+    font-weight: 800;
+    text-transform: capitalize;
+    padding-bottom: var(--padding-sm);
+    color: white;
+  }
+
+
+  .footer-section {
+    margin-bottom: 30px;
+  }
+
+
+  .footer-section ul li {
+    padding-bottom: 3px;
+   
+  }
+
+  .footer-section ul li a {
+    color: white;
+    font-weight: lighter;
+    text-transform: capitalize;
+  }
+
+  .footer-section ul li a:hover {
+    color: var(--dodger-blue);
+  }
+
+  .footer-section ul li:hover {
+    text-decoration: underline;
+    color: #1E90FF;
+  }
+
+  .footer ul li:last-child {
+    padding-bottom: 0;
+  }
+
+
+  
