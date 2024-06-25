@@ -10,29 +10,30 @@
 
 <body>
     <div class="dim-overlay" id="dimOverlay"></div>
+
     <!-- The navigation  -->
     <nav aria-label="Main navigation">
         <div class="nav-container">
             <div class="nav-info nav-body">
-                <div class="shipping">
+                <div class="nav-container__shipping">
                     <a href="#" aria-label="Free shipping information" class="nav-link">Free shipping</a>
                 </div>
             </div>
-    
+
             <div class="nav-info nav-footer">
-                <div class="account">
+                <div class="nav-container__account">
                     <a href="#" aria-label="Login to your account" class="nav-link">Login</a>
                     <a href="#" aria-label="Register a new account" class="nav-link">Register</a>
                 </div>
             </div>
         </div>
     </nav>
-    
+
 
     <main>
         <section id="main">
             <div class="container">
-        
+
                 <!-- The sidebar  -->
                 <div class="sidebar">
                     <div class="logo-text">
@@ -42,7 +43,7 @@
                         <div class="header">
                             <a href="#" aria-label="View all departments" class="bold text-upper">All departments</a>
                         </div>
-        
+
                         <div class="body">
                             <a href="#" aria-label="View Fresh menu">Fresh menu</a>
                             <a href="#" aria-label="View Vegetables">Vegetables</a>
@@ -58,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-        
+
                 <!-- The main body -->
                 <div class="main">
                     <div class="head space-between">
@@ -69,7 +70,7 @@
                             <a href="#" aria-label="Read our blog">Blog</a>
                             <a href="#" aria-label="Contact us">Contact</a>
                         </div>
-        
+
                         <div class="footer">
                             <a href="#" aria-label="View your wishlist" class="nav-icon-link">
                                 <img src="static/img/icons/red-heart.svg" alt="wishlist" class="nav-icon">
@@ -82,93 +83,99 @@
                             <a href="#" aria-label="Total items cost £150" class="cart-item-total">Items: £0.00</a>
                         </div>
                     </div>
-        
+
                     <div class="body">
                         <div class="search">
                             <form action="" method="post">
-                                <input type="search" name="search" id="search" placeholder="search...." aria-label="Search">
-                                <button type="submit" class="search-btn medium-btn green-bg" aria-label="Submit search">Search</button>
+                                <input type="search" name="search" id="search" placeholder="search...."
+                                    aria-label="Search">
+                                <button type="submit" class="search-btn medium-btn green-bg"
+                                    aria-label="Submit search">Search</button>
                             </form>
                         </div>
-        
+
                         <div class="main-phone">
                             <div class="icon">
-                                <img src="static/img/icons/alternate-phone.svg" alt="A phone icon image" class="nav-icon">
+                                <img src="static/img/icons/alternate-phone.svg" alt="A phone icon image"
+                                    class="nav-icon">
                             </div>
-        
+
                             <div class="phone-info">
-                                <a href="tel:02076842569" aria-label="Call us at 0207 684 2569"><span>0207</span> 684 2569</a>
+                                <a href="tel:02076842569" aria-label="Call us at 0207 684 2569"><span>0207</span> 684
+                                    2569</a>
                             </div>
                         </div>
                     </div>
-        
+
                     <div class="call-to-action">
                         <div class="info">
                             <p class="small-header bold">Fresh Fruit</p>
                             <p class="large-header">Vegetables</p>
                             <p class="medium-header">100% Organic</p>
                             <p>Free Pickup and delivery available</p>
-        
+
                             <button class="button-md shop-btn" aria-label="Shop now">Shop now</button>
                         </div>
-        
+
                         <div class="main-img">
                             <img src="static/img/main/main-bg.png" alt="The main background image" class="main-image">
                         </div>
                     </div>
-        
+
                 </div>
             </div>
         </section>
-        
+
         <!-- The featured -->
         <section id="featured">
             <div class="container">
                 <div class="featured__featured-categories">
-        
+
                     <div class="featured__featured-categories__coffee box">
                         <div class="featured__featured-categories__display-text">
-                            <h2>Cuban coffee</h2>
+                            <h2 id="coffee-title">Cuban coffee</h2>
                             <p>The ultimate coffee</p>
                         </div>
-                        <div class="img-box">
-                            <img src="static/img/display/jpg/whole-coffee-nut.jpg" alt="A whole coffee nut" 
+                        <div class="img-box" role="group" aria-labelledby="coffee-title">
+                            <img src="static/img/display/jpg/whole-coffee-nut.jpg" alt="A whole coffee nut"
                                 class="featured__featured-categories_display_img img_1">
                             <img src="static/img/display/jpg/coffee.jpeg" alt="A coffee that has been split open"
                                 class="featured__featured-categories_display_img img_2">
                         </div>
                     </div>
-        
+
                     <div class="featured__featured-categories__grapes box">
                         <div class="featured__featured-categories__display-text">
-                            <h2>Tomatoes</h2>
+                            <h2 id="whole-tomato-title">Tomatoes</h2>
                             <p>Fresh Organic tomatoes</p>
                         </div>
-                        <div class="img-box">
-                            <img src="static/img/display/jpg/whole-tomato.jpeg" alt="A whole tomato" 
+                        <div class="img-box" role="group" aria-labelledby="whole-tomato-title">
+                            <img src="static/img/display/jpg/whole-tomato.jpeg" alt="A whole tomato"
                                 class="featured__featured-categories_display_img img_1">
-                            <img src="static/img/display/jpg/chopped-tomato.jpeg" alt="A tomato that has been split in half"
+                            <img src="static/img/display/jpg/chopped-tomato.jpeg"
+                                alt="A tomato that has been split in half"
                                 class="featured__featured-categories_display_img img_2">
                         </div>
                     </div>
-        
+
                     <div class="featured__featured-categories__meat box">
                         <div class="featured__featured-categories__display-text">
                             <h2>Oranges</h2>
                             <p>Freshly picked organic oranges</p>
                         </div>
                         <div class="img-box">
-                            <img src="static/img/display/jpg/whole-orange.jpeg" alt="A whole orange" 
+                            <img src="static/img/display/jpg/whole-orange.jpeg" alt="A whole orange"
                                 class="featured__featured-categories_display_img img_1">
-                            <img src="static/img/display/jpg/half-an-orange.jpeg" alt="An orange that has been split open"
+                            <img src="static/img/display/jpg/half-an-orange.jpeg"
+                                alt="An orange that has been split open"
                                 class="featured__featured-categories_display_img img_2">
                         </div>
                     </div>
-        
+
                 </div>
             </div>
         </section>
-        
+
 
         <section id="featured-products">
             <div class="featured-products__container">
@@ -177,161 +184,190 @@
                 <hr>
 
                 <div class="featured-products__container__cards">
-                <div class="card">
-                    <div class="head">
-                        
-                        <div class="img-container">
-                            <p class="featured_product__label">new</p>
-                          
-                            <img src="static/img/display/jpg/whole-cabbage.jpg" alt="A whole cabbage" class="card-img img_1">
-                            <img src="static/img/display/jpg/cabbage.jpg" alt="A cabbage image" class="card-img img_2">
+                    <div class="card" role="list">
+                        <div class="head">
+
+                            <div class="img-container">
+                                <p class="featured_product__label">new</p>
+
+                                <img src="static/img/display/jpg/whole-cabbage.jpg" alt="A whole cabbage"
+                                    class="card-img img_1">
+                                <img src="static/img/display/jpg/cabbage.jpg" alt="A cabbage image"
+                                    class="card-img img_2">
+                            </div>
+                            <div class="featured-products__container__cards__product_menu">
+                                <ul>
+                                    <li><a href="#"><img src="static/img/icons/red-heart.svg" alt="" class="card-icon"
+                                                title="Add to wishlist" data-id="1"></a></li>
+                                    <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="" class="card-icon"
+                                                title="Quick view" data-id="1"></a></li>
+                                    <li><a href="#"><img src="static/img/icons/cart.svg" alt="" class="card-icon"
+                                                title="Add to cart" data-id="1"
+                                                data-title="Cabbage Green Pattagobi Seed" data-price="7.99">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="featured-products__container__cards__product_menu">
-                            <ul>
-                                <li><a href="#"><img src="static/img/icons/red-heart.svg" alt="" class="card-icon" title="Add to wishlist" data-id="1"></a></li>
-                                <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="" class="card-icon" title="Quick view" data-id="1"></a></li>
-                                <li><a href="#"><img src="static/img/icons/cart.svg" alt="" class="card-icon" title="Add to cart" 
-                                                data-id="1" data-title="Cabbage Green Pattagobi Seed" data-price="7.99">
-                                    </a>
-                                </li>
-                            </ul>
+                        <div class="body">
+                            <p class="p-title word-break">Cabbage Green Pattagobi Seed</p>
+                            <p class="price">£7.99</p>
                         </div>
                     </div>
-                    <div class="body">
-                        <p class="p-title word-break">Cabbage Green Pattagobi Seed</p>
-                        <p class="price">£7.99</p>
+
+                    <div class="card" role="list">
+                        <div class="head">
+                            <div class="img-container">
+                                <p class="featured_product__label">new</p>
+
+                                <img src="static/img/display/jpg/banana.jpg" alt="A banana image"
+                                    class="card-img img_1">
+                                <img src="static/img/display/jpg/half-banana.jpg" alt="A banana img"
+                                    class="card-img img_2">
+                            </div>
+                            <div class="featured-products__container__cards__product_menu">
+                                <ul>
+                                    <li><a href="#"><img src="static/img/icons/red-heart.svg" alt="" class="card-icon"
+                                                title="Add to wishlist" data-id="2"></a></li>
+                                    <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="" class="card-icon"
+                                                title="Quick view" data-id="2"></a></li>
+                                    <li><a href="#"><img src="static/img/icons/cart.svg" alt="" class="card-icon"
+                                                title="Add to cart" data-id="2" data-title="Organic bananas"
+                                                data-price="12.99"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <p class="p-title word-break">Organic bananas</p>
+                            <p class="price">£12.99</p>
+                        </div>
+                    </div>
+
+                    <div class="card" role="list">
+                        <div class="head">
+                            <div class="img-container">
+                                <p class="featured_product__label">new</p>
+
+                                <img src="static/img/display/jpg/green-bell-pepper.jpg" alt="A bell pepper image"
+                                    class="card-img img_1">
+                                <img src="static/img/display/jpg/bell-pepper.jpg" alt="A bell pepper image"
+                                    class="card-img img_2">
+                            </div>
+
+                            <div class="featured-products__container__cards__product_menu">
+                                <ul>
+                                    <li><a href="#"><img src="static/img/icons/red-heart.svg" alt="" class="card-icon"
+                                                title="Add to wishlist" data-id="3"></a></li>
+                                    <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="" class="card-icon"
+                                                title="Quick view" data-id="3"></a></li>
+                                    <li><a href="#"><img src="static/img/icons/cart.svg" alt="" class="card-icon"
+                                                title="Add to cart" data-id="3" data-title="Bell Pepper"
+                                                data-price="5.49">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <p class="p-title word-break">Bell pepper</p>
+                            <p class="price">£5.49</p>
+                        </div>
+                    </div>
+
+                    <div class="card" role="list">
+                        <div class="head">
+                            <div class="img-container">
+                                <p class="featured_product__label">new</p>
+
+
+                                <img src="static/img/display/jpg/whole-cauliflower.jpg" alt="A cauliflower image"
+                                    class="card-img img_1">
+                                <img src="static/img/display/jpg/cauliflower.jpg" alt="A cauliflower image"
+                                    class="card-img img_2">
+                            </div>
+                            <div class="featured-products__container__cards__product_menu">
+                                <ul>
+                                    <li><a href="#"><img src="static/img/icons/red-heart.svg" alt="" class="card-icon"
+                                                title="Add to wishlist" data-id="4"></a></li>
+                                    <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="" class="card-icon"
+                                                title="Quick view" data-id="4"></a></li>
+                                    <li><a href="#">
+                                            <img src="static/img/icons/cart.svg" alt="" class="card-icon"
+                                                title="Add to cart" data-id="4" data-title="cauliflower"
+                                                data-price="8.99">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <p class="p-title word-break">cauliflower</p>
+                            <p class="price">£8.99</p>
+                        </div>
+                    </div>
+
+                    <div class="card" role="list">
+                        <div class="head">
+                            <div class="img-container">
+                                <p class="featured_product__label">new</p>
+
+                                <img src="static/img/display/jpg/red-onions.jpg" alt="A red onion image"
+                                    class="card-img img_1">
+                                <img src="static/img/display/jpg/red-sliced-onions.jpg" alt="A red onion image"
+                                    class="card-img img_2">
+                            </div>
+                            <div class="featured-products__container__cards__product_menu">
+                                <ul>
+                                    <li><a href="#"><img src="static/img/icons/red-heart.svg" alt="A wishlist icon"
+                                                class="card-icon" title="Add to wishlist" data-id="5"></a></li>
+                                    <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="A quick view icon"
+                                                class="card-icon" title="Quick view" data-id="5"></a></li>
+                                    <li><a href="#">
+                                            <img src="static/img/icons/cart.svg" alt="A cart icon" class="card-icon"
+                                                title="Add to cart" data-id="5" data-title="Red" data-price="8.99">
+
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <p class="p-title word-break">Red onion</p>
+                            <p class="price">£5.99</p>
+                        </div>
+                    </div>
+
+                    <div class="card" role="list">
+                        <div class="head">
+                            <div class="img-container">
+                                <p class="featured_product__label">new</p>
+
+
+                                <img src="static/img/display/jpg/avacodo.jpg" alt="An avacodo image"
+                                    class="card-img img_1">
+                                <img src="static/img/display/jpg/avacodo-slice.jpg" alt="An avacodo image"
+                                    class="card-img img_2">
+                            </div>
+                            <div class="featured-products__container__cards__product_menu">
+                                <ul>
+                                    <li><a href="#"><img src="static/img/icons/red-heart.svg" alt="A wishlist icon"
+                                                class="card-icon" title="Add to wishlist" data-id="6"></a></li>
+                                    <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="A quick view icon"
+                                                class="card-icon" title="Quick view" data-id="6"></a></li>
+                                    <li><a href="#"><img src="static/img/icons/cart.svg" alt="A cart icon"
+                                                class="card-icon" title="Add to cart" data-id="6" data-title="Avacado"
+                                                data-price="5.99">
+                                        </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <p class="p-title word-break">Avacado</p>
+                            <p class="price">£5.99</p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="card">
-                    <div class="head">
-                        <div class="img-container">
-                            <p class="featured_product__label">new</p>
-                          
-                            <img src="static/img/display/jpg/banana.jpg" alt="A banana image" class="card-img img_1">
-                            <img src="static/img/display/jpg/half-banana.jpg" alt="A banana img" class="card-img img_2">
-                        </div>
-                        <div class="featured-products__container__cards__product_menu">
-                            <ul>
-                                <li><a href="#"><img src="static/img/icons/red-heart.svg" alt="" class="card-icon" title="Add to wishlist" data-id="2"></a></li>
-                                <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="" class="card-icon" title="Quick view" data-id="2"></a></li>
-                                <li><a href="#"><img src="static/img/icons/cart.svg" alt="" class="card-icon" title="Add to cart"
-                                    data-id="2" data-title="Organic bananas" data-price="12.99"></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <p class="p-title word-break">Organic bananas</p>
-                        <p class="price">£12.99</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="head">
-                        <div class="img-container">
-                            <p class="featured_product__label">new</p>
-
-                            <img src="static/img/display/jpg/green-bell-pepper.jpg" alt="A bell pepper image" class="card-img img_1">
-                            <img src="static/img/display/jpg/bell-pepper.jpg" alt="A bell pepper image" class="card-img img_2">
-                        </div>
-
-                        <div class="featured-products__container__cards__product_menu">
-                            <ul>
-                                <li><a href="#"><img src="static/img/icons/red-heart.svg" alt="" class="card-icon" title="Add to wishlist" data-id="3"></a></li>
-                                <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="" class="card-icon" title="Quick view" data-id="3"></a></li>
-                                <li><a href="#"><img src="static/img/icons/cart.svg" alt="" class="card-icon" title="Add to cart"
-                                    data-id="3" data-title="Bell Pepper" data-price="5.49">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <p class="p-title word-break">Bell pepper</p>
-                        <p class="price">£5.49</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="head">
-                        <div class="img-container">
-                            <p class="featured_product__label">new</p>
-                         
-
-                            <img src="static/img/display/jpg/whole-cauliflower.jpg" alt="A cauliflower image" class="card-img img_1">
-                            <img src="static/img/display/jpg/cauliflower.jpg" alt="A cauliflower image" class="card-img img_2">
-                        </div>
-                        <div class="featured-products__container__cards__product_menu">
-                            <ul>
-                                <li><a href="#"><img src="static/img/icons/red-heart.svg" alt="" class="card-icon" title="Add to wishlist" data-id="4"></a></li>
-                                <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="" class="card-icon" title="Quick view" data-id="4"></a></li>
-                                <li><a href="#">
-                                    <img src="static/img/icons/cart.svg" alt="" class="card-icon" title="Add to cart"
-                                        data-id="4" data-title="cauliflower" data-price="8.99">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <p class="p-title word-break">cauliflower</p>
-                        <p class="price">£8.99</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="head">
-                        <div class="img-container">
-                            <p class="featured_product__label">new</p>
-                         
-                            <img src="static/img/display/jpg/red-onions.jpg" alt="A red onion image" class="card-img img_1">
-                            <img src="static/img/display/jpg/red-sliced-onions.jpg" alt="A red onion image" class="card-img img_2">
-                        </div>
-                        <div class="featured-products__container__cards__product_menu">
-                            <ul>
-                                <li><a href="#"><img src="static/img/icons/red-heart.svg" alt="" class="card-icon" title="Add to wishlist" data-id="5"></a></li>
-                                <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="" class="card-icon" title="Quick view" data-id="5"></a></li>
-                                <li><a href="#">
-                                    <img src="static/img/icons/cart.svg" alt="" class="card-icon" title="Add to cart"
-                                    data-id="5" data-title="Red" data-price="8.99">
-                                
-                                </a>
-                            </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <p class="p-title word-break">Red onion</p>
-                        <p class="price">£5.99</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="head">
-                        <div class="img-container">
-                            <p class="featured_product__label">new</p>
-                         
-
-                            <img src="static/img/display/jpg/avacodo.jpg" alt="An avacodo image" class="card-img img_1">
-                            <img src="static/img/display/jpg/avacodo-slice.jpg" alt="An avacodo image" class="card-img img_2">
-                        </div>
-                        <div class="featured-products__container__cards__product_menu">
-                            <ul>
-                                <li><a href="#"><img src="static/img/icons/red-heart.svg" alt="" class="card-icon" title="Add to wishlist" data-id="6"></a></li>
-                                <li><a href="#"><img src="static/img/icons/quick-view.svg" alt="" class="card-icon" title="Quick view" data-id="6"></a></li>
-                                <li><a href="#"><img src="static/img/icons/cart.svg" alt="" class="card-icon" title="Add to cart"
-                                    data-id="6" data-title="Avacado" data-price="5.99">
-                                </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="body">
-                        <p class="p-title word-break">Avacado</p>
-                        <p class="price">£5.99</p>
-                    </div>
-                </div>
-            </div>
             </div>
         </section>
 
@@ -339,14 +375,15 @@
         <section id="banner">
             <div class="container">
                 <div class="banner">
-                   
+
                     <div class="banner__text-overlay">
                         <p class="banner__text banner__sales_display">Sales up to 20% off</p>
                         <p class="banner__text">online fruit & vegetables store</p>
                         <p class="banner__text">Shop now</p>
                     </div>
-                   
-                    <img src="static/img/display/jpg/banner1.jpg" alt="a banner image" class="banner-img" loading="lazy">
+
+                    <img src="static/img/display/jpg/banner1.jpg" alt="a banner image" class="banner-img"
+                        loading="lazy">
                 </div>
 
                 <div class="banner">
@@ -355,154 +392,237 @@
                         <p class="banner__text">Best Organic drinks</p>
                         <p class="banner__text">Shop now</p>
                     </div>
-                    <img src="static/img/display/jpg/banner2.jpg" alt="a banner image" class="banner-img" loading="lazy">
+                    <img src="static/img/display/jpg/banner2.jpg" alt="a banner image" class="banner-img"
+                        loading="lazy">
                 </div>
             </div>
         </section>
 
 
         <div class="quick-view" id="quick-view">
-           
+
             <div class="container">
-           
+
 
             </div>
         </div>
 
         <div class="wishlist-logged-msg">
             <p>You need to be logged in to add to your wishlist</p>
-           <img src="static/img/icons/window-close.svg" alt="The close icon" class="close-icon" id="wishlist-close-icon">
-         
+            <img src="static/img/icons/window-close.svg" alt="The close icon" class="close-icon"
+                id="wishlist-close-icon">
+
         </div>
 
         <div class="addToItem-logged-msg">
             <p>Your cart has been updated</p>
-           <img src="static/img/icons/window-close.svg" alt="The close icon" class="close-icon" id="addToItem-close-icon">
-         
+            <img src="static/img/icons/window-close.svg" alt="The close icon" class="close-icon"
+                id="addToItem-close-icon">
+
         </div>
-
-
-
     </main>
 
+    <section id="lastest-updates" class="latest-updates" aria-labelledby="latest-updates-title">
+        <div class="container">
+            <h1>Latest updates and news</h1>
 
-    <div class="subscribe">
+            <hr>
+            <div class="cards">
+
+                <!-- card 1 -->
+                <div class="card" role="list">
+                    <div class="head">
+                        <img src="static/img/display/jpg/latest-update1.jpg" alt="An assortment of fresh baked goods"
+                            class="lastest-updates__img" loading="lazy">
+                    </div>
+                    <div class="body">
+                        <h4><a href="#">Fresh Bakes & Culinary Trends</a></h4>
+                        <p>Stay informed with our freshest updates and news! Dive into the world of artisanal bread and
+                            the latest culinary trends. From new baking techniques to ingredient insights, get inspired
+                            and elevate your kitchen creations with our latest articles and tips.</p>
+                    </div>
+
+                    <div class="footer">
+                        <p class="latest-updates__p_date">Created on: 10th June 2024</p>
+                    </div>
+                </div>
+
+                <!-- card 2 -->
+                <div class="card" role="list">
+                    <div class="head">
+                        <img src="static/img/display/jpg/latest-update2.jpg" alt="Freshly harvested garden produce"
+                            class="lastest-updates__img" loading="lazy">
+                    </div>
+                    <div class="body">
+                        <h4><a href="#">Fresh Bakes & Garden Harvest</a></h4>
+                        <p>Explore our latest updates and news, featuring vibrant garden harvests and wholesome bakes.
+                            Stay tuned for insights on fresh produce, new recipes, and tips for integrating the best of
+                            nature's bounty into your culinary adventures. Discover how to elevate your meals with
+                            seasonal ingredients and innovative cooking ideas.</p>
+                    </div>
+
+                    <div class="footer">
+                        <p class="latest-updates__p_date">Created on: 9th March 2024</p>
+                    </div>
+                </div>
+
+                <!-- card 3 -->
+                <div class="card" role="list">
+                    <div class="head">
+                        <img src="static/img/display/jpg/latest-update3.jpg" alt="Fresh Bakes & Nutty Delightc"
+                            class="lastest-updates__img" loading="lazy">
+                    </div>
+                    <div class="body">
+                        <h4><a href="#">Fresh Bakes & Nutty Delight</a></h4>
+                        <p>Discover the health benefits, culinary uses, and latest trends involving nuts and seeds.
+                            Get inspired with tips on incorporating these nutritious powerhouses into your daily meals
+                            and baked goods.
+                            Elevate your diet and recipes with our innovative ideas and expert insights</p>
+                    </div>
+
+                    <div class="footer">
+                        <p class="latest-updates__p_date">Created on: 1 January 2024</p>
+                    </div>
+                </div>
+
+                <!-- card 4 -->
+                <div class="card" role="list">
+                    <div class="head">
+                        <img src="static/img/display/jpg/latest-update4.jpg" alt="Almond Soyo Milk" class="lastest-updates__img" loading="lazy">
+                    </div>
+                    <div class="body">
+                        <h4><a href="#">Almond Soyo Milk</a></h4>
+                        <p>Discover a drink enriched by nature's own flavours. Elevate your palate with our latest creation. 
+                            Follow us to explore more of these exquisite beverages
+                        </p>
+                    </div>
+
+                    <div class="footer">
+                        <p class="latest-updates__p_date">Created on: September 10 2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="subscribe" aria-labelledby="subscribe-title">
         <div class="container">
             <div class="subscribe__information">
-                <p>Join Our Newsletter, Get 30% Off</p>
-                <p> Get the latest information on events sales offers and promotions</p>
+                <h2 id="subscribe-title">Join Our Newsletter, Get 30% Off</h2>
+                <p>Get the latest information on events, sales, offers, and promotions</p>
             </div>
 
             <div class="subscribe__form">
-                <form action="" class="post" class="subscribe-form">
-                    <input type="email" name="email" id="email" required placeholder="Email...." class="subscribe__form__input-field">
-                    <button type="submit" class="subscribe-btn button-sm">Subscribe</button>
+                <form action="" method="post" class="subscribe-form" aria-labelledby="subscribe-title">
+                    <fieldset>
+                        <legend class="visually-hidden">Subscribe to our newsletter</legend>
+                        <label for="email" class="visually-hidden">Email address</label>
+                        <input type="email" name="email" id="email" required placeholder="Email..."
+                            class="subscribe__form__input-field">
+                        <button type="submit" class="subscribe-btn button-sm">Subscribe</button>
+                    </fieldset>
                 </form>
             </div>
-
         </div>
-    </div>
+    </section>
 
     <footer>
         <div class="container">
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
-            
-                <div class="footer-section">
-                    <h4>Customer Service</h4>
-                    <ul>
-                        <li><a href="#">Help Center / FAQs</a></li>
-                        <li><a href="#">Shipping & Delivery</a></li>
-                        <li><a href="#">Returns & Refunds</a></li>
-                        <li><a href="#">Track Your Order</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-            
-                <div class="footer-section">
-                    <h4>My Account</h4>
-                    <ul>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">Sign In / Register</a></li>
-                        <li><a href="#">Wishlist</a></li>
-                        <li><a href="#">Subscription Preferences</a></li>
-                    </ul>
-                </div>
-            
-                <div class="footer-section">
-                    <h4>Company Information</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Press & Media</a></li>
-                        <li><a href="#">Affiliate Program</a></li>
-                    </ul>
-                </div>
-            
-                <div class="footer-section">
-                    <h4>Policies</h4>
-                    <ul>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">Sustainability Practices</a></li>
-                        <li><a href="#">Supplier Standards</a></li>
-                    </ul>
-                </div>
-            
-                <div class="footer-section">
-                    <h4>Engage with Us</h4>
-                    <ul>
-                        <li><a href="#">Newsletter Signup</a></li>
-                        <li><a href="#" target="_blank">Follow Us on Facebook</a></li>
-                        <li><a href="#" target="_blank">Follow Us on Instagram</a></li>
-                        <li><a href="#" target="_blank">Follow Us on Twitter</a></li>
-                        <li><a href="#" target="_blank">Follow Us on Pinterest</a></li>
-                        <li><a href="#">Customer Reviews</a></li>
-                    </ul>
-                </div>
-            
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#">Recipe Ideas</a></li>
-                        <li><a href="#">Seasonal Produce Guide</a></li>
-                        <li><a href="#">Nutritional Information</a></li>
-                        <li><a href="#">Cooking Tips</a></li>
-                    </ul>
-                </div>
-            
-                <div class="footer-section contact-us">
-                    <h4>Contact Us</h4>
-                    <ul>
-                        <li><a href="mailto:egbieuku@hotmail.com" class="email-footer-link">Email: egbieuku@hotmail.com</a></li>
-                        <li><a href="#">Phone: +44(079) 572 04547</a></li>
-                        <li><a href="https://www.google.com/maps?q=123+Market+Street,+City,+Country" target="_blank">
-                            Address: 123 Madeup Street, London, United Kingdom</a></li>
-                    </ul>
-                </div>
-            
-                <div class="footer-section">
-                    <h4>Secure Shopping</h4>
-                    <ul>
-                        <li><a href="#">Payment Methods</a></li>
-                        <li><a href="#">Secure Shopping Information</a></li>
-                    </ul>
-                </div>
-         
-            
-        </div>
+            <div class="footer-section" aria-labelledby="quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
 
-       
+            <div class="footer-section" aria-labelledby="customer-service">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Help Center / FAQs</a></li>
+                    <li><a href="#">Shipping & Delivery</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                    <li><a href="#">Track Your Order</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section" aria-labelledby="my-account">
+                <h4>My Account</h4>
+                <ul>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Sign In / Register</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Subscription Preferences</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section" aria-labelledby="company-information">
+                <h4>Company Information</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press & Media</a></li>
+                    <li><a href="#">Affiliate Program</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section" aria-labelledby="Policies">
+                <h4>Policies</h4>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Sustainability Practices</a></li>
+                    <li><a href="#">Supplier Standards</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section" aria-labelledby="Engage with us">
+                <h4>Engage with Us</h4>
+                <ul>
+                    <li><a href="#">Newsletter Signup</a></li>
+                    <li><a href="#" target="_blank">Follow Us on Facebook</a></li>
+                    <li><a href="#" target="_blank">Follow Us on Instagram</a></li>
+                    <li><a href="#" target="_blank">Follow Us on Twitter</a></li>
+                    <li><a href="#" target="_blank">Follow Us on Pinterest</a></li>
+                    <li><a href="#">Customer Reviews</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Recipe Ideas</a></li>
+                    <li><a href="#">Seasonal Produce Guide</a></li>
+                    <li><a href="#">Nutritional Information</a></li>
+                    <li><a href="#">Cooking Tips</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact-us">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li>Email: <a href="mailto:egbieuku@hotmail.com" class="email-footer-link">egbieuku@hotmail.com</a>
+                    </li>
+                    <li>Phone: <a href="#">+44(079) 572 04547</a></li>
+                    <li>Address: <a href="https://www.google.com/maps?q=123+Market+Street,+City,+Country" target="_blank">
+                            123 Madeup Street, London, United Kingdom</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Secure Shopping</h4>
+                <ul>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">Secure Shopping Information</a></li>
+                </ul>
+            </div>
+        </div>
     </footer>
 
     <script src="static/js/script.js" type="module"></script>
