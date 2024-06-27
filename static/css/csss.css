@@ -973,6 +973,85 @@ button:hover,
 
 
 
+
+/* testimonals sections */
+#testimonals .container {
+    
+    cursor: pointer;
+    margin: auto;
+    overflow: hidden; 
+    width: var(--global-width-md);
+   
+    /* positoning */
+    position: relative;
+    z-index: 1000;
+
+  
+   
+}
+
+#testimonals .container .cards {
+
+    transition: transform 0.5s ease-in-out;
+    will-change: transform; 
+
+    /* flex elements */
+    display: flex;
+
+    /* position elements */
+    position: relative;
+    z-index: 999;
+
+    
+}
+
+/* Carousel elements */
+#testimonals .container .cards .card-carousel {
+
+    background: white;
+    border: 1px solid lavender;
+    padding: 8px;
+    padding-left: 60px;
+    padding-right: 60px;
+
+    /* flex elements which ensure that each card takes full width of the container  */
+    flex: 0 0 100%;      
+   
+    /* position elements */
+    position: relative;
+    z-index: 700;
+   
+}
+
+.carousel-button {
+
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+   
+    /* position elements */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
+}
+
+/* The left and right button are the carets */
+.left-button {
+    left: 10px;
+}
+
+.right-button {
+    right: 10px;
+}
+
+/* end of carousel elements */
+    
+
+
+
 /* The latest section update */
 #lastest-updates {
     margin-top: 72px;

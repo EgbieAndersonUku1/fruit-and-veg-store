@@ -2,6 +2,7 @@ import {buildQuickView, closeItemQuickView} from "./builder.js";
 import { displayAddToCartMessage } from "./messages.js";
 import getItemByID from "../../data.js";
 import ItemCart from "./cart.js";
+import CarouselSlider from "./carouselSlider.js";
 
 
 const cards                = document.querySelectorAll(".card");
@@ -19,6 +20,16 @@ const MOUSEOVER            = "mouseover";
 
 const cart = new ItemCart();
 
+// Initialize and start the carousel slider
+const carousel = new CarouselSlider();
+carousel.setCarouselContainer();
+carousel.setPrevButton();
+carousel.setNextButton();
+carousel.setCardSelector();
+carousel.init();
+
+
+// icon add eventlistners
 wishListCloseIcon.addEventListener("click", handleCloseWishlistMsg);
 addToItemCloseIcon.addEventListener("click", handleAddToCartCloseMsg)
 
