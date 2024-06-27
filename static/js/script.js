@@ -2,6 +2,7 @@ import {buildQuickView, closeItemQuickView} from "./builder.js";
 import { displayAddToCartMessage } from "./messages.js";
 import getItemByID from "../../data.js";
 import ItemCart from "./cart.js";
+import CarouselSlider from "./carouselSlider.js";
 
 
 const cards                = document.querySelectorAll(".card");
@@ -17,7 +18,16 @@ const MOUSEOUT             = "mouseout";
 const MOUSEOVER            = "mouseover";
 
 
-const cart = new ItemCart();
+const cart     = new ItemCart();
+const carousel = new CarouselSlider();
+
+// start the carousel
+carousel.setCarouselContainer();
+carousel.setPrevButton();
+carousel.setNextButton();
+carousel.setCardSelector();
+carousel.init();
+
 
 wishListCloseIcon.addEventListener("click", handleCloseWishlistMsg);
 addToItemCloseIcon.addEventListener("click", handleAddToCartCloseMsg)
@@ -35,22 +45,25 @@ cards.forEach((card) => {
 
     const cardMenu       = card.querySelector(".head .featured-products__container__cards__product_menu");
    
-    const imgContainer   = card.querySelector(".head .img-container");
-    const images         = imgContainer ? imgContainer.querySelectorAll("img") : [];
-
-    const quickViewLinks = cardMenu.querySelectorAll("ul li");
-    const wishlistsLinks = quickViewLinks && quickViewLinks.length === 3 ?  quickViewLinks[0]: [];
-    const quickView      = quickViewLinks && quickViewLinks.length === 3 ?  quickViewLinks[1]: [];
-    const addToCartLinks = quickViewLinks && quickViewLinks.length === 3 ?  quickViewLinks[2]: [];
-
-    quickView?.querySelector("a").addEventListener("click", handleQuickView);
-    wishlistsLinks?.querySelector("a").addEventListener("click", handleWishlistClick);
-    addToCartLinks?.querySelector("a").addEventListener("click", handleAddItemToCart);
-
-    addImageRotationListeners(card, images, false);
+    if (cardMenu) {
+        const imgContainer   = card.querySelector(".head .img-container");
+        const images         = imgContainer ? imgContainer.querySelectorAll("img") : [];
     
-    card.addEventListener(MOUSEOVER, () => handleCardMenuDisplay(cardMenu));
-    card.addEventListener(MOUSEOUT, () => handleCardMenuDisplayRemoval(cardMenu));   
+        const quickViewLinks = cardMenu.querySelectorAll("ul li");
+        const wishlistsLinks = quickViewLinks && quickViewLinks.length === 3 ?  quickViewLinks[0]: [];
+        const quickView      = quickViewLinks && quickViewLinks.length === 3 ?  quickViewLinks[1]: [];
+        const addToCartLinks = quickViewLinks && quickViewLinks.length === 3 ?  quickViewLinks[2]: [];
+    
+        quickView?.querySelector("a").addEventListener("click", handleQuickView);
+        wishlistsLinks?.querySelector("a").addEventListener("click", handleWishlistClick);
+        addToCartLinks?.querySelector("a").addEventListener("click", handleAddItemToCart);
+    
+        addImageRotationListeners(card, images, false);
+        
+        card.addEventListener(MOUSEOVER, () => handleCardMenuDisplay(cardMenu));
+        card.addEventListener(MOUSEOUT, () => handleCardMenuDisplayRemoval(cardMenu));   
+    }
+   
   
 })
 
