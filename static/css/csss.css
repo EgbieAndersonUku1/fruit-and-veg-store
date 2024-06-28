@@ -588,6 +588,10 @@ nav {
 
 
 /* icons */
+.rating-star {
+    height: 25px;
+    width: 20px;
+}
 .email-icon {
     transform: translateY(8px);
 }
@@ -970,6 +974,142 @@ button:hover,
     opacity: 0.9;
 
 }
+
+
+
+
+/* testimonals sections */
+
+#testimonals {
+    background: lavender;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding-bottom: 100px;
+}
+
+#testimonals .container h1 {
+    color: darkgreen;
+    font-size: 2rem;
+    font-weight: 300;
+    padding-top: 72px;
+  
+   
+  
+   
+}
+
+#testimonals .container hr {
+    margin: 0;
+    margin-bottom: 48px;
+    margin-top: 8px;
+    width: 100%;
+}
+#testimonals .container {
+    
+    cursor: pointer;
+    margin: auto;
+    overflow: hidden; 
+    width: var(--global-width-md);
+   
+    /* positoning */
+    position: relative;
+    z-index: 1000;
+
+  
+   
+}
+
+#testimonals .container .cards {
+
+    transition: transform 0.5s ease-in-out;
+    will-change: transform; 
+
+    /* flex elements */
+    display: flex;
+
+    /* position elements */
+    position: relative;
+    z-index: 999;
+
+    
+}
+
+/* Carousel elements */
+#testimonals .container .cards .card-carousel {
+
+    background: white;
+    border: 2px solid lavender;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    height: 280px;
+
+   
+    margin-bottom: 2px;
+    padding: 8px;
+    padding-top: 48px;
+    padding-left: 60px;
+    padding-right: 60px;
+
+    /* flex elements which ensure that each card takes full width of the container  */
+    flex: 0 0 100%;      
+   
+    /* position elements */
+    position: relative;
+    z-index: 700;
+   
+}
+
+.carousel-img {
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+  
+}
+
+.carousel__name {
+    transform: translateY(30px);
+    font-weight: 400;
+}
+
+
+#testimonals .container .cards .card-carousel .footer {
+   padding-top: 8px;
+
+  /* flex elements */
+  display: flex;
+  gap: 10px;
+}
+
+#testimonals .container .cards .card-carousel .body {
+   font-style: italic;
+ }
+
+
+.carousel-button {
+
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+   
+    /* position elements */
+    position: absolute;
+    top: 65%;
+    transform: translateY(-50%);
+    z-index: 1001;
+}
+
+/* The left and right button are the carets */
+.left-button {
+    left: 10px;
+}
+
+.right-button {
+    right: 10px;
+}
+
+/* end of carousel elements */
+    
 
 
 
