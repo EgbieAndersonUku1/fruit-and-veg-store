@@ -367,9 +367,8 @@ nav {
 
     /* margin */
     margin-top: 10px;
-
-
 }
+
 
 .featured__featured-categories__display-text {
 
@@ -390,41 +389,27 @@ nav {
 
 }
 
-.featured_product__label {
-    font-size: 0.75rem;
-    padding-left: 4px;
-    padding-top: 4px;
-    text-transform: uppercase;
+ 
+/* utilities for the card */
+
+/* card size elements */
+.card-img {
+    height: 150px;
+    width: 224px;
 }
 
 
+.organic-card-header {
 
-/* featured products */
-.featured-products__container h1 {
-    font-size: 1.56rem;
+    font-size: 1.875rem;
+    font-weight: 300;
     margin: auto;
     padding-top: 64px;
     width: var(--global-width-md);
 
 }
 
-
-.featured-products__container__cards {
-
-    margin: auto;
-    width: var(--global-width-md);
-
-    /* grid positioning */
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 1px;
-}
-
-.featured_product__label {
-    position: absolute;
-}
-
-.featured-products__container__cards__product_menu {
+.organic-card-menu {
 
     display: none;
 
@@ -437,23 +422,45 @@ nav {
     padding-right: 20px;
     padding-top: 10px;
 
-
 }
 
-.featured-products__container__cards__product_menu.show {
-    display: flex;
+.organic-cards {
+
+    margin: auto;
+    width: var(--global-width-md);
+
+    /* grid positioning */
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
 }
 
-.featured-products__container__cards .card {
+
+.organic-cards .card {
     position: relative;
 }
 
 
+.new-item-label {
+    font-size: 0.75rem;
+    padding-left: 4px;
+    padding-top: 4px;
+    text-transform: uppercase;
 
-/* card elements */
-.card-img {
-    height: 150px;
-    width: 224px;
+    /* positioning */
+    position: absolute;
+}
+
+/* End of utilities */
+
+
+
+
+
+/* Display elements to be used when called with JS */
+.new-products__container__cards__product_menu.show,
+.featured-products__container__cards__product_menu.show {
+    display: flex;
 }
 
 
@@ -505,7 +512,6 @@ nav {
 
 
 
-
 /* The header class sizes */
 .large-header {
     font-size: 48px;
@@ -528,8 +534,6 @@ nav {
 
 
 /* utilities */
-
-
 .bold {
     font-weight: bold;
 }
@@ -625,6 +629,7 @@ nav {
     right: 10%;
     left: 10%;
     bottom: 45%;
+    z-index: 1000;
 
     /* The size elements */
     height: 675px;
@@ -737,7 +742,7 @@ button:hover,
 
 
 
-.active {
+.link-btn.active {
     background: var(--dark-green);
     color: white;
 }
@@ -784,9 +789,6 @@ button:hover,
     font-weight: 400;
 }
 
-/* .quick-view__image-info hr {
-    width: 100%;
-} */
 
 .checkout,
 .add-to-wishlist {
@@ -977,9 +979,7 @@ button:hover,
 
 
 
-
 /* testimonals sections */
-
 #testimonals {
     background: lavender;
     margin-top: 100px;
@@ -989,13 +989,9 @@ button:hover,
 
 #testimonals .container h1 {
     color: darkgreen;
-    font-size: 2rem;
+    font-size: 1.875rem;
     font-weight: 300;
     padding-top: 72px;
-  
-   
-  
-   
 }
 
 #testimonals .container hr {
@@ -1004,6 +1000,7 @@ button:hover,
     margin-top: 8px;
     width: 100%;
 }
+
 #testimonals .container {
     
     cursor: pointer;
@@ -1015,8 +1012,6 @@ button:hover,
     position: relative;
     z-index: 1000;
 
-  
-   
 }
 
 #testimonals .container .cards {
@@ -1030,7 +1025,6 @@ button:hover,
     /* position elements */
     position: relative;
     z-index: 999;
-
     
 }
 
@@ -1158,7 +1152,7 @@ button:hover,
 
 
 #lastest-updates .container h1 {
-    font-size: 1.56rem;
+    font-size: 1.875rem;
 }
 
 .latest-updates__p_date {

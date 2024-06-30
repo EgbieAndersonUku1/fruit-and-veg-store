@@ -220,7 +220,227 @@ const FeaturedItems = [
 
 
  
- function getItemByID(id) {
-    return FeaturedItems.find((item) => item.id === parseInt(id))
- }
- export default getItemByID;
+
+//  New products
+const NewItems = [
+
+    {
+        id:   7,
+        name: "Pomegrante",
+        description: "Juicy and vibrant, our Pomegranate is perfect for snacking, salads, and desserts. Rich in antioxidants and vitamins, it’s a delicious and healthy addition to your diet. Enjoy its sweet-tart flavor and burst of juiciness in every bite.",
+
+        brand: "Vintage",
+        price: "27.99",
+        referenceID: "demo_8",
+        color: ["white", "red", "brown"],
+        dimensions: ["20x25cm", "25x30cm"],
+        sizes: ["small", "medium", "large"], 
+        remaining: 30,
+        images: {
+            "detail": [
+                {
+                    imgSrc: "static/img/display/jpg/Pomegranate.jpg",
+                    main: true,
+                    alt: "The main image of the pomegranate",
+                },
+                {
+                    imgSrc: "static/img/display/jpg/Pomegranate_slice.jpg",
+                    main: false,
+                    alt: "An image of the pomegranate",
+                },
+                {
+                    imgSrc: "static/img/display/jpg/Pomegranate3.jpg",
+                    main: false,
+                    alt: "An image of the pomegranate",
+                },
+
+            ]
+        }
+    },
+
+     {
+         id:   8,
+         name: "Pineapple",
+         description: "Sweet and tangy, our Pineapple is perfect for snacking, smoothies, and desserts. Rich in vitamins and enzymes, it’s a tropical and healthy addition to your diet. Enjoy its refreshing flavor and juicy texture in a variety of dishes.",
+         brand: "Tropical",
+         price: "9.99",
+         referenceID: "demo_9",
+         color: ["Camel", "Orange", "Yellow"],
+         dimensions: ["60x90cm"],
+         sizes: ["small", "large"], 
+         remaining: 25,
+         images: {
+
+            detail: [
+                {
+                    imgSrc: "static/img/display/jpg/pineapple.jpg",
+                    main: true,
+                    alt: "The main image of a pineapple",
+                },
+                {
+                    imgSrc: "static/img/display/jpg/pineapple_slice.jpg",
+                    main: false,
+                    alt: "An image of a pineapple",
+                },
+                {
+                    imgSrc: "static/img/display/jpg/pineapple_slice-3.jpg",
+                    main: false,
+                    alt: "An image of a pineapple",
+                },
+
+
+            ]
+        }
+     },
+     {
+        id:   9,
+         name: "Cashew, Almonds and mint seeds",
+         description: "Crunchy and nutritious, our Cashew, Almond, and Pistachio Nuts are perfect for snacking, baking, and salads. Packed with protein and healthy fats, they’re a wholesome and delicious addition to your diet.",
+         brand: "Fresh Harvest",
+         price: "10.49",
+         referenceID: "demo_10",
+         color: ["brown", "orange", "green", "brown"],
+         dimensions: ["60x90cm"],
+         sizes: ["small", "medium", "large"], 
+         remaining: 100,
+         images: {  
+            detail: [
+              
+                {
+                    imgSrc: "static/img/display/jpg/cashew.jpg",
+                    main: false,
+                    alt: "Chocolate mint roast seeds",
+        
+                },
+                {
+                    imgSrc: "static/img/display/jpg/cashew2.jpg",
+                    main: false,
+                    alt: "Chocolate mint roast seeds",
+                },
+                {
+                    imgSrc: "static/img/display/jpg/cashew3.jpg",
+                    main: true,
+                    alt: "Chocolate mint roast seed",
+                },
+
+
+            ]
+            
+         }
+     },
+     {
+         id:   10,
+         name: "Protein Milkshake",
+         description: "Creamy and delicious, our Protein Milkshake is perfect for post-workout recovery, breakfast, or a snack. Packed with protein and essential nutrients, it’s a nutritious and satisfying drink.",
+         brand: "Green Valley",
+         price: "9.99",
+         referenceID: "demo_12",
+         color: ["Taupe", "Beige", "Yellow"],
+         dimensions: ["40x60cm", "80x120cm"],
+         sizes: ["small", "medium"], 
+         remaining: 80,
+         images: {
+              detail: [
+              
+                {
+                    imgSrc: "static/img/display/jpg/protein.jpg",
+                    main: true,
+                    alt: "The main image of a protein shake",
+        
+                },
+                {
+                    imgSrc: "static/img/display/jpg/protein2.jpg",
+                    main: false,
+                    alt: "An image of a protein shake",
+                },
+                {
+                    imgSrc: "static/img/display/jpg/protein3.jpg",
+                    main: false,
+                    alt: "An image of a protein shake",
+                },
+
+
+            ]
+             
+         }
+     },
+     {
+         id:   11,
+         name: "White and brown potatoes",
+         description: "Versatile and hearty, our White and Brown Potatoes are perfect for mashing, roasting, and frying. Rich in vitamins and minerals, they’re a nutritious and delicious addition to your meals.",
+         brand: "Organic Farm",
+         price: "22.99",
+         referenceID: "demo_11",
+         color: ["taupe", "brown", "camel"],
+         dimensions: ["40x60cm", "60x90cm"],
+         sizes: ["small", "medium", "large"], 
+         remaining: 120,
+         images: {
+            detail: [
+              
+                {
+                    imgSrc: "static/img/display/jpg/potatoes.jpg",
+                    main: true,
+                    alt: "A potato image",
+        
+                },
+                {
+                    imgSrc: "static/img/display/jpg/potatoes2.jpg",
+                    main: false,
+                    alt: "A potato image",
+                },
+                {
+                    imgSrc: "static/img/display/jpg/potatoes3.jpg",
+                    main: false,
+                    alt: "A potato image",
+                },
+
+
+            ]
+           
+         }
+     },
+     {
+        id:   12,
+         name: "Natural Kashmiri Turkish Walnuts",
+         description: "Nutty and nutritious, our Natural Kashmiri Turkish Walnuts are perfect for snacking, baking, and salads. Packed with omega-3 fatty acids and antioxidants, they’re a wholesome and delicious addition to your diet.",
+         brand: "Exotic Fruits",
+         price: "20.99",
+         referenceID: "demo_6",
+         color: ["Beige", "White", "Pink"],
+         dimensions: ["40x60cm", "80x120cm"],
+         sizes: ["small", "medium", "large"], 
+         remaining: 90,
+         images: {
+
+            detail: [
+              
+                {
+                    imgSrc: "static/img/display/jpg/turkish-mullberries.jpg",
+                    main: true,
+                    alt: "An image of avocado",
+        
+                },
+                {
+                    imgSrc: "static/img/display/jpg/turkish-mullberries2.jpg",
+                    main: false,
+                    alt: "An image of avocado",
+                },
+                {
+                    imgSrc: "static/img/display/jpg/turkish-mullberries3.jpg",
+                    main: false,
+                    alt: "An image of avocado",
+                },
+
+            ]
+           
+         }
+     }
+ ];
+
+
+ export {
+    FeaturedItems,
+    NewItems,
+    
+ };

@@ -1,6 +1,18 @@
 const addToCartMsg         = document.querySelector(".addToItem-logged-msg");
+const wishlistMsg          = document.querySelector(".wishlist-logged-msg");
 const dimBackgroundElement = document.querySelector(".dim-overlay");
 
+
+function closeAddToCartMsg() {
+    dimBackgroundElement.style.display = "none";
+    addToCartMsg.style.display         = "none";
+}
+
+
+function closeWishlistMessage() {
+    dimBackgroundElement.style.display = "none";
+    wishlistMsg.style.display          = "none";
+}
 
 
 function displayAddToCartMessage() {
@@ -19,6 +31,20 @@ function displayAddToCartMessage() {
 }
 
 
+function displayWishListMessage(e) {
+    e.preventDefault();
+
+    // for now it will always display not logged in - will changed that after backend is created
+    dimBackgroundElement.style.display = "block";
+    wishlistMsg.style.display          = "flex";
+}
+
+
+
 export {
-    displayAddToCartMessage
+  
+    closeAddToCartMsg,
+    closeWishlistMessage,
+    displayAddToCartMessage,
+    displayWishListMessage,
 }
