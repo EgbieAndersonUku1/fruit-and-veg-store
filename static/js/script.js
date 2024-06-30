@@ -29,6 +29,16 @@ carousel.setCardSelector();
 carousel.init();
 
 
+// Initialize and start the carousel slider
+const carousel = new CarouselSlider();
+carousel.setCarouselContainer();
+carousel.setPrevButton();
+carousel.setNextButton();
+carousel.setCardSelector();
+carousel.init();
+
+
+// icon add eventlistners
 wishListCloseIcon.addEventListener("click", handleCloseWishlistMsg);
 addToItemCloseIcon.addEventListener("click", handleAddToCartCloseMsg)
 
