@@ -394,7 +394,7 @@ nav {
 
 /* card size elements */
 .card-img {
-    height: 150px;
+    height: 224px;
     width: 224px;
 }
 
@@ -1223,6 +1223,18 @@ button:hover,
     grid-template-columns: repeat(2, 1fr);
 }
 
+
+/* Deals of the week */
+.deals-of-the-week__container {
+    width: var(--global-width-md);
+    margin: auto;
+}
+
+.deals-of-the-week__container .cards .card {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    gap: 1px;
+}
 
 /* The footer elements */
 footer {

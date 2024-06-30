@@ -1,6 +1,6 @@
 const addToCartMsg         = document.querySelector(".addToItem-logged-msg");
-const wishlistMsg          = document.querySelector(".wishlist-logged-msg");
 const dimBackgroundElement = document.querySelector(".dim-overlay");
+const wishlistMsg          = document.querySelector(".wishlist-logged-msg");
 
 
 function closeAddToCartMsg() {

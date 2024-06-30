@@ -7,11 +7,11 @@ import CarouselSlider    from "./carouselSlider.js";
 import { FeaturedItems, NewItems } from "../../data.js";
 
 
-const boxes                        = document.querySelectorAll(".box");
 const addToItemCloseIcon           = document.getElementById("addToItem-close-icon");
+const boxes                        = document.querySelectorAll(".box");
 const featuredProductCards         = document.querySelectorAll(".featured-products__container__cards .card");
-const newProductCards              = document.querySelectorAll(".new-products__container__cards .card");
 const featuredProductsMenuSelector = ".head .featured-products__container__cards__product_menu";
+const newProductCards              = document.querySelectorAll(".new-products__container__cards .card");
 const newProductsMenuSelector      = ".head .new-products__container__cards__product_menu";
 const wishListCloseIcon            = document.getElementById("wishlist-close-icon");
 
@@ -45,7 +45,7 @@ featuredProductCards.forEach((card) => {
 });
 
 
-console.log(newProductCards);
+// console.log(newProductCards);
 newProductCards.forEach((card) => {
     addCardEventListeners(card, newProductsMenuSelector, NewItems);
 })
