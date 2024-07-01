@@ -399,6 +399,14 @@ nav {
 }
 
 
+.card-title {
+    font-weight: 300;
+}
+.card-description {
+    width: 90%;
+}
+
+
 .organic-card-header {
 
     font-size: 1.875rem;
@@ -438,11 +446,14 @@ nav {
 
 .organic-cards .card {
     position: relative;
+   
 }
 
 
 .new-item-label {
     font-size: 0.75rem;
+    color: var(--dark-green);
+    font-weight: 600;
     padding-left: 4px;
     padding-top: 4px;
     text-transform: uppercase;
@@ -538,10 +549,20 @@ nav {
     font-weight: bold;
 }
 
+.highlight {
+    font-weight: 600;
+    color: red;
+}
+
 .light-bold {
     font-weight: 500;
 }
 
+.strike-through {
+    font-weight: 600;
+    text-decoration: line-through;
+    color: #FF4500;
+}
 
 .center {
 
@@ -1225,6 +1246,19 @@ button:hover,
 
 
 /* Deals of the week */
+.deal-of-week-main-img {
+    border: 1px solid lavender;
+    position: relative;
+    height: 250px;
+}
+
+.deal-of-week-main-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
 .deals-of-the-week__container {
     width: var(--global-width-md);
     margin: auto;
@@ -1232,8 +1266,36 @@ button:hover,
 
 .deals-of-the-week__container .cards .card {
     display: grid;
-    grid-template-columns: 45% 55%;
-    gap: 1px;
+    grid-template-columns: 35% 65%;
+    gap: 1rem;
+}
+
+.deal-end {
+    /* flex elements */
+    display: flex;
+    gap: 3px;
+    margin-top: 4px;
+}
+
+.deal-price {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.deal-price span {
+    font-size: 1.2rem;
+}
+.deal-end p {
+    padding: 10px;
+    background: white;
+    border: 1px solid var(--light-green);
+    background: var(--light-green);
+    color: white;
+    text-align: center;
+
+    height: 50px;
+    width: 150px;
+    font-weight: 400;
+   
 }
 
 /* The footer elements */

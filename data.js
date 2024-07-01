@@ -366,31 +366,31 @@ const NewItems = [
      },
      {
          id:   11,
-         name: "White and brown potatoes",
-         description: "Versatile and hearty, our White and Brown Potatoes are perfect for mashing, roasting, and frying. Rich in vitamins and minerals, they’re a nutritious and delicious addition to your meals.",
+         name: "Bulk Organic Sicilian Orange",
+         description: "Grab our Deal of the Week: a bulk box of organic Sicilian Gippumala oranges. Perfect for families or orange lovers, these sun-ripened fruits are handpicked for ultimate freshness and sweetness.",
          brand: "Organic Farm",
-         price: "22.99",
+         price: "15.99",
          referenceID: "demo_11",
-         color: ["taupe", "brown", "camel"],
-         dimensions: ["40x60cm", "60x90cm"],
-         sizes: ["small", "medium", "large"], 
-         remaining: 120,
+         color: ["orange"],
+         dimensions: ["60x90cm"],
+         sizes: ["large"], 
+         remaining: 80,
          images: {
             detail: [
               
                 {
-                    imgSrc: "static/img/display/jpg/potatoes.jpg",
+                    imgSrc: "static/img/display/jpg/oranges.jpeg",
                     main: true,
-                    alt: "A potato image",
+                    alt: "A bulk orange image pack",
         
                 },
                 {
-                    imgSrc: "static/img/display/jpg/potatoes2.jpg",
+                    imgSrc: "static/img/display/jpg/box-of-oranges.jpeg",
                     main: false,
-                    alt: "A potato image",
+                    alt: "An orange image",
                 },
                 {
-                    imgSrc: "static/img/display/jpg/potatoes3.jpg",
+                    imgSrc: "static/img/display/jpg/half-an-orange.jpeg",
                     main: false,
                     alt: "A potato image",
                 },

@@ -3,7 +3,8 @@ import { closeAddToCartMsg    as handleAddToCartCloseMsg,
          closeWishlistMessage as handleCloseWishlistMsg,
         } from "./messages.js";
 
-import CarouselSlider    from "./carouselSlider.js";
+import CarouselSlider  from "./carouselSlider.js";
+import dealCountDown  from "./countdown.js";
 import { FeaturedItems, NewItems } from "../../data.js";
 
 
@@ -30,6 +31,11 @@ carousel.init();
 // icon addEventlistners
 wishListCloseIcon.addEventListener("click", handleCloseWishlistMsg);
 addToItemCloseIcon.addEventListener("click", handleAddToCartCloseMsg)
+
+
+// runs the countdown
+dealCountDown();
+
 
 
 boxes.forEach((box) => {
