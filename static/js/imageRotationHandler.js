@@ -1,5 +1,13 @@
+/**
+ * Rotates and switches the display of images based on the event type.
+ * 
+ * @param {string} type - The event type (e.g., "mouseover" or "mouseout").
+ * @param {Array<HTMLElement>} images - An array containing two image elements.
+ * @param {boolean} [rotate=true] - Flag to enable or disable image rotation.
+ * @throws Will throw an error if the images array has less than two elements or if the 
+ * elements are not valid DOM elements.
+ */
 function rotateImages(type, images, rotate = true) {
-
     if (images && images.length < 2) {
         throw new Error("The images array must contain at least two elements");
     }

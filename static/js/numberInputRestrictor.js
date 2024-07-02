@@ -1,24 +1,29 @@
+/**
+ * Prevents typing numeric characters into an input field by intercepting key events.
+ * Allows specific keys and key combinations that are not numeric.
+ * 
+ * @param {KeyboardEvent} event - The keyboard event object.
+ */
 function preventNumberInputTyping(event) {
-    console.log("preventNumberInputTyping called with key:", event.key, "code:", event.keyCode);
+    console.log("preventNumberInputTyping called with key:", event.key, "code:", event.code);
 
     // Allow: backspace, delete, tab, escape, enter, home, end, arrow keys
-    const allowedKeys = [46, 8, 9, 27, 13, 37, 38, 39, 40]; 
+    const allowedKeys = ["Backspace", "Delete", "Tab", "Escape", "Enter", "Home", "End", "ArrowLeft", "ArrowUp", "ArrowRight", "ArrowDown"]; 
 
-    // Allow Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X, and function keys
+    // Allow Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X, and function keys (F1 - F12)
     if (
-        allowedKeys.includes(event.keyCode) ||
-        (event.keyCode >= 112 && event.keyCode <= 123) || // F1 - F12 keys
-        (event.keyCode === 65 && event.ctrlKey === true) || // Ctrl+A
-        (event.keyCode === 67 && event.ctrlKey === true) || // Ctrl+C
-        (event.keyCode === 86 && event.ctrlKey === true) || // Ctrl+V
-        (event.keyCode === 88 && event.ctrlKey === true) || // Ctrl+X
-        (event.keyCode === 35 || event.keyCode === 36)      // home & end
+        allowedKeys.includes(event.key) ||
+        (event.code.startsWith("F") && event.code.length === 2 && parseInt(event.code.charAt(1)) >= 1 && parseInt(event.code.charAt(1)) <= 12) || // F1 - F12 keys
+        (event.key === "a" && event.ctrlKey === true) || // Ctrl+A
+        (event.key === "c" && event.ctrlKey === true) || // Ctrl+C
+        (event.key === "v" && event.ctrlKey === true) || // Ctrl+V
+        (event.key === "x" && event.ctrlKey === true) || // Ctrl+X
+        (event.key === "Home" || event.key === "End")      // Home & End
     ) {
         return; 
     }
 
-    event.preventDefault();
+    event.preventDefault(); 
 }
 
-
-export default preventNumberInputTyping;
+export default preventNumberInputTyping

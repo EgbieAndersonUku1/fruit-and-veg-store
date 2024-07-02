@@ -990,10 +990,12 @@ button:hover,
 .banner-img {
     width: 100%;
     border-radius: 2%;
+    height: 250px;
 }
 
 .banner-img:hover {
-    transform: scale(1.02);
+    /* transform: scale(1.01); */
+    object-fit: cover;
     opacity: 0.9;
 
 }
@@ -1285,17 +1287,26 @@ button:hover,
     font-size: 1.2rem;
 }
 .deal-end p {
-    padding: 10px;
-    background: white;
-    border: 1px solid var(--light-green);
+  
     background: var(--light-green);
+    border: 1px solid var(--light-green);
     color: white;
+    cursor: pointer;
+    font-weight: 400;
+    padding: 10px;
     text-align: center;
 
+    /* sizes */
     height: 50px;
     width: 150px;
-    font-weight: 400;
+    
    
+}
+
+.deal-end p:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--dark-green);
+    color: white;
 }
 
 /* The footer elements */

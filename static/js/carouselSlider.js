@@ -98,34 +98,51 @@
  * carousel2.init();
  */
 
-
 class CarouselSlider {
 
     constructor() {
-        this._currentIndex = 0;
-        this._mainCarouselDiv = null;
-        this._prevCardButton = null;
-        this._nextCardButton = null;
+        this._currentIndex         = 0;
+        this._mainCarouselDiv      = null;
+        this._prevCardButton       = null;
+        this._nextCardButton       = null;
         this._carouselCardElements = null;
     }
 
+    /**
+     * Sets the main carousel container element.
+     * @param {string} [selector='.carousel'] - The CSS selector for the main carousel container.
+     * @throws Will throw an error if the carousel container element is not found.
+     */
     setCarouselContainer(selector = '.carousel') {
         this._mainCarouselDiv = document.querySelector(selector);
-        this._isElementValid({element: this._mainCarouselDiv, errorMsg: `Carousel container "${selector}" not found!` })
-       
+        this._isElementValid({element: this._mainCarouselDiv, errorMsg: `Carousel container "${selector}" not found!` });
     }
 
+    /**
+     * Sets the previous button element.
+     * @param {string} [selector='.prev-card'] - The CSS selector for the previous button.
+     * @throws Will throw an error if the previous button element is not found.
+     */
     setPrevButton(selector = '.prev-card') {
         this._prevCardButton = document.querySelector(selector);
-        this._isElementValid({element: this._prevCardButton, errorMsg: `Previous button "${selector}" not found!` })
+        this._isElementValid({element: this._prevCardButton, errorMsg: `Previous button "${selector}" not found!` });
     }
 
+    /**
+     * Sets the next button element.
+     * @param {string} [selector='.next-card'] - The CSS selector for the next button.
+     * @throws Will throw an error if the next button element is not found.
+     */
     setNextButton(selector = '.next-card') {
         this._nextCardButton = document.querySelector(selector);
-        this._isElementValid({element: this._nextCardButton, errorMsg:`Next button "${selector}" not found!`})
-       
+        this._isElementValid({element: this._nextCardButton, errorMsg: `Next button "${selector}" not found!` });
     }
 
+    /**
+     * Sets the carousel card elements.
+     * @param {string} [selector='.card-carousel'] - The CSS selector for the carousel cards.
+     * @throws Will throw an error if no carousel card elements are found.
+     */
     setCardSelector(selector = '.card-carousel') {
         this._carouselCardElements = document.querySelectorAll(selector);
         if (this._carouselCardElements.length === 0) {
@@ -133,19 +150,34 @@ class CarouselSlider {
         }
     }
 
+    /**
+     * Validates if the element is present in the DOM.
+     * @param {Object} params - The parameters object.
+     * @param {HTMLElement} params.element - The DOM element to validate.
+     * @param {string} params.errorMsg - The error message to throw if the element is not found.
+     * @throws Will throw an error if the element is not found.
+     * @private
+     */
     _isElementValid({element, errorMsg}) {
         if (!element) {
             throw new Error(errorMsg);
         }
     }
- 
 
+    /**
+     * Updates the carousel position based on the current index.
+     * @private
+     */
     _updateCarousel() {
         const cardWidth = this._mainCarouselDiv.offsetWidth;
         const newTransformValue = -this._currentIndex * cardWidth;
         this._mainCarouselDiv.style.transform = `translateX(${newTransformValue}px)`;
     }
 
+    /**
+     * Handles the click event for the previous card button.
+     * @private
+     */
     _handlePrevCard() {
         if (this._currentIndex > 0) {
             this._currentIndex--;
@@ -155,16 +187,23 @@ class CarouselSlider {
         this._updateCarousel();
     }
 
+    /**
+     * Handles the click event for the next card button.
+     * @private
+     */
     _handleNextCard() {
         if (this._currentIndex < this._carouselCardElements.length - 1) {
             this._currentIndex++;
-            
         } else {
             this._currentIndex = 0;  // Loop back to the first card
         }
         this._updateCarousel();
     }
 
+    /**
+     * Initializes the carousel by adding event listeners to the previous and next buttons.
+     * @throws Will throw an error if the carousel is not fully initialized.
+     */
     init() {
         if (!this._mainCarouselDiv || !this._prevCardButton || !this._nextCardButton || !this._carouselCardElements) {
             throw new Error("CarouselSlider is not fully initialized. Ensure all selectors are set.");
