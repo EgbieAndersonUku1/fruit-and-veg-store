@@ -7,8 +7,9 @@
 function preventNumberInputTyping(event) {
     console.log("preventNumberInputTyping called with key:", event.key, "code:", event.code);
 
-    // Allow: backspace, delete, tab, escape, enter, home, end, arrow keys
-    const allowedKeys = ["Backspace", "Delete", "Tab", "Escape", "Enter", "Home", "End", "ArrowLeft", "ArrowUp", "ArrowRight", "ArrowDown"]; 
+    const allowedKeys = ["Backspace", "Delete", "Tab", "Escape", "Enter", 
+                        "Home", "End", "ArrowLeft", "ArrowUp", "ArrowRight", "ArrowDown"
+                        ]; 
 
     // Allow Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X, and function keys (F1 - F12)
     if (
@@ -18,7 +19,7 @@ function preventNumberInputTyping(event) {
         (event.key === "c" && event.ctrlKey === true) || // Ctrl+C
         (event.key === "v" && event.ctrlKey === true) || // Ctrl+V
         (event.key === "x" && event.ctrlKey === true) || // Ctrl+X
-        (event.key === "Home" || event.key === "End")      // Home & End
+        (event.key === "Home" || event.key === "End")   
     ) {
         return; 
     }

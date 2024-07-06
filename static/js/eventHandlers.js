@@ -154,12 +154,12 @@ function addCardEventListeners(card, cardMenuSelector, itemList) {
     const cardMenu = card.querySelector(cardMenuSelector);
 
     if (cardMenu) {
-        const imgContainer = card.querySelector(".head .img-container");
-        const images = imgContainer ? imgContainer.querySelectorAll("img") : [];
+        const imgContainer   = card.querySelector(".head .img-container");
+        const images         = imgContainer ? imgContainer.querySelectorAll("img") : [];
 
         const quickViewLinks = cardMenu.querySelectorAll("ul li");
         const wishlistsLinks = quickViewLinks && quickViewLinks.length === 3 ? quickViewLinks[0] : [];
-        const quickView = quickViewLinks && quickViewLinks.length === 3 ? quickViewLinks[1] : [];
+        const quickView      = quickViewLinks && quickViewLinks.length === 3 ? quickViewLinks[1] : [];
         const addToCartLinks = quickViewLinks && quickViewLinks.length === 3 ? quickViewLinks[2] : [];
 
         quickView?.querySelector("a").addEventListener("click", (e) => handleQuickView(e, itemList));

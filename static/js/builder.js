@@ -133,6 +133,9 @@ function buildItemHeader(item) {
     pItemPriceTag.className      = "item-price";
     pItemPriceTag.textContent    = item.price ? `£${item.price}` : "Price not available";
 
+
+    hr.style.margin              = 0;
+
     pBrandTag.className          = "brand";
     const brandSpan              = document.createElement("span");
     brandSpan.className          = "light-bold";

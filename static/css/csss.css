@@ -7,6 +7,7 @@
     margin: 0;
     transition: 0.5s ease-in-out;
     text-decoration: none;
+    scroll-behavior: smooth;
 
 }
 
@@ -111,6 +112,7 @@ h2 {
 }
 
 
+/* fieldset */
 fieldset {
     border: none;
 }
@@ -134,11 +136,28 @@ fieldset {
 }
 
 
-/* colors */
+/* background colors */
 .green-bg {
     background: var(--light-green);
     color: white;
     text-transform: uppercase;
+}
+
+
+/* font color */
+.font-gray {
+    color: black;
+    font-weight: bolder;
+}
+
+.font-white {
+    color: white;
+    font-weight: bolder;
+}
+
+.font-green {
+    color: green;
+    font-weight: bold;
 }
 
 
@@ -157,6 +176,177 @@ fieldset {
     width: 25%;
     text-transform: uppercase;
 }
+
+
+
+/*  global classes */
+.text-overlay {
+
+    color: white;
+    width: 50%;
+
+    /* positioning */
+    position: absolute;
+    top: 20%;
+    left: 15px;
+
+}
+
+.banner__sales_display {
+    font-size: 1.15rem;
+    text-transform: uppercase;
+}
+
+
+.banner__text {
+    text-transform: capitalize;
+    font-size: var(--font-size-md);
+}
+
+
+.banner-img {
+   
+    border-radius: 2%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    height: 280px;
+    width: 100%;
+   
+}
+
+.banner-img:hover {
+    object-fit: cover;
+    opacity: 0.9;
+
+}
+
+/* End of global banner */
+
+
+
+
+/* global carousel images */
+.carousel-card-img {
+    border-radius: 3%;
+    border: 3px solid lavender;
+}
+/* end of global carousel image */
+
+
+
+/*  global Carousel elements */
+
+/* General Class for 30% Width */
+.carousel-card-30 {
+    flex: 0 0 30%;
+    max-width: 30%; 
+    margin-right: 10px;
+}
+
+
+.carousel-cards-wrapper {
+
+    width: 100%;
+
+    /* transformations */
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+
+    /* flex elements */
+    display: flex;
+
+    /* position elements */
+    position: relative;
+    z-index: 999;
+
+}
+
+/* The carousel card elements */
+.card-carousel {
+    background: white;
+    border: none;
+    box-shadow: none;
+    height: 280px;
+
+    /* margins and paddings */
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+
+    /* positons */
+    position: relative;
+    z-index: 700;
+}
+
+
+
+/* The image contained within each carousel */
+.carousel-img {
+    border-radius: 50%;
+    height: 80px;
+    width: 80px;
+}
+
+
+/* The carousel button that is left and right caret */
+.carousel-button {
+
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: 10px;
+    
+    /*position elements  */
+    position: absolute;
+    top: 65%;
+    transform: translateY(-50%);
+    z-index: 1500;
+}
+
+.carousel-button2 {
+    top: 40%;
+}
+
+.carousel-left-button {
+    left: 0;
+}
+
+.carousel-right-button {
+    right: 0;
+}
+/* End of global carousels */
+
+
+
+/* grid container elements */
+.grid-container {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: auto;
+    column-gap: 0.4rem;
+
+    width: var(--global-width-md);
+    margin: auto;
+}
+
+
+
+/* The logo elements */
+.logo-text {
+    color: green;
+    font-size: 1.3rem;
+    font-family: cursive;
+    font-weight: bold;
+    padding-bottom: 2px;
+
+}
+
+.logo-img {
+    height: 200px;
+    width: 200px;
+}
+
 
 
 /* The navigation elements */
@@ -206,7 +396,6 @@ nav {
 
 
 /* flex elements */
-
 .flex-row {
     display: flex;
     width: 60%;
@@ -216,7 +405,6 @@ nav {
     display: flex;
     justify-content: space-between;
 }
-
 
 
 /* sections */
@@ -274,21 +462,6 @@ nav {
 
 
 
-/* The logo elements */
-.logo-text {
-    color: green;
-    font-size: 1.3rem;
-    font-family: cursive;
-    font-weight: bold;
-    padding-bottom: 2px;
-
-}
-
-
-.logo-img {
-    height: 200px;
-    width: 200px;
-}
 
 
 
@@ -389,7 +562,7 @@ nav {
 
 }
 
- 
+
 /* utilities for the card */
 
 /* card size elements */
@@ -402,6 +575,7 @@ nav {
 .card-title {
     font-weight: 300;
 }
+
 .card-description {
     width: 90%;
 }
@@ -409,8 +583,9 @@ nav {
 
 .organic-card-header {
 
+    color: var(--dark-green);
     font-size: 1.875rem;
-    font-weight: 300;
+    font-weight: 400;
     margin: auto;
     padding-top: 64px;
     width: var(--global-width-md);
@@ -446,13 +621,13 @@ nav {
 
 .organic-cards .card {
     position: relative;
-   
+
 }
 
 
 .new-item-label {
     font-size: 0.75rem;
-    color: var(--dark-green);
+    /* color: var(--dark-green); */
     font-weight: 600;
     padding-left: 4px;
     padding-top: 4px;
@@ -469,6 +644,13 @@ nav {
 
 
 /* Display elements to be used when called with JS */
+.organic-grains-and-legumes__container__cards__product_menu.show,
+.organic-dairy-products__container__cards__product_menu.show,
+.organic-condiments-and-sauces__container__cards__product_menu.show,
+.organic-baked-goods__container__cards__product_menu.show,
+.organic-snacks__container__cards__product_menu.show,
+.organic-ice-creams__container__cards__product_menu.show,
+.juice-and-drinks__container__cards__product_menu.show,
 .new-products__container__cards__product_menu.show,
 .featured-products__container__cards__product_menu.show {
     display: flex;
@@ -503,7 +685,7 @@ nav {
 /* links */
 .links {
     display: flex;
-    gap: 50px;
+    gap: 20px;
     padding-bottom: 20px;
 
 }
@@ -518,6 +700,7 @@ nav {
 .nav-link:hover,
 .links a:hover {
     color: var(--light-green);
+    text-decoration: underline;
 
 }
 
@@ -617,6 +800,7 @@ nav {
     height: 25px;
     width: 20px;
 }
+
 .email-icon {
     transform: translateY(8px);
 }
@@ -659,7 +843,7 @@ nav {
     /* box shadow */
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
-    
+
 }
 
 
@@ -683,7 +867,7 @@ button:hover,
 
     /* sizes */
     height: 457px;
-    width: 96%;  
+    width: 96%;
 }
 
 
@@ -697,14 +881,14 @@ button:hover,
 
     border: 2px solid lavender;
     background: lavender;
-    
+
     /* sizes */
     height: 100px;
     width: 100px;
- 
+
     /* margins */
     margin-right: 2px;
- 
+
 }
 
 .quick-view__img {
@@ -746,7 +930,7 @@ button:hover,
     border: 1px solid green;
     background: var(--dark-green);
     color: white;
-   
+
     /* sizes */
     height: 30px;
     width: 25%;
@@ -755,7 +939,7 @@ button:hover,
     text-align: center;
     text-transform: uppercase;
     opacity: 0.4;
-   
+
 }
 
 
@@ -870,7 +1054,7 @@ button:hover,
     /* flex */
     display: flex;
     justify-content: space-between;
-   
+
     /* positioning */
     position: fixed;
     top: 26%;
@@ -897,9 +1081,9 @@ button:hover,
     /* sizes */
     width: 100%;
     height: 100%;
-   
-    
-   
+
+
+
 }
 
 
@@ -919,7 +1103,7 @@ button:hover,
     text-align: center;
 
     width: 30px;
-    
+
     /* positioning */
     position: absolute;
     top: -23px;
@@ -951,24 +1135,10 @@ button:hover,
 
 .banner {
     position: relative;
+    z-index: 1000;
 }
 
-.banner__text-overlay {
 
-    color: white;
-    width: 50%;
-
-    /* positioning */
-    position: absolute;
-    top: 20%;
-    left: 15px;
-    
-}
-
-.banner__text {
-    text-transform: capitalize;
-    font-size: var(--font-size-md);
-}
 
 .banner__text:nth-child(2) {
     font-weight: 600;
@@ -982,24 +1152,6 @@ button:hover,
     text-transform: uppercase;
 }
 
-.banner__sales_display {
-    font-size: 1.15rem;
-    text-transform: uppercase;
-}
-
-.banner-img {
-    width: 100%;
-    border-radius: 2%;
-    height: 250px;
-}
-
-.banner-img:hover {
-    /* transform: scale(1.01); */
-    object-fit: cover;
-    opacity: 0.9;
-
-}
-
 
 
 /* testimonals sections */
@@ -1009,6 +1161,20 @@ button:hover,
     margin-bottom: 100px;
     padding-bottom: 100px;
 }
+
+#testimonals .container {
+
+    cursor: pointer;
+    margin: auto;
+    overflow: hidden;
+    width: var(--global-width-md);
+
+    /* positoning */
+    position: relative;
+    z-index: 1000;
+
+}
+
 
 #testimonals .container h1 {
     color: darkgreen;
@@ -1024,35 +1190,10 @@ button:hover,
     width: 100%;
 }
 
-#testimonals .container {
-    
-    cursor: pointer;
-    margin: auto;
-    overflow: hidden; 
-    width: var(--global-width-md);
-   
-    /* positoning */
-    position: relative;
-    z-index: 1000;
 
-}
-
-#testimonals .container .cards {
-
-    transition: transform 0.5s ease-in-out;
-    will-change: transform; 
-
-    /* flex elements */
-    display: flex;
-
-    /* position elements */
-    position: relative;
-    z-index: 999;
-    
-}
-
-/* Carousel elements */
-#testimonals .container .cards .card-carousel {
+/* A single carousel inside the testimonals */
+#testimonals .container #carousel .carousel-cards-wrapper .card-carousel {
+  
 
     background: white;
     border: 2px solid lavender;
@@ -1067,7 +1208,8 @@ button:hover,
     padding-right: 60px;
 
     /* flex elements which ensure that each card takes full width of the container  */
-    flex: 0 0 100%;      
+    flex: 0 0 100%;  
+    max-width: 100%;    
    
     /* position elements */
     position: relative;
@@ -1075,58 +1217,25 @@ button:hover,
    
 }
 
-.carousel-img {
-    border-radius: 50%;
-    height: 80px;
-    width: 80px;
-  
-}
-
-.carousel__name {
+.testimonial-author-name {
     transform: translateY(30px);
     font-weight: 400;
 }
 
 
-#testimonals .container .cards .card-carousel .footer {
-   padding-top: 8px;
 
-  /* flex elements */
-  display: flex;
-  gap: 10px;
+#testimonals .container #carousel .carousel-cards-wrapper .card-carousel .footer {
+    padding-top: 8px;
+
+    /* flex elements */
+    display: flex;
+    gap: 10px;
 }
 
-#testimonals .container .cards .card-carousel .body {
-   font-style: italic;
- }
-
-
-.carousel-button {
-
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    cursor: pointer;
-    color: white;
-    padding: 10px;
-   
-    /* position elements */
-    position: absolute;
-    top: 65%;
-    transform: translateY(-50%);
-    z-index: 1001;
+#testimonals .container #carousel .carousel-cards-wrapper .card-carousel .body {
+    font-style: italic;
 }
 
-/* The left and right button are the carets */
-.left-button {
-    left: 10px;
-}
-
-.right-button {
-    right: 10px;
-}
-
-/* end of carousel elements */
-    
 
 
 
@@ -1136,7 +1245,7 @@ button:hover,
 }
 
 #lastest-updates>div:nth-child(1)>hr:nth-child(2) {
-  
+
     margin: auto;
     margin-bottom: 20px;
     width: 100%;
@@ -1184,8 +1293,8 @@ button:hover,
 }
 
 
-/* The subscribe section */
 
+/* The subscribe section */
 .subscribe {
 
     background: var(--light-green);
@@ -1196,10 +1305,10 @@ button:hover,
     /* padding */
     padding-top: 50px;
     padding-bottom: 50px;
-  
+
     /* margin */
     margin-top: 60px;
-   
+
 }
 
 
@@ -1283,11 +1392,13 @@ button:hover,
     margin-top: 2px;
     margin-bottom: 2px;
 }
+
 .deal-price span {
     font-size: 1.2rem;
 }
+
 .deal-end p {
-  
+
     background: var(--light-green);
     border: 1px solid var(--light-green);
     color: white;
@@ -1299,8 +1410,8 @@ button:hover,
     /* sizes */
     height: 50px;
     width: 150px;
-    
-   
+
+
 }
 
 .deal-end p:hover {
@@ -1313,14 +1424,39 @@ button:hover,
 footer {
 
     /* Olive Drab */
-    background-color: #6B8E23;    
+    background-color: #6B8E23;
     color: #FFFFFF;
     font-weight: 700;
 
 }
 
+/* global class  */
+
+
+.carousel-container {
+
+    cursor: pointer;
+    margin: auto;
+    overflow: hidden;
+    width: 100%;
+
+    /* positoning */
+    position: relative;
+    z-index: 1000;
+
+}
+
+.carousel-card-img {
+    width: 100%;
+}
+
+
+/* End of global classes */
+
+
+/* The footer elements */
 footer .container {
-   
+
     padding-top: 40px;
     margin: auto;
     width: var(--global-width-md);
@@ -1330,7 +1466,7 @@ footer .container {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: auto;
 
-   
+
 }
 
 
@@ -1341,7 +1477,6 @@ footer .container h4 {
     text-transform: capitalize;
 
 }
-
 
 
 .footer-section {
@@ -1374,6 +1509,7 @@ footer .container h4 {
 }
 
 
+/* footer contact us */
 .contact-us ul li a:first-child {
     text-transform: lowercase;
 }
@@ -1393,6 +1529,8 @@ footer .container h4 {
     /* sizes */
     width: 1px;
     height: 1px;
- 
+
 }
+
+
 
