@@ -9,6 +9,8 @@ import {BakedItems, DrinksMenu, DairyProducts,
        FeaturedItems,  GrainProducts, IceCreams, 
        NewItems, Sauces, Snacks} from "../../data.js";
 
+import { JWT, getJWtToken, setJWtToken, removeToken } from "./jwtToken.js";
+
 
 const boxes                        = document.querySelectorAll(".box");
 const addToItemCloseIcon           = document.getElementById("addToItem-close-icon");
@@ -35,6 +37,19 @@ const bakedCards                   = document.querySelectorAll("#carousel5 .caro
 const sauceCards                   = document.querySelectorAll("#carousel6 .carousel-cards-wrapper .card-carousel");
 const dairyProductsCards           = document.querySelectorAll("#carousel7 .carousel-cards-wrapper .card-carousel");
 const grainProductCards            = document.querySelectorAll("#carousel8 .carousel-cards-wrapper .card-carousel");
+
+
+
+// This JWT_TOKEN will be stored her for now, later it will be stored in .env file 
+const JWT_TOKEN = "SessionKey$-`jrj]n~h~}XFRCY,`%kv*tX);AS+U_&jwr;FJy'iZHTq~o;%&r>x)h>[+\"<E=G+`%bAa\"y'N\"ct-])Ry\"^}au";
+
+// (async () => {
+//     const jwt = new JWT();
+//     const token = await jwt.createJWTToken({ "subscribeToken": "true" }, JWT_TOKEN);
+//     console.log(token);
+// })();
+
+
 
 
 // initialization of classes
@@ -86,7 +101,6 @@ carousel5.setPrevButton('#carousel5 .prev-card');
 carousel5.setNextButton('#carousel5 .next-card');
 
 carousel5.init();
-
 
 
 // carousel 6 for the juice
@@ -172,7 +186,7 @@ grainProductCards.forEach((card) => {
 })
 
 
-// console.log(newProductCards);
+
 newProductCards.forEach((card) => {
     addCardEventListeners(card, newProductsMenuSelector, NewItems);
 })
