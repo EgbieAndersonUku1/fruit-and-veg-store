@@ -138,7 +138,7 @@ function createJWTToken(payload, secretKey, expiresIn = null) {
         throw new Error(`The secret key must be a string, not a ${typeof secretKey}.`);
     }
 
-    if (expiresIn !== null && typeof expiresIn !== "string" && typeof expiresIn !== "number") {
+    if (expiresIn !== null && typeof expiresIn !== "object") {
         throw new Error(`The expiresIn must be a string, number, or null, not a ${typeof expiresIn}.`);
     }
 
