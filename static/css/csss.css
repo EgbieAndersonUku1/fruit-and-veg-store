@@ -27,11 +27,16 @@
     --dodger-blue: #1E90FF;
     --secondary-color: #FF4500;
 
-
+    /* paddings */
     --padding-sm: 8px;
     --padding-md: 16px;
     --padding-lg: 32px;
     --padding-xl: 64px;
+
+    /* card elements */
+    --card-height: 224px;
+    --card-width: 100%;
+    
 }
 
 
@@ -234,6 +239,19 @@ fieldset {
 
 
 /*  global Carousel elements */
+
+.carousel-container {
+    cursor: pointer;
+    margin: auto;
+    overflow: hidden;
+    width: 100%;
+
+    /* positoning */
+    position: relative;
+    z-index: 1000;
+}
+
+
 
 /* General Class for 30% Width */
 .carousel-card-30 {
@@ -567,8 +585,8 @@ nav {
 
 /* card size elements */
 .card-img {
-    height: 224px;
-    width: 224px;
+    height: var(--card-height);
+    width: var(--card-width);
 }
 
 
@@ -1191,7 +1209,7 @@ button:hover,
 }
 
 
-/* A single carousel inside the testimonals */
+/* A single carousel inside the testimonals  */
 #testimonals .container #carousel .carousel-cards-wrapper .card-carousel {
   
 
@@ -1433,22 +1451,7 @@ footer {
 /* global class  */
 
 
-.carousel-container {
 
-    cursor: pointer;
-    margin: auto;
-    overflow: hidden;
-    width: 100%;
-
-    /* positoning */
-    position: relative;
-    z-index: 1000;
-
-}
-
-.carousel-card-img {
-    width: 100%;
-}
 
 
 /* End of global classes */
