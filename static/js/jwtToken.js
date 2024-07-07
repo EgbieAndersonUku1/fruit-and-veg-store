@@ -118,6 +118,7 @@ class JWT {
 }
 
 
+// Function to be used when the backend is built
 
 /**
  * Create a JWT token with the given payload and secret key.
