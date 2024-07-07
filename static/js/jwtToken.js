@@ -142,8 +142,8 @@ function createJWTToken(payload, secretKey, expiresIn = null) {
         throw new Error(`The expiresIn must be a string, number, or null, not a ${typeof expiresIn}.`);
     }
 
-    // commented out to advoid error because import jwt from "jsonwebtoken" is commented out
-    // will uncomment once the backend is built 
+    // commented out to advoid error because of the fact import jwt from "jsonwebtoken" is commented out
+    // will uncomment the if-statement below once the backend is built 
     // if (expiresIn === null) {
     //     return jwt.sign(payload, secretKey);
     // }
