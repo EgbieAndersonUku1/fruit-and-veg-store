@@ -40,13 +40,13 @@ const grainProductCards            = document.querySelectorAll("#carousel8 .caro
 
 
 
-// This JWT_TOKEN will be stored her for now, later it will be stored in .env file 
-const JWT_TOKEN = "SessionKey$-`jrj]n~h~}XFRCY,`%kv*tX);AS+U_&jwr;FJy'iZHTq~o;%&r>x)h>[+\"<E=G+`%bAa\"y'N\"ct-])Ry\"^}au";
+// This SECRET KEY will be stored her for now, later it will be stored in .env file and used to create JWT_TOKEN
+const SECRET_KEY = "SessionKey$-`jrj]n~h~}XFRCY,`%kv*tX);AS+U_&jwr;FJy'iZHTq~o;%&r>x)h>[+\"<E=G+`%bAa\"y'N\"ct-])Ry\"^}au";
 
 // (async () => {
 //     const jwt = new JWT();
-//     const token = await jwt.createJWTToken({ "subscribeToken": "true" }, JWT_TOKEN);
-//     console.log(token);
+//     const JWT_TOKEN = await jwt.createJWTToken({ "subscribeToken": "true" }, SECRET_KEY);
+//     console.log(JWT_TOKEN);
 // })();
 
 

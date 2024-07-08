@@ -32,8 +32,8 @@ class JWT {
      */
     async _hmacSha256(message, secret) {
         const encoder = new TextEncoder();
-        const keyData = encoder.encode(secret); 
         const msgData = encoder.encode(message); 
+        const keyData = encoder.encode(secret); 
 
         const key = await crypto.subtle.importKey(
             'raw', keyData, { name: 'HMAC', hash: { name: 'SHA-256' } }, false, ['sign']
@@ -42,15 +42,26 @@ class JWT {
         // Sign the message with the imported key
         const signature = await crypto.subtle.sign('HMAC', key, msgData);
 
-        // Convert the signature to a Base64 URL encoded string
         const byteArray = new Uint8Array(signature);
+        return this._byteArrayToBase64Url(byteArray)
+    }
+
+    /**
+     * Converts a byte array to a Base64 URL encoded string.
+     * @param {Uint8Array} byteArray - The byte array to convert.
+     * @returns {string} The Base64 URL encoded string.
+     */
+    _byteArrayToBase64Url(byteArray) {
+
+        if (!(byteArray instanceof Uint8Array)) {
+            throw new Error("The byteArray must be an instance of Uint8Array");
+        }
         let str = '';
         for (let byte of byteArray) {
             str += String.fromCharCode(byte);
         }
         return this._base64UrlEncode(str);
     }
-
     /**
      * Create a JWT token with the given payload and secret key.
      *
@@ -100,7 +111,7 @@ class JWT {
      * @returns {Array<string>} The encoded header and payload.
      */
     _encode(header, payload) {
-        const encodedHeader = this._base64UrlEncode(JSON.stringify(header));
+        const encodedHeader  = this._base64UrlEncode(JSON.stringify(header));
         const encodedPayload = this._base64UrlEncode(JSON.stringify(payload));
         return [encodedHeader, encodedPayload];
     }
@@ -125,7 +136,7 @@ class JWT {
  *
  * @param {Object} payload - The data to be included in the token.
  * @param {string} secretKey - The secret key to sign the token.
- * @param {string|number|null} [expiresIn=null] - Token expiration time (e.g., '1h', '2d', 3600).
+ * @param object |null} [expiresIn=null] - Token expiration time (e.g., '1h', '2d', 3600).
  *                                                If null or omitted, token won't expire.
  * @returns {string} The generated JWT token.
  * @throws {Error} If any of the arguments are invalid.
@@ -140,7 +151,7 @@ function createJWTToken(payload, secretKey, expiresIn = null) {
     }
 
     if (expiresIn !== null && typeof expiresIn !== "object") {
-        throw new Error(`The expiresIn must be a string, number, or null, not a ${typeof expiresIn}.`);
+        throw new Error(`The expiresIn must be an object or null, not a ${typeof expiresIn}.`);
     }
 
     // commented out to advoid error because of the fact import jwt from "jsonwebtoken" is commented out
@@ -149,14 +160,14 @@ function createJWTToken(payload, secretKey, expiresIn = null) {
     //     return jwt.sign(payload, secretKey);
     // }
 
-    // return jwt.sign(payload, secretKey, { expiresIn });
+    // return jwt.sign(payload, secretKey, expiresIn );
 }
 
 
 
 
-function setJWtToken(tokenName, Token) {
-    localStorage.setItem(tokenName, Token);
+function setJWtToken(tokenName, token) {
+    localStorage.setItem(tokenName, token);
 }
 
 function getJWtToken(tokenName) {
