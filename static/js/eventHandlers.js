@@ -203,7 +203,7 @@ function handleCardMenuDisplayRemoval(cardMenu) {
 async function handleSubscribeForm(e, subscribeForm, secret_key) {
     e.preventDefault();
     
-    const form = new FormData(subscribeForm);
+    const form         = new FormData(subscribeForm);
     const emailAddress = form.get("email");
 
     // Not built yet but a fetch method will be here that will subscribe to the backend
