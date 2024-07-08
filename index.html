@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"> -->
+
     <link rel="stylesheet" href="static/css/csss.css">
     <title>Fruit</title>
 </head>
@@ -88,12 +91,11 @@
 
                     <div class="body">
                         <div class="search">
-                            <form action="" method="post">
-                                <input type="search" name="search" id="search" placeholder="search...."
-                                    aria-label="Search">
-                                <button type="submit" class="search-btn medium-btn green-bg"
-                                    aria-label="Submit search">Search</button>
+                            <form action="/" method="post" id="search">
+                                <input type="search" name="search" id="search" placeholder="search...." aria-label="Search">
+                                <button type="submit" class="search-btn medium-btn green-bg" aria-label="Submit search">Search</button>
                             </form>
+                            
                         </div>
 
                         <div class="main-phone">
@@ -2515,7 +2517,7 @@
                 </div>
 
                 <div class="subscribe__form">
-                    <form action="" method="post" class="subscribe-form" aria-labelledby="subscribe-title">
+                    <form action="/" method="post" id="subscribe-form" class="subscribe-form" aria-labelledby="subscribe-title">
                         <fieldset>
                             <legend class="visually-hidden">Subscribe to our newsletter</legend>
                             <label for="email" class="visually-hidden">Email address</label>
@@ -2658,6 +2660,9 @@
     </footer>
 
     <script src="static/js/main.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
+    
+    
 
 </body>
 
