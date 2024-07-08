@@ -1,7 +1,10 @@
 import preventNumberInputTyping from "./numberInputRestrictor.js";
 
-const quickViewDiv       = document.querySelector("#quick-view");
-const quickViewContainer = document.querySelector("#quick-view .container");
+const quickViewDiv        = document.querySelector("#quick-view");
+const quickViewContainer  = document.querySelector("#quick-view .container");
+const subscribeFormDiv    = document.querySelector(".subscribe__form");
+const subscribeInfo       = document.querySelector(".subscribe__information");
+const subscribeContainer  = document.querySelector(".subscribe .container");
 
 
 function buildQuickView(item, id=null, maxQuantity=400) {
@@ -354,6 +357,7 @@ function handleCloseIconClick() {
     quickViewDiv.style.display = "none";
 }
 
+
 function removeExistingActiveClass(e) {
    
    const parentDiv = e.target.parentElement;
@@ -370,7 +374,47 @@ function removeExistingActiveClass(e) {
    }
   
 }
+
+
+function removeSubscriptionForm() {
+    if (!(subscribeFormDiv instanceof HTMLElement)) {
+        throw new Error("The element is not an HTML element");
+    }
+    subscribeFormDiv.style.display = "none";
+}
+
+
+function displaySubscribedMessage() {
+
+    if (!(subscribeInfo instanceof HTMLElement)) {
+        throw new Error("The element is not an HTML element");
+    }
+    const h2Element       = subscribeInfo.querySelector("h2");
+    const pElement        = subscribeInfo.querySelector("p");
+
+    h2Element.textContent = "You're All Set!";
+    pElement.textContent  = "Thank you for subscribing! You've successfully joined our newsletter and received your 30% off. Stay tuned for the latest updates on events, sales, special offers, and promotions!"
+   
+}
+
+function centerSubscribeText() {
+    if (!(subscribeContainer instanceof HTMLElement) ) {
+        throw new Error("The element is not an HTML element");
+    }
+
+    subscribeContainer.style.display             = "grid";
+    subscribeContainer.style.gridTemplateColumns = 'repeat(1, 1fr)';
+    subscribeContainer.style.justifyItems        = 'center';
+    subscribeContainer.style.alignItems          = 'center';
+    subscribeContainer.style.textAlign           = 'center';
+
+}
+
+
 export {
     buildQuickView,
-    closeItemQuickView
+    centerSubscribeText,
+    closeItemQuickView,
+    displaySubscribedMessage,
+    removeSubscriptionForm
 } 

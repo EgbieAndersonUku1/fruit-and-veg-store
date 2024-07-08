@@ -1,4 +1,5 @@
-import { addCardEventListeners, addImageRotationListeners } from "./eventHandlers.js";
+import { addCardEventListeners, addImageRotationListeners, 
+        handleSubscribeForm, setupEventListeners} from "./eventHandlers.js";
 import { closeAddToCartMsg    as handleAddToCartCloseMsg, 
          closeWishlistMessage as handleCloseWishlistMsg,
         } from "./messages.js";
@@ -9,11 +10,12 @@ import {BakedItems, DrinksMenu, DairyProducts,
        FeaturedItems,  GrainProducts, IceCreams, 
        NewItems, Sauces, Snacks} from "../../data.js";
 
-import { JWT, getJWtToken, setJWtToken, removeToken } from "./jwtToken.js";
+
 
 
 const boxes                        = document.querySelectorAll(".box");
 const addToItemCloseIcon           = document.getElementById("addToItem-close-icon");
+const subscribeForm                = document.getElementById("subscribe-form");
 const wishListCloseIcon            = document.getElementById("wishlist-close-icon");
 
 const drinkProudctsMenuSelector    = ".head .juice-and-drinks__container__cards__product_menu";
@@ -38,18 +40,12 @@ const sauceCards                   = document.querySelectorAll("#carousel6 .caro
 const dairyProductsCards           = document.querySelectorAll("#carousel7 .carousel-cards-wrapper .card-carousel");
 const grainProductCards            = document.querySelectorAll("#carousel8 .carousel-cards-wrapper .card-carousel");
 
-
-
 // This SECRET KEY will be stored her for now, later it will be stored in .env file and used to create JWT_TOKEN
 const SECRET_KEY = "SessionKey$-`jrj]n~h~}XFRCY,`%kv*tX);AS+U_&jwr;FJy'iZHTq~o;%&r>x)h>[+\"<E=G+`%bAa\"y'N\"ct-])Ry\"^}au";
 
-// (async () => {
-//     const jwt = new JWT();
-//     const JWT_TOKEN = await jwt.createJWTToken({ "subscribeToken": "true" }, SECRET_KEY);
-//     console.log(JWT_TOKEN);
-// })();
 
-
+// setup eventlistListener
+setupEventListeners();
 
 
 // initialization of classes
@@ -137,9 +133,11 @@ wishListCloseIcon.addEventListener("click", handleCloseWishlistMsg);
 addToItemCloseIcon.addEventListener("click", handleAddToCartCloseMsg)
 
 
+// subscribe form event iistener
+subscribeForm.addEventListener("submit", async (event) => {await handleSubscribeForm(event, subscribeForm, SECRET_KEY);});
+  
 // runs the countdown
 dealCountDown();
-
 
 
 boxes.forEach((box) => {
@@ -190,3 +188,5 @@ grainProductCards.forEach((card) => {
 newProductCards.forEach((card) => {
     addCardEventListeners(card, newProductsMenuSelector, NewItems);
 })
+
+
