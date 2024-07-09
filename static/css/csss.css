@@ -709,10 +709,11 @@ nav {
 
 }
 
-/* show the dropdown menu on hover */
+
 .links a[aria-label="discounted items"]:hover + .dropdown-menu,
 .links a[aria-label="organic-products"]:hover + .dropdown-menu,
 .dropdown-menu:hover {
+  cursor: pointer;
   display: block;
 }
 
@@ -738,6 +739,13 @@ nav {
     padding: 40px;
 }
 
+
+.dropdown-menu h3 {
+    padding-top: 10px;
+    padding-left: 40px;
+    text-transform: capitalize;
+    text-decoration: underline;
+}
 .dropdown-menu__container .links {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
