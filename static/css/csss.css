@@ -188,6 +188,11 @@ fieldset {
 
 
 /*  global classes */
+.active {
+    font-weight: bolder;
+    color: rgb(4, 4, 79);
+}
+
 .text-overlay {
 
     color: white;
@@ -503,7 +508,7 @@ nav {
 
 .bought-item-img {
     border-radius: 4%;
-    height: 100px;
+    height: 110px;
     width: 100%;
 }
 
@@ -545,6 +550,10 @@ nav {
     justify-content: space-between;
 }
 
+.space-evenly {
+    display: flex;
+    justify-content: space-evenly;
+}
 
 /* sections */
 #main .container {
@@ -974,6 +983,9 @@ nav {
     text-transform: uppercase;
 }
 
+.text-capitalize {
+    text-transform: capitalize;
+}
 .subtitle {
     font-size: 0.8125rem;
 }
@@ -1724,5 +1736,42 @@ footer .container h4 {
 
 }
 
+/* breadcrumbs */
+.breadcrumb {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    background-color: #d6f5dc;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+.breadcrumb li {
+    margin-right: 1px;
+}
+.breadcrumb li+li:before {
+    content: "> ";
+    margin-left: 2px;
+    color: blue;
+}
+.breadcrumb a {
+    text-decoration: none;
+    color: #0c5399;
+    /* color: black; */
+}
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
 
 
+
+/* orders pages */
+.orders-link {
+    font-weight: 400;
+    text-transform: capitalize;
+    color: #278827;
+}
+
+.orders-link:hover {
+    color: blue;
+    text-decoration: underline;
+}
