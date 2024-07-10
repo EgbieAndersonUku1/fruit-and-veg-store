@@ -233,40 +233,392 @@
                     </div>
 
                     <!-- breadcrumbs -->
-                    <ul class="breadcrumb">
+                    <ul class="breadcrumb order-breadcrumb">
                         <li><a href="/index.html">Home</a></li>
                         <li><a href="#">Your account</a></li>
                         <li>My orders</li>
                     </ul>
-                    
+
                     <h2 class="center text-capitalize padding-md">My orders</h2>
 
                     <div class="orders-header space-evenly">
                         <a href="#" class="active">Orders</a>
                         <a href="#" class="orders-link">Buy again</a>
                         <a href="#" class="orders-link">Not yet dispatched</a>
-                        <a href="#" class="orders-link">Cancel order</a>
-                    
+                        <a href="#" class="orders-link">Cancelled orders</a>
+
                     </div>
-                    
                     <hr>
-                 
+
+                    <!-- when the backend is built the card will be dynamic generated for the orders-->
+                    <div class="orders-cards">
+                      
+                        <!-- card 1 -->
+                        <div class="order-card">
+
+                            <div class="head">
+
+                                <div class="flex-group">
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Order placed</p>
+                                        <p>January 11th 2024</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Total</p>
+                                        <p>£5.99</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Dispatched to</p>
+                                        <p>Egbie</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Order ID</p>
+                                        <p>#2332-3232-3333</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="body">
+
+                                <div class="img">
+                                    <img src="static/img/display/jpg/avacodo-slice.jpg" alt="order item image"
+                                        class="order-item-picture">
+                                </div>
+
+                                <div class="order-information">
+                                    <p class="bold text-capitalize">Delivered on 18st January</p>
+                                    <p class="subtitle">Package was handed to the resident</p>
+                                    <a href="#" class="order-card-link">Avacodo</a>
+                                    <p class="subtitle">Return item: Not eligable</p>
+                                    <div class="info-btns">
+                                        <button class="buy-again-btn order-btn">Buy again</button>
+                                        <button class="view-item-btn order-btn">View item</button>
+                                        <button class="download-invoice-btn order-btn">Download Invoice</button>
+                                        <button class="leave-feedback-btn order-btn">Leave Feedback</button>
+                                    </div>
+                                </div>
+
+                                <div class="info-btns flex-col">
+                                    <button class="order-btn track-order-btn">Track order</button>
+                                    <button class="order-btn cancel-order-btn">Cancel order</button>
+                                    <button class="order-btn view-item">Write review</button>
+                                    <button class="order-btn contact-support-btn">Contact Support</button>
+
+                                </div>
+                            </div>
+
+                            <div class="footer">
+                                <a href="#" class="order-card-link">Archive order</a>
+                            </div>
+
+                        </div>
+
+                        <!-- card 2 -->
+                        <div class="order-card">
+
+                            <div class="head">
+
+                                <div class="flex-group">
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Order placed</p>
+                                        <p>February 20th 2024</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Total</p>
+                                        <p>£15.99</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Dispatched to</p>
+                                        <p>Peter Parker</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Order ID</p>
+                                        <p>#2332331-3232-3333</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
 
 
+                            <div class="body">
 
+                                <div class="img">
+                                    <img src="static/img/display/jpg/box-of-oranges.jpeg" alt="order item image"
+                                        class="order-item-picture">
+                                </div>
+
+                                <div class="order-information">
+                                    <p class="bold text-capitalize">Delivered on 1st March</p>
+                                    <p class="subtitle">Package was handed to the resident</p>
+                                    <a href="#" class="order-card-link">Bulk pack Organic silcilian oranges</a>
+                                    <p class="subtitle">Return item: Not eligable</p>
+                                    <div class="info-btns">
+                                        <button class="buy-again-btn order-btn">Buy again</button>
+                                        <button class="view-item-btn order-btn">View item</button>
+                                        <button class="download-invoice-btn order-btn">Download Invoice</button>
+                                        <button class="leave-feedback-btn order-btn">Leave Feedback</button>
+                                    </div>
+                                </div>
+
+                                <div class="info-btns flex-col">
+                                    <button class="order-btn track-order-btn">Track order</button>
+                                    <button class="order-btn cancel-order-btn">Cancel order</button>
+                                    <button class="order-btn view-item">Write review</button>
+                                    <button class="order-btn contact-support-btn">Contact Support</button>
+
+                                </div>
+                            </div>
+
+                            <div class="footer">
+                                <a href="#" class="order-card-link">Archive order</a>
+                            </div>
+
+                        </div>
+
+                        <!-- card 3 -->
+                        <div class="order-card">
+
+                            <div class="head">
+
+                                <div class="flex-group">
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Order placed</p>
+                                        <p>March 11th 2024</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Total</p>
+                                        <p>£29.97</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Dispatched to</p>
+                                        <p>Mary Jane</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Order ID</p>
+                                        <p>#233332-3232-3333</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+            
+                            <div class="body">
+
+                                <div class="img">
+                                    <img src="static/img/display/jpg/protein.jpg" alt="order item image"
+                                        class="order-item-picture">
+                                </div>
+
+                                <div class="order-information">
+                                    <p class="bold text-capitalize">Delivered on 18 March</p>
+                                    <p class="subtitle">Package was signed by a resident</p>
+                                    <a href="#" class="order-card-link">Three boxes of protein shake</a>
+                                    <p class="subtitle">Return item: Not eligable</p>
+                                    <div class="info-btns">
+                                        <button class="buy-again-btn order-btn">Buy again</button>
+                                        <button class="view-item-btn order-btn">View item</button>
+                                        <button class="download-invoice-btn order-btn">Download Invoice</button>
+                                        <button class="leave-feedback-btn order-btn">Leave Feedback</button>
+                                    </div>
+                                </div>
+
+                                <div class="info-btns flex-col">
+                                    <button class="order-btn track-order-btn">Track order</button>
+                                    <button class="order-btn cancel-order-btn">Cancel order</button>
+                                    <button class="order-btn view-item">Write review</button>
+                                    <button class="order-btn contact-support-btn">Contact Support</button>
+
+                                </div>
+                            </div>
+
+                            <div class="footer">
+                                <a href="#" class="order-card-link">Archive order</a>
+                            </div>
+
+                        </div>
+
+                        <!-- card 5 -->
+                        <div class="order-card">
+
+                            <div class="head">
+
+                                <div class="flex-group">
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Order placed</p>
+                                        <p>April 11th 2024</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Total</p>
+                                        <p>£14.97</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Dispatched to</p>
+                                        <p>Lois Lane</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Order ID</p>
+                                        <p>#233232-3232-3333</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="body">
+
+                                <div class="img">
+                                    <img src="static/img/display/jpg/snacks1.jpeg" alt="order item image"
+                                        class="order-item-picture">
+                                </div>
+
+                                <div class="order-information">
+                                    <p class="bold text-capitalize">Delivered on 11th April</p>
+                                    <p class="subtitle">Package was left on resident door step</p>
+                                    <a href="#" class="order-card-link">Golden Oat bites</a>
+                                    <p class="subtitle">Return item: Not eligable</p>
+                                    <div class="info-btns">
+                                        <button class="buy-again-btn order-btn">Buy again</button>
+                                        <button class="view-item-btn order-btn">View item</button>
+                                        <button class="download-invoice-btn order-btn">Download Invoice</button>
+                                        <button class="leave-feedback-btn order-btn">Leave Feedback</button>
+                                    </div>
+                                </div>
+
+                                <div class="info-btns flex-col">
+                                    <button class="order-btn track-order-btn">Track order</button>
+                                    <button class="order-btn cancel-order-btn">Cancel order</button>
+                                    <button class="order-btn view-item">Write review</button>
+                                    <button class="order-btn contact-support-btn">Contact Support</button>
+
+                                </div>
+                            </div>
+
+                            <div class="footer">
+                                <a href="#" class="order-card-link">Archive order</a>
+                            </div>
+
+                        </div>
+
+                        <!-- card 6 -->
+                        <div class="order-card">
+
+                            <div class="head">
+
+                                <div class="flex-group">
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Order placed</p>
+                                        <p>June 11th 2024</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Total</p>
+                                        <p>£6.50</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Dispatched to</p>
+                                        <p>Eddie Brock</p>
+                                    </div>
+
+                                    <div class="flex-box">
+                                        <p class="text-upper">Order ID</p>
+                                        <p>#233232-3232-3333</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="body">
+
+                                <div class="img">
+                                    <img src="static/img/display/jpg/sauce2-2.jpeg" alt="order item image"
+                                        class="order-item-picture">
+                                </div>
+
+                                <div class="order-information">
+                                    <p class="bold text-capitalize">Delivered on 12 June</p>
+                                    <p class="subtitle">Package was left with next door neighbour</p>
+                                    <a href="#" class="order-card-link">Avacodo</a>
+                                    <p class="subtitle">Return item: Not eligable</p>
+                                    <div class="info-btns">
+                                        <button class="buy-again-btn order-btn">Buy again</button>
+                                        <button class="view-item-btn order-btn">View item</button>
+                                        <button class="download-invoice-btn order-btn">Download Invoice</button>
+                                        <button class="leave-feedback-btn order-btn">Leave Feedback</button>
+                                    </div>
+                                </div>
+
+                                <div class="info-btns flex-col">
+                                    <button class="order-btn track-order-btn">Track order</button>
+                                    <button class="order-btn cancel-order-btn">Cancel order</button>
+                                    <button class="order-btn view-item">Write review</button>
+                                    <button class="order-btn contact-support-btn">Contact Support</button>
+
+                                </div>
+                            </div>
+
+                            <div class="footer">
+                                <a href="#" class="order-card-link">Archive order</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- pagination -->
+                     <div class="pagination">
+                        <div class="pages">
+
+                        </div>
+
+                        <div class="page-number">
+
+                            <a href="#">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">.</a>
+                            <a href="#">.</a>
+                            <a href="#">23</a>
+                            <a href="#">24</a>
+                            <a href="#">25</a>
+                            
+                        </div>
+
+                     </div>
                 </div>
 
 
             </div>
+            </div>
+            </div>
+
+
+
+            </div>
+
+            </div>
+            </div>
+
+
+            </div>
         </section>
-
-        
-      
-      
-        
-
-        
-
     </main>
 
 
