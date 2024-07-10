@@ -188,6 +188,18 @@ fieldset {
 
 
 /*  global classes */
+.active {
+    font-weight: bolder;
+    color: rgb(4, 4, 79);
+    font-weight: bold;
+}
+
+.two-column-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+
 .text-overlay {
 
     color: white;
@@ -503,7 +515,7 @@ nav {
 
 .bought-item-img {
     border-radius: 4%;
-    height: 100px;
+    height: 110px;
     width: 100%;
 }
 
@@ -540,11 +552,22 @@ nav {
     width: 60%;
 }
 
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+
 .space-between {
     display: flex;
     justify-content: space-between;
 }
 
+.space-evenly {
+    display: flex;
+    justify-content: space-evenly;
+}
 
 /* sections */
 #main .container {
@@ -974,6 +997,9 @@ nav {
     text-transform: uppercase;
 }
 
+.text-capitalize {
+    text-transform: capitalize;
+}
 .subtitle {
     font-size: 0.8125rem;
 }
@@ -1724,5 +1750,163 @@ footer .container h4 {
 
 }
 
+/* breadcrumbs */
+.breadcrumb {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    background-color: #d6f5dc;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+.breadcrumb li {
+    margin-right: 1px;
+}
+.breadcrumb li+li:before {
+    content: "> ";
+    margin-left: 2px;
+    color: blue;
+}
+.breadcrumb a {
+    text-decoration: none;
+    color: #0c5399;
+    /* color: black; */
+}
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
 
 
+
+/* orders pages */
+.orders-link {
+    font-weight: 400;
+    text-transform: capitalize;
+    color: #278827;
+}
+
+.order-card-link {
+    color: #077df3;
+    font-weight: 400;
+}
+
+.orders-link:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.order-breadcrumb {
+    width: 90%;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.orders-cards .order-card .footer a {
+    font-size: 0.8125rem;
+}
+
+.flex-group {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  
+}
+
+.orders-cards {
+    margin: auto;
+}
+
+.order-card {
+    width: 90%;
+    margin: auto;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin-bottom: 10px;
+
+}
+
+.order-card .head {
+    padding: 10px;
+    background: rgb(104, 140, 104);
+    font-weight: bold;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgb(46, 45, 45);
+}
+
+.order-card .head p:nth-child(2) {
+    color: white;
+    font-weight: 400;
+}
+.order-card .body,
+.order-card .footer {
+    padding: 10px;
+}
+
+.order-card .body .img {
+    position: relative;
+    gap: 1px;
+    margin-right: 10px;
+    height: 150px;
+    width: 100px;
+}
+
+.order-card .body .img img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 10%;
+}
+
+.orders-cards .order-card .body  {
+    display: grid;
+    grid-template-columns: 10% 70% 20%;
+    gap: 3px;
+
+}
+
+.orders-cards .order-card .footer {
+    border-top: 1px solid lavender;
+}
+
+.orders-cards .order-card .body .order-information {
+    display: grid;
+    gap: 11px;
+
+}
+
+
+.order-btn {
+    text-transform: capitalize;
+    background: white;
+    border: 2px solid lavender;
+    padding: 8px;
+    font-weight: bolder;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.buy-again-btn {
+    font-weight: bold;
+    color: white;
+    background: var(--dark-green);
+}
+
+.pagination {
+    width: 90%;
+    margin: auto;
+
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 100px;
+    margin-top: 30px;
+}
+
+.pagination a {
+    border: 1px solid black;
+    padding: 8px;
+    font-weight: bolder;
+}
+
+.pagination a:nth-child(even) {
+    background: var(--dark-green);
+    color: white;
+    font-weight: bolder;
+}

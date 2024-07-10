@@ -1,5 +1,6 @@
 import { addCardEventListeners, addImageRotationListeners, 
         handleSubscribeForm, setupEventListeners} from "./eventHandlers.js";
+        
 import { closeAddToCartMsg    as handleAddToCartCloseMsg, 
          closeWishlistMessage as handleCloseWishlistMsg,
         } from "./messages.js";
