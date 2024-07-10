@@ -18,6 +18,9 @@
     --font-size-md: 1.5rem;
     --font-size-lg: 2rem;
 
+
+    --box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+
     /* widths */
     --global-width-md: 90%;
 
@@ -387,16 +390,134 @@ nav {
 }
 
 .nav-container__account {
+    text-transform: capitalize;
+    
+    /* flex elements */
     display: flex;
     gap: 20px;
-    text-transform: uppercase;
+   
+    /* position elements */
+    position: relative;
+    width: 100%;
 }
+
+
+.nav-container__account__dropdown-menu {
+    display: none;
+}
+
+/* dropdown elements with my  `my account`  */
+.my-account__container {
+
+    border: 3px solid lavender;
+    box-shadow: var(--box-shadow);
+    background: white;
+    padding: 30px;
+    margin-top: 20px;
+
+    /* position elements */
+    position: absolute;
+    right: 0;
+    width: 1100px;
+    z-index: 10000001;
+
+    /* grid elements */
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+     
+}
+
+
+.my-account__main__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    padding-top: 10px;
+    
+}
+
+.my-account__links > * + * {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+
+.my-account__main {
+    padding-left: 10px;
+}
+
+
+.my-account__main .header {
+    background: rgb(167, 243, 167);
+    border-radius: 4%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+   
+    
+}
+
+.my-account__main .header a {
+    color: black;
+}
+
+
+.buy-it-again__container .item {
+
+    margin-bottom: 10px;
+    /* grid elements */
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-rows: auto;
+    column-gap: 6px;
+    
+}
+
+.buy-it-again__container .item-info {
+    padding-right: 10px;
+}
+
+
+.buy-it-again__container .item:first-child {
+    margin-top: 12px;
+}
+
+.buy-it-again {
+    border-right: 2px solid lavender;
+   
+}
+
+.buy-it-again > a {
+    color: darkblue;
+}
+
+.buy-it-again-btn {
+    background: var(--dark-green);
+    border-radius: 5%;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 5px;
+  }
+
+
+.bought-item-img {
+    border-radius: 4%;
+    height: 100px;
+    width: 100%;
+}
+
+/* endoof dropdown elements within my  `my account`  */
 
 
 .nav-icon {
     height: 25px;
 }
 
+.dropdown-menu-link:hover {
+    text-decoration: underline;
+    color: rgb(5, 5, 46);
+}
 
 .nav-icon-link {
     position: relative;
@@ -710,8 +831,10 @@ nav {
 }
 
 
+.nav-container__account a[aria-label="View account"]:hover + .nav-container__account__dropdown-menu,
 .links a[aria-label="discounted items"]:hover + .dropdown-menu,
 .links a[aria-label="organic-products"]:hover + .dropdown-menu,
+.nav-container__account__dropdown-menu:hover,
 .dropdown-menu:hover {
   cursor: pointer;
   display: block;
@@ -723,7 +846,7 @@ nav {
 
     background: white;
     border: 3px solid lavender;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    box-shadow: var(--box-shadow);
     display: none;
     width: 100%;
     position: absolute;
