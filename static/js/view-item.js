@@ -32,23 +32,21 @@ function updateViewItemPage() {
         throw new Error("The order returned cannot be empty");
     }
 
-    h3Element.textContent = order.name;
-    deliverDateSpanElement.textContent = order.dateToDeliver;
-
-
-    pageRedirectLinkElement.href = order.pageRedirectLink;
-
-    deliverDateMsgPElement.textContent = order.deliverMsg;
-    returnMsgPElement.textContent = order.returnMsg;
-    dateOrderedPElement.textContent = `Order placed on: ${order.dateOrderPlaced}`;
-    orderByElement.textContent = `Ordered by: ${order.orderBy}`;
-    orderIDElement.textContent = `Order ID: ${order.orderID}`;
-    orderTotalElement.textContent = `Order total: £${order.total}`;
-    viewItemImageElement.src = order.img;
-    console.log(viewItemImageElement)
-    viewItemImageElement.alt = order.name;
-    viewItemImageElement.className = "view-item__img";
-    breadCrumbLiNameLiElement.textContent = order.name;
+    breadCrumbLiNameLiElement.textContent  = order.name;
+    dateOrderedPElement.textContent        = `Order placed on: ${order.dateOrderPlaced}`;
+    deliverDateMsgPElement.textContent     = order.deliverMsg;
+    deliverDateSpanElement.textContent     = order.dateToDeliver;
+    h3Element.textContent                  = order.name;
+    orderByElement.textContent             = `Ordered by: ${order.orderBy}`;
+    orderIDElement.textContent             = `Order ID: ${order.orderID}`;
+    orderTotalElement.textContent          = `Order total: £${order.total}`;
+    pageRedirectLinkElement.href           = order.pageRedirectLink;
+    returnMsgPElement.textContent          = order.returnMsg;
+    viewItemImageElement.alt               = order.name;
+    viewItemImageElement.className         = "view-item__img";
+    viewItemImageElement.src               = order.img;
+   
+    
 
 }
 
