@@ -144,6 +144,13 @@ fieldset {
 }
 
 
+.padding-top-md {
+    padding-top: var(--padding-md);
+}
+
+.padding-bottom-md {
+    padding-bottom: var(--padding-md);
+}
 /* background colors */
 .green-bg {
     background: var(--light-green);
@@ -193,6 +200,13 @@ fieldset {
     color: rgb(4, 4, 79);
     font-weight: bold;
 }
+
+.box-display {
+    border: 3px solid lavender;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    padding: 10px;
+}
+
 
 .two-column-grid {
     display: grid;
@@ -1889,6 +1903,8 @@ footer .container h4 {
     background: var(--dark-green);
 }
 
+
+/* The pagination section */
 .pagination {
     width: 98%;
     margin: auto;
@@ -1909,4 +1925,103 @@ footer .container h4 {
     background: var(--dark-green);
     color: white;
     font-weight: bolder;
+}
+
+
+/* view details page */
+
+.view-item__container  {
+    width: 95%;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: auto;
+    gap: 10px;
+
+    margin-top: 40px;
+}
+
+.view-item__container a {
+    color: blue;
+    text-transform: capitalize;
+}
+
+.view-item__container a:hover {
+    text-decoration: underline;
+}
+
+
+.view-item__side > *,
+.view-item__container__main > * {
+    margin-bottom: 30px;
+    cursor: pointer;
+  
+}
+
+.view-item__side__buttons {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: auto;
+}
+
+
+/* Affects all button with the view item container */
+.view-item__container button {
+
+    background: #d3d348;
+    border: 3px solid lavender;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    color: black;
+    cursor: pointer;
+    font-weight: bolder;
+    margin: auto;
+    margin-top: 10px;
+    padding: 10px;
+    text-transform: uppercase;
+    width: 70%;
+    
+}
+
+.view-item__container button:hover {
+    background: black;
+    color: white;
+}
+
+.view-item__side__buttons button:last-child {
+    margin-bottom: 10px;
+}
+
+.view-item__delivered-date {
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.view-item__img {
+    height: var(--card-height);
+    width: var(--card-height);
+    border-radius: 8%;
+}
+
+.view-item__title {
+    position: relative;
+}
+
+.view-item_title__wrapper {
+    position: absolute;
+    top: 40%;
+}
+
+.view-item__delivered {
+   display: grid;
+   grid-template-columns: 60% 40%;
+   grid-template-rows: auto;
+}
+
+.view-item__container__main h3 {
+    font-weight: 500;
+}
+
+.view-item__side-order-info p {
+    font-weight: 300;
 }
