@@ -166,22 +166,11 @@ function createJWTToken(payload, secretKey, expiresIn = null) {
 
 
 
-function setJWtToken(tokenName, token) {
-    localStorage.setItem(tokenName, token);
-}
 
-function getJWtToken(tokenName) {
-    return localStorage.getItem(tokenName);
-}
-
-
-function removeToken(tokenName) {
-    localStorage.removeItem(tokenName);
-  }
 
 
 export {
-   JWT, setJWtToken, getJWtToken, removeToken
+   JWT
 }
 
 

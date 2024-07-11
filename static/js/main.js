@@ -12,6 +12,7 @@ import {BakedItems, DrinksMenu, DairyProducts,
        NewItems, Sauces, Snacks} from "../../data.js";
 
 
+
 const boxes                        = document.querySelectorAll(".box");
 const addToItemCloseIcon           = document.getElementById("addToItem-close-icon");
 const subscribeForm                = document.getElementById("subscribe-form");
@@ -187,5 +188,6 @@ grainProductCards.forEach((card) => {
 newProductCards.forEach((card) => {
     addCardEventListeners(card, newProductsMenuSelector, NewItems);
 })
+
 
 

@@ -8,11 +8,14 @@ import { displayWishListMessage as handleWishListOpenMsg,
          displayAddToCartMessage 
         }  from "./messages.js";
 
+import { getItemFromLocalStorage as getJWtToken,
+         saveToLocalStorage      as setJWtToken
+        } from "./utils.js";
 
-import { JWT, getJWtToken, setJWtToken } from "./jwtToken.js";
-import getItemByID                       from "./itemUtils.js";
-import handleImagesRotation              from './imageRotationHandler.js';
-import ItemCart                          from "./cart.js";
+import { JWT }                from "./jwtToken.js";
+import getItemByID            from "./itemUtils.js";
+import handleImagesRotation   from './imageRotationHandler.js';
+import ItemCart               from "./cart.js";
 
 
 const cart      = new ItemCart();

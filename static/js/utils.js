@@ -24,4 +24,28 @@ function generateSessionKey() {
 }
 
 
-export default generateSessionKey;
+
+function saveToLocalStorage(name, valueToSave) {
+    localStorage.setItem(name, valueToSave);
+}
+
+function getItemFromLocalStorage(name) {
+    return localStorage.getItem(name);
+}
+
+function removeItemFromLocalStorage(name) {
+    localStorage.removeItem(name);
+}
+
+function redirectToNewPage(newPageUrl) {
+    window.location.href = newPageUrl;
+}
+
+
+export {
+    generateSessionKey,
+    saveToLocalStorage,
+    getItemFromLocalStorage,
+    removeItemFromLocalStorage,
+    redirectToNewPage
+};
