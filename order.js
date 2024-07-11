@@ -19,7 +19,7 @@ const orders = [
         name: "Bulk Organic Sicilian Orange",
         dateOrderPlaced: "20 January 2024",
         total: 15.99,
-        orderBy: "Peter Parkere",
+        orderBy: "Peter Parker",
          orderID: "2332331-3232-3333",
         deliverMsg: "Package was handed to the resident",
         dateToDeliver: "12th January 2024",
