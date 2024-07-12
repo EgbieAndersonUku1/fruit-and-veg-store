@@ -454,6 +454,9 @@ nav {
      
 }
 
+.my-account__container > hr {
+    width: auto;
+}
 
 .my-account__main__container {
     display: grid;
@@ -2027,12 +2030,13 @@ footer .container h4 {
 
 
 /* my account section */
-#account {
-   
-    margin-bottom: 80px;
+#account,
+#administration {
+    margin-bottom: 60px;
 }
 
-#account h1 {
+#account h1,
+.account-info {
     margin-bottom: 8px;
     font-weight: 400;
 }
@@ -2098,4 +2102,8 @@ footer .container h4 {
     display: block;
     text-decoration: none;
     color: inherit;
+}
+
+.dividor {
+    width: 100%;
 }
