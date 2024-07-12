@@ -2028,12 +2028,12 @@ footer .container h4 {
 
 /* my account section */
 #account {
-    margin-top: 50px;
-    margin-bottom: 50px;
+   
+    margin-bottom: 10px;
 }
 
 #account h1 {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 400;
 }
 
@@ -2043,7 +2043,7 @@ footer .container h4 {
 }
 
 /* the card options for the account */
-.account__options  {
+.account__options {
     cursor: pointer;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2056,6 +2056,7 @@ footer .container h4 {
 
 .account__options .card {
     display: grid;
+    height: 100%;
     grid-template-columns: 25% 75%;
     grid-template-rows: auto;
     border: 3px solid lavender;
@@ -2067,13 +2068,14 @@ footer .container h4 {
 }
 
 .account__options .card:hover {
-    background: lavender;
-    border: 1px solid var(--light-green);
+    background: ghostwhite;
 }
 
 .account-icon {
     height: 60px;
     width: 50%;
+
+    opacity: 0.9;
 }
 
 .account__options .card .body p:first-child {
@@ -2085,4 +2087,15 @@ footer .container h4 {
 .account__options .card .body p:last-child {
     font-size: 15px;
     font-size: 0.9375rem;
+}
+
+.account-logo-img {
+    height: 200px;
+    width: 200px;
+}
+
+.account__options .card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
 }
