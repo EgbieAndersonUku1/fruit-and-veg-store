@@ -46,8 +46,6 @@ function updateViewItemPage() {
     viewItemImageElement.className         = "view-item__img";
     viewItemImageElement.src               = order.img;
    
-    
-
 }
 
 updateViewItemPage();

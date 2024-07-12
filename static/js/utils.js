@@ -24,7 +24,6 @@ function generateSessionKey() {
 }
 
 
-
 function saveToLocalStorage(name, valueToSave) {
     localStorage.setItem(name, valueToSave);
 }

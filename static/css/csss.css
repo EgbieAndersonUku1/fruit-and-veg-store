@@ -584,7 +584,7 @@ nav {
 }
 
 /* sections */
-#main .container {
+.main-section .container {
 
     /* grid elements */
     display: grid;
@@ -598,17 +598,16 @@ nav {
 
 
 /* The main section */
-#main {
+.main-section {
     margin-top: 20px;
 }
 
-
-#main .container .sidebar .categories div {
+.main-section .container .sidebar .categories div {
     display: flex;
     flex-direction: column;
 }
 
-#main .menu {
+.main-section .menu{
     display: flex;
     justify-content: space-between;
 }
@@ -1898,7 +1897,7 @@ footer .container h4 {
 }
 
 .buy-again-btn {
-    font-weight: bold;
+    font-weight: 500;
     color: white;
     background: var(--dark-green);
 }
@@ -2024,4 +2023,66 @@ footer .container h4 {
 
 .view-item__side-order-info p {
     font-weight: 300;
+}
+
+
+/* my account section */
+#account {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#account h1 {
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.account__container {
+    width: 70%;
+    margin: auto;
+}
+
+/* the card options for the account */
+.account__options  {
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+
+    gap: 10px;
+}
+
+
+
+.account__options .card {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: auto;
+    border: 3px solid lavender;
+    column-gap: 3px;
+
+    padding: 10px;
+    border-radius: 2%;
+
+}
+
+.account__options .card:hover {
+    background: lavender;
+    border: 1px solid var(--light-green);
+}
+
+.account-icon {
+    height: 60px;
+    width: 50%;
+}
+
+.account__options .card .body p:first-child {
+    font-weight: 500;
+    padding-bottom: 4px;
+    text-decoration: underline;
+}
+
+.account__options .card .body p:last-child {
+    font-size: 15px;
+    font-size: 0.9375rem;
 }
