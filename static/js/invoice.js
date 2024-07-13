@@ -3,7 +3,6 @@ import orders from "../../order.js";
 import { getItemFromLocalStorage, getFormattedCurrentDate } from "./utils.js";
 
 
-
 function updateInvoice() {
    
     const order = getItemByID(getItemFromLocalStorage("invoice"), orders);
