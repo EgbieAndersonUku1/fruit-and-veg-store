@@ -2,6 +2,7 @@ import getItemByID from "./itemUtils.js";
 import orders from "../../order.js";
 import { getItemFromLocalStorage, getFormattedCurrentDate } from "./utils.js";
 
+const REQUIRED_ELEMENTS_COUNT = 3;
 
 function updateInvoice() {
    
@@ -29,7 +30,7 @@ function updateInvoice() {
 function getOrderDetails(order) {
     
     const orderDetailsElements  = document.querySelectorAll(".order-details div");
-    if (orderDetailsElements < 3 ) {
+    if (orderDetailsElements < REQUIRED_ELEMENTS_COUNT ) {
         throw new Error("The length of the elements must be 3");
     };
     const [orderDateDivElement, orderNumberDivElement, orderTotalDivElement] = orderDetailsElements;
@@ -43,7 +44,7 @@ function getOrderDetails(order) {
 function getItemOrder(order) {
     const orderItemsElements = document.querySelectorAll(".order-item div");
 
-    if (orderItemsElements.length < 3) {
+    if (orderItemsElements.length < REQUIRED_ELEMENTS_COUNT) {
         throw new Error("The length of the elements must be 3");
     };
     const [itemNameDivElement, shippingAddressDiv, shippingSpeedDiv]  = orderItemsElements;
@@ -59,7 +60,7 @@ function getItemOrder(order) {
 function getItemPayment(order) {
     const paymentElements = document.querySelectorAll(".order-details__payment .row");
 
-    if (paymentElements.length < 3)  {
+    if (paymentElements.length < REQUIRED_ELEMENTS_COUNT)  {
         throw new Error("The length of the elements must be 3");
     };
 
@@ -120,7 +121,7 @@ function getItemPayment(order) {
 
 function setTitle(order) {
     const h3TitleElement  = document.getElementById("invoice-title");
-    validateElements(h3TitleElement, order);
+    validateElement(h3TitleElement);
     h3TitleElement.textContent = `Final details for order: ${order.orderID}`;
 }
 
@@ -128,7 +129,7 @@ function setTitle(order) {
 
 function setDateToDateElement(orderDateDivElement, order) {
 
-    validateElements(orderDateDivElement, order);
+    validateElement(orderDateDivElement);
     const dateElement = orderDateDivElement?.querySelector("time");
     dateElement.textContent = order.dateOrderPlaced;
 
@@ -136,42 +137,42 @@ function setDateToDateElement(orderDateDivElement, order) {
 
 function setOrderNumberToOrderNumberElement(orderNumberDivElement, order) {
 
-    validateElements(orderNumberDivElement, order)
+    validateElement(orderNumberDivElement)
     setTextContentOfParagraph(orderNumberDivElement, `EUorganics order number: ${order.orderID}`)
 }
 
 function setTotalToOrderTotalElement(orderTotalDivElement, order) {
-    validateElements(orderTotalDivElement, order);
+    validateElement(orderTotalDivElement);
     setTextContentOfParagraph(orderTotalDivElement, `Order Total: £${order.total}` )
 }
 
 
 function setItemTitleToTitleElement(itemNameElement,  order) {
-    validateElements(itemNameElement, order);
+    validateElement(itemNameElement);
     setTextContentOfParagraph(itemNameElement, order.name);
 }
 
 function setShippingSpeedToSpeedElement(speedElement, order) {
-    validateElements(speedElement, order);
+    validateElement(speedElement);
     setTextContentOfParagraph(speedElement, order.shippingSpeed);
 }
 
 function setAddressToAddressElement(addressElement, order) {
-    validateElements(addressElement, order);
+    validateElement(addressElement);
 
     const [address, city, postcode] = addressElement.querySelectorAll(".address-details p");
-   
+    const payee = order.payee[0]
 
-    address.textContent = order.payee[0].details.shippingAddress;
-    city.textContent    = order.payee[0].details.city;
-    postcode.textContent = order.payee[0].details.postcode;
+    address.textContent = payee.details.shippingAddress;
+    city.textContent    = payee.details.city;
+    postcode.textContent = payee.details.postcode;
    
 }
 
 
 function setItemPrice(order) {
     const orderPriceElement = document.querySelector(".order-price");
-    validateElements(orderPriceElement, order);
+    validateElement(orderPriceElement);
 
     setTextContentOfParagraph(orderPriceElement, `£${order.total}`)
 }
@@ -185,17 +186,6 @@ function setOrderDispatchDate(order) {
 
 }
 
-/**
- * Utility function to validate the input elements.
- * @param {HTMLElement} element - The HTML element to validate.
- * @param {Object} order - The order object to validate.
- * @throws Will throw an error if element is not an HTMLElement or order is falsy.
- */
-function validateElements(element, order) {
-    if (!(element instanceof HTMLElement) || !order) {
-        throw new Error("One or more of the elements is empty");
-    }
-}
 
 
 /**
@@ -227,7 +217,7 @@ function setTextContentOfParagraph(parentElement, text) {
 
 document.addEventListener("DOMContentLoaded", () => {
     function print() {
-        print()
+        window.print()
     }
     
     updateInvoice();
