@@ -48,4 +48,6 @@ function updateViewItemPage() {
    
 }
 
-updateViewItemPage();
+document.addEventListener("DOMContentLoaded", () => {
+    updateViewItemPage();
+});

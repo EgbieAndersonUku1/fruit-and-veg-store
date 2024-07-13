@@ -151,6 +151,11 @@ fieldset {
 .padding-bottom-md {
     padding-bottom: var(--padding-md);
 }
+
+.padding-bottom-sm {
+    padding-bottom: var(--padding-sm);
+}
+
 /* background colors */
 .green-bg {
     background: var(--light-green);
@@ -207,6 +212,9 @@ fieldset {
     padding: 10px;
 }
 
+.text-right-align {
+    text-align: right;
+}
 
 .two-column-grid {
     display: grid;
@@ -2110,4 +2118,53 @@ footer .container h4 {
 
 .account-info {
     font-weight: 400;
+}
+
+
+/* The invoice */
+.invoice__container {
+    width: 60%;
+    margin: auto;
+}
+
+.invoice__container h3 {
+    font-weight: 500;
+
+}
+.order-details {
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.order-details__main {
+    display: grid;
+    grid-template-columns: 90% 10%;
+    grid-template-rows: auto;
+  
+    column-gap: 85px;
+}
+
+.order-details__payment .row {
+    display: grid;
+    grid-template-columns: 70% 20% 10%;
+    grid-template-rows: auto;
+    column-gap: 20px;
+   
+}
+
+.order-details__main   .row > *,
+.order-details__payment .row > *  {
+    margin-bottom: 16px;
+}
+
+.invoice-link {
+    color: blue;
+}
+
+.invoice-link:hover {
+    text-decoration: underline;
+}
+
+.order-dispatched time {
+    padding-left: 10px;
 }

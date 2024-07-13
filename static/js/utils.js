@@ -41,10 +41,25 @@ function redirectToNewPage(newPageUrl) {
 }
 
 
+function getCurrentDay() {
+    return new Date().getDate();
+  }
+  
+  function getFormattedCurrentDate() {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1; // months are 0-based
+    const day = currentDate.getDate();
+    return `${year}-${month}-${day}`;
+  }
+  
+
+  
 export {
     generateSessionKey,
     saveToLocalStorage,
     getItemFromLocalStorage,
     removeItemFromLocalStorage,
-    redirectToNewPage
+    redirectToNewPage,
+    getFormattedCurrentDate,
 };
