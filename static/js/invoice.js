@@ -4,6 +4,11 @@ import { getItemFromLocalStorage, getFormattedCurrentDate } from "./utils.js";
 
 const REQUIRED_ELEMENTS_COUNT = 3;
 
+
+document.addEventListener("DOMContentLoaded", handleDOMLoad);
+
+
+
 function updateInvoice() {
    
     const order = getItemByID(getItemFromLocalStorage("invoice"), orders);
@@ -47,6 +52,7 @@ function getItemOrder(order) {
     if (orderItemsElements.length < REQUIRED_ELEMENTS_COUNT) {
         throw new Error("The length of the elements must be 3");
     };
+
     const [itemNameDivElement, shippingAddressDiv, shippingSpeedDiv]  = orderItemsElements;
     setItemTitleToTitleElement(itemNameDivElement, order);
     setAddressToAddressElement(shippingAddressDiv, order);
@@ -215,14 +221,15 @@ function setTextContentOfParagraph(parentElement, text) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    function print() {
-        window.print()
-    }
-    
-    updateInvoice();
-});
 
+
+function handleDOMLoad() {
+    function print() {
+        window.print();
+    }
+
+    updateInvoice();
+}
 
 
 
