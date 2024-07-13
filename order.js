@@ -150,7 +150,7 @@ const orders = [
     },
     {
         id: 5,
-        name: "Box of Oranges",
+        name: "Gournmet Sauce Trio",
         dateOrderPlaced: "11 June 2024",
         total: 6.50,
         orderBy: "Eddie Brock",
