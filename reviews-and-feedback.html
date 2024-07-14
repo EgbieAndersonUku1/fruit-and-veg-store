@@ -159,10 +159,9 @@
 
     <main>
         <section id="product-review" aria-labelledby="product-review-heading">
-            <div class="product-review__container account-section-container">
+            <div class="product-review__container content-container">
                 <div class="logo center">
                     <a href="index.html"><img src="static/img/display/jpg/logo.png" alt="The logo" class="account-logo-img"></a>
-
                 </div>
 
                 <ul class="breadcrumb">
@@ -171,29 +170,36 @@
                     <li>Manage your reviews</li>
                 </ul>
 
-                <h1 id="product-heading" class="lighten account-section-heading">Product Reviews and Feedback</h1>
+                <h2 id="product-heading" class="lighten padding-top-md">Product Reviews and Feedback</h2>
                 <p class="account-info">Manage your reviews and feedback</p>
                 <hr class="dividor">
-                <div class="product-review__options cards two-column-grid col-gap-small">
+
+
+                <!-- cards -->
+                <div class="product-review__options two-column-grid col-gap-small">
                     <a href="add-or-edit-review.html" aria-labelledby="leave-product-review-heading" class="card-link">
-                        <div class="card card-grid">
+
+                        <!-- card 1 -->
+                        <div class="card-grid">
                             <div class="head">
                                 <img src="static/img/icons/comments.svg" alt="comment key icon" class="account-icon">
                             </div>
                             <div class="body">
-                                <p id="leave-product-review-heading" class="bold lighten underline padding-bottom-sm text-capitalize">Leave a Product Review or Feedback</p>
+                                <p id="leave-product-review-heading" class="leave-product-review-heading">Leave a Product Review or Feedback</p>
                                 <p>Please share your thoughts about the product to help other customers, or provide any feedback you have for us.</p>
                             </div>
                             
                         </div>
                     </a>
-                    <a href="#" aria-labelledby="view-product-heading" class="card-link">
-                        <div class="card card-grid">
+
+                    <!-- card 2 -->
+                    <a href="#" aria-labelledby="view-product-review-heading" class="card-link">
+                        <div class="card-grid">
                             <div class="head">
                                 <img src="static/img/icons/binoculars.svg" alt="A binoculars icon" class="account-icon">
                             </div>
                             <div class="body">
-                                <p id="view-product-heading" class="bold lighten underline padding-bottom-sm text-capitalize">View product reviews and feedbacks</p>
+                                <p id="view-product-heading" class="view-product-review-heading">View product reviews and feedbacks</p>
                                 <p>Explore all the reviews for the various products you’ve created.</p> 
                             </div>
                         </div>
@@ -202,13 +208,8 @@
                 </div>
             </div>
         </section>
-
-      
-
     </main>
     
-
-
     <footer>
         <div class="container">
             <div class="footer-section" aria-labelledby="quick-links">
