@@ -43,10 +43,23 @@
 }
 
 
-body {
+html, body  {
     font-family: "Poppins", sans-serif;
     font-weight: 300;
-}
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body main{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
+  }
 
 /* native elements */
 
@@ -198,8 +211,12 @@ fieldset {
 }
 
 
+/* lighten text */
+lighten {
+    opacity: 0.6;
+}
 
-/*  global classes */
+/*  card-gridasses */
 .active {
     font-weight: bolder;
     color: rgb(4, 4, 79);
@@ -219,6 +236,10 @@ fieldset {
 .two-column-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+}
+
+.col-gap-small {
+    column-gap: 10px;
 }
 
 
@@ -2043,13 +2064,26 @@ footer .container h4 {
     margin-bottom: 60px;
 }
 
-#account h1,
+/* #account h1,
 .account-info {
     margin-bottom: 8px;
     font-weight: 400;
+} */
+
+.account-info {
+    color: var(--light-green);
+    text-transform: capitalize;
 }
 
-.account__container {
+#account-heading,
+.account-heading {
+    font-weight: 400;
+}
+.account-heading {
+    padding-top: 64px;
+}
+
+.content-container {
     width: 70%;
     margin: auto;
 }
@@ -2066,21 +2100,31 @@ footer .container h4 {
 
 
 
-.account__options .card {
+.card-grid {
     display: grid;
     height: 100%;
     grid-template-columns: 25% 75%;
     grid-template-rows: auto;
     border: 3px solid lavender;
     column-gap: 3px;
-
     padding: 10px;
     border-radius: 2%;
 
 }
 
-.account__options .card:hover {
+.card-grid:hover {
     background: ghostwhite;
+}
+
+
+.card-grid .body p:first-child {
+    font-weight: 500;
+    padding-bottom: 4px;
+    text-decoration: underline;
+}
+
+.card-grid .body p:last-child {
+    font-size: 0.9375rem;
 }
 
 .account-icon {
@@ -2090,16 +2134,7 @@ footer .container h4 {
     opacity: 0.9;
 }
 
-.account__options .card .body p:first-child {
-    font-weight: 500;
-    padding-bottom: 4px;
-    text-decoration: underline;
-}
 
-.account__options .card .body p:last-child {
-    font-size: 15px;
-    font-size: 0.9375rem;
-}
 
 .account-logo-img {
     height: 200px;
@@ -2168,3 +2203,5 @@ footer .container h4 {
 .order-dispatched time {
     padding-left: 10px;
 }
+
+

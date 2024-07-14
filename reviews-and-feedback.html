@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="static/img/display/jpg/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="static/css/csss.css">
-    <title>View item</title>
+    <title>Reviews and feedback</title>
 </head>
 
 <body>
@@ -144,6 +144,10 @@
                             </div>
 
                         </div>
+
+                        <div class="administration__container">
+
+                        </div>
                     </div>
                     <a href="#" aria-label="Login to your account" class="nav-link">Login</a>
                     <a href="#" aria-label="Register a new account" class="nav-link">Register</a>
@@ -154,172 +158,58 @@
 
 
     <main>
-        <section id="view-all-items" class="main-section">
-            <div class="container">
-
-                <!-- The sidebar  -->
-                <div class="sidebar">
-                    <div class="logo-text">
-                        <span aria-label="Logo">EUorganics</span>
-                    </div>
-                    <div class="categories">
-                        <div class="header">
-                            <a href="#" aria-label="View all departments" class="bold text-upper">All departments</a>
-                        </div>
-
-                        <div class="body">
-                            <a href="#" aria-label="View Fresh menu">Fresh menu</a>
-                            <a href="#" aria-label="View Vegetables">Vegetables</a>
-                            <a href="#" aria-label="View Fruit and Nut Gifts">Fruit & Nut Gifts</a>
-                            <a href="#" aria-label="View Fresh Berries">Fresh Berries</a>
-                            <a href="#" aria-label="View Ocean Foods">Ocean Foods</a>
-                            <a href="#" aria-label="View Butter and Eggs">Butter & Eggs</a>
-                            <a href="#" aria-label="View Drink">Drinks</a>
-                            <a href="#" aria-label="View Fresh Onion">Fresh Onion</a>
-                            <a href="#" aria-label="View Papayaya and Crisps">Papayaya & Crisps</a>
-                            <a href="#" aria-label="View Oatmeal">Oatmeal</a>
-                            <a href="#" aria-label="View Fresh Bananas">Fresh Bananas</a>
-                        </div>
-                    </div>
+        <section id="product-review" aria-labelledby="product-review-heading">
+            <div class="product-review__container content-container">
+                <div class="logo center">
+                    <a href="index.html"><img src="static/img/display/jpg/logo.png" alt="The logo" class="account-logo-img"></a>
                 </div>
 
-                <!-- The main body -->
-                <div class="main">
-                    <div class="head space-between">
-                        <div class="links">
-                            <a href="index.html" aria-label="Featured products">Home</a>
-                            <a href="#" aria-label="New products">New products</a>
-                            <a href="#" aria-label="discounted items">Discounted items</a>
-                            <a href="#" aria-label="read our blog">Blog</a>
-                            <a href="#" aria-label="Contact us">Contact</a>
-                        </div>
+                <ul class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="account.html">My account</a></li>
+                    <li>Manage your reviews</li>
+                </ul>
 
-                        <div class="footer">
-                            <a href="#" aria-label="View your wishlist" class="nav-icon-link">
-                                <img src="static/img/icons/red-heart.svg" alt="wishlist" class="nav-icon">
-                                <span class="item-count" aria-hidden="true"></span>
-                            </a>
-                            <a href="#" aria-label="View your cart" class="nav-icon-link">
-                                <img src="static/img/icons/cart.svg" alt="cart" class="nav-icon item-cart-img">
-                                <span class="item-count item-cart" aria-hidden="true"></span>
-                            </a>
-                            <a href="#" aria-label="Total items cost £150" class="cart-item-total">Items: £0.00</a>
-                        </div>
-                    </div>
+                <h2 id="product-heading" class="lighten padding-top-md">Product Reviews and Feedback</h2>
+                <p class="account-info">Manage your reviews and feedback</p>
+                <hr class="dividor">
 
-                    <!-- breadcrumbs -->
-                    <ul class="breadcrumb order-breadcrumb">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="account.html">My Account</a></li>
-                        <li><a href="orders.html">Orders</a></li>
-                        <li class="item-name"></li>
-                    </ul>
 
-                    <div id="view-item">
+                <!-- cards -->
+                <div class="product-review__options two-column-grid col-gap-small">
+                    <a href="add-or-edit-review.html" aria-labelledby="leave-product-review-heading" class="card-link">
 
-                        <div class="view-item__container">
-
-                            <!-- The main section -->
-                            <div class="view-item__container__main">
-
-                                <!-- The main product -->
-                                <div class="item box-display two-column-grid">
-                                    <div class="view-item__img">
-                                        <img src="" alt="" class="view-item__img">
-                                    </div>
-
-                                    <div class="view-item__title">
-                                        <div class="view-item_title__wrapper">
-                                            <h3></h3>
-                                            <a href="#">View product detail</a>
-                                        </div>
-                                       
-                                    </div>
-                                </div>
-
-                                <!-- the day it was delivered -->
-                                <div class="view-item__delivered box-display">
-                                    <div class="view-item__head">
-                                        <span class="view-item__delivered-date"></span>
-                                        <p class="padding-top-md view-item__deliver-msg"></p>
-                                    </div>
-
-                                    <div class="view-item__body">
-                                        <button class="view-item-btn">Track button</button>
-                                    </div>
-                                </div>
-
-                                <!-- help section -->
-                                <div class="view-item__help box-display">
-                                
-                                    <div class="view-item__title">
-                                        <h3 class="padding-bottom-md">Need help with your item?</h3>
-                                        <p>Return item</p>
-                                        <p class="view-item__return-msg highlight"></p>
-                                    </div>
-                                </div>
-
-                                 <!-- review item section -->
-                                 <div class="view-item__review-section box-display">
-                                
-                                    <div class="view-item__title flex-col">
-                                        <h3 class="padding-bottom-md">How's your item?</h3>
-                                       
-                                        <a href="#">Write a product review</a>
-                                        <a href="#">Leave feedback</a>
-                                    </div>
-                                </div>
-
+                        <!-- card 1 -->
+                        <div class="card-grid">
+                            <div class="head">
+                                <img src="static/img/icons/comments.svg" alt="comment key icon" class="account-icon">
                             </div>
+                            <div class="body">
+                                <p id="leave-product-review-heading" class="leave-product-review-heading">Leave a Product Review or Feedback</p>
+                                <p>Please share your thoughts about the product to help other customers, or provide any feedback you have for us.</p>
+                            </div>
+                            
+                        </div>
+                    </a>
 
-                            <div class="view-item__side">
-
-                                <!-- Buttons -->
-                                <div class="view-item__side__buttons box-display">
-                                    <button class="view-item-btn">Buy it again</button>
-                                    <button class="view-item-btn">Add to cart</button>
-                                </div>
-
-                                <!-- order info -->
-                                 <div class="view-item__side-order-info flex-col box-display">
-                                    <h3>Order info</h3>
-                                    <hr>
-                                    
-                                    <p class="view-item__ordered_by">Ordered by: Egbie</p>
-                                    <p class="view-item__order-id"></p>
-                                    <p class="view-item__order-total"></p>
-                                    <p class="view-item__date-ordered"></p>
-
-                                 </div>
-
+                    <!-- card 2 -->
+                    <a href="#" aria-labelledby="view-product-review-heading" class="card-link">
+                        <div class="card-grid">
+                            <div class="head">
+                                <img src="static/img/icons/binoculars.svg" alt="A binoculars icon" class="account-icon">
+                            </div>
+                            <div class="body">
+                                <p id="view-product-heading" class="view-product-review-heading">View product reviews and feedbacks</p>
+                                <p>Explore all the reviews for the various products you’ve created.</p> 
                             </div>
                         </div>
-
-
-
-
-                    </div>
-
+                    </a>
+          
                 </div>
-
-
-            </div>
-            </div>
-            </div>
-
-
-
-            </div>
-
-            </div>
-            </div>
-
-
             </div>
         </section>
     </main>
-
-
+    
     <footer>
         <div class="container">
             <div class="footer-section" aria-labelledby="quick-links">
@@ -415,13 +305,12 @@
                 <ul>
                     <li><a href="#">Payment Methods</a></li>
                     <li><a href="#">Secure Shopping Information</a></li>
-              
                 </ul>
             </div>
         </div>
     </footer>
 
-    <script src="static/js/view-item.js" type="module"></script>
+    <script src="static/js/orders.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
 
 
