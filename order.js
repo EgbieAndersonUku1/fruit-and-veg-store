@@ -1,4 +1,3 @@
-
 const orders = [
     {
         id: 1,
@@ -20,7 +19,7 @@ const orders = [
             beforeVAT: 7.25,
             vat: 1.74,
             total: 9.99,
-            grandTotal: 9.99, 
+            grandTotal: 9.99,
         },
         payee: [
             {
@@ -35,7 +34,13 @@ const orders = [
                     cardType: "Visa",
                 }
             }
-        ]
+        ],
+        review: {
+            hasReviewed: false,
+            rating: null,
+            reviewText: '',
+            reviewDate: null
+        }
     },
     {
         id: 2,
@@ -72,7 +77,13 @@ const orders = [
                     cardType: "Visa",
                 }
             }
-        ]
+        ],
+        review: {
+            hasReviewed: false,
+            rating: null,
+            reviewText: '',
+            reviewDate: null
+        }
     },
     {
         id: 3,
@@ -109,7 +120,13 @@ const orders = [
                     cardType: "MasterCard",
                 }
             }
-        ]
+        ],
+        review: {
+            hasReviewed: false,
+            rating: null,
+            reviewText: '',
+            reviewDate: null
+        }
     },
     {
         id: 4,
@@ -146,11 +163,17 @@ const orders = [
                     cardType: "MasterCard",
                 }
             }
-        ]
+        ],
+        review: {
+            hasReviewed: false,
+            rating: null,
+            reviewText: '',
+            reviewDate: null
+        }
     },
     {
         id: 5,
-        name: "Gournmet Sauce Trio",
+        name: "Gournmet Sauce trio",
         dateOrderPlaced: "11 June 2024",
         total: 6.50,
         orderBy: "Eddie Brock",
@@ -183,10 +206,15 @@ const orders = [
                     cardType: "Visa",
                 }
             }
-        ]
+        ],
+        review: {
+            hasReviewed: false,
+            rating: null,
+            reviewText: '',
+            reviewDate: null
+        }
     }
 ];
-
 
 
 export default orders;

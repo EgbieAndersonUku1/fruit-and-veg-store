@@ -27,6 +27,7 @@
     /* colors */
     --light-green: #278827;
     --dark-green: rgb(20, 97, 20);
+    --pale-green:  #d6f5dc;
     --dodger-blue: #1E90FF;
     --secondary-color: #FF4500;
 
@@ -137,6 +138,86 @@ h2 {
 fieldset {
     border: none;
 }
+
+
+/* The table element */
+table {
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    
+}
+
+
+table th:hover {
+    color: var(--dark-green);
+}
+
+table tr {
+    height: 30px;
+    font-size: 1rem;
+}
+
+table tr:hover{
+    transform: scale(1.0001);
+}
+
+table th {
+    font-weight: 500;
+}
+
+table td {
+    text-align: center;  
+}
+
+table tr td {
+    position: relative;
+}
+
+table tr td:hover {
+    background: black;
+    color: white;
+}
+
+table tr td:hover a {
+    color: white;
+}
+
+table tr td:nth-child(6):hover {
+    transform: scale(1.1);
+    background: none;
+}
+
+
+.table-img {
+    height: 40px;
+    width: 40px;
+    padding: 4px;
+    border-radius: 4%;
+  }
+
+.table-link:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background: white;
+}
+
+table tr:nth-child(odd) {
+    background: var(--pale-green);
+    color: rgb(9, 9, 72);
+    
+}
+
+
+
+table tr td a:nth-child(even):hover {
+    color: green;
+}
+
+
 
 
 /* The paddings */
@@ -1800,7 +1881,7 @@ footer .container h4 {
     display: flex;
     padding: 0;
     margin: 0;
-    background-color: #d6f5dc;
+    background-color: var(--pale-green);
     border-radius: 4px;
     margin-top: 10px;
 }
@@ -1947,16 +2028,43 @@ footer .container h4 {
 }
 
 .pagination a {
-    border: 1px solid black;
-    padding: 8px;
+    border: 3px solid lavender;
+    padding: 6px;
     font-weight: bolder;
 }
 
 .pagination a:nth-child(even) {
-    background: var(--dark-green);
+    background: rgb(35, 116, 35);
     color: white;
     font-weight: bolder;
 }
+
+.table-pagination {
+    width: 100%;
+}
+
+.table-pagination a {
+    padding: 6px;
+    border: 3px solid lavender;
+}
+
+.table-pagination a:nth-child(even) {
+    background: var(--pale-green);
+    color: black;
+}
+
+.table-pagination a:nth-child(even):hover {
+    background: black;
+    color: white;
+}
+
+.table-pagination a:nth-child(odd):hover {
+    background: var(--pale-green);
+    color: black;
+
+}
+
+
 
 
 /* view details page */

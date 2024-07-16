@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="../../../static/img/display/jpg/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../../../static/css/csss.css">
-    <title>Add or edit a review</title>
+    <title>Reviews and feedback</title>
 </head>
 
 <body>
@@ -160,59 +160,56 @@
 
 
     <main>
-        <section id="product-review" aria-labelledby="feeback-heading">
-            <div class="product-review__container content-container">
+        <section id="create-or-edit-review" aria-labelledby="c">
+            <div class="create-or-edit-review_container content-container">
                 <div class="logo center">
                     <a href="../../../index.html"><img src="../../../static/img/display/jpg/logo.png" alt="The logo" class="account-logo-img"></a>
-
                 </div>
 
                 <ul class="breadcrumb">
                     <li><a href="../../../index.html">Home</a></li>
                     <li><a href="../account/account.html">My account</a></li>
-                    <li><a href="../reviews/reviews-and-feedback.html">Manage your reviews</a></li>
-                    <li>Create or edit a review</li>
+                    <li><a href="../reviews/reviews-and-feedback.html">Manage your review</a></li>
+                    <li><a href="../reviews/add-or-edit-review.html">Create or edit a review</a></li>
+                    <li>Reviews</li>
                 </ul>
 
-                <h2 id="add-or-edit-review-heading" class="lighten padding-top-md text-capitalize" >Create or edit a review</h2>
-                <p class="account-info">Create edit a review or feedback</p>
+                <h2 id="create-or-edit-review" class="lighten padding-top-md">List of Product to Reviews</h2>
+                <p class="account-info">Pick a product to review</p>
                 <hr class="dividor">
 
-                <!-- The cards sections -->
-                <div class="add-or-edit-review__options cards two-column-grid col-gap-small">
-                    <a href="../reviews/create-review.html" aria-labelledby="add-or-edit-product-review" class="card-link">
+                <table id="products-review-table">
+                  
+                   
+                   
+                </table>
+                
+                <div class="pagination table-pagination">
+                    <div class="pages">
 
-                        <!-- card 1 -->
-                        <div class="card-grid card">
-                            <div class="head">
-                                <img src="../../../static/img/icons/draft-orders-major.svg" alt="draft-orders-major icon" class="account-icon">
-                            </div>
-                            <div class="body">
-                                <p id="leave-product-review-heading" class="add-or-edit-product-review">Add or edit a product review</p>
-                                <p>Create a new product review or modify an existing one</p>
-                            </div>   
-                        </div>
-                    </a>
+                    </div>
 
-                    <!-- card 2 -->
-                    <a href="#" aria-labelledby="add-or-edit-feedback" class="card-link">
-                        <div class="card-grid card">
-                            <div class="head">
-                                <img src="../../../static/img/icons/content-book-open.svg" alt="A content book icon" class="account-icon">
-                            </div>
-                            <div class="body">
-                                <p id="add-or-edit-feedback-heading" class="add-or-edit-feedback">Add or edit feedback</p>
-                                <p>Create new feedback or modify an existing one.</p>
-                            </div>
-                            
-                        </div>
-                    </a>
-          
-                </div>
+                    <div class="page-number">
+
+                        <a href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">.</a>
+                        <a href="#">.</a>
+                        <a href="#">23</a>
+                        <a href="#">24</a>
+                        <a href="#">25</a>
+                        
+                    </div>
+
+                 </div>
+
+            
             </div>
         </section>
     </main>
-
+    
     <footer>
         <div class="container">
             <div class="footer-section" aria-labelledby="quick-links">
@@ -313,6 +310,7 @@
         </div>
     </footer>
 
+    <script src="../../../static/js/reviews.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
 
 
