@@ -44,11 +44,16 @@ function createTableHeading() {
 function buildTableBody() {
     const fragment = document.createDocumentFragment();
 
-    if (orders) {
+    if (!orders || !Array.isArray(orders)) {
+        console.error("Orders data is not available or not an array.");
+        return fragment;
+    }
+
+   
         orders.forEach((order) => {
 
             const tableMainRow  = document.createElement("tr");
-            const tableALink    = creatTableLink("Add/Edit", `${order.id}`);
+            const tableALink    = createTableLink("Add/Edit", `${order.id}`);
             const tableImg      = createTableImage(order)
 
             let [tableData1, tableData2, tableData3, tableData4, tableData5, tableData6] = [
@@ -70,15 +75,15 @@ function buildTableBody() {
 
             [ tableData1, tableData2, tableData3, tableData4, tableData5, tableData6].forEach((tableData) => {
                 tableMainRow.appendChild(tableData);
-                fragment.appendChild(tableMainRow);
+               
             })
 
             
-        
+            fragment.appendChild(tableMainRow);
         })
 
         return fragment;
-    }
+    
 }
 
 function getReviewStatus(tableRowToUpdate, product) {
@@ -89,12 +94,13 @@ function getReviewStatus(tableRowToUpdate, product) {
         tableRowToUpdate.textContent = "Not reviewed"; 
     } else {
         tableRowToUpdate.textContent = item.review.hasReviewed ? "Pending review": "Not reviewed"; 
+
     }
     return tableRowToUpdate
 }
 
 
-function creatTableLink(linkText, productID, hrefTag="#", className="table-link") {
+function createTableLink(linkText, productID, hrefTag="#", className="table-link") {
 
     const tableLink             = document.createElement("a");
     tableLink.href              = hrefTag;
