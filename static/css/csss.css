@@ -212,7 +212,7 @@ fieldset {
 
 
 /* lighten text */
-lighten {
+.lighten {
     opacity: 0.6;
 }
 
