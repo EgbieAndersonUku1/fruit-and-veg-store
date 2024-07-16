@@ -24,13 +24,20 @@ function generateSessionKey() {
 }
 
 
-function saveToLocalStorage(name, valueToSave) {
-    localStorage.setItem(name, valueToSave);
+function saveToLocalStorage(name, valueToSave, stringfy = false) {
+    if (stringfy) {
+        localStorage.setItem(name, valueToSave); 
+    } else {
+        localStorage.setItem(name, JSON.stringify(valueToSave)); 
+    }
 }
 
-function getItemFromLocalStorage(name) {
-    return localStorage.getItem(name);
+
+function getItemFromLocalStorage(name, parse = false) {
+    const item = localStorage.getItem(name);
+    return parse ? JSON.parse(item) : item; 
 }
+
 
 function removeItemFromLocalStorage(name) {
     localStorage.removeItem(name);
