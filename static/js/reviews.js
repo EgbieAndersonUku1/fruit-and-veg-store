@@ -1,5 +1,5 @@
 import orders from "../../order.js";
-import { getItemFromLocalStorage } from "./utils.js";
+import { getItemFromLocalStorage, redirectToNewPage } from "./utils.js";
 
 const productReviewTable = document.getElementById("products-review-table");
 
@@ -108,6 +108,8 @@ function createTableLink(linkText, productID, hrefTag="#", className="table-link
     tableLink.textContent       = linkText;
     tableLink.dataset.productID = productID;
 
+    tableLink.addEventListener("click", handleLinkClick);
+
     return tableLink;
     
 }
@@ -118,6 +120,12 @@ function createTableImage(order, className="table-img") {
     tableImg.alt       = `${order.name} icon`;
     tableImg.className = className;
     return tableImg;
+}
+
+function handleLinkClick(e) {
+  
+    const urlPage = "add-review.html";
+    redirectToNewPage(urlPage);
 }
 
 createProductTable();

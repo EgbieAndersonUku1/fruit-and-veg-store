@@ -113,6 +113,12 @@ input[type="number"] {
 }
 
 
+/* form fields */
+input,
+textarea {
+    font-family: "Poppins", sans-serif;
+}
+
 /* header elements */
 h1,
 h2,
@@ -685,7 +691,10 @@ nav {
   gap: 6px;
 }
 
-
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
 .space-between {
     display: flex;
     justify-content: space-between;
@@ -2313,3 +2322,56 @@ footer .container h4 {
 }
 
 
+/* product review section */
+.product-header {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: auto;
+}
+
+
+.product-header,
+.product-description,
+.product-rating {
+    width: 100%;
+}
+
+#product-form form > *{
+    width: 100%;
+}
+
+.form-element {
+    border: 3px solid lavender;
+    font-size: var(--font-size-normal);
+    font-weight: 300;
+    
+}
+
+.product-form input {
+    font-family: "Poppins", sans-serif;
+    height: 40px;
+   
+}
+
+#add-or-edit-review {
+    margin-bottom: 108px;
+}
+
+.product-review-btn {
+    background: white;
+    border: 3px solid lavender;
+    box-shadow: var(--box-shadow3);
+    
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 6px;
+    width: 25%;
+        
+      
+}
+
+.product-form h3 {
+    padding-top: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
