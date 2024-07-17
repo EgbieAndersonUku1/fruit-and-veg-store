@@ -26,7 +26,8 @@ function updateViewItemPage() {
     }
 
 
-    const order = getItemByID(getItemFromLocalStorage("itemOrder"), orders);
+    const order = getItemByID(getItemFromLocalStorage("itemOrder"), orders, true);
+    console.log(order);
 
     if (!order) {
         throw new Error("The order returned cannot be empty");

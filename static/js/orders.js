@@ -7,6 +7,7 @@ const viewInvoiceBtns = document.querySelectorAll(".view-invoice-btn");
 viewItemButtons.forEach((buttonElement) => {
     buttonElement.addEventListener("click", () => {
         handleBtnClick(buttonElement, "data-order-id", "view-item.html", "itemOrder");
+        console.log("Called ")
     });
 });
 
@@ -27,7 +28,8 @@ function handleBtnClick(buttonElement, dataAttribute, urlPage, key) {
             key: key,
             value: id,
         };
-        saveToLocalStorage(objectToSave.key, objectToSave.value);
+        saveToLocalStorage(objectToSave.key, objectToSave.value, true);
+       
         redirectToNewPage(urlPage);
     }
 }
