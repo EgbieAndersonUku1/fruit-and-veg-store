@@ -1,8 +1,64 @@
 import orders from "../../order.js";
-import { getItemFromLocalStorage } from "./utils.js";
+import { getItemFromLocalStorage, redirectToNewPage } from "./utils.js";
 
 const productReviewTable = document.getElementById("products-review-table");
+const ratingDiv          = document.querySelector(".product-ratings");
+const ratingStars        = document.querySelectorAll(".product-ratings a");
 
+
+
+addEventListenerToStar();
+
+function addEventListenerToStar() {
+    ratingDiv.addEventListener("click", handleStarClick);
+}
+
+
+function handleStarClick(e) {
+    if (e.target.tagName === 'A' || e.target.tagName === 'IMG') {
+        e.preventDefault();
+        const star = e.target.closest('a');
+        console.log(star.dataset.value)
+        renderStar(parseInt(star.dataset.value));
+    }
+}
+
+
+function renderStar(numOfStars) {
+    ratingDiv.innerHTML = "";
+    const stars = createRatingStars(numOfStars, numOfStars);
+    ratingDiv.appendChild(stars);
+}
+
+
+function createRatingStars(numOfStarsToCreate, rating, totalNumberOfStars = 5) {
+    const fragment = document.createDocumentFragment();
+    const filledStarsSrc = "../../../static/img/icons/star-filled.svg";
+    const unfilledStarsSrc = "../../../static/img/icons/star-unfilled.svg";
+
+    for (let i = 1; i <= totalNumberOfStars; i++) {
+        const aTag = document.createElement("a");
+        const imgTag = document.createElement("img");
+        aTag.dataset.value = i;
+        imgTag.dataset.value = i;
+        aTag.id = rating;
+        aTag.href = "#";
+
+        if (i <= numOfStarsToCreate) {
+            imgTag.src = filledStarsSrc;
+            imgTag.alt = "star-filled";
+            imgTag.classList.add("star-filled", "star-rating");
+        } else {
+            imgTag.src = unfilledStarsSrc;
+            imgTag.alt = "star-unfilled";
+            imgTag.classList.add("star-unfilled", "star-rating");
+        }
+
+        aTag.appendChild(imgTag);
+        fragment.appendChild(aTag);
+    }
+    return fragment;
+}
 
 
 function createProductTable() {
@@ -108,6 +164,8 @@ function createTableLink(linkText, productID, hrefTag="#", className="table-link
     tableLink.textContent       = linkText;
     tableLink.dataset.productID = productID;
 
+    tableLink.addEventListener("click", handleLinkClick);
+
     return tableLink;
     
 }
@@ -119,5 +177,13 @@ function createTableImage(order, className="table-img") {
     tableImg.className = className;
     return tableImg;
 }
+
+function handleLinkClick(e) {
+  
+    const urlPage = "add-review.html";
+    redirectToNewPage(urlPage);
+}
+
+
 
 createProductTable();
