@@ -10,14 +10,17 @@ const ratingStars        = document.querySelectorAll(".product-ratings a");
 addEventListenerToStar();
 
 function addEventListenerToStar() {
-    ratingDiv.addEventListener("click", (e) => {
-        if (e.target.tagName === 'A' || e.target.tagName === 'IMG') {
-            e.preventDefault();
-            const star = e.target.closest('a');
-            console.log(star.dataset.value)
-            renderStar(parseInt(star.dataset.value));
-        }
-    });
+    ratingDiv.addEventListener("click", handleStarClick);
+}
+
+
+function handleStarClick(e) {
+    if (e.target.tagName === 'A' || e.target.tagName === 'IMG') {
+        e.preventDefault();
+        const star = e.target.closest('a');
+        console.log(star.dataset.value)
+        renderStar(parseInt(star.dataset.value));
+    }
 }
 
 
@@ -182,7 +185,5 @@ function handleLinkClick(e) {
 }
 
 
-function handleRatingClick(e) {
 
-}
 createProductTable();
