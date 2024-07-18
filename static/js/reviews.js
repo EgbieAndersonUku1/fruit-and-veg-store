@@ -10,7 +10,11 @@ const ratingStars        = document.querySelectorAll(".product-ratings a");
 addEventListenerToStar();
 
 function addEventListenerToStar() {
-    ratingDiv.addEventListener("click", handleStarClick);
+
+    if (ratingDiv) {
+        ratingDiv.addEventListener("click", handleStarClick);
+    }
+   
 }
 
 
