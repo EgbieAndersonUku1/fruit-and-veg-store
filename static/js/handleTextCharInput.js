@@ -142,6 +142,11 @@ function minimumCharactersToUse(fieldElementSelector, params) {
         }
     }
 
+    if (params.maxCharsLimit < params.minCharsLimit) {
+        throw new Error("The maximum character value cannot be less than the minimum character value");
+
+    }
+
     // Set the minlength and maxlength attributes dynamically
     fieldElement.setAttribute('minlength', params.minCharsLimit.toString());
     fieldElement.setAttribute('maxlength', params.maxCharsLimit.toString());
