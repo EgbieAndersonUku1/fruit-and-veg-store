@@ -1,5 +1,3 @@
-
-
 /**
  * Sets up input handlers for the specified form field and icon.
  * @param {string} fieldSelector - CSS selector for the input field.
@@ -167,27 +165,18 @@ function handleCharacterCountEvent(e, params) {
  * @param {Event} e - The event object.
  * @param {number} limit - The character limit.
  * @param {string} classSelector - CSS selector for the output element.
- * @param {string} message - The message to display.
+ * @param {string} message - The message to display..
  */
 function handleCharCount(e, limit, classSelector, message) {
-    updateCharacterDisplay(e, limit, classSelector, message);
-}
-
-/**
- * Updates the character count display based on the limit.
- * @param {Event} e - The event object.
- * @param {number} limit - The character limit.
- * @param {string} outputSelector - CSS selector for the output element.
- * @param {string} messagePrefix - The prefix for the message to display.
- */
-function updateCharacterDisplay(e, limit, outputSelector, messagePrefix) {
     const charsUsed = e.target.value.length;
     const charsRemaining = limit - charsUsed;
-    const outputElement = document.querySelector(outputSelector);
-    const message = `${messagePrefix}`;
+    const outputElement = document.querySelector(classSelector);
+    const messagePrefix = `${message}`;
 
-    updateTextString(outputElement, charsRemaining, limit, message);
+    updateTextString(outputElement, charsRemaining, limit, messagePrefix)
 }
+
+
 
 /**
  * Updates the text content and styles of the string element.
@@ -233,3 +222,4 @@ export {
     handleFormFieldElement,
     minimumCharactersToUse,
 };
+
