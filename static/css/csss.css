@@ -378,6 +378,18 @@ table tr td a:nth-child(even):hover {
 
 
 
+/* font colors */
+.light-red {
+    color: red;
+} 
+
+.black-color {
+    color: black;
+}
+
+.dark-green {
+    color: var(--dark-green);
+}
 
 /* global carousel images */
 .carousel-card-img {
@@ -700,6 +712,7 @@ nav {
     display: flex;
     justify-content: flex-end;
 }
+
 .space-between {
     display: flex;
     justify-content: space-between;
@@ -2414,4 +2427,14 @@ footer .container h4 {
 .product-review-img {
     height: 100%;
     width: 100%;
+}
+
+
+
+
+.product-tick-icon {
+    display: none;
+    transform: translateY(22px);
+    height: 20px;
+  
 }

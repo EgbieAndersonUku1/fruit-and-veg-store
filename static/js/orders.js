@@ -7,7 +7,6 @@ const viewInvoiceBtns = document.querySelectorAll(".view-invoice-btn");
 viewItemButtons.forEach((buttonElement) => {
     buttonElement.addEventListener("click", () => {
         handleBtnClick(buttonElement, "data-order-id", "view-item.html", "itemOrder");
-        console.log("Called ")
     });
 });
 

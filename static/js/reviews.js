@@ -1,13 +1,11 @@
 import orders from "../../order.js";
-import { getItemFromLocalStorage, redirectToNewPage } from "./utils.js";
-
-const productReviewTable = document.getElementById("products-review-table");
-const ratingDiv          = document.querySelector(".product-ratings");
-const ratingStars        = document.querySelectorAll(".product-ratings a");
+import { getItemFromLocalStorage,  saveToLocalStorage, redirectToNewPage } from "./utils.js";
 
 
+const ratingDiv  = document.querySelector(".product-ratings");
 
 addEventListenerToStar();
+
 
 function addEventListenerToStar() {
 
@@ -22,7 +20,6 @@ function handleStarClick(e) {
     if (e.target.tagName === 'A' || e.target.tagName === 'IMG') {
         e.preventDefault();
         const star = e.target.closest('a');
-        console.log(star.dataset.value)
         renderStar(parseInt(star.dataset.value));
     }
 }
@@ -66,10 +63,15 @@ function createRatingStars(numOfStarsToCreate, rating, totalNumberOfStars = 5) {
 
 
 function createProductTable() {
+    const productReviewTable = document.getElementById("products-review-table");
     const tableHeading = createTableHeading();
     const tableBody    = buildTableBody();
-    productReviewTable.appendChild(tableHeading);
-    productReviewTable.appendChild(tableBody);
+
+    if (productReviewTable) {
+        productReviewTable.appendChild(tableHeading);
+        productReviewTable.appendChild(tableBody);
+    }
+   
 }
 
 function createTableHeading() {
@@ -168,6 +170,7 @@ function createTableLink(linkText, productID, hrefTag="#", className="table-link
     tableLink.textContent       = linkText;
     tableLink.dataset.productID = productID;
 
+  
     tableLink.addEventListener("click", handleLinkClick);
 
     return tableLink;
@@ -183,7 +186,12 @@ function createTableImage(order, className="table-img") {
 }
 
 function handleLinkClick(e) {
-  
+    const productID = e.currentTarget.dataset.productID;
+
+    console.log(productID);
+    if (productID) {
+        saveToLocalStorage("productTableLink", {id: parseInt(productID)}, true);
+    }
     const urlPage = "add-review.html";
     redirectToNewPage(urlPage);
 }

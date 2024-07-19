@@ -179,13 +179,13 @@
                 <hr class="dividor">
 
 
-                <div class="product-header">
+                <div class="product-header product-review-header">
                     <div class="image">
                         <img src="../../../static/img/display/jpg/avacodo-slice.jpg" alt="avacodo" class="product-review-img">
                     </div>
 
                     <div class="product-description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima?
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima?</p>
                     </div>
                 </div>
 
@@ -220,17 +220,25 @@
 
                 <div id="product-form">
 
-                    <form action="" class="product-form">
+                    <form action="/" class="product-form">
+                        
 
+                        <div class="header space-between form-group">
+                            <h3>Add a headline </h3>
+                            <img src="../../../static/img/icons/checkmark-running.svg" alt="checkmark icon" class="product-tick-icon" id="review-title-icon">
+                        </div>
+                        
+                        <input type="text" class="form-element" maxlength="200" required minlength="5" id="product-input-title">
 
-                        <h3>Add a headline </h3>
-                        <input type="text" class="form-element" maxlength="200" required minlength="5">
-
-                        <h3>Add a written review </h3>
-                        <textarea name="product-reviev" id="product-rview-text-area" cols="30" rows="10" 
+                       
+                        <div class="header space-between form-group">
+                            <h3>Add a written review </h3>
+                            <img src="../../../static/img/icons/checkmark-running.svg" alt="checkmark icon here" class="product-tick-icon title-icon" id="review-description-icon">
+                        </div>
+                        <textarea name="product-review" id="review-description-textArea" cols="30" rows="10" required
                                   class="form-element" maxlength="1500" minlength="50" placeholder="What your liked or disliked?"></textarea>
-                        <p class="flex-end">You have a minimum of 50 characters remaining</p>
-                        <p class="remainng-chars flex-end">You have 1500 characters remaining</p>
+                        <p class="flex-end minimum-characters">Minimum characters to use: 50</p>
+                        <p class="maximum-characters flex-end">Number of characters remaining: 1000</p>
 
                      
                         <div class="button flex-end">
@@ -239,10 +247,6 @@
                     </form>
 
                 </div>
-            
-
-
-               
             
             </div>
         </section>
@@ -348,7 +352,7 @@
         </div>
     </footer>
 
-    <script src="../../../static/js/reviews.js" type="module"></script>
+    <script src="../../../static/js/add-review.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.all.min.js"></script>
 
 

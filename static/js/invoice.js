@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", handleDOMLoad);
 
 function updateInvoice() {
    
-    const order = getItemByID(getItemFromLocalStorage("invoice"), orders);
+    const order = getItemByID(getItemFromLocalStorage("invoice", true), orders);
     
     if (!order) {
         throw new Error("The invoice objects was not found!!!")
@@ -75,7 +75,7 @@ function getItemPayment(order) {
    
 
     // Extract the elements of row 1 - payment information
-    const [paymentInfoElement, costBreakdownElement, costElement] = row.querySelectorAll("div");
+    const [paymentInfoElement, _, costElement] = row.querySelectorAll("div");
     setTextContentOfParagraph(paymentInfoElement, `${payee.card.cardType} ending in ${payee.card.endingDigit} `);
 
     validateElement(costElement);

@@ -25,7 +25,7 @@ function generateSessionKey() {
 
 
 function saveToLocalStorage(name, valueToSave, stringfy = false) {
-    if (stringfy) {
+    if (!stringfy) {
         localStorage.setItem(name, valueToSave); 
     } else {
         localStorage.setItem(name, JSON.stringify(valueToSave)); 
