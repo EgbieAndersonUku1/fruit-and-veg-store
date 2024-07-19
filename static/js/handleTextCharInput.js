@@ -176,9 +176,7 @@ function handleCharCount(e, limit, classSelector, message) {
     const charsUsed = e.target.value.length;
     const charsRemaining = limit - charsUsed;
     const outputElement = document.querySelector(classSelector);
-    const messagePrefix = `${message}`;
-
-    updateTextString(outputElement, charsRemaining, limit, messagePrefix)
+    updateTextString(outputElement, charsRemaining, limit, message)
 }
 
 
