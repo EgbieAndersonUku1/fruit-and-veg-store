@@ -49,7 +49,8 @@ function handleInputEvent(e, elementIcon, element) {
 
 
 /**
- * This function `minimumCharactersToUse` is reusable function designed to be used in any project where character count tracking is needed.
+ * This function `minimumCharactersToUse` is a reusable function designed to be used in any project where character count tracking is needed.
+ * for a given text area
  * 
  * To use this function, the project must include a `<textarea>` field in the form, similar to:
  * 
