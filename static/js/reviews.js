@@ -4,6 +4,7 @@ import { getItemFromLocalStorage,  saveToLocalStorage, redirectToNewPage } from 
 
 const ratingDiv  = document.querySelector(".product-ratings");
 
+
 addEventListenerToStar();
 
 
@@ -19,8 +20,10 @@ function addEventListenerToStar() {
 function handleStarClick(e) {
     if (e.target.tagName === 'A' || e.target.tagName === 'IMG') {
         e.preventDefault();
+
         const star = e.target.closest('a');
         renderStar(parseInt(star.dataset.value));
+
     }
 }
 
