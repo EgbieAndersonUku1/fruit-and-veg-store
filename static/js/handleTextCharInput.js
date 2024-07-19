@@ -48,21 +48,21 @@ function handleInputEvent(e, elementIcon, element) {
 
 
 /**
- * This function `minimumCharactersToUse` is a reusable function designed for character count tracking in projects
- * where a `<textarea>` field is used.
+ * This function `minimumCharactersToUse` is a reusable function designed to be used in any project where character count tracking is needed for a given text area.
  * 
  * To use this function, the project must include a `<textarea>` field in the form, similar to:
  * 
- * <textarea class="someClassNameHere" cols="30" rows="10" required maxlength="1500" minlength="50" placeholder="What you liked or disliked?">
- *     <p class="minimum-characters">Minimum characters to use: 50</p>
- *     <p class="maximum-characters">Maximum characters to use: 1000</p>
+ * <textarea class="someClassNameHere" cols="30" rows="10" required">
+        * <p class="someClassNameHere">Minimum characters to use: 50</p>
+        * <p class="someClassNameHere">Maximum characters to use: 1000</p>
  * </textarea>
+ * 
  * 
  * **HTML Structure Requirements:**
  * 1. The `<textarea>` element must have a class or ID to identify it.
- * 2. The first `<p>` tag, which displays the minimum character count, must have a class name. 
+ * 2. The first `<p>` tag, which displays the minimum character count, must have a class name.
  * 3. The second `<p>` tag, which displays the maximum and remaining characters, must have a class name.
- * 4. Both `<p>` tags must include a message. The message should end with a semicolon, as the function appends the character 
+ * 4. Both `<p>` tags must include a message. The message should end with a colon, as the function appends the character 
  *    count to the message. For example:
  *    - If the message is "Number of characters remaining: " and the remaining characters are 50, 
  *      the display will be "Number of characters remaining: 50".
@@ -144,8 +144,13 @@ function minimumCharactersToUse(fieldElementSelector, params) {
         }
     }
 
+    // Set the minlength and maxlength attributes dynamically
+    fieldElement.setAttribute('minlength', params.minCharsLimit.toString());
+    fieldElement.setAttribute('maxlength', params.maxCharsLimit.toString());
+
     fieldElement.addEventListener("input", (e) => handleCharacterCountEvent(e, params));
 }
+
 
 /**
  * Handles the input event to check both minimum and maximum character limits.
