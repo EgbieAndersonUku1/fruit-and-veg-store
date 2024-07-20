@@ -1,5 +1,3 @@
-
-
 /**
  * Sets up input handlers for the specified form field and icon.
  * @param {string} fieldSelector - CSS selector for the input field.
@@ -47,42 +45,41 @@ function handleInputEvent(e, elementIcon, element) {
 
 
 
-
 /**
- * This function `minimumCharactersToUse` is a reusable function designed to be used in any project where character count tracking is needed.
- * for a given text area
+ * This function `minimumCharactersToUse` is a reusable function designed to be used in any project where character count tracking is needed for a given text area.
  * 
  * To use this function, the project must include a `<textarea>` field in the form, similar to:
  * 
- * <textarea class="someClassNameHere" cols="30" rows="10" required maxlength="1500" minlength="50" placeholder="What you liked or disliked?">
- *     <p class="someClassNameHere">Minimum characters to use: 50</p>
- *     <p class="someClassNameHere">Maximum characters to use: 1000</p>
+ * <textarea class="someClassNameHere" cols="30" rows="10" required">
+        * <p class="someClassNameHere">Minimum characters to use: 50</p>
+        * <p class="someClassNameHere">Maximum characters to use: 1000</p>
  * </textarea>
+ * 
  * 
  * **HTML Structure Requirements:**
  * 1. The `<textarea>` element must have a class or ID to identify it.
- * 2. The first `<p>` tag, which displays the minimum character count, must have a class name. 
+ * 2. The first `<p>` tag, which displays the minimum character count, must have a class name.
  * 3. The second `<p>` tag, which displays the maximum and remaining characters, must have a class name.
- * 4. Both `<p>` tags must include a message. The message should end with a semicolon, as the function appends the character 
+ * 4. Both `<p>` tags must include a message. The message should end with a colon, as the function appends the character 
  *    count to the message. For example:
  *    - If the message is "Number of characters remaining: " and the remaining characters are 50, 
- *       the display will be "Number of characters remaining: 50".
+ *      the display will be "Number of characters remaining: 50".
  * 
  * **Parameters for the Function:**
  * The following parameters must be included in the parameter object:
- * - minimumCharacterClassSelector: {string} - CSS selector for the minimum characters count element.
- * - minimumCharacterMessage: {string} - Message to display for minimum characters.
- * - maximumCharacterClassSelector: {string} - CSS selector for the maximum characters count element.
- * - maximumCharacterMessage: {string} - Message to display for maximum characters.
+ * - minCharClass: {string} - CSS selector for the minimum characters count element.
+ * - minCharMessage: {string} - Message to display for minimum characters.
+ * - maxCharClass: {string} - CSS selector for the maximum characters count element.
+ * - maxCharMessage: {string} - Message to display for maximum characters.
  * - minCharsLimit: {number} - Minimum number of characters allowed.
  * - maxCharsLimit: {number} - Maximum number of characters allowed.
  * 
  * **Example Parameter Object:**
  * const params = {
- *   minimumCharacterClassSelector: '.minimum-characters',
- *   minimumCharacterMessage: 'Minimum characters to use: ',
- *   maximumCharacterClassSelector: '.maximum-characters',
- *   maximumCharacterMessage: 'Number of characters remaining: ',
+ *   minCharClass: '.minimum-characters',
+ *   minCharMessage: 'Minimum characters to use: ',
+ *   maxCharClass: '.maximum-characters',
+ *   maxCharMessage: 'Number of characters remaining: ',
  *   minCharsLimit: 50,
  *   maxCharsLimit: 1000
  * };
@@ -110,10 +107,10 @@ function handleInputEvent(e, elementIcon, element) {
  * 
  * @param {string} fieldElementSelector - CSS selector for the `<textarea>` field element.
  * @param {Object} params - Object containing various parameters for character limits and messages.
- * @param {string} params.minimumCharacterClassSelector - CSS selector for the minimum characters element.
- * @param {string} params.minimumCharacterMessage - Message to display for minimum characters.
- * @param {string} params.maximumCharacterClassSelector - CSS selector for the maximum characters element.
- * @param {string} params.maximumCharacterMessage - Message to display for maximum characters.
+ * @param {string} params.minCharClass - CSS selector for the minimum characters element.
+ * @param {string} params.minCharMessage - Message to display for minimum characters.
+ * @param {string} params.maxCharClass - CSS selector for the maximum characters element.
+ * @param {string} params.maxCharMessage - Message to display for maximum characters.
  * @param {number} params.minCharsLimit - Minimum characters limit.
  * @param {number} params.maxCharsLimit - Maximum characters limit.
  * @throws {Error} If the parameter object is not valid or does not contain the required keys.
@@ -145,8 +142,18 @@ function minimumCharactersToUse(fieldElementSelector, params) {
         }
     }
 
+    if (params.maxCharsLimit < params.minCharsLimit) {
+        throw new Error("The maximum character value cannot be less than the minimum character value");
+
+    }
+
+    // Set the minlength and maxlength attributes dynamically
+    fieldElement.setAttribute('minlength', params.minCharsLimit.toString());
+    fieldElement.setAttribute('maxlength', params.maxCharsLimit.toString());
+
     fieldElement.addEventListener("input", (e) => handleCharacterCountEvent(e, params));
 }
+
 
 /**
  * Handles the input event to check both minimum and maximum character limits.
@@ -163,27 +170,16 @@ function handleCharacterCountEvent(e, params) {
  * @param {Event} e - The event object.
  * @param {number} limit - The character limit.
  * @param {string} classSelector - CSS selector for the output element.
- * @param {string} message - The message to display.
+ * @param {string} message - The message to display..
  */
 function handleCharCount(e, limit, classSelector, message) {
-    updateCharacterDisplay(e, limit, classSelector, message);
-}
-
-/**
- * Updates the character count display based on the limit.
- * @param {Event} e - The event object.
- * @param {number} limit - The character limit.
- * @param {string} outputSelector - CSS selector for the output element.
- * @param {string} messagePrefix - The prefix for the message to display.
- */
-function updateCharacterDisplay(e, limit, outputSelector, messagePrefix) {
     const charsUsed = e.target.value.length;
     const charsRemaining = limit - charsUsed;
-    const outputElement = document.querySelector(outputSelector);
-    const message = `${messagePrefix}`;
-
-    updateTextString(outputElement, charsRemaining, limit, message);
+    const outputElement = document.querySelector(classSelector);
+    updateTextString(outputElement, charsRemaining, limit, message)
 }
+
+
 
 /**
  * Updates the text content and styles of the string element.
@@ -229,3 +225,4 @@ export {
     handleFormFieldElement,
     minimumCharactersToUse,
 };
+

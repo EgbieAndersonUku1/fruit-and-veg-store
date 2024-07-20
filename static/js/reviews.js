@@ -8,6 +8,7 @@ const unfilledStarsSrc = "../../../static/img/icons/star-unfilled.svg";
 const ratingDiv  = document.querySelector(".product-ratings");
 const clearBtn   = document.getElementById("clear-btn");
 
+
 addEventListenerToStar();
 
 
@@ -24,11 +25,12 @@ function handleStarClick(e) {
 
     if (e.target.tagName === 'A' || e.target.tagName === 'IMG') {
         e.preventDefault();
+
         
         if (clearBtn.style.display !== "block") {
             clearBtn.style.display = "block";
         }
-        
+  
         const star = e.target.closest('a');
         renderStar(parseInt(star.dataset.value));
 
