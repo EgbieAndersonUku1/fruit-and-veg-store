@@ -42,6 +42,7 @@ function isReviewed() {
     let ratedStars = 0;
     for (let i = 0; i < productRatingStars.length; i++) {
         const ratingStar = productRatingStars[i];
+
         if (i === 0 && ratingStar.alt === EMPTY_STARS) {
             reviewedReport.numOfStarsRated = 0;
             reviewedReport.isRated = false;
@@ -148,7 +149,7 @@ function updateReviewForm(form) {
 
         formButton.textContent = "Edit Review";
         renderStar(product.ratings);
-        formButton.classList.add("dark-green-bg");
+        // formButton.classList.add("dark-green-bg");
     } else {
         formButton.textContent = "Submit";
         formButton.classList.add("white-bg");
