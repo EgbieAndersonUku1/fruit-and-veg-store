@@ -230,7 +230,7 @@
 
                 <div id="product-form">
 
-                    <form action="/" class="product-form">
+                    <form action="/" class="product-form" id="product-review-form">
                         
 
                         <div class="header space-between form-group">
@@ -238,14 +238,14 @@
                             <img src="../../../static/img/icons/checkmark-running.svg" alt="checkmark icon" class="product-tick-icon" id="review-title-icon">
                         </div>
                         
-                        <input type="text" class="form-element" maxlength="200" required minlength="5" id="product-input-title">
+                        <input type="text" class="form-element" maxlength="200" required minlength="5" id="product-input-title" name="title">
 
                        
                         <div class="header space-between form-group">
                             <h3>Add a written review </h3>
                             <img src="../../../static/img/icons/checkmark-running.svg" alt="checkmark icon here" class="product-tick-icon title-icon" id="review-description-icon">
                         </div>
-                        <textarea name="product-review" id="review-description-textArea" cols="30" rows="10" required
+                        <textarea name="review" id="review-description-textArea" cols="30" rows="10" required
                                   class="form-element" maxlength="1500" minlength="50" placeholder="What your liked or disliked?"></textarea>
                         <p class="flex-end minimum-characters">Minimum characters to use: 50</p>
                         <p class="maximum-characters flex-end">Number of characters remaining: 1000</p>
@@ -257,8 +257,16 @@
                     </form>
 
                 </div>
+
+
+                <div class="messages">
+                    <p></p>
+                </div>
             
             </div>
+
+
+           
         </section>
     </main>
     
