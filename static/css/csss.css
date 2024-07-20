@@ -30,6 +30,7 @@
     --pale-green:  #d6f5dc;
     --dodger-blue: #1E90FF;
     --secondary-color: #FF4500;
+    --dark-red: #820f0f;
 
     /* paddings */
     --padding-sm: 8px;
@@ -286,6 +287,19 @@ table tr td a:nth-child(even):hover {
 }
 
 
+.dark-red-bg {
+    color: white;
+    background: var(--dark-red);
+}
+
+.dark-green-bg {
+    color: white;
+    background: var(--dark-green);
+}
+
+.white-bg {
+    background: white;
+}
 /* fonts */
 .poppins-regular {
     font-family: "Poppins", sans-serif;
@@ -2375,7 +2389,7 @@ footer .container h4 {
 }
 
 .product-review-btn {
-    background: white;
+  
     border: 3px solid lavender;
     box-shadow: var(--box-shadow3);
     
@@ -2430,6 +2444,30 @@ footer .container h4 {
 }
 
 
+.add-or-edit-review_container {
+    position: relative;
+}
+
+
+.add-or-edit-review_container .messages {
+   
+
+    border: 4px solid white;
+    color: white;
+    padding: 10px;
+    
+    /* positoning */
+    position: absolute;
+    top: -35%;
+    right: 0;
+}
+
+.add-or-edit-review_container .messages.show {
+    top: 50%;
+    transition: top 0.4s linear;
+}
+
+
 
 
 .product-tick-icon {
@@ -2471,3 +2509,6 @@ footer .container h4 {
     color: white;
     background: black;
 }
+
+
+

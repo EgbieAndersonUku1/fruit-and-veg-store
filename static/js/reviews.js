@@ -87,12 +87,12 @@ function createRatingStars(numOfStarsToCreate, rating, totalNumberOfStars = 5, c
             imgTag.src = filledStarsSrc;
             imgTag.alt = "star-filled";
             imgTag.classList.add("star-filled", "star-rating");
-            console.log("here")
+           
         } else {
             imgTag.src = unfilledStarsSrc;
             imgTag.alt = "star-unfilled";
             imgTag.classList.add("star-unfilled", "star-rating");
-            console.log("here22")
+         
         }
 
         aTag.appendChild(imgTag);
