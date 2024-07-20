@@ -2438,3 +2438,36 @@ footer .container h4 {
     height: 20px;
   
 }
+
+
+.product-review-header {
+    position: relative;
+}
+
+#clear-btn {
+
+  
+    background: #831919;
+    border: 1px solid rgb(12, 198, 189);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    color: white;
+    display: none;
+    font-size: 0.90rem;
+    width: 11%;
+
+
+    /* position */
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    /* button attributes */
+    padding: 10px;
+    text-transform: capitalize;
+  
+}
+
+#clear-btn:hover {
+    color: white;
+    background: black;
+}
