@@ -22,12 +22,13 @@ const pageSubtitleElement          = document.querySelector(".page-title-subtitl
 const currentPageLiElement         = document.querySelector(".current-page");
 
 
+const itemReview = getItemFromLocalStorage(`productReview-${productInfo.id}`, true);
 // setup 
 setUp(createReviewForm);
 
 
 
-function isReviewed() {
+function getProductStarRating() {
 
     const productRatingStars = document.querySelectorAll(".product-ratings a img");
     const reviewedReport = {
@@ -40,7 +41,6 @@ function isReviewed() {
         throw new Error("The product star rating couldn't be found");
     }
    
-    let ratedStars = 0;
     for (let i = 0; i < productRatingStars.length; i++) {
         const ratingStar = productRatingStars[i];
         
@@ -49,13 +49,12 @@ function isReviewed() {
             reviewedReport.isRated = false;
             break;
         } else if (ratingStar.alt === COLORED_STARS) {
-            ratedStars += 1;
+            reviewedReport.numOfStarsRated += 1;
         }
     }
 
-    if (ratedStars > 0) {
+    if (reviewedReport.numOfStarsRated > 0) {
         reviewedReport.isRated = true;
-        reviewedReport.numOfStarsRated = ratedStars;
     }
    
     if (!productInfo.id) {
@@ -72,7 +71,7 @@ function isReviewed() {
 createReviewForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const reviewReport = isReviewed();
+    const reviewReport = getProductStarRating();
     const formData     = new FormData(createReviewForm);
     let msg;
 
@@ -142,14 +141,14 @@ function updateReviewForm(form) {
         throw new Error("The title descrciption text area or button container couldn't be found!!!");
     }
 
-    const product = getItemFromLocalStorage(`productReview-${productInfo.id}`, true)
+   
 
-    if (product) {
-        formTitleElement.value = product.title;
-        formReviewElement.value = product.description;
+    if (itemReview) {
+        formTitleElement.value = itemReview.title;
+        formReviewElement.value = itemReview.description;
 
         formButton.textContent = "Edit Review";
-        renderStar(product.ratings);
+        renderStar(itemReview.ratings);
         // formButton.classList.add("dark-green-bg");
     } else {
         formButton.textContent = "Submit";
@@ -165,6 +164,7 @@ function updatePage() {
     if (!pageTitleElement || !pageSubtitleElement || !currentPageLiElement) {
         throw new Error("The title, subtitle or li tag element couldn't be found!!");
     };
+
 
     pageTitleElement.textContent     = "Edit Product review";
     pageSubtitleElement.textContent  = "Update product details";
@@ -278,7 +278,10 @@ function setReviewProductDescription(product, divDescription) {
 function setUp(form) {
     document.addEventListener("DOMContentLoaded", () => {
         updateReviewForm(form);
-        updatePage();
+        if (itemReview) {
+            updatePage();
+        }
+     
     })
 } 
 
