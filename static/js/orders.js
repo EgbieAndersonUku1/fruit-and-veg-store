@@ -25,7 +25,7 @@ function handleBtnClick(buttonElement, dataAttribute, urlPage, key) {
     if (id) {
         const objectToSave = {
             key: key,
-            value: id,
+            value: parseInt(id),
         };
         saveToLocalStorage(objectToSave.key, objectToSave.value, true);
        
