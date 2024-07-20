@@ -3,11 +3,26 @@
 
 import getItemByID from "./itemUtils.js";
 import { getItemFromLocalStorage } from "./utils.js";
+import renderStar from "./reviews.js";
+
 import orders from "../../order.js";
 
 import { handleFormFieldElement, minimumCharactersToUse} from "./handleTextCharInput.js";
 
-const REVIEW_DESCRIPTION_TEXT_AREA = "#review-description-textArea"
+const REVIEW_DESCRIPTION_TEXT_AREA = "#review-description-textArea";
+const clearBtnElement              = document.getElementById("clear-btn");
+
+
+
+
+
+clearBtnElement.addEventListener("click", () => {
+  const totalNumberOfStars = 5;
+  const renderEmptyStars   = true;
+  renderStar(totalNumberOfStars, renderEmptyStars);
+})
+
+
 
 displayProductAttribute();
 handleReviewTitleField();
