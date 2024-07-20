@@ -17,8 +17,9 @@ const messagePTagElement           = document.querySelector(".messages p");
 const productInfo                  = getItemFromLocalStorage("productTableLink", true);
 const formTitleElement             = document.getElementById("product-input-title");
 const formReviewElement            = document.getElementById("review-description-textArea");
-const formButtonContainerElement   = document.querySelector(".button")
-
+const pageTitleElement             = document.querySelector(".page-title");
+const pageSubtitleElement          = document.querySelector(".page-title-subtitle");
+const currentPageLiElement         = document.querySelector(".current-page");
 
 
 // setup 
@@ -42,7 +43,7 @@ function isReviewed() {
     let ratedStars = 0;
     for (let i = 0; i < productRatingStars.length; i++) {
         const ratingStar = productRatingStars[i];
-
+        
         if (i === 0 && ratingStar.alt === EMPTY_STARS) {
             reviewedReport.numOfStarsRated = 0;
             reviewedReport.isRated = false;
@@ -81,22 +82,23 @@ createReviewForm.addEventListener("submit", (e) => {
         review: formData.get("review"),
       }
    
+    if (!title || !review) {
+        throw new Error("Something went wrong - the title or the review couldn't be found!!");
+    };
+
     if (!reviewReport) {
         throw new Error("Something went wrong and the ratings couldn't be acquired")
-    }
+    };
 
     if (!messagePTagElement || !messageDivElement) {
         throw new Error("Something went wrong and message p tag and message div containter couldn't be found!!");
-    }
+    };
+
     if (reviewReport.numOfStarsRated === 0) {
         msg = "You must rate the product before submitting";
         handleMessageDisplay(msg); 
     } else {
       
-        if (!title || !review) {
-            throw new Error("Something went wrong - the title or the review couldn't be found!!");
-        }
-
         msg  = "You have successfully reviewed the product";
 
         const productReview = {
@@ -107,10 +109,10 @@ createReviewForm.addEventListener("submit", (e) => {
             reviewID: reviewReport.id
         }
 
-    
         saveToLocalStorage(`productReview-${productInfo.id}`, productReview, true);
         handleMessageDisplay(msg, "dark-green-bg");
-        updateReviewForm(createReviewForm)
+        updateReviewForm(createReviewForm);
+        updatePage();
         
     }
 
@@ -121,11 +123,10 @@ function handleMessageDisplay(msg, classColor="dark-red-bg", displayInMs=4000) {
    
     messagePTagElement.textContent = msg;
     messageDivElement.classList.add("show", classColor);
-    console.log(classColor)
 
-        setTimeout(() => {
-            messageDivElement.classList.remove("show", classColor);
-        }, displayInMs)
+    setTimeout(() => {
+        messageDivElement.classList.remove("show", classColor);
+    }, displayInMs)
 }
 
 
@@ -157,6 +158,20 @@ function updateReviewForm(form) {
    
 }
 
+
+
+function updatePage() {
+
+    if (!pageTitleElement || !pageSubtitleElement || !currentPageLiElement) {
+        throw new Error("The title, subtitle or li tag element couldn't be found!!");
+    };
+
+    pageTitleElement.textContent     = "Edit Product review";
+    pageSubtitleElement.textContent  = "Update product details";
+    document.title                   = "Edit Product review";
+    currentPageLiElement.textContent = "Edit product review";
+
+}
 
 
 clearBtnElement.addEventListener("click", () => {
@@ -263,6 +278,7 @@ function setReviewProductDescription(product, divDescription) {
 function setUp(form) {
     document.addEventListener("DOMContentLoaded", () => {
         updateReviewForm(form);
+        updatePage();
     })
 } 
 
