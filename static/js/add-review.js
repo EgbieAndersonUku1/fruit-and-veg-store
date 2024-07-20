@@ -23,8 +23,13 @@ const currentPageLiElement         = document.querySelector(".current-page");
 
 
 const itemReview = getItemFromLocalStorage(`productReview-${productInfo.id}`, true);
+
 // setup 
 setUp(createReviewForm);
+
+// Event listeners
+createReviewForm.addEventListener("submit", handleCreateReviewFormSubmit);
+clearBtnElement.addEventListener("click", handleResetRatings)
 
 
 
@@ -66,9 +71,7 @@ function getProductStarRating() {
 }
 
 
-
-
-createReviewForm.addEventListener("submit", (e) => {
+function handleCreateReviewFormSubmit(e) {
     e.preventDefault();
 
     const reviewReport = getProductStarRating();
@@ -114,9 +117,8 @@ createReviewForm.addEventListener("submit", (e) => {
         updatePage();
         
     }
+}
 
-
-})
 
 function handleMessageDisplay(msg, classColor="dark-red-bg", displayInMs=4000) {
    
@@ -165,7 +167,6 @@ function updatePage() {
         throw new Error("The title, subtitle or li tag element couldn't be found!!");
     };
 
-
     pageTitleElement.textContent     = "Edit Product review";
     pageSubtitleElement.textContent  = "Update product details";
     document.title                   = "Edit Product review";
@@ -174,12 +175,13 @@ function updatePage() {
 }
 
 
-clearBtnElement.addEventListener("click", () => {
-  const totalNumberOfStars = 5;
-  const renderEmptyStars   = true;
-  renderStar(totalNumberOfStars, renderEmptyStars);
-})
 
+
+function handleResetRatings() {
+    const totalNumberOfStars = 5;
+    const renderEmptyStars   = true;
+     renderStar(totalNumberOfStars, renderEmptyStars);
+}
 
 
 // handle all the form attributes
@@ -207,7 +209,6 @@ function handleReviewTitleField(titleSelectorID="#product-input-title", iconSele
 function handleReviewDescriptionTextArea(textAreaSelectorID = "#review-description-textArea", iconSelector = "#review-description-icon") {
     handleFormFieldElement(textAreaSelectorID, iconSelector);
 }
-
 
 
 function displayProductAttribute() {
