@@ -103,7 +103,7 @@ function handleInputEvent(e, elementIcon, element) {
  * }
  * 
  * .dark-green {
- *   color: var(--dark-green);
+ *   color: var(--dark-green); // This a specific color variable stored in root, however you can  just use the noun `green`;
  * }
  * 
  * Styling the `<textarea>` box and its elements is optional but must follow the above CSS for character count displays.
