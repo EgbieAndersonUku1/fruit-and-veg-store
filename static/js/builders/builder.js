@@ -1,4 +1,4 @@
-import preventNumberInputTyping from "./numberInputRestrictor.js";
+import preventNumberInputTyping from "../utils/numberInputRestrictor";
 
 const quickViewDiv        = document.querySelector("#quick-view");
 const quickViewContainer  = document.querySelector("#quick-view .container");

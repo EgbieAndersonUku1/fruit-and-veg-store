@@ -5,8 +5,8 @@ import { closeAddToCartMsg    as handleAddToCartCloseMsg,
          closeWishlistMessage as handleCloseWishlistMsg,
         } from "./messages.js";
 
-import CarouselSlider  from "./carouselSlider.js";
-import dealCountDown   from "./countdown.js";
+import CarouselSlider  from "../components/carouselSlider.js";
+import dealCountDown   from "../components/countdown.js";
 import {BakedItems, DrinksMenu, DairyProducts, 
        FeaturedItems,  GrainProducts, IceCreams, 
        NewItems, Sauces, Snacks} from "../../../data.js";

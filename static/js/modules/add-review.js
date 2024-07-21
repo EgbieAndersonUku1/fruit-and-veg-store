@@ -2,12 +2,14 @@
 
 
 import getItemByID from "../utils/itemUtils.js";
-import { getItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
 import renderStar from "./reviews.js";
+import { getItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
+
 
 import orders from "../../../order.js";
 
-import { handleFormFieldElement, minimumCharactersToUse} from "../handlers/handleTextCharInput.js";
+import { minimumCharactersToUse } from "../components/characterCounter.js";
+import { handleFormFieldElement } from "../handlers/handleTextCharInput.js";
 
 const REVIEW_DESCRIPTION_TEXT_AREA = "#review-description-textArea";
 const clearBtnElement              = document.getElementById("clear-btn");
