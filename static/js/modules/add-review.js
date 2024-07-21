@@ -1,13 +1,13 @@
 
 
 
-import getItemByID from "./itemUtils.js";
-import { getItemFromLocalStorage, saveToLocalStorage } from "./utils.js";
+import getItemByID from "../utils/itemUtils.js";
+import { getItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
 import renderStar from "./reviews.js";
 
-import orders from "../../order.js";
+import orders from "../../../order.js";
 
-import { handleFormFieldElement, minimumCharactersToUse} from "./handleTextCharInput.js";
+import { handleFormFieldElement, minimumCharactersToUse} from "../handlers/handleTextCharInput.js";
 
 const REVIEW_DESCRIPTION_TEXT_AREA = "#review-description-textArea";
 const clearBtnElement              = document.getElementById("clear-btn");

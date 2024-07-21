@@ -1,5 +1,5 @@
-import orders from "../../order.js";
-import { getItemFromLocalStorage,  saveToLocalStorage, redirectToNewPage } from "./utils.js";
+import orders from "../../../order.js";
+import { getItemFromLocalStorage,  saveToLocalStorage, redirectToNewPage } from "../utils/utils.js";
 
 
 const filledStarsSrc   = "../../../static/img/icons/star-filled.svg";

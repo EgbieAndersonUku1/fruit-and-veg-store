@@ -10,9 +10,9 @@ const pageRedirectLinkElement   = document.querySelector(".view-item__title .vie
 const returnMsgPElement         = document.querySelector(".view-item__return-msg");
 const viewItemImageElement      = document.querySelector(".view-item__img img");
 
-import { getItemFromLocalStorage } from "./utils.js";
-import getItemByID from "./itemUtils.js";
-import orders from "../../order.js";
+import { getItemFromLocalStorage } from "../utils/utils.js";
+import getItemByID from "../utils/itemUtils.js";
+import orders from "../../../order.js";
 
 
 function updateViewItemPage() {

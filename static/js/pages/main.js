@@ -9,7 +9,7 @@ import CarouselSlider  from "./carouselSlider.js";
 import dealCountDown   from "./countdown.js";
 import {BakedItems, DrinksMenu, DairyProducts, 
        FeaturedItems,  GrainProducts, IceCreams, 
-       NewItems, Sauces, Snacks} from "../../data.js";
+       NewItems, Sauces, Snacks} from "../../../data.js";
 
 
 

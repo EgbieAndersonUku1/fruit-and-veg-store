@@ -2,11 +2,11 @@ import { buildQuickView,
          centerSubscribeText, 
          closeItemQuickView, 
          displaySubscribedMessage, 
-         removeSubscriptionForm }  from "./builder.js";
+         removeSubscriptionForm }  from "../builder.js";
 
 import { displayWishListMessage as handleWishListOpenMsg, 
          displayAddToCartMessage 
-        }  from "./messages.js";
+        }  from "../messages.js";
 
 import { getItemFromLocalStorage as getJWtToken,
          saveToLocalStorage      as setJWtToken
@@ -15,7 +15,7 @@ import { getItemFromLocalStorage as getJWtToken,
 import { JWT }                from "./jwtToken.js";
 import getItemByID            from "./itemUtils.js";
 import handleImagesRotation   from './imageRotationHandler.js';
-import ItemCart               from "./cart.js";
+import ItemCart               from "../cart.js";
 
 
 const cart      = new ItemCart();
