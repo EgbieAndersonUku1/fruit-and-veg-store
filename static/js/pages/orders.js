@@ -1,4 +1,4 @@
-import { saveToLocalStorage, redirectToNewPage } from "./utils.js";
+import { saveToLocalStorage, redirectToNewPage } from "../utils/utils.js";
 
 const viewItemButtons = document.querySelectorAll(".order-information .info-btns .view-item-btn");
 const viewInvoiceBtns = document.querySelectorAll(".view-invoice-btn");

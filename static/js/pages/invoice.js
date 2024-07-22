@@ -1,6 +1,6 @@
-import getItemByID from "./itemUtils.js";
-import orders from "../../order.js";
-import { getItemFromLocalStorage, getFormattedCurrentDate } from "./utils.js";
+import getItemByID from "../utils/itemUtils.js";
+import orders from "../../../order.js";
+import { getItemFromLocalStorage, getFormattedCurrentDate } from "../utils/utils.js";
 
 const REQUIRED_ELEMENTS_COUNT = 3;
 

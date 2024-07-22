@@ -1,13 +1,15 @@
 
 
 
-import getItemByID from "./itemUtils.js";
-import { getItemFromLocalStorage, saveToLocalStorage } from "./utils.js";
+import getItemByID from "../utils/itemUtils.js";
 import renderStar from "./reviews.js";
+import { getItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
 
-import orders from "../../order.js";
 
-import { handleFormFieldElement, minimumCharactersToUse} from "./handleTextCharInput.js";
+import orders from "../../../order.js";
+
+import { minimumCharactersToUse } from "../components/characterCounter.js";
+import { handleFormFieldElement } from "../handlers/handleTextCharInput.js";
 
 const REVIEW_DESCRIPTION_TEXT_AREA = "#review-description-textArea";
 const clearBtnElement              = document.getElementById("clear-btn");
@@ -149,7 +151,7 @@ function updateReviewForm(form) {
         formTitleElement.value = itemReview.title;
         formReviewElement.value = itemReview.description;
 
-        formButton.textContent = "Edit Review";
+        formButton.textContent = "Save Review";
         renderStar(itemReview.ratings);
         // formButton.classList.add("dark-green-bg");
     } else {

@@ -1,5 +1,5 @@
-import orders from "../../order.js";
-import { getItemFromLocalStorage,  saveToLocalStorage, redirectToNewPage } from "./utils.js";
+import orders from "../../../order.js";
+import { getItemFromLocalStorage,  saveToLocalStorage, redirectToNewPage } from "../utils/utils.js";
 
 
 const filledStarsSrc   = "../../../static/img/icons/star-filled.svg";
@@ -228,7 +228,6 @@ function createTableImage(order, className="table-img") {
 function handleLinkClick(e) {
     const productID = e.currentTarget.dataset.productID;
 
-    console.log(productID);
     if (productID) {
         saveToLocalStorage("productTableLink", {id: parseInt(productID)}, true);
     }

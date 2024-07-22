@@ -1,12 +1,8 @@
-import preventNumberInputTyping from "./numberInputRestrictor.js";
+import preventNumberInputTyping from "../utils/numberInputRestrictor.js";
 
-const quickViewDiv        = document.querySelector("#quick-view");
+
 const quickViewContainer  = document.querySelector("#quick-view .container");
-const subscribeFormDiv    = document.querySelector(".subscribe__form");
-const subscribeInfo       = document.querySelector(".subscribe__information");
-const h2Element           = subscribeInfo.querySelector("h2");
-const pElement            = subscribeInfo.querySelector("p");
-const subscribeContainer  = document.querySelector(".subscribe .container");
+const quickViewDiv        = document.querySelector("#quick-view");
 
 
 function buildQuickView(item, id=null, maxQuantity=400) {
@@ -24,13 +20,6 @@ function buildQuickView(item, id=null, maxQuantity=400) {
     quickViewContainer.appendChild(itemBodyInfoDiv);
    
 }
-
-
-function closeItemQuickView() {
-    quickViewDiv.style.display = "none";
-}
-
-
 
 
 function buildItemImageDiv(item) {
@@ -72,27 +61,10 @@ function buildItemImageDiv(item) {
 }
 
 
-function buildCloseIcon(){
-
-    const img     = document.createElement("img");
-    const mainDiv = document.createElement("div");
-    mainDiv.id    = "close-icon";
-
-    img.src        = "static/img/icons/window-close.svg";  // shows
-
-    img.alt        = "Window close icon";
-    img.className  = "close-icon";
-
-    img.addEventListener("click", handleCloseIconClick);
-
-    mainDiv.appendChild(img);
-    return mainDiv;
-}
-
-
 function buildItemInfo(item, id, maxQuantity) {
-    const mainDiv       = document.createElement("div");
-    mainDiv.className   = "quick-view__image-info";
+
+    const mainDiv        = document.createElement("div");
+    mainDiv.className    = "quick-view__image-info";
 
     const titleDiv       = buildItemHeader(item);
     const colorDiv       = buildItemChoiceDiv(item.color, "Color");
@@ -114,6 +86,8 @@ function buildItemInfo(item, id, maxQuantity) {
     return mainDiv;
     
 }
+
+
 
 function buildItemHeader(item) {
 
@@ -165,8 +139,6 @@ function buildItemHeader(item) {
 
     return mainDiv;
 }
-
-
 
 
 function buildItemChoiceDiv(attributesArray, title) {
@@ -227,6 +199,7 @@ function buildIsItemInStockDiv(item) {
     return buildStockHelper(item);
 }
 
+
 function buildStockRemainingDiv(item) {
     return buildStockHelper(item, false);
 }
@@ -255,76 +228,29 @@ function buildStockHelper(item, showStockStatus = true) {
 }
 
 
-function buildAddToCartDiv(item, id, maxQuantity) {
-    if (!item || typeof item.id === 'undefined' || typeof item.name === 'undefined' || typeof item.price === 'undefined') {
-        console.error('Invalid item provided');
-        return null;
-    }
+function buildCloseIcon(){
 
+    const img     = document.createElement("img");
     const mainDiv = document.createElement("div");
-    const inputElement = document.createElement("input");
-    const inputFieldHidden = document.createElement("input");
-    const buttonElement = document.createElement("button");
-    const clearCartButton = document.createElement("button");
-    let  itemInCart;
-   
+    mainDiv.id    = "close-icon";
 
-    mainDiv.classList.add("quantity", "add-to-cart");
+    img.src        = "static/img/icons/window-close.svg";  // shows
 
-    inputFieldHidden.type = "hidden";
-    inputFieldHidden.id = "hidden";
-    inputFieldHidden.dataset.id = item.id;
-    inputFieldHidden.dataset.title = item.name;
-    inputFieldHidden.dataset.price = item.price;
-    inputFieldHidden.dataset.stock = item.remaining;
-  
-    inputElement.name = "quantity";
-    inputElement.type = "number";
-    inputElement.id = "quantity";
-    inputElement.min = "1";
-    inputElement.max = maxQuantity.toString(); 
-    inputElement.step = "1";
-    
-    
-    if (id === null) {
-        inputElement.value = "1";
-    } else if (parseInt(item.id, 10) === parseInt(id, 10)) {
-        inputElement.value = item.quantity || "1"; 
-    } 
-    
-    if (id && item.quantity) {
-       
-        clearCartButton.classList.add("button-md",  "clear-cart-btn");
-        clearCartButton.textContent = `Clear Cart (${item.quantity > 1 ? `${item.quantity} items` : `${item.quantity} item`})`;
+    img.alt        = "Window close icon";
+    img.className  = "close-icon";
 
-        itemInCart = true;
+    img.addEventListener("click", handleCloseIconClick);
 
-    }
-
-    inputElement.addEventListener("keydown", preventNumberInputTyping);
-
-    buttonElement.className = "button-lg add-to-cart-btn";
-    buttonElement.textContent = "Add to cart";
-
-    mainDiv.appendChild(inputFieldHidden);
-    mainDiv.appendChild(inputElement);
-    mainDiv.appendChild(buttonElement);
-
-    if (itemInCart) {
-        mainDiv.appendChild(clearCartButton)
-    }
-
-    
-
+    mainDiv.appendChild(img);
     return mainDiv;
 }
 
 
 function buildCheckOut() {
 
-    const mainDiv          = document.createElement("div");
+    const mainDiv             = document.createElement("div");
     const continueShoppingBtn = document.createElement("button");
-    const checkoutBtn  = document.createElement("button");
+    const checkoutBtn         = document.createElement("button");
 
     mainDiv.classList.add("checkout", "flex-row");
 
@@ -339,6 +265,7 @@ function buildCheckOut() {
     return mainDiv
 
 }
+
 
 function handleButtonClick(e) {
 
@@ -378,47 +305,76 @@ function removeExistingActiveClass(e) {
 }
 
 
-function removeSubscriptionForm() {
-    if (!(subscribeFormDiv instanceof HTMLElement)) {
-        throw new Error("The element is not an HTML element");
-    }
-    subscribeFormDiv.style.display = "none";
+function closeItemQuickView() {
+    quickViewDiv.style.display = "none";
 }
 
 
-function displaySubscribedMessage() {
 
-    if (!(subscribeInfo instanceof HTMLElement)) {
-        throw new Error("The element is not an HTML element");
+function buildAddToCartDiv(item, id, maxQuantity) {
+    if (!item || typeof item.id === 'undefined' || typeof item.name === 'undefined' || typeof item.price === 'undefined') {
+        console.error('Invalid item provided');
+        return null;
     }
+
+    const mainDiv          = document.createElement("div");
+    const inputElement     = document.createElement("input");
+    const inputFieldHidden = document.createElement("input");
+    const buttonElement    = document.createElement("button");
+    const clearCartButton  = document.createElement("button");
+
+    let  itemInCart;
+   
+
+    mainDiv.classList.add("quantity", "add-to-cart");
+
+    inputFieldHidden.type           = "hidden";
+    inputFieldHidden.id             = "hidden";
+    inputFieldHidden.dataset.id     = item.id;
+    inputFieldHidden.dataset.title  = item.name;
+    inputFieldHidden.dataset.price  = item.price;
+    inputFieldHidden.dataset.stock  = item.remaining;
+  
+    inputElement.name  = "quantity";
+    inputElement.type  = "number";
+    inputElement.id    = "quantity";
+    inputElement.min   = "1";
+    inputElement.max   = maxQuantity.toString(); 
+    inputElement.step  = "1";
     
-    if (!(h2Element instanceof HTMLElement) || !(pElement instanceof HTMLElement)) {
-        throw new Error("One or more of the elements is not an HTML element");
-    }
     
-    h2Element.textContent = "You're All Set!";
-    pElement.textContent = "Thank you for subscribing! You've successfully joined our newsletter and received your 30% off. Stay tuned for the latest updates on events, sales, special offers, and promotions!";
-}
+    if (id === null) {
+        inputElement.value = "1";
+    } else if (parseInt(item.id, 10) === parseInt(id, 10)) {
+        inputElement.value = item.quantity || "1"; 
+    }     
+    
+    if (id && item.quantity) {
+       
+        clearCartButton.classList.add("button-md",  "clear-cart-btn");
+        clearCartButton.textContent = `Clear Cart (${item.quantity > 1 ? `${item.quantity} items` : `${item.quantity} item`})`;
 
+        itemInCart = true;
 
-function centerSubscribeText() {
-    if (!(subscribeContainer instanceof HTMLElement) ) {
-        throw new Error("The element is not an HTML element");
     }
 
-    subscribeContainer.style.display             = "grid";
-    subscribeContainer.style.gridTemplateColumns = 'repeat(1, 1fr)';
-    subscribeContainer.style.justifyItems        = 'center';
-    subscribeContainer.style.alignItems          = 'center';
-    subscribeContainer.style.textAlign           = 'center';
+    inputElement.addEventListener("keydown", preventNumberInputTyping);
 
+    buttonElement.className   = "button-lg add-to-cart-btn";
+    buttonElement.textContent = "Add to cart";
+
+    mainDiv.appendChild(inputFieldHidden);
+    mainDiv.appendChild(inputElement);
+    mainDiv.appendChild(buttonElement);
+
+    if (itemInCart) {
+        mainDiv.appendChild(clearCartButton)
+    }
+
+    return mainDiv;
 }
-
 
 export {
     buildQuickView,
-    centerSubscribeText,
-    closeItemQuickView,
-    displaySubscribedMessage,
-    removeSubscriptionForm
-} 
+    closeItemQuickView
+}
