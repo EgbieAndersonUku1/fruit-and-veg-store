@@ -2,8 +2,11 @@
 
 
 import getItemByID from "../utils/itemUtils.js";
-import renderStar from "./reviews.js";
-import { getItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
+import renderStar  from "./reviews.js";
+import { getItemFromLocalStorage, 
+        saveToLocalStorage, 
+        getFormattedCurrentDate 
+     } from "../utils/utils.js";
 
 
 import orders from "../../../order.js";
@@ -110,10 +113,12 @@ function handleCreateReviewFormSubmit(e) {
             title: title,
             description: review,
             isReviewed: reviewReport.isRated,
-            reviewID: reviewReport.id
+            reviewID: reviewReport.id,
+            reviewDate: getFormattedCurrentDate(),
         }
 
-        saveToLocalStorage(`productReview-${productInfo.id}`, productReview, true);
+        saveReview(productReview);
+        
         handleMessageDisplay(msg, "dark-green-bg");
         updateReviewForm(createReviewForm);
         updatePage();
@@ -121,6 +126,20 @@ function handleCreateReviewFormSubmit(e) {
     }
 }
 
+function saveReview(review) {
+
+    const productReviews = getItemFromLocalStorage("productReviews", true);
+    if (!productReviews) {
+        const reviews = [];
+        reviews.push(review);
+        saveToLocalStorage("productReviews", reviews, true);
+
+    } else {
+        productReviews.push(review);
+        saveToLocalStorage("productReviews", review, true)
+    }
+       
+}
 
 function handleMessageDisplay(msg, classColor="dark-red-bg", displayInMs=4000) {
    

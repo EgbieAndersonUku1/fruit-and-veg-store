@@ -125,6 +125,26 @@ textarea:hover {
     background: ghostwhite;
 }
 
+
+select {
+    width: 25%;
+    height: 30px;
+    margin-bottom: 12px;
+    border: 1px solid #479947;
+    background: ghostwhite;
+    font-family: "Poppins", sans-serif;
+    font-size: var(--font-size-normal);
+    text-align: center;
+  }
+
+select option {
+    font-family: "Poppins", sans-serif;
+    text-transform: capitalize;
+    font-size: var(--font-size-normal);
+}
+
+
+
 /* header elements */
 h1,
 h2,
