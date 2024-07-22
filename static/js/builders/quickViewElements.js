@@ -310,57 +310,30 @@ function closeItemQuickView() {
 }
 
 
-
 function buildAddToCartDiv(item, id, maxQuantity) {
+
     if (!item || typeof item.id === 'undefined' || typeof item.name === 'undefined' || typeof item.price === 'undefined') {
         console.error('Invalid item provided');
         return null;
     }
 
     const mainDiv          = document.createElement("div");
-    const inputElement     = document.createElement("input");
-    const inputFieldHidden = document.createElement("input");
+    const inputElement     = createQuantityInputField(item, id, maxQuantity);
+    const inputFieldHidden = createHiddenInputField(item);
     const buttonElement    = document.createElement("button");
     const clearCartButton  = document.createElement("button");
 
-    let  itemInCart;
-   
+    let itemInCart;
 
     mainDiv.classList.add("quantity", "add-to-cart");
 
-    inputFieldHidden.type           = "hidden";
-    inputFieldHidden.id             = "hidden";
-    inputFieldHidden.dataset.id     = item.id;
-    inputFieldHidden.dataset.title  = item.name;
-    inputFieldHidden.dataset.price  = item.price;
-    inputFieldHidden.dataset.stock  = item.remaining;
-  
-    inputElement.name  = "quantity";
-    inputElement.type  = "number";
-    inputElement.id    = "quantity";
-    inputElement.min   = "1";
-    inputElement.max   = maxQuantity.toString(); 
-    inputElement.step  = "1";
-    
-    
-    if (id === null) {
-        inputElement.value = "1";
-    } else if (parseInt(item.id, 10) === parseInt(id, 10)) {
-        inputElement.value = item.quantity || "1"; 
-    }     
-    
     if (id && item.quantity) {
-       
-        clearCartButton.classList.add("button-md",  "clear-cart-btn");
+        clearCartButton.classList.add("button-md", "clear-cart-btn");
         clearCartButton.textContent = `Clear Cart (${item.quantity > 1 ? `${item.quantity} items` : `${item.quantity} item`})`;
-
         itemInCart = true;
-
     }
 
-    inputElement.addEventListener("keydown", preventNumberInputTyping);
-
-    buttonElement.className   = "button-lg add-to-cart-btn";
+    buttonElement.className = "button-lg add-to-cart-btn";
     buttonElement.textContent = "Add to cart";
 
     mainDiv.appendChild(inputFieldHidden);
@@ -368,11 +341,44 @@ function buildAddToCartDiv(item, id, maxQuantity) {
     mainDiv.appendChild(buttonElement);
 
     if (itemInCart) {
-        mainDiv.appendChild(clearCartButton)
+        mainDiv.appendChild(clearCartButton);
     }
 
     return mainDiv;
 }
+
+function createHiddenInputField(item) {
+
+    const inputFieldHidden          = document.createElement("input");
+    inputFieldHidden.type           = "hidden";
+    inputFieldHidden.id             = "hidden";
+    inputFieldHidden.dataset.id     = item.id;
+    inputFieldHidden.dataset.title  = item.name;
+    inputFieldHidden.dataset.price  = item.price;
+    inputFieldHidden.dataset.stock  = item.remaining;
+    return inputFieldHidden;
+}
+
+function createQuantityInputField(item, id, maxQuantity, min="1", step="1") {
+    
+    const inputElement = document.createElement("input");
+    inputElement.name  = "quantity";
+    inputElement.type  = "number";
+    inputElement.id    = "quantity";
+    inputElement.min   = min;
+    inputElement.max   = maxQuantity.toString();
+    inputElement.step  = step;
+
+    if (id === null) {
+        inputElement.value = min;
+    } else if (parseInt(item.id, 10) === parseInt(id, 10)) {
+        inputElement.value = item.quantity || "1";
+    }
+
+    inputElement.addEventListener("keydown", preventNumberInputTyping);
+    return inputElement;
+}
+
 
 export {
     buildQuickView,

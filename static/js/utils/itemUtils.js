@@ -10,9 +10,10 @@ function getItemByID(id, itemsList) {
     if (!Array.isArray(itemsList)) {
         throw new Error("The items list must be an array");
     }
-
     return itemsList.find((item) => item.id === parseInt(id));
 }
+
+
 
 function getItemIndexAndValueByID(id, itemsList) {
     if (!Array.isArray(itemsList)) {
