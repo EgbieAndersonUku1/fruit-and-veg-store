@@ -1,12 +1,12 @@
-import { addCardEventListeners, addImageRotationListeners, 
-        handleSubscribeForm, setupEventListeners} from "./eventHandlers.js";
-        
-import { closeAddToCartMsg    as handleAddToCartCloseMsg, 
-         closeWishlistMessage as handleCloseWishlistMsg,
-        } from "./messages.js";
 
-import CarouselSlider  from "../components/carouselSlider.js";
-import dealCountDown   from "../components/countdown.js";
+import { addCardEventListeners, addImageRotationListeners } from "../handlers/itemCardInteractions.js";
+import { handleSubscribeForm, setupEventListeners } from "../handlers/subscribeFormHandler.js";
+
+
+import { closeAddToCartMsg as handleAddToCartCloseMsg, closeWishlistMessage as handleCloseWishlistMsg} from "../messages/messages.js";
+import CarouselSlider from "../components/carouselSlider.js";
+import dealCountDown from "../components/countdown.js";
+
 import {BakedItems, DrinksMenu, DairyProducts, 
        FeaturedItems,  GrainProducts, IceCreams, 
        NewItems, Sauces, Snacks} from "../../../data.js";

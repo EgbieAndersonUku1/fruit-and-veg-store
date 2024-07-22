@@ -228,7 +228,6 @@ function createTableImage(order, className="table-img") {
 function handleLinkClick(e) {
     const productID = e.currentTarget.dataset.productID;
 
-    console.log(productID);
     if (productID) {
         saveToLocalStorage("productTableLink", {id: parseInt(productID)}, true);
     }

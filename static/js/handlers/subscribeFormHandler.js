@@ -1,7 +1,7 @@
 import { 
     centerSubscribeText, 
     displaySubscribedMessage, 
-    removeSubscriptionForm }  from "../builders/builder.js";
+    removeSubscriptionForm }  from "../builders/subscribeElements.js";
 
 import { JWT } from "../services/jwtToken.js";
 

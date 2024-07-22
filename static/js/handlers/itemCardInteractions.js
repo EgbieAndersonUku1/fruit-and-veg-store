@@ -1,11 +1,7 @@
-import { buildQuickView, 
-         closeItemQuickView, 
-        }  from "../builders/builder.js";
-
+import { buildQuickView, closeItemQuickView } from "../builders/quickViewElements.js";
 import { displayWishListMessage as handleWishListOpenMsg, 
          displayAddToCartMessage 
         }  from "../messages/messages.js";
-
 
 
 import getItemByID            from "../utils/itemUtils.js";

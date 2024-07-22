@@ -151,7 +151,7 @@ function updateReviewForm(form) {
         formTitleElement.value = itemReview.title;
         formReviewElement.value = itemReview.description;
 
-        formButton.textContent = "Edit Review";
+        formButton.textContent = "Save Review";
         renderStar(itemReview.ratings);
         // formButton.classList.add("dark-green-bg");
     } else {
