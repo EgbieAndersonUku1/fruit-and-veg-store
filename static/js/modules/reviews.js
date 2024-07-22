@@ -190,9 +190,8 @@ function buildTableBody() {
 
 function getReviewStatus(tableRowToUpdate, product) {
     const item = getItemFromLocalStorage(`productReview-${product.id}`, true);
-    console.log(item)
+ 
     if (item === null) {
-         
         tableRowToUpdate.textContent = "Not reviewed"; 
     } else {
         tableRowToUpdate.textContent = item.isReviewed ? "Pending review": "Not reviewed"; 
