@@ -143,7 +143,7 @@ function buildItemHeader(item) {
 
 function buildItemChoiceDiv(attributesArray, title) {
 
-    if (!attributesArray && !Array.isArray(attributesArray)) {
+    if (!attributesArray || !Array.isArray(attributesArray)) {
         throw new Error("Something went wrong, check the attributesArray");
     }
 
@@ -151,48 +151,54 @@ function buildItemChoiceDiv(attributesArray, title) {
         throw new Error("The title attribute can't be empty!!!");
     }
 
-    const mainDiv        = document.createElement("div");
-    mainDiv.className    = "item-choice";
+    const mainDiv      = document.createElement("div");
+    mainDiv.className  = "item-choice";
 
-    const titleDiv       = document.createElement("div");
-    titleDiv.className   = "item-title";
+    const titleDiv     = document.createElement("div");
+    titleDiv.className = "item-title";
 
-    const pTag           = document.createElement("p");
-    const pSpan          = document.createElement("span");
-    pSpan.className      = "item-size-title";
-    pSpan.textContent    = "Color"; 
-    
+    const pTag         = document.createElement("p");
+    const pSpan        = document.createElement("span");
+    pSpan.className    = "item-size-title";
+    pSpan.textContent  = "Color";
+
     pTag.classList.add("light-bold", title);
     pTag.appendChild(document.createTextNode(`${title.toUpperCase()} : `));
-    
+
     titleDiv.appendChild(pTag);
 
     // the buttons div
-    const buttonDiv     = document.createElement("div");
-    buttonDiv.className = "quick-view__choice";
-    const fragment      = document.createDocumentFragment();
+    const buttonDiv      = document.createElement("div");
+    buttonDiv.className  = "quick-view__choice";
 
-
-    for (let attribute of attributesArray) {
-
-        const button = document.createElement("button");
-        button.classList.add("link-btn", "text-upper", "quick-view__button-display");
-
-        button.dataset.key   = title;
-        button.dataset.value = attribute;  
-        button.textContent   = attribute;
-
-        button.addEventListener("click", handleButtonClick)
-        fragment.appendChild(button);
-    }
-
-    buttonDiv.appendChild(fragment);
+    const buttonsFragment = createButtons(attributesArray, title);
+    buttonDiv.appendChild(buttonsFragment);
 
     mainDiv.appendChild(titleDiv);
     mainDiv.appendChild(buttonDiv);
 
-    return mainDiv 
+    return mainDiv;
 }
+
+
+function createButtons(attributesArray, title) {
+    const fragment = document.createDocumentFragment();
+
+    for (let attribute of attributesArray) {
+        const button = document.createElement("button");
+        button.classList.add("link-btn", "text-upper", "quick-view__button-display");
+
+        button.dataset.key = title;
+        button.dataset.value = attribute;
+        button.textContent = attribute;
+
+        button.addEventListener("click", handleButtonClick);
+        fragment.appendChild(button);
+    }
+
+    return fragment;
+}
+
 
 
 function buildIsItemInStockDiv(item) {
@@ -360,7 +366,7 @@ function createHiddenInputField(item) {
 }
 
 function createQuantityInputField(item, id, maxQuantity, min="1", step="1") {
-    
+
     const inputElement = document.createElement("input");
     inputElement.name  = "quantity";
     inputElement.type  = "number";
