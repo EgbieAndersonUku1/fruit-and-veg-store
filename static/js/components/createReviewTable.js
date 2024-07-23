@@ -4,13 +4,20 @@ import { getItemFromLocalStorage,  saveToLocalStorage, redirectToNewPage } from 
 function createProductTable(orders) {
 
     const productReviewTable = document.getElementById("products-review-table");
-    const tableHeading = createTableHeading();
-    const tableBody = buildTableBody(orders);
 
     if (productReviewTable) {
-        productReviewTable.appendChild(tableHeading);
-        productReviewTable.appendChild(tableBody);
+        productReviewTable.innerHTML = "";
+    
+        const tableHeading = createTableHeading();
+        const tableBody = buildTableBody(orders);
+
+        if (productReviewTable) {
+            productReviewTable.appendChild(tableHeading);
+            productReviewTable.appendChild(tableBody);
+        }
     }
+
+   
 
 }
 
