@@ -5,6 +5,9 @@ const quickViewContainer  = document.querySelector("#quick-view .container");
 const quickViewDiv        = document.querySelector("#quick-view");
 
 
+
+
+
 function buildQuickView(item, id=null, maxQuantity=400) {
     if (!item) {
         throw new Error("Can't find the item");
@@ -23,24 +26,30 @@ function buildQuickView(item, id=null, maxQuantity=400) {
 
 
 function buildItemImageDiv(item) {
-
     if (!item || !item.images.detail) {
         throw new Error("The item or the item.detail couldn't be found!!");
     }
 
-    const mainDiv        =  document.createElement("div");
+    const mainDiv        = document.createElement("div");
     mainDiv.className    = "quick-view__img";
 
-    const mainImgDiv     =  document.createElement("div");
-    mainImgDiv.className = "quick-view__main-img";
+    const imagesFragment = createImageElements(item.images.detail);
+    mainDiv.appendChild(imagesFragment);
+    return mainDiv;
+}
 
+
+function createImageElements(images) {
+
+    const fragment       = document.createDocumentFragment();
+    const mainImgDiv     = document.createElement("div");
     const sideImgDiv     = document.createElement("div");
+
+    mainImgDiv.className = "quick-view__main-img";
     sideImgDiv.className = "quick-view__side-img";
 
-    // Create the image div
-    for (let image of item.images.detail) {
-
-        const img   = document.createElement("img");
+    for (let image of images) {
+        const img   =  document.createElement("img");
         img.src     = image.imgSrc;
         img.alt     = image.alt;
         img.loading = "lazy";
@@ -54,10 +63,9 @@ function buildItemImageDiv(item) {
         }
     }
 
-    mainDiv.appendChild(mainImgDiv);
-    mainDiv.appendChild(sideImgDiv);
-    return mainDiv;
-    
+    fragment.appendChild(mainImgDiv);
+    fragment.appendChild(sideImgDiv);
+    return fragment;
 }
 
 
