@@ -52,7 +52,7 @@ function getCurrentDay() {
     return new Date().getDate();
   }
   
-  function getFormattedCurrentDate() {
+function getFormattedCurrentDate() {
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth() + 1; // months are 0-based
