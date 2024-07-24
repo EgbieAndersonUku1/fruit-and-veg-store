@@ -1,4 +1,4 @@
-import getItemByID from "../utils/itemUtils.js";
+import {getItemByID} from "../utils/itemUtils.js";
 import orders from "../../../order.js";
 import { getItemFromLocalStorage, getFormattedCurrentDate } from "../utils/utils.js";
 

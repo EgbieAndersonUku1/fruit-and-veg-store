@@ -1,3 +1,4 @@
+
 /**
  * Finds an item in the items list by its ID.
  * 
@@ -10,9 +11,34 @@ function getItemByID(id, itemsList) {
     if (!Array.isArray(itemsList)) {
         throw new Error("The items list must be an array");
     }
-
     return itemsList.find((item) => item.id === parseInt(id));
 }
 
 
-export default getItemByID
+
+function getItemIndexAndValueByID(id, itemsList) {
+    if (!Array.isArray(itemsList)) {
+        throw new Error("The items list must be an array.");
+    }
+
+    const parsedId = parseInt(id);
+    if (isNaN(parsedId)) {
+        throw new Error("The id must be a valid number.");
+    }
+
+    for (let [index, item] of itemsList.entries()) {
+        if (item.id === parsedId) {
+            return [index, item];
+        }
+    }
+    return [null, null];
+}
+
+
+
+
+
+export {
+    getItemByID,
+    getItemIndexAndValueByID,
+}

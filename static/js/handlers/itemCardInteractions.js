@@ -4,7 +4,7 @@ import { displayWishListMessage as handleWishListOpenMsg,
         }  from "../messages/messages.js";
 
 
-import getItemByID            from "../utils/itemUtils.js";
+import {getItemByID}          from "../utils/itemUtils.js";
 import handleImagesRotation   from './imageRotationHandler.js';
 import ItemCart               from "../modules/cart.js";
 

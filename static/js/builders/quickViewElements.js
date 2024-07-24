@@ -5,6 +5,9 @@ const quickViewContainer  = document.querySelector("#quick-view .container");
 const quickViewDiv        = document.querySelector("#quick-view");
 
 
+
+
+
 function buildQuickView(item, id=null, maxQuantity=400) {
     if (!item) {
         throw new Error("Can't find the item");
@@ -23,24 +26,30 @@ function buildQuickView(item, id=null, maxQuantity=400) {
 
 
 function buildItemImageDiv(item) {
-
     if (!item || !item.images.detail) {
         throw new Error("The item or the item.detail couldn't be found!!");
     }
 
-    const mainDiv        =  document.createElement("div");
+    const mainDiv        = document.createElement("div");
     mainDiv.className    = "quick-view__img";
 
-    const mainImgDiv     =  document.createElement("div");
-    mainImgDiv.className = "quick-view__main-img";
+    const imagesFragment = createImageElements(item.images.detail);
+    mainDiv.appendChild(imagesFragment);
+    return mainDiv;
+}
 
+
+function createImageElements(images) {
+
+    const fragment       = document.createDocumentFragment();
+    const mainImgDiv     = document.createElement("div");
     const sideImgDiv     = document.createElement("div");
+
+    mainImgDiv.className = "quick-view__main-img";
     sideImgDiv.className = "quick-view__side-img";
 
-    // Create the image div
-    for (let image of item.images.detail) {
-
-        const img   = document.createElement("img");
+    for (let image of images) {
+        const img   =  document.createElement("img");
         img.src     = image.imgSrc;
         img.alt     = image.alt;
         img.loading = "lazy";
@@ -54,10 +63,9 @@ function buildItemImageDiv(item) {
         }
     }
 
-    mainDiv.appendChild(mainImgDiv);
-    mainDiv.appendChild(sideImgDiv);
-    return mainDiv;
-    
+    fragment.appendChild(mainImgDiv);
+    fragment.appendChild(sideImgDiv);
+    return fragment;
 }
 
 
@@ -143,7 +151,7 @@ function buildItemHeader(item) {
 
 function buildItemChoiceDiv(attributesArray, title) {
 
-    if (!attributesArray && !Array.isArray(attributesArray)) {
+    if (!attributesArray || !Array.isArray(attributesArray)) {
         throw new Error("Something went wrong, check the attributesArray");
     }
 
@@ -151,48 +159,54 @@ function buildItemChoiceDiv(attributesArray, title) {
         throw new Error("The title attribute can't be empty!!!");
     }
 
-    const mainDiv        = document.createElement("div");
-    mainDiv.className    = "item-choice";
+    const mainDiv      = document.createElement("div");
+    mainDiv.className  = "item-choice";
 
-    const titleDiv       = document.createElement("div");
-    titleDiv.className   = "item-title";
+    const titleDiv     = document.createElement("div");
+    titleDiv.className = "item-title";
 
-    const pTag           = document.createElement("p");
-    const pSpan          = document.createElement("span");
-    pSpan.className      = "item-size-title";
-    pSpan.textContent    = "Color"; 
-    
+    const pTag         = document.createElement("p");
+    const pSpan        = document.createElement("span");
+    pSpan.className    = "item-size-title";
+    pSpan.textContent  = "Color";
+
     pTag.classList.add("light-bold", title);
     pTag.appendChild(document.createTextNode(`${title.toUpperCase()} : `));
-    
+
     titleDiv.appendChild(pTag);
 
     // the buttons div
-    const buttonDiv     = document.createElement("div");
-    buttonDiv.className = "quick-view__choice";
-    const fragment      = document.createDocumentFragment();
+    const buttonDiv      = document.createElement("div");
+    buttonDiv.className  = "quick-view__choice";
 
-
-    for (let attribute of attributesArray) {
-
-        const button = document.createElement("button");
-        button.classList.add("link-btn", "text-upper", "quick-view__button-display");
-
-        button.dataset.key   = title;
-        button.dataset.value = attribute;  
-        button.textContent   = attribute;
-
-        button.addEventListener("click", handleButtonClick)
-        fragment.appendChild(button);
-    }
-
-    buttonDiv.appendChild(fragment);
+    const buttonsFragment = createButtons(attributesArray, title);
+    buttonDiv.appendChild(buttonsFragment);
 
     mainDiv.appendChild(titleDiv);
     mainDiv.appendChild(buttonDiv);
 
-    return mainDiv 
+    return mainDiv;
 }
+
+
+function createButtons(attributesArray, title) {
+    const fragment = document.createDocumentFragment();
+
+    for (let attribute of attributesArray) {
+        const button = document.createElement("button");
+        button.classList.add("link-btn", "text-upper", "quick-view__button-display");
+
+        button.dataset.key = title;
+        button.dataset.value = attribute;
+        button.textContent = attribute;
+
+        button.addEventListener("click", handleButtonClick);
+        fragment.appendChild(button);
+    }
+
+    return fragment;
+}
+
 
 
 function buildIsItemInStockDiv(item) {
@@ -310,57 +324,30 @@ function closeItemQuickView() {
 }
 
 
-
 function buildAddToCartDiv(item, id, maxQuantity) {
+
     if (!item || typeof item.id === 'undefined' || typeof item.name === 'undefined' || typeof item.price === 'undefined') {
         console.error('Invalid item provided');
         return null;
     }
 
     const mainDiv          = document.createElement("div");
-    const inputElement     = document.createElement("input");
-    const inputFieldHidden = document.createElement("input");
+    const inputElement     = createQuantityInputField(item, id, maxQuantity);
+    const inputFieldHidden = createHiddenInputField(item);
     const buttonElement    = document.createElement("button");
     const clearCartButton  = document.createElement("button");
 
-    let  itemInCart;
-   
+    let itemInCart;
 
     mainDiv.classList.add("quantity", "add-to-cart");
 
-    inputFieldHidden.type           = "hidden";
-    inputFieldHidden.id             = "hidden";
-    inputFieldHidden.dataset.id     = item.id;
-    inputFieldHidden.dataset.title  = item.name;
-    inputFieldHidden.dataset.price  = item.price;
-    inputFieldHidden.dataset.stock  = item.remaining;
-  
-    inputElement.name  = "quantity";
-    inputElement.type  = "number";
-    inputElement.id    = "quantity";
-    inputElement.min   = "1";
-    inputElement.max   = maxQuantity.toString(); 
-    inputElement.step  = "1";
-    
-    
-    if (id === null) {
-        inputElement.value = "1";
-    } else if (parseInt(item.id, 10) === parseInt(id, 10)) {
-        inputElement.value = item.quantity || "1"; 
-    }     
-    
     if (id && item.quantity) {
-       
-        clearCartButton.classList.add("button-md",  "clear-cart-btn");
+        clearCartButton.classList.add("button-md", "clear-cart-btn");
         clearCartButton.textContent = `Clear Cart (${item.quantity > 1 ? `${item.quantity} items` : `${item.quantity} item`})`;
-
         itemInCart = true;
-
     }
 
-    inputElement.addEventListener("keydown", preventNumberInputTyping);
-
-    buttonElement.className   = "button-lg add-to-cart-btn";
+    buttonElement.className = "button-lg add-to-cart-btn";
     buttonElement.textContent = "Add to cart";
 
     mainDiv.appendChild(inputFieldHidden);
@@ -368,11 +355,44 @@ function buildAddToCartDiv(item, id, maxQuantity) {
     mainDiv.appendChild(buttonElement);
 
     if (itemInCart) {
-        mainDiv.appendChild(clearCartButton)
+        mainDiv.appendChild(clearCartButton);
     }
 
     return mainDiv;
 }
+
+function createHiddenInputField(item) {
+
+    const inputFieldHidden          = document.createElement("input");
+    inputFieldHidden.type           = "hidden";
+    inputFieldHidden.id             = "hidden";
+    inputFieldHidden.dataset.id     = item.id;
+    inputFieldHidden.dataset.title  = item.name;
+    inputFieldHidden.dataset.price  = item.price;
+    inputFieldHidden.dataset.stock  = item.remaining;
+    return inputFieldHidden;
+}
+
+function createQuantityInputField(item, id, maxQuantity, min="1", step="1") {
+
+    const inputElement = document.createElement("input");
+    inputElement.name  = "quantity";
+    inputElement.type  = "number";
+    inputElement.id    = "quantity";
+    inputElement.min   = min;
+    inputElement.max   = maxQuantity.toString();
+    inputElement.step  = step;
+
+    if (id === null) {
+        inputElement.value = min;
+    } else if (parseInt(item.id, 10) === parseInt(id, 10)) {
+        inputElement.value = item.quantity || "1";
+    }
+
+    inputElement.addEventListener("keydown", preventNumberInputTyping);
+    return inputElement;
+}
+
 
 export {
     buildQuickView,

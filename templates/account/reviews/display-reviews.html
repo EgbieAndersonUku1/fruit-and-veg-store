@@ -178,12 +178,27 @@
                 <p class="account-info">Pick a product to review</p>
                 <hr class="dividor">
 
+                <div class="filter">
+                    <label for="filterList">Filter</label>
+                    <select name="order-filter" id="productFilterSelect">
+                        <option value="empty"></option>
+                        <option value="reviewed">Reviewed</option>
+                        <option value="not-reviewed">Not reviewed</option>
+                        <option value="latest">Latest</option>
+                        <option value="oldest">Oldest</option>
+                        <option value="ascending">A-Z</option>
+                        <option value="descending">Z-A</option>
+                    </select>
+                </div>
                 <table id="products-review-table">
                   
                    
                    
                 </table>
                 
+                <display class="not-found">
+                    <p>The search result was not found</p>
+                </display>
                 <div class="pagination table-pagination">
                     <div class="pages">
 

@@ -12,6 +12,7 @@ const orders = [
         pageRedirectLink: '',
         returnMsg: "Not eligible for return",
         shippingSpeed: "Premium Delivery",
+        date: "2024-01-11",
 
         costBreakdown: {
             subtotal: 7.25,
@@ -55,6 +56,7 @@ const orders = [
         pageRedirectLink: '',
         returnMsg: "Not eligible for return",
         shippingSpeed: "Standard Delivery",
+        date: "2024-02-20",
 
         costBreakdown: {
             subtotal: 13.50,
@@ -98,6 +100,7 @@ const orders = [
         pageRedirectLink: '',
         returnMsg: "Not eligible for return",
         shippingSpeed: "Express Delivery",
+        date: "2024-01-11",
 
         costBreakdown: {
             subtotal: 24.98,
@@ -141,7 +144,7 @@ const orders = [
         pageRedirectLink: '',
         returnMsg: "Not eligible for return",
         shippingSpeed: "Next-Day Delivery",
-
+        date: "2024-04-11",
         costBreakdown: {
             subtotal: 12.47,
             postageAndPackaging: 2.50,
@@ -184,6 +187,7 @@ const orders = [
         pageRedirectLink: '',
         returnMsg: "Not eligible for return",
         shippingSpeed: "Economy Delivery",
+        date: "2024-06-11",
 
         costBreakdown: {
             subtotal: 5.50,

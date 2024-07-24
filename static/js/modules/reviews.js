@@ -1,15 +1,118 @@
 import orders from "../../../order.js";
-import { getItemFromLocalStorage,  saveToLocalStorage, redirectToNewPage } from "../utils/utils.js";
+import createProductTable from "../components/createReviewTable.js";
+import { filterByNotReviewed, 
+    } from "../utils/filter.js";
+
+import { getItemFromLocalStorage } from "../utils/utils.js";
+import { 
+        sortByDateAscending, 
+        sortByDateDescending, 
+        sortByNameAscending, 
+        sortByNameDescending } from "../utils/sort.js";
+import { getItemByID } from "../utils/itemUtils.js";
 
 
 const filledStarsSrc   = "../../../static/img/icons/star-filled.svg";
 const unfilledStarsSrc = "../../../static/img/icons/star-unfilled.svg";
 
-const ratingDiv  = document.querySelector(".product-ratings");
-const clearBtn   = document.getElementById("clear-btn");
+const ratingDiv           = document.querySelector(".product-ratings");
+const clearBtn            = document.getElementById("clear-btn");
+const selectFilterDropdown  = document.getElementById("productFilterSelect");
 
 
 addEventListenerToStar();
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    createProductTable(orders)
+})
+
+
+selectFilterDropdown?.addEventListener("change", handleDropDown);
+
+
+/**
+ * Retrieves reviewed products from local storage and matches them with orders.
+ * 
+ * @returns {Array} - An array of reviewed products found in the orders.
+ * @throws Will throw an error if productReviews is not an array.
+ */
+function getReviewed() {
+    const productReviews = getItemFromLocalStorage("productReviews", true);
+
+    if (!Array.isArray(productReviews)) {
+        return null;
+    }
+    
+    const reviewedItems = [];
+    productReviews.forEach((productReview) => {
+        const item = getItemByID(productReview.id, orders);
+        if (item) {
+            reviewedItems.push(item);
+        }
+    });
+
+    return reviewedItems;
+}
+
+
+/**
+ * Filters out reviewed items from the orders.
+ * 
+ * @returns {Array} - An array of items that have not been reviewed.
+ */
+function getNotReviewed() {
+    const productReviews = getItemFromLocalStorage("productReviews", true);
+   
+    if (!Array.isArray(productReviews)) {
+       return orders;
+    }
+
+    const ids = productReviews.map((productReview) => productReview.id);
+   
+    if (ids.length > 0) {
+        return filterByNotReviewed(ids, orders);
+    }
+    return orders; 
+    
+}
+
+function handleDropDown(e) {
+    const selectTarget = e.target.value;
+ 
+    switch(true) {
+        case selectTarget.toLowerCase() === "empty":
+            createProductTable(orders);
+            break;
+        case selectTarget.toLowerCase() === "reviewed":
+            const pendingReviews = getReviewed();
+            pendingReviews === null ? createProductTable(pendingReviews, false) : createProductTable(pendingReviews, true);
+            break;
+        case selectTarget.toLowerCase() === "not-reviewed":
+            createProductTable(getNotReviewed());
+            break;
+        case selectTarget.toLowerCase() === "latest":
+            const lastestList = sortByDateDescending(orders);
+            createProductTable(lastestList);
+            break;
+
+        case selectTarget.toLowerCase() === "oldest":
+            const oldestList = sortByDateAscending(orders)
+            createProductTable(oldestList);
+            break;
+        
+        case selectTarget.toLowerCase() === "ascending":
+            const alpheticallyOrder = sortByNameAscending(orders);
+            createProductTable(alpheticallyOrder);
+            break;
+        case selectTarget.toLowerCase() === "descending":
+            const descendingOrder = sortByNameDescending(orders);
+            createProductTable(descendingOrder);
+            break;
+        
+    }
+    
+}
 
 
 function addEventListenerToStar() {
@@ -36,7 +139,6 @@ function handleStarClick(e) {
 
     }
 }
-
 
 
 
@@ -102,141 +204,10 @@ function createRatingStars(numOfStarsToCreate, rating, totalNumberOfStars = 5, c
 }
 
 
-function createProductTable() {
-    const productReviewTable = document.getElementById("products-review-table");
-    const tableHeading = createTableHeading();
-    const tableBody    = buildTableBody();
-
-    if (productReviewTable) {
-        productReviewTable.appendChild(tableHeading);
-        productReviewTable.appendChild(tableBody);
-    }
-   
-}
-
-function createTableHeading() {
-
-    const tableMainRow = document.createElement("tr");
-    const tableHeader1 = document.createElement("th");
-    const tableHeader2 = document.createElement("th");
-    const tableHeader3 = document.createElement("th");
-    const tableHeader4 = document.createElement("th");
-    const tableHeader5 = document.createElement("th");
-    const tableHeader6 = document.createElement("th");
-
-    tableHeader1.textContent = "Product ID";
-    tableHeader2.textContent = "Product Name";
-    tableHeader3.textContent = "Purchase Date";
-    tableHeader4.textContent = "Review Status";
-    tableHeader5.textContent = "Action";
-    tableHeader6.textContent = "Product Image";
-
-    tableMainRow.appendChild(tableHeader1);
-    tableMainRow.appendChild(tableHeader2);
-    tableMainRow.appendChild(tableHeader3);
-    tableMainRow.appendChild(tableHeader4);
-    tableMainRow.appendChild(tableHeader5);
-    tableMainRow.appendChild(tableHeader6);
-
-    return tableMainRow;
-
-}
-
-
-function buildTableBody() {
-    const fragment = document.createDocumentFragment();
-
-    if (!orders || !Array.isArray(orders)) {
-        console.error("Orders data is not available or not an array.");
-        return fragment;
-    }
-
-   
-        orders.forEach((order) => {
-
-            const tableMainRow  = document.createElement("tr");
-            const tableALink    = createTableLink("Add/Edit", `${order.id}`);
-            const tableImg      = createTableImage(order)
-
-            let [tableData1, tableData2, tableData3, tableData4, tableData5, tableData6] = [
-                         document.createElement("td"), 
-                         document.createElement("td"),  
-                         document.createElement("td"),
-                         document.createElement("td"), 
-                         document.createElement("td"), 
-                         document.createElement("td") 
-            ]
-          
-
-            tableData1.textContent = `${order.id}`;
-            tableData2.textContent = `${order.name}`;
-            tableData3.textContent = `${order.dateOrderPlaced}`;
-            tableData4             =  getReviewStatus(tableData4, order);
-            tableData5.appendChild(tableALink);
-            tableData6.appendChild(tableImg);
-
-            [ tableData1, tableData2, tableData3, tableData4, tableData5, tableData6].forEach((tableData) => {
-                tableMainRow.appendChild(tableData);
-               
-            })
-
-            
-            fragment.appendChild(tableMainRow);
-        })
-
-        return fragment;
-    
-}
-
-function getReviewStatus(tableRowToUpdate, product) {
-    const item = getItemFromLocalStorage(`productReview-${product.id}`, true);
-    console.log(item)
-    if (item === null) {
-         
-        tableRowToUpdate.textContent = "Not reviewed"; 
-    } else {
-        tableRowToUpdate.textContent = item.isReviewed ? "Pending review": "Not reviewed"; 
-
-    }
-    return tableRowToUpdate
-}
-
-
-function createTableLink(linkText, productID, hrefTag="#", className="table-link") {
-
-    const tableLink             = document.createElement("a");
-    tableLink.href              = hrefTag;
-    tableLink.className         = className;
-    tableLink.textContent       = linkText;
-    tableLink.dataset.productID = productID;
-
-  
-    tableLink.addEventListener("click", handleLinkClick);
-
-    return tableLink;
-    
-}
-
-function createTableImage(order, className="table-img") {
-    const tableImg     =  document.createElement("img");
-    tableImg.src       = order.img;
-    tableImg.alt       = `${order.name} icon`;
-    tableImg.className = className;
-    return tableImg;
-}
-
-function handleLinkClick(e) {
-    const productID = e.currentTarget.dataset.productID;
-
-    if (productID) {
-        saveToLocalStorage("productTableLink", {id: parseInt(productID)}, true);
-    }
-    const urlPage = "add-review.html";
-    redirectToNewPage(urlPage);
-}
 
 
 
-createProductTable();
+
+
 
 export default renderStar;

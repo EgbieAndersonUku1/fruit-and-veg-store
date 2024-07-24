@@ -125,6 +125,25 @@ textarea:hover {
     background: ghostwhite;
 }
 
+
+select {
+    width: 20%;
+    height: 30px;
+    margin-bottom: 14px;
+    border: 1px solid #479947;
+    background: ghostwhite;
+    font-family: "Poppins", sans-serif;
+    font-size: var(--font-size-normal);
+  }
+
+select option {
+    font-family: "Poppins", sans-serif;
+    text-transform: capitalize;
+    font-size: var(--font-size-normal);
+}
+
+
+
 /* header elements */
 h1,
 h2,
@@ -2510,5 +2529,8 @@ footer .container h4 {
     background: black;
 }
 
+.not-found {
+    display: none;
+}
 
 

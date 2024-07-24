@@ -1,9 +1,12 @@
 
 
 
-import getItemByID from "../utils/itemUtils.js";
-import renderStar from "./reviews.js";
-import { getItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
+import {getItemIndexAndValueByID, getItemByID} from "../utils/itemUtils.js";
+import renderStar  from "./reviews.js";
+import { getItemFromLocalStorage, 
+        saveToLocalStorage, 
+        getFormattedCurrentDate 
+     } from "../utils/utils.js";
 
 
 import orders from "../../../order.js";
@@ -24,7 +27,14 @@ const pageSubtitleElement          = document.querySelector(".page-title-subtitl
 const currentPageLiElement         = document.querySelector(".current-page");
 
 
-const itemReview = getItemFromLocalStorage(`productReview-${productInfo.id}`, true);
+const itemReviews = getItemFromLocalStorage("productReviews", true);
+let itemReview;
+
+if (Array.isArray(itemReviews)) {
+    itemReview = getItemByID(productInfo.id, itemReviews);
+
+};
+
 
 // setup 
 setUp(createReviewForm);
@@ -73,52 +83,92 @@ function getProductStarRating() {
 }
 
 
+
 function handleCreateReviewFormSubmit(e) {
     e.preventDefault();
 
     const reviewReport = getProductStarRating();
-    const formData     = new FormData(createReviewForm);
+    const formData = new FormData(createReviewForm);
     let msg;
 
-   
+    // Extract form data
     const { title, review } = {
         title: formData.get("title"),
         review: formData.get("review"),
-      }
-   
+    };
+
+    
     if (!title || !review) {
-        throw new Error("Something went wrong - the title or the review couldn't be found!!");
-    };
-
+        throw new Error("Title or review is missing!");
+    }
+   
     if (!reviewReport) {
-        throw new Error("Something went wrong and the ratings couldn't be acquired")
-    };
+        throw new Error("Ratings couldn't be acquired!");
+    }
 
+    // Validate elements
     if (!messagePTagElement || !messageDivElement) {
-        throw new Error("Something went wrong and message p tag and message div containter couldn't be found!!");
-    };
+        throw new Error("Message elements couldn't be found!");
+    }
 
+    // Handle rating validation
     if (reviewReport.numOfStarsRated === 0) {
         msg = "You must rate the product before submitting";
-        handleMessageDisplay(msg); 
+        handleMessageDisplay(msg);
     } else {
-      
-        msg  = "You have successfully reviewed the product";
+        msg = "You have successfully reviewed the product";
 
         const productReview = {
             ratings: reviewReport.numOfStarsRated,
             title: title,
             description: review,
             isReviewed: reviewReport.isRated,
-            reviewID: reviewReport.id
-        }
+            id: reviewReport.id,
+            reviewDate: getFormattedCurrentDate(),
+        };
 
-        saveToLocalStorage(`productReview-${productInfo.id}`, productReview, true);
+        saveReview(productReview);
+
         handleMessageDisplay(msg, "dark-green-bg");
         updateReviewForm(createReviewForm);
         updatePage();
-        
     }
+}
+
+
+function saveReview(review) {
+    const productReviews = getItemFromLocalStorage("productReviews", true);
+    let previousReview;
+    let index;
+
+    if (productReviews) {
+        [index, previousReview] = getItemIndexAndValueByID(review.id, productReviews);
+    }
+
+    if (!productReviews) {
+        const reviews = [review];
+        saveToLocalStorage("productReviews", reviews, true);
+        return;
+    } else if (previousReview) {
+        const updatedReview   = updateCurrentReview(previousReview, review);
+        productReviews[index] = updatedReview; // update the position of the previous review with the main reviews
+      
+    } else {
+        productReviews.push(review);
+    }
+
+    saveToLocalStorage("productReviews", productReviews, true);
+}
+
+
+function updateCurrentReview(review, currentReview) {
+    return {
+        ...review,
+        title: currentReview.title,
+        description: currentReview.description,
+        reviewDate: getFormattedCurrentDate(),
+        ratings: currentReview.ratings,
+    };
 }
 
 
@@ -175,8 +225,6 @@ function updatePage() {
     currentPageLiElement.textContent = "Edit product review";
 
 }
-
-
 
 
 function handleResetRatings() {
