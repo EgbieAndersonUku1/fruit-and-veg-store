@@ -1,11 +1,29 @@
+import orders from "../../../order.js";
 import { getItemFromLocalStorage,  saveToLocalStorage, redirectToNewPage } from "../utils/utils.js";
 
 
-function createProductTable(orders) {
+const productReviewTable = document.getElementById("products-review-table");
+const pagination          = document.querySelector(".table-pagination");
+const notFound            = document.querySelector(".not-found");
 
-    const productReviewTable = document.getElementById("products-review-table");
 
-    if (productReviewTable) {
+function createProductTable(orders, show=true) {
+
+    if (!productReviewTable) {
+        return;
+    }
+    if (!show) {
+        productReviewTable.style.display = "none";
+        pagination.style.display         = "none";
+        notFound.style.display           = "block";
+        return;
+    } else {
+        productReviewTable.style.display = "table";
+        pagination.style.display         = "flex";
+        notFound.style.display           = "none";
+    }
+
+
         productReviewTable.innerHTML = "";
     
         const tableHeading = createTableHeading();
@@ -15,9 +33,7 @@ function createProductTable(orders) {
             productReviewTable.appendChild(tableHeading);
             productReviewTable.appendChild(tableBody);
         }
-    }
-
-   
+    
 
 }
 
@@ -96,14 +112,26 @@ function buildTableBody(orders) {
 }
 
 function getReviewStatus(tableRowToUpdate, product) {
-    const item = getItemFromLocalStorage(`productReview-${product.id}`, true);
 
-    if (item === null) {
-        tableRowToUpdate.textContent = "Not reviewed";
-    } else {
-        tableRowToUpdate.textContent = item.isReviewed ? "Pending review" : "Not reviewed";
+    let reviews = getItemFromLocalStorage("productReviews", true);
+    let reviewsFound = true;
 
+    if (!reviews) {
+      reviewsFound = false;
+      reviews = orders;
     }
+
+    reviews.forEach((review) => {
+        
+        if (!reviewsFound) {
+            tableRowToUpdate.textContent = "Not reviewed";
+        } else if (reviewsFound && review.id === product.id && tableRowToUpdate.textContent !== "Pending review") {
+            tableRowToUpdate.textContent = "Pending review";
+        } else if (tableRowToUpdate.textContent !== "Pending review") {
+            tableRowToUpdate.textContent = "Not reviewed";
+        }
+    })
+
     return tableRowToUpdate
 }
 

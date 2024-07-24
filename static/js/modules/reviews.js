@@ -1,14 +1,15 @@
 import orders from "../../../order.js";
 import createProductTable from "../components/createReviewTable.js";
-import { filterByReviewPending, 
-        filterByNotReviewed,
+import { filterByNotReviewed, 
     } from "../utils/filter.js";
 
+import { getItemFromLocalStorage } from "../utils/utils.js";
 import { 
         sortByDateAscending, 
         sortByDateDescending, 
         sortByNameAscending, 
         sortByNameDescending } from "../utils/sort.js";
+import { getItemByID } from "../utils/itemUtils.js";
 
 
 const filledStarsSrc   = "../../../static/img/icons/star-filled.svg";
@@ -26,23 +27,70 @@ document.addEventListener("DOMContentLoaded", () => {
     createProductTable(orders)
 })
 
-selectFilterDropdown.addEventListener("change", (e) => {
-    const selectTarget = e.target.value;
-    console.log(`seclected vaue: ${selectTarget}`)
 
+selectFilterDropdown?.addEventListener("change", handleDropDown);
+
+
+/**
+ * Retrieves reviewed products from local storage and matches them with orders.
+ * 
+ * @returns {Array} - An array of reviewed products found in the orders.
+ * @throws Will throw an error if productReviews is not an array.
+ */
+function getReviewed() {
+    const productReviews = getItemFromLocalStorage("productReviews", true);
+
+    if (!Array.isArray(productReviews)) {
+        return null;
+    }
+    
+    const reviewedItems = [];
+    productReviews.forEach((productReview) => {
+        const item = getItemByID(productReview.id, orders);
+        if (item) {
+            reviewedItems.push(item);
+        }
+    });
+
+    return reviewedItems;
+}
+
+
+/**
+ * Filters out reviewed items from the orders.
+ * 
+ * @returns {Array} - An array of items that have not been reviewed.
+ */
+function getNotReviewed() {
+    const productReviews = getItemFromLocalStorage("productReviews", true);
+   
+    if (!Array.isArray(productReviews)) {
+       return orders;
+    }
+
+    const ids = productReviews.map((productReview) => productReview.id);
+   
+    if (ids.length > 0) {
+        return filterByNotReviewed(ids, orders);
+    }
+    return orders; 
+    
+}
+
+function handleDropDown(e) {
+    const selectTarget = e.target.value;
+ 
     switch(true) {
         case selectTarget.toLowerCase() === "empty":
             createProductTable(orders);
             break;
         case selectTarget.toLowerCase() === "reviewed":
-            const pendingReviews = filterByReviewPending(orders);
-            createProductTable(pendingReviews);
+            const pendingReviews = getReviewed();
+            pendingReviews === null ? createProductTable(pendingReviews, false) : createProductTable(pendingReviews, true);
             break;
         case selectTarget.toLowerCase() === "not-reviewed":
-            const notReviewedList = filterByNotReviewed(orders);
-            createProductTable(notReviewedList);
+            createProductTable(getNotReviewed());
             break;
-        
         case selectTarget.toLowerCase() === "latest":
             const lastestList = sortByDateDescending(orders);
             createProductTable(lastestList);
@@ -64,7 +112,7 @@ selectFilterDropdown.addEventListener("change", (e) => {
         
     }
     
-})
+}
 
 
 function addEventListenerToStar() {

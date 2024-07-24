@@ -27,7 +27,14 @@ const pageSubtitleElement          = document.querySelector(".page-title-subtitl
 const currentPageLiElement         = document.querySelector(".current-page");
 
 
-const itemReview = getItemFromLocalStorage(`productReview-${productInfo.id}`, true);
+const itemReviews = getItemFromLocalStorage("productReviews", true);
+let itemReview;
+
+if (Array.isArray(itemReviews)) {
+    itemReview = getItemByID(productInfo.id, itemReviews);
+
+};
+
 
 // setup 
 setUp(createReviewForm);
@@ -218,8 +225,6 @@ function updatePage() {
     currentPageLiElement.textContent = "Edit product review";
 
 }
-
-
 
 
 function handleResetRatings() {

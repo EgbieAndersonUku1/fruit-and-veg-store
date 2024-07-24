@@ -127,14 +127,13 @@ textarea:hover {
 
 
 select {
-    width: 25%;
+    width: 20%;
     height: 30px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     border: 1px solid #479947;
     background: ghostwhite;
     font-family: "Poppins", sans-serif;
     font-size: var(--font-size-normal);
-    text-align: center;
   }
 
 select option {
@@ -2530,5 +2529,8 @@ footer .container h4 {
     background: black;
 }
 
+.not-found {
+    display: none;
+}
 
 

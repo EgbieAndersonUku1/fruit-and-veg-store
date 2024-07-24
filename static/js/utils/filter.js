@@ -1,66 +1,25 @@
-
-
-
-
-
 /**
- * Filters an array of items to include only those with "Pending review" status.
+ * Filters out reviewed items from a list based on their IDs.
  * 
- * @param {Array} items - The array of items to filter.
- * @returns {Array} - The filtered array of items with "Pending review" status.
- * @throws {Error} - If the input is not an array or if any object in the array does not have an 'isReviewed' property.
+ * @param {Array} itemIDs - The list of reviewed item IDs.
+ * @param {Array} items - The list of items to filter.
+ * @returns {Array} - An array of items that have not been reviewed.
+ * @throws Will throw an error if itemIDs or items are not arrays.
  */
-function filterByReviewPending(items) {
-    return filterByHelper(items, (item) => {
-        if (typeof item.isReviewed !== 'string') {
-            throw new Error('The "isReviewed" property must be a string');
-        }
-        return item.isReviewed.toLowerCase() === "pending review".toLowerCase();
-    });
-}
-
-
-/**
- * Filters an array of items to include only those with "Not reviewed" status.
- * 
- * @param {Array} items - The array of items to filter.
- * @returns {Array} - The filtered array of items with "Not reviewed" status.
- * @throws {Error} - If the input is not an array or if any object in the array does not have an 'isReviewed' property.
- */
-function filterByNotReviewed(items) {
-    return filterByHelper(items, (item) => {
-        if (typeof item.isReviewed !== 'string') {
-            throw new Error('The "isReviewed" property must be a string');
-        }
-        return item.isReviewed.toLowerCase() === "not reviewed".toLowerCase();
-    });
-}
-
-/**
- * Helper function to filter items based on a provided filtering function.
- * 
- * @param {Array} items - The array of items to filter.
- * @param {Function} filterBy - The function used to filter items. It should return a boolean indicating if the item should be included.
- * @returns {Array} - The filtered array of items.
- * @throws {Error} - If the input is not an array or if any object in the array does not have an 'isReviewed' property.
- */
-function filterByHelper(items, filterBy) {
-    if (!Array.isArray(items)) {
-        throw new Error(`The items must be an array, not type: ${typeof items}`);
+function filterByNotReviewed(itemIDs, items) {
+    if (!Array.isArray(items) || !Array.isArray(itemIDs)) {
+        throw new Error("Both itemIDs and items must be arrays.");
     }
 
-    return items.filter((item) => {
-        if (!item.hasOwnProperty('isReviewed')) {
-            throw new Error('All objects in the array must have an "isReviewed" property');
-        }
-
-        return filterBy(item);
-    });
+    const notReviewed = items.filter(item => !itemIDs.includes(item.id));   
+    return notReviewed;
 }
+
+
+
 
 
 
 export  {
-    filterByReviewPending,
-    filterByNotReviewed
+    filterByNotReviewed,
 }
