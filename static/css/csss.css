@@ -2610,3 +2610,43 @@ footer .container h4 {
     text-decoration: underline;
     color: blue;
 }
+
+
+#forgotten-password {
+    margin-top: 72px;
+}
+
+.forgotte-password__container {
+    width: 40%;
+    margin: auto;
+    display: grid;
+
+}
+
+
+.forgotten-password-btn,
+#forgotten-password-form input {
+    width: 100%;
+    border: 3px solid lavender;
+    height: 50px;
+    font-size: var(--font-size-normal);
+}
+
+
+.forgotten-password-btn {
+    margin-top: 6px;
+    background: var(--dark-green);
+    color: white;
+    text-transform: capitalize;
+    font-size: var(--font-size-normal);
+}
+
+.forgotte-password__container h1 {
+    font-size: var(--font-size-lg);
+    text-transform: capitalize;
+}
+
+.logo-img-md {
+    height: 250px;
+    width: 250px;
+}
