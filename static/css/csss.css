@@ -2627,7 +2627,8 @@ footer .container h4 {
 }
 
 .login-link {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    color: blue;
     
 }
 
@@ -2713,7 +2714,7 @@ footer .container h4 {
 }
 
 .already-registered {
-    font-size: var(--font-size-sm);
+    font-size: 0.85rem;
     color: blue;
 }
 
