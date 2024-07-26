@@ -7,6 +7,8 @@ const closeRegistrationIconElement    = document.getElementById("reg-close-icon"
 const passwordElement                 = document.getElementById("register-password");
 const haveAnAccountLink               = document.getElementById("have-an-account-link");
 const notRegisteredLink               = document.getElementById("not-registered-link");
+const showPasswordElement             = document.getElementById("show-password");
+const showPasswordLabelElement        = document.getElementById("show-password-label");
 
 const confirmPasswordElement          = document.getElementById("register-confirm-password");
 const hasCapitalElement               = document.getElementById('has-capital');
@@ -34,6 +36,35 @@ closeRegistrationIconElement.addEventListener("click", handleRegistrationCloseIc
 
 haveAnAccountLink?.addEventListener("click", handleHaveAnAccountLink);
 notRegisteredLink?.addEventListener("click", handleNotRegisteredLink); 
+
+
+showPasswordElement?.addEventListener("change", handlePasswordToggle);
+
+
+function handlePasswordToggle(e) {
+    
+    e.preventDefault();
+
+    if (!confirmPasswordElement || !passwordElement) {
+        throw new Error("The confirm password or password element field couldn't be found!!!");
+    };
+
+    if (!showPasswordElement){
+        throw new Error("The checkbox element couldn't be found!!!");
+    };
+
+    if (showPasswordElement.checked) {
+        confirmPasswordElement.type          = "text";
+        passwordElement.type                 = "text";
+        showPasswordLabelElement.textContent = "Hide password";
+    } else {
+        confirmPasswordElement.type          = "password";
+        passwordElement.type                 = "password";
+        showPasswordLabelElement.textContent = "Show password";
+        showPasswordElement.checked          = false;
+    }
+   
+}
 
 
 function handleHaveAnAccountLink(e) {
