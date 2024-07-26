@@ -2535,7 +2535,7 @@ footer .container h4 {
 
 
 .authentication {
-    border: 3px solid lavender;
+    border: 1px solid rgb(3, 3, 56);
     background: white;
     height: 600px;
     margin: auto;
@@ -2543,21 +2543,24 @@ footer .container h4 {
 
     /* positoning */
     position: fixed;
-    top: -10000px;
+ 
     right: 0;
     left: 0;
     z-index: 100000;
   
 }
 
-.authentication.show {
-    top: 0;
-}
+
+
+
+
+
 .authentication .container {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: auto;
     column-gap: 20px;
+    cursor: pointer;
 }
 
 .authentication .container .logo {
@@ -2565,6 +2568,16 @@ footer .container h4 {
     min-height: 600px;
     width: 100%;
 }
+
+
+.login {
+    top: -10000px;
+}
+
+.login.show {
+    top: 0;
+}
+
 
 .login-logo {
     position: absolute;
@@ -2583,9 +2596,17 @@ footer .container h4 {
 
 #login-form input,
 .auth-button {
-    height: 50px;
+    height: 40px;
     font-size: var(--font-size-normal);
     border: 3px solid lavender;
+  
+    
+}
+
+.auth-button {
+    background: var(--dark-green);
+    color: white;
+    text-transform: capitalize;
 }
 
 #login-form label {
@@ -2647,6 +2668,84 @@ footer .container h4 {
 }
 
 .logo-img-md {
-    height: 250px;
-    width: 250px;
+    height: 200px;
+    width: 200px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.register-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    column-gap: 20px;
+    padding-left: var(--padding-lg);
+
+
+}
+
+
+.register {
+    top: -1000px;
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+
+.register.show {
+    top: 0;
+}
+
+
+#register-form {
+    display: grid;
+}
+
+#register-form > input {
+    height: 40px;
+    font-size: var(--font-size-normal);
+    border: 3px solid lavender;
+    background: white;
+}
+
+.already-registered {
+    font-size: var(--font-size-sm);
+    color: blue;
+}
+
+.already-registered:hover {
+    text-decoration: underline;
+}
+
+
+#password-strength-feedback p {
+    padding-bottom: 16px;
+    cursor: pointer;
+   
+   
+}
+
+.opacity-md {
+    opacity: 0.4;
+}
+
+#inputField {
+    text-transform: capitalize;
+}
+
+
+.icon {
+   height: 16px;
+}
+
+label {
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+
+.requirement.met {
+    color: green;
+    font-weight: bold;
+    opacity: 1;
 }
