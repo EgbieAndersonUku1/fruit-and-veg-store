@@ -2713,6 +2713,11 @@ footer .container h4 {
     background: white;
 }
 
+#register-form > input:hover {
+    background: ghostwhite;
+    border: 4px solid lavender;
+}
+
 .already-registered {
     font-size: 0.85rem;
     color: blue;
