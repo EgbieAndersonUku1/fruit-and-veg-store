@@ -5,6 +5,8 @@ const registerLinkElement             = document.getElementById("register-link")
 const closeWindowIconElement          = document.querySelector(".auth-close-icon");
 const closeRegistrationIconElement    = document.getElementById("reg-close-icon");
 const passwordElement                 = document.getElementById("register-password");
+const haveAnAccountLink               = document.getElementById("have-an-account-link");
+const notRegisteredLink               = document.getElementById("not-registered-link");
 
 const confirmPasswordElement          = document.getElementById("register-confirm-password");
 const hasCapitalElement               = document.getElementById('has-capital');
@@ -14,7 +16,9 @@ const hasNumberElement                = document.getElementById('has-number');
 const hasMinLengthElement             = document.getElementById('has-min-length');
 const strongPasswordElement           = document.getElementById("is-success");
 const doPasswordsMatch                = document.getElementById("is-password-a-match");
-const inputElementField               = document.getElementById('inputField');
+const inputElementField               = document.getElementById('inputField');7
+
+
 
 import PasswordStrengthChecker from "../utils/password.js";
 
@@ -24,7 +28,36 @@ loginLinkElement?.addEventListener("click", handleLoginClick);
 closeWindowIconElement?.addEventListener("click", handleCloseIcon);
 
 registerLinkElement?.addEventListener("click", handleRegisterClick);
+
 closeRegistrationIconElement.addEventListener("click", handleRegistrationCloseIcon);
+
+
+haveAnAccountLink?.addEventListener("click", handleHaveAnAccountLink);
+notRegisteredLink?.addEventListener("click", handleNotRegisteredLink); 
+
+
+function handleHaveAnAccountLink(e) {
+    e.preventDefault();
+
+    if (!registerAuthenticationContainer) {
+        throw new Error("The registration element div wasn't found!!!");
+    };
+
+    registerAuthenticationContainer.classList.remove("show");
+    loginAuthenticationContainer.classList.add("show");
+}
+
+
+function handleNotRegisteredLink(e) {
+    e.preventDefault();
+
+    if (!loginAuthenticationContainer) {
+        throw new Error("The login element div wasn't found!!!");
+    };
+
+    registerAuthenticationContainer.classList.add("show");
+    loginAuthenticationContainer.classList.remove("show");
+}
 
 
 
@@ -76,8 +109,20 @@ passwordElement.addEventListener("input", () => {
     
 })
 
+passwordElement.addEventListener("click", () => {
+    passwordStrengthHelper(passwordElement, " Current using password field");
+    doPasswordMatch(passwordElement, confirmPasswordElement);
+    
+})
+
 
 confirmPasswordElement.addEventListener("input", () => {
+    passwordStrengthHelper(confirmPasswordElement, " Current using confirm password field");
+    doPasswordMatch(passwordElement, confirmPasswordElement);
+
+})
+
+confirmPasswordElement.addEventListener("click", () => {
     passwordStrengthHelper(confirmPasswordElement, " Current using confirm password field");
     doPasswordMatch(passwordElement, confirmPasswordElement);
 
