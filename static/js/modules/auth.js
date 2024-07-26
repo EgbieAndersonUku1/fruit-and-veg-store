@@ -42,7 +42,7 @@ showPasswordElement?.addEventListener("change", handlePasswordToggle);
 
 
 function handlePasswordToggle(e) {
-    
+
     e.preventDefault();
 
     if (!confirmPasswordElement || !passwordElement) {
@@ -98,7 +98,9 @@ function handleLoginClick(e) {
     if (!loginAuthenticationContainer) {
         throw new Error("The login container couldnt be found!!");
     }
+    
     loginAuthenticationContainer.classList.add("show");
+    registerAuthenticationContainer.classList.remove("show");
 }
 
 
@@ -108,6 +110,7 @@ function handleRegisterClick(e) {
     if (!registerAuthenticationContainer) {
         throw new Error("The registeration container couldnt be found!!");
     }
+    loginAuthenticationContainer.classList.remove("show");
     registerAuthenticationContainer.classList.add("show");
 }
 
