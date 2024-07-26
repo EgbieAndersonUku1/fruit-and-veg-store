@@ -94,6 +94,10 @@ li {
 
 
 /* The input fields */
+input[type="checkbox"] {
+    margin-right: 4px;
+}
+
 input[type="search"] {
 
     /* fonts */
