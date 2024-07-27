@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="../../../static/img/display/jpg/logo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="../../../static/css/csss.css">
+    <link rel="stylesheet" href="../../../../static/css/csss.css">
     <title>account</title>
 </head>
 
@@ -36,7 +36,7 @@
                                 <div class="buy-it-again__container">
                                     <div class="item">
                                         <div class="item-img">
-                                            <a href="#"><img src="../../../static/img/display/jpg/avacodo.jpg"
+                                            <a href="#"><img src="../../../../static/img/display/jpg/avacodo.jpg"
                                                     alt="An image of item bought" class="bought-item-img"></a>
                                         </div>
 
@@ -53,7 +53,7 @@
                                     <!-- item 2 -->
                                     <div class="item">
                                         <div class="item-img">
-                                            <a href="#"><img src="../../../static/img/display/jpg/box-of-oranges.jpeg"
+                                            <a href="#"><img src="../../../../static/img/display/jpg/box-of-oranges.jpeg"
                                                     alt="An image of item bought" class="bought-item-img"></a>
 
                                         </div>
@@ -74,7 +74,7 @@
                                     <!-- item 3 -->
                                     <div class="item">
                                         <div class="item-img">
-                                            <a href="#"><img src="../../../static/img/display/jpg/cashew.jpg"
+                                            <a href="#"><img src="../../../../static/img/display/jpg/cashew.jpg"
                                                     alt="An image of item bought" class="bought-item-img"></a>
 
                                         </div>
@@ -95,7 +95,7 @@
                                     <!-- item 4 -->
                                     <div class="item">
                                         <div class="item-img">
-                                            <a href="#"><img src="../../../static/img/display/jpg/turkish-mullberries.jpg"
+                                            <a href="#"><img src="../../../../static/img/display/jpg/turkish-mullberries.jpg"
                                                     alt="An image of item bought" class="bought-item-img"></a>
 
                                         </div>
@@ -132,8 +132,8 @@
                                     <div class="my-account">
                                         <h4>Account</h4>
                                         <ul class="my-account__links">
-                                            <li><a href="../account/account.html" class="dropdown-menu-link">my account</a></li>
-                                            <li><a href="../orders/orders.html" class="dropdown-menu-link">my orders</a></li>
+                                            <li><a href="../../account/account.html" class="dropdown-menu-link">my account</a></li>
+                                            <li><a href="../../orders/orders.html" class="dropdown-menu-link">my orders</a></li>
                                             <li><a href="#" class="dropdown-menu-link">my list</a></li>
                                             <li><a href="#" class="dropdown-menu-link">My addresses</a></li>
                                             <li><a href="#" class="dropdown-menu-link">Payment methods</a></li>
@@ -161,95 +161,74 @@
 
 
     <main>
-        <section id="financial-management" aria-labelledby="financial-management-heading">
+        <section id="product-management" aria-labelledby="product-management-heading">
             <div class="content-container">
                 <div class="logo center">
-                    <img src="../../../static/img/display/jpg/logo.png" alt="The logo" class="account-logo-img">
+                    <img src="../../../../static/img/display/jpg/logo.png" alt="The logo" class="account-logo-img">
                 </div>
 
                 <ul class="breadcrumb">
                     <li><a href="../../../index.html">Home</a></li>
                     <li><a href="../account/account.html">My account</a></li>
-                    <li>Financial management</li>
+                    <li>Product management overview</li>
                 </ul>
-                <h1 id="financial-management-heading" class="padding-top-md lighten text-capitalize">Financial Management</h1>
-                <p class="account-info">Manage financials</p>
+                <h1 id="product-management-heading" class="padding-top-md lighten text-capitalize">Product Management</h1>
+                <p class="account-info">Manage products overview</p>
                
                 <hr class="dividor">
                 <div class="account__options cards">
-                    <a href="#" aria-labelledby="financial-heading" class="card-link">
+                    <a href="../../../../templates/account/project-management/add-new-product/additonal-information.html" aria-labelledby="add-plus-heading" class="card-link">
                         <div class="card-grid">
                             <div class="head">
-                                <img src="../../../static/img/icons/view-financial-account-reopen.svg" alt="financial account book icon" class="account-icon">
+                                <img src="../../../../static/img/icons/plus.svg" alt="add plus icon" class="account-icon">
                             </div>
                             <div class="body">
-                                <p id="financial-heading" class="title">Financial Summary Dashboard</p>
-                                <p id="financial-description">Get a comprehensive overview of your financial activities at a glance.</p>
+                                <p id="add-heading" class="title">Add a new product</p>
+                                <p id="add-description">Introduce an item to your inventory by filling out the necessary details below.</p>
+                            </div>
+                            
+                            
+                        </div>
+                    </a>
+                    <a href="#" aria-labelledby="view-product-heading" class="card-link">
+                        <div class="card-grid">
+                            <div class="head">
+                                <img src="../../../../static/img/icons/view-financial-account-reopen.svg" alt="transactions icon" class="account-icon">
+                            </div>
+                            <div class="body">
+                                <p id="transactions-heading">View all products</p>
+                                <p id="transactions-description">A complete list of all products, with options to 
+                                    sort and filter by different criteria (e.g. category, price, stock level).</p>
                             </div>
                             
                         </div>
                     </a>
-                    <a href="#" aria-labelledby="transactions-heading" class="card-link">
+                    <a href="#" aria-labelledby="bulk-upload-heading" class="card-link">
                         <div class="card-grid">
                             <div class="head">
-                                <img src="../../../static/img/icons/tran.svg" alt="transactions icon" class="account-icon">
+                                <img src="../../../../static/img/icons/find-in-page.svg" alt="bulk upload icon" class="account-icon">
                             </div>
                             <div class="body">
-                                <p id="transactions-heading">Transactions</p>
-                                <p id="transactions-description">Monitor all transactions.</p>
+                                <p id="bulk-upload-heading">Bulk upload</p>
+                                <p id="bulk-upload-description">Upload multiple products at once using CSV or Excels.</p>
                             </div>
                             
                         </div>
                     </a>
-                    <a href="#" aria-labelledby="refund-management-heading" class="card-link">
+                    <a href="#" aria-labelledby="seo-management-heading" class="card-link">
                         <div class="card-grid">
                             <div class="head">
-                                <img src="../../../static/img/icons/money-refund-dollar.svg" alt="refund dollar icon" class="account-icon">
+                                <img src="../../../../static/img/icons/draft-orders-major.svg" alt="seo-management-heading icon" class="account-icon">
                             </div>
                             <div class="body">
-                                <p id="refund-management-heading">Refund Management</p>
-                                <p id="refund-management-description">Handle refunds, process requests, and manage customer reimbursements.</p>
-                            </div>
-                            
-                        </div>
-                    </a>
-                    <a href="#" aria-labelledby="invoices-heading" class="card-link">
-                        <div class="card-grid">
-                            <div class="head">
-                                <img src="../../../static/img/icons/bill.svg" alt="invoices-heading icon" class="account-icon">
-                            </div>
-                            <div class="body">
-                                <p id="invoices-heading">Invoices</p>
-                                <p id="invoices-description">Manage billing details, track payment statuses, and generate financial records.</p>
-                            </div>
-                            
-                        </div>
-                    </a>
-                    <a href="#" aria-labelledby="expenses-heading" class="card-link">
-                        <div class="card-grid">
-                            <div class="head">
-                                <img src="../../../static/img/icons/corp-interest-expenses.svg" alt="expenses icon" class="account-icon">
-                            </div>
-                            <div class="body">
-                                <p id="expenses-heading">Expenses</p>
-                                <p id="expenses-description">Track operational costs, manage expenses, and maintain financial transparency.</p>
-                            </div>
-                            
-                        </div>
-                    </a>
-                    <a href="#" aria-labelledby="tax-management-heading" class="card-link">
-                        <div class="card-grid">
-                            <div class="head">
-                                <img src="../../../static/img/icons/corp-sundry-taxes.svg" alt="tax management icon" class="account-icon">
-                            </div>
-                            <div class="body">
-                                <p id="tax-management-heading">Tax Management</p>
-                                <p id="tax-management-description">Configure tax rates, generate tax reports, and manage tax filings efficiently.</p>
+                                <p id="seo-management-heading">SEO management</p>
+                                <p id="seo-management-description">Set meta tags, keywords and other SEO-related fields for products.</p>
                             </div>
                             
                         </div>
                     </a>
                  
+            
                 </div>
 
               

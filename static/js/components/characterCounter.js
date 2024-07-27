@@ -4,9 +4,9 @@
  * To use this function, the project must include a `<textarea>` field in the form, similar to:
  * 
  * <textarea class="someClassNameHere" cols="30" rows="10" required">
-        * <p class="someClassNameHere">Minimum characters to use: 50</p>
-        * <p class="someClassNameHere">Maximum characters to use: 1000</p>
  * </textarea>
+ * <p class="someClassNameHere">Minimum characters to use: 50</p>
+     <p class="someClassNameHere">Maximum characters to use: 1000</p>
  * 
  * 
  * **HTML Structure Requirements:**
