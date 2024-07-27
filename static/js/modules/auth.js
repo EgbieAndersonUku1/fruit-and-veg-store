@@ -98,7 +98,7 @@ function handleLoginClick(e) {
     if (!loginAuthenticationContainer) {
         throw new Error("The login container couldnt be found!!");
     }
-    
+
     loginAuthenticationContainer.classList.add("show");
     registerAuthenticationContainer.classList.remove("show");
 }
@@ -205,7 +205,3 @@ function doPasswordMatch(passwordInputField, confirmPasswordInputField) {
 }
 
 
-
-// regCloseIcon.addEventListener("click", (e) {
-
-// })
