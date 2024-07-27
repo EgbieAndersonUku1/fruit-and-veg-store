@@ -2759,3 +2759,69 @@ label {
     font-weight: bold;
     opacity: 1;
 }
+
+
+/* add basic product */
+
+.add-product-container{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: auto;
+    column-gap: 30px;
+  }
+
+  .progress-list p {
+    padding-bottom: 16px;
+    padding-left: 20px;
+    padding-top: 10px;
+
+    color: black;
+  }
+
+  #product-management {
+    margin-bottom: 72px;
+  }
+
+  .progress-list {
+    background: ghostwhite;
+  }
+
+  #select-category {
+    width: 100%;
+  }
+
+.add-product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.add-product-form input,
+.add-product-form select,
+.add-product-form textarea {
+    border: 3px solid lavender;
+}
+
+.add-product-form textarea {
+    text-align: left;
+}
+
+.add-product-form input,
+.add-product-form select{
+    height: 35px;
+    font-size: var(--font-size-normal);
+}
+
+.next-button {
+   
+    background: var(--dark-green);
+    box-shadow: var(--box-shadow3);
+    color: white;
+    text-transform: uppercase;
+
+    padding: 4px;
+    width: 25%;
+   
+    
+   
+}

@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="../../../static/img/display/jpg/logo.png" type="image/x-icon">
 
-    <link rel="stylesheet" href="../../../static/css/csss.css">
+    <link rel="stylesheet" href="../../../../static/css/csss.css">
     <title>account</title>
 </head>
 
@@ -36,7 +36,7 @@
                                 <div class="buy-it-again__container">
                                     <div class="item">
                                         <div class="item-img">
-                                            <a href="#"><img src="../../../static/img/display/jpg/avacodo.jpg"
+                                            <a href="#"><img src="../../../../static/img/display/jpg/avacodo.jpg"
                                                     alt="An image of item bought" class="bought-item-img"></a>
                                         </div>
 
@@ -53,7 +53,7 @@
                                     <!-- item 2 -->
                                     <div class="item">
                                         <div class="item-img">
-                                            <a href="#"><img src="../../../static/img/display/jpg/box-of-oranges.jpeg"
+                                            <a href="#"><img src="../../../../static/img/display/jpg/box-of-oranges.jpeg"
                                                     alt="An image of item bought" class="bought-item-img"></a>
 
                                         </div>
@@ -74,7 +74,7 @@
                                     <!-- item 3 -->
                                     <div class="item">
                                         <div class="item-img">
-                                            <a href="#"><img src="../../../static/img/display/jpg/cashew.jpg"
+                                            <a href="#"><img src="../../../../static/img/display/jpg/cashew.jpg"
                                                     alt="An image of item bought" class="bought-item-img"></a>
 
                                         </div>
@@ -95,7 +95,7 @@
                                     <!-- item 4 -->
                                     <div class="item">
                                         <div class="item-img">
-                                            <a href="#"><img src="../../../static/img/display/jpg/turkish-mullberries.jpg"
+                                            <a href="#"><img src="../../../../static/img/display/jpg/turkish-mullberries.jpg"
                                                     alt="An image of item bought" class="bought-item-img"></a>
 
                                         </div>
@@ -132,8 +132,8 @@
                                     <div class="my-account">
                                         <h4>Account</h4>
                                         <ul class="my-account__links">
-                                            <li><a href="../account/account.html" class="dropdown-menu-link">my account</a></li>
-                                            <li><a href="../orders/orders.html" class="dropdown-menu-link">my orders</a></li>
+                                            <li><a href="../../account/account.html" class="dropdown-menu-link">my account</a></li>
+                                            <li><a href="../../orders/orders.html" class="dropdown-menu-link">my orders</a></li>
                                             <li><a href="#" class="dropdown-menu-link">my list</a></li>
                                             <li><a href="#" class="dropdown-menu-link">My addresses</a></li>
                                             <li><a href="#" class="dropdown-menu-link">Payment methods</a></li>
@@ -161,97 +161,95 @@
 
 
     <main>
-        <section id="financial-management" aria-labelledby="financial-management-heading">
+        <section id="product-management" aria-labelledby="product-management-heading">
             <div class="content-container">
                 <div class="logo center">
-                    <img src="../../../static/img/display/jpg/logo.png" alt="The logo" class="account-logo-img">
+                    <img src="../../../../static/img/display/jpg/logo.png" alt="The logo" class="account-logo-img">
                 </div>
 
                 <ul class="breadcrumb">
                     <li><a href="../../../index.html">Home</a></li>
                     <li><a href="../account/account.html">My account</a></li>
-                    <li>Financial management</li>
+                    <li><a href="../../project-management/add-new-product/project-management-overview.html">Product management overview</a></li>
+                    <li>Add new product</li>
                 </ul>
-                <h1 id="financial-management-heading" class="padding-top-md lighten text-capitalize">Financial Management</h1>
-                <p class="account-info">Manage financials</p>
+                <h1 id="add-product-heading" class="padding-top-md lighten text-capitalize">Add new product</h1>
+                <p class="account-info">Basic product information</p>
                
                 <hr class="dividor">
-                <div class="account__options cards">
-                    <a href="#" aria-labelledby="financial-heading" class="card-link">
-                        <div class="card-grid">
-                            <div class="head">
-                                <img src="../../../static/img/icons/view-financial-account-reopen.svg" alt="financial account book icon" class="account-icon">
-                            </div>
-                            <div class="body">
-                                <p id="financial-heading" class="title">Financial Summary Dashboard</p>
-                                <p id="financial-description">Get a comprehensive overview of your financial activities at a glance.</p>
-                            </div>
-                            
-                        </div>
-                    </a>
-                    <a href="#" aria-labelledby="transactions-heading" class="card-link">
-                        <div class="card-grid">
-                            <div class="head">
-                                <img src="../../../static/img/icons/tran.svg" alt="transactions icon" class="account-icon">
-                            </div>
-                            <div class="body">
-                                <p id="transactions-heading">Transactions</p>
-                                <p id="transactions-description">Monitor all transactions.</p>
-                            </div>
-                            
-                        </div>
-                    </a>
-                    <a href="#" aria-labelledby="refund-management-heading" class="card-link">
-                        <div class="card-grid">
-                            <div class="head">
-                                <img src="../../../static/img/icons/money-refund-dollar.svg" alt="refund dollar icon" class="account-icon">
-                            </div>
-                            <div class="body">
-                                <p id="refund-management-heading">Refund Management</p>
-                                <p id="refund-management-description">Handle refunds, process requests, and manage customer reimbursements.</p>
-                            </div>
-                            
-                        </div>
-                    </a>
-                    <a href="#" aria-labelledby="invoices-heading" class="card-link">
-                        <div class="card-grid">
-                            <div class="head">
-                                <img src="../../../static/img/icons/bill.svg" alt="invoices-heading icon" class="account-icon">
-                            </div>
-                            <div class="body">
-                                <p id="invoices-heading">Invoices</p>
-                                <p id="invoices-description">Manage billing details, track payment statuses, and generate financial records.</p>
-                            </div>
-                            
-                        </div>
-                    </a>
-                    <a href="#" aria-labelledby="expenses-heading" class="card-link">
-                        <div class="card-grid">
-                            <div class="head">
-                                <img src="../../../static/img/icons/corp-interest-expenses.svg" alt="expenses icon" class="account-icon">
-                            </div>
-                            <div class="body">
-                                <p id="expenses-heading">Expenses</p>
-                                <p id="expenses-description">Track operational costs, manage expenses, and maintain financial transparency.</p>
-                            </div>
-                            
-                        </div>
-                    </a>
-                    <a href="#" aria-labelledby="tax-management-heading" class="card-link">
-                        <div class="card-grid">
-                            <div class="head">
-                                <img src="../../../static/img/icons/corp-sundry-taxes.svg" alt="tax management icon" class="account-icon">
-                            </div>
-                            <div class="body">
-                                <p id="tax-management-heading">Tax Management</p>
-                                <p id="tax-management-description">Configure tax rates, generate tax reports, and manage tax filings efficiently.</p>
-                            </div>
-                            
-                        </div>
-                    </a>
-                 
-                </div>
 
+                <section id="basic-production-information">
+                    <div class="add-product-container">
+                        <form action="" method="post" class="add-product-form">
+                            <label for="product-name">Product name</label>
+                            <input type="text" name="product-name" id="product-name">
+                
+                            <label for="select-category">Select a category</label>
+                            <select name="select-category" id="select-category">
+                                <option value=""></option>
+                                <option value="option">Option</option>
+                            </select>
+                
+                            <label for="add-category">Add new category</label>
+                            <input type="text" name="add-category" id="add-category">
+                
+                            <label for="brand">Brand</label>
+                            <input type="text" name="brand" id="brand">
+                
+                            <label for="sku">SKU (Stock Keeping unit)</label>
+                            <input type="text" name="sku" id="sku">
+                
+                            <label for="upc">UPC (Universal Product code)</label>
+                            <input type="text" name="upc" id="upc">
+                
+                            <label for="short-description">Short Description</label>
+                            <textarea name="short-description" id="short-description" rows="5" cols="10"></textarea>
+                            <p class="flex-end minimum-characters">Minimum characters to use: 50</p>
+                            <p class="maximum-characters flex-end">Number of characters remaining: 255</p>
+    
+                            <div class="button flex-end">
+                                <button class="next-button">next</button>
+                            </div>
+                        </form>
+                
+                        <div class="progress-list">
+                            <p id="basic-product-information" class="opacity-md">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg" alt="a check mark icon" class="icon"></span>
+                                Basic Product information
+                            </p>
+                            <p id="detailed-description-specs" class="opacity-md">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg" alt="a check mark icon" class="icon"></span>
+                                Detailed Description and Specifications
+                            </p>
+                            <p id="pricing-inventory" class="opacity-md">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg" alt="a check mark icon" class="icon"></span>
+                                Pricing and Inventory
+                            </p>
+                            <p id="images-media" class="opacity-md">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg" alt="a check mark icon" class="icon"></span>
+                                Images and media
+                            </p>
+                            <p id="shipping-delivery" class="opacity-md">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg" alt="a check mark icon" class="icon"></span>
+                                Shipping and delivery
+                            </p>
+                            <p id="seo-meta-info" class="opacity-md">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg" alt="a check mark icon" class="icon"></span>
+                                SEO and Meta Information
+                            </p>
+                            <p id="additional-info" class="opacity-md">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg" alt="a check mark icon" class="icon"></span>
+                                Additional information
+                            </p>
+                            <p id="review-submit" class="opacity-md">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg" alt="a check mark icon" class="icon"></span>
+                                Review and Submit
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                
+             
               
             </div>
         </section>
