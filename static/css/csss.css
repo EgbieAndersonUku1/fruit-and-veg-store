@@ -113,9 +113,6 @@ input[type="search"] {
 }
 
 
-input[type="number"] {
-    text-align: center;
-}
 
 
 /* form fields */
@@ -2786,7 +2783,7 @@ label {
     background: ghostwhite;
   }
 
-  #select-category {
+  .select-category {
     width: 100%;
   }
 
@@ -2812,9 +2809,10 @@ label {
     font-size: var(--font-size-normal);
 }
 
+.prev-button,
 .next-button {
    
-    background: var(--dark-green);
+   
     box-shadow: var(--box-shadow3);
     color: white;
     text-transform: uppercase;
@@ -2822,6 +2820,67 @@ label {
     padding: 4px;
     width: 25%;
    
-    
-   
+}
+.prev-button {
+    background: var(--dodger-blue);
+}
+
+.next-button {
+    background: var(--dark-green);
+}
+
+.sizes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+}
+.colors {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+  }
+
+
+.sizes .size input,  
+.colors .color input {
+    height: auto;
+}
+
+.colors .color label.red { color: red; }
+.colors .color label.green { color: green; }
+.colors .color label.blue { color: blue; }
+.colors .color label.yellow { color: yellow; }
+.colors .color label.gray { color: gray; }
+.colors .color label.brown { color: brown; }
+.colors .color label.orange { color: orange; }
+.colors .color label.purple { color: purple; }
+.colors .color label.cyan { color: cyan; }
+.colors .color label.magenta { color: magenta; }
+.colors .color label.beige { color: beige; }
+.colors .color label.maroon { color: maroon; }
+.colors .color label.navy { color: navy; }
+.colors .color label.olive { color: olive; }
+.colors .color label.teal { color: teal; }
+.colors .color label.lime { color: lime; }
+.colors .color label.indigo { color: indigo; }
+.colors .color label.violet { color: violet; }
+.colors .color label.gold { color: gold; }
+.colors .color label.silver { color: silver; }
+.colors .color label.bronze { color: bronze; }
+.colors .color label.coral { color: coral; }
+.colors .color label.turquoise { color: turquoise; }
+.colors .color label.lavender { color: lavender; }
+.colors .color label.peach { color: peach; }
+.colors .color label.mint { color: mint; }
+.colors .color label.aqua { color: aqua; }
+
+
+legend {
+    padding-top: var(--padding-md);
+    font-weight: 500;
+}
+
+
+.add-product-btn-container {
+    margin-top: var(--padding-md);
 }
