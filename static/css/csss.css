@@ -2801,6 +2801,7 @@ label {
 
 .add-product-form textarea {
     text-align: left;
+    font-size: var(--font-size-normal);
 }
 
 .add-product-form input,
@@ -2846,6 +2847,7 @@ label {
 .sizes .size input,  
 .colors .color input {
     height: auto;
+    width: auto;
 }
 
 .colors .color label.red { color: red; }
@@ -2910,6 +2912,7 @@ legend {
 
 .shipping-options input {
     height: auto;
+    width: auto;
 }
 
 .shipping-options {
