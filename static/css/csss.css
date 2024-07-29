@@ -2801,13 +2801,16 @@ label {
 
 .add-product-form textarea {
     text-align: left;
+    font-size: var(--font-size-normal);
 }
 
 .add-product-form input,
 .add-product-form select{
     height: 35px;
     font-size: var(--font-size-normal);
+    width: 100%;
 }
+
 
 .prev-button,
 .next-button {
@@ -2844,6 +2847,7 @@ label {
 .sizes .size input,  
 .colors .color input {
     height: auto;
+    width: auto;
 }
 
 .colors .color label.red { color: red; }
@@ -2883,4 +2887,43 @@ legend {
 
 .add-product-btn-container {
     margin-top: var(--padding-md);
+}
+
+.image-media-form label:not(label:first-child) {
+    padding-top: var(--padding-md);
+}
+
+.image-media-form input:last-child {
+    padding-bottom: var(--padding-lg);
+}
+
+
+.image-media-form label {
+    text-transform: capitalize;
+}
+
+
+.image-media-form label span {
+    font-size: var(--font-size-sm);
+    text-transform: lowercase;
+    font-weight: 300;
+}
+
+
+.shipping-options input {
+    height: auto;
+    width: auto;
+}
+
+.shipping-options {
+    margin-bottom: var(--padding-md);
+}
+
+.current-page {
+    color: rgb(4, 4, 70);
+    opacity: 0.7;
+}
+
+.add-prodct-section {
+    margin-bottom: var(--padding-xl);
 }
