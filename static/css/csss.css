@@ -2927,3 +2927,10 @@ legend {
 .add-prodct-section {
     margin-bottom: var(--padding-xl);
 }
+
+.error-msg {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--padding-md);
+    opacity: 0.8;
+    display: none;
+}

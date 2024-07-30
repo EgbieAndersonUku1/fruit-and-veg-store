@@ -2,6 +2,10 @@ import addNewProductPages from "../pages/pages.js";
 import { redirectToNewPage } from "../utils/utils.js";
 import { minimumCharactersToUse } from "./characterCounter.js";
 import loadFile from "../utils/loader.js";
+import { getItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
+
+const productNameErrorMsg = document.getElementById("product-name-error-msg");
+const selectCategoryErrorMsg = document.getElementById("select-category-error-msg");
 
 
 const detailDescriptionTextAreaSelector   = "#detailed-description";
@@ -58,9 +62,11 @@ minimumCharactersToUse(warrantyDescriptionTextAreaSelector, {
 
 
 
-function nextPage(event, pageNumber) {
+function nextPage(event, step) {
     event.preventDefault();
-    const page = addNewProductPages[parseInt(pageNumber)];
+
+    const pageNumber = parseInt(step);
+    const page = addNewProductPages[pageNumber];
 
    
 
@@ -71,7 +77,12 @@ function nextPage(event, pageNumber) {
         throw new Error("Something went wrong and the page number couldn't be found!!!");
     }
 
-    redirectToNewPage(page);
+    // use the if-statement for now, later switch it to a switch statement
+    if (pageNumber - 1 === 1) {
+       handleBasicInformationForm()
+    }
+
+    // redirectToNewPage(page);
 }
 
 
@@ -123,5 +134,48 @@ function createOption(value, text) {
     return option
 }
 
+
+
+function handleBasicInformationForm() {
+    const form = document.getElementById("basic-product-information-form");
+
+    if (!form) {
+        throw new Error("Something went wrong and the form elements couldn't be found!!!")
+    };
+
+    let addProduct = getItemFromLocalStorage("addProduct", true);
+
+    if (!addProduct) {
+        addProduct = {};
+    };
+
+    const formData = new FormData(form);
+    
+    const {productName, selectCategory, addCategory, brand, sku, upc, shortDescription } = {
+            productName: formData.get("product-name"),
+            selectCategory: formData.get("select-category"),
+            addCategory: formData.get("add-category"),
+            brand: formData.get("brand"),
+            sku: formData.get("sku"),
+            upc: formData.get("upc"),
+            shortDescription: formData.get("short-description")
+      };
+
+    
+    if (!productName) {
+        productNameErrorMsg.style.display = "block";
+    }
+
+    if (!selectCategory) {
+        selectCategoryErrorMsg.style.display = "block";
+    }
+    
+
+
+    
+
+
+
+}
 
 populateCountrySelect();
