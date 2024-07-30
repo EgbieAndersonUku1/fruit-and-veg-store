@@ -4,8 +4,13 @@ import { minimumCharactersToUse } from "./characterCounter.js";
 import loadFile from "../utils/loader.js";
 import { getItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
 
-const productNameErrorMsg = document.getElementById("product-name-error-msg");
-const selectCategoryErrorMsg = document.getElementById("select-category-error-msg");
+const productNameErrorMsg       = document.getElementById("product-name-error-msg");
+const selectCategoryErrorMsg    = document.getElementById("select-category-error-msg");
+const brandErrorsg              = document.getElementById("brand-error-msg");
+const skuErrorMsg               = document.getElementById("sku-error-msg");
+const upcErrorMsg               = document.getElementById("upc-error-msg");
+const shortDescriptionErrorMsg  = document.getElementById("short-description-error-msg");
+
 
 
 const detailDescriptionTextAreaSelector   = "#detailed-description";
@@ -79,7 +84,7 @@ function nextPage(event, step) {
 
     // use the if-statement for now, later switch it to a switch statement
     if (pageNumber - 1 === 1) {
-       handleBasicInformationForm()
+       handleBasicInformationForm(pageNumber)
     }
 
     // redirectToNewPage(page);
@@ -135,22 +140,36 @@ function createOption(value, text) {
 }
 
 
+function getAddProductDictOrCreate() {
+    let addProduct = getItemFromLocalStorage("addProduct", true);
 
-function handleBasicInformationForm() {
+    if (!addProduct) {
+        addProduct = {};
+    };
+    return addProduct;
+}
+
+function handleBasicInformationForm(pageNumber) {
     const form = document.getElementById("basic-product-information-form");
 
     if (!form) {
         throw new Error("Something went wrong and the form elements couldn't be found!!!")
     };
 
-    let addProduct = getItemFromLocalStorage("addProduct", true);
+   
 
-    if (!addProduct) {
-        addProduct = {};
-    };
-
+   
     const formData = new FormData(form);
-    
+
+    let productNameField      = true;
+    let selectCategoryField   = true;
+    let addCategoryField      = true;
+    let brandField            = true;
+    let skuField              = true;
+    let upcField              = true;
+    let shortDescriptionField = true;
+     
+
     const {productName, selectCategory, addCategory, brand, sku, upc, shortDescription } = {
             productName: formData.get("product-name"),
             selectCategory: formData.get("select-category"),
@@ -161,21 +180,65 @@ function handleBasicInformationForm() {
             shortDescription: formData.get("short-description")
       };
 
-    
     if (!productName) {
-        productNameErrorMsg.style.display = "block";
-    }
+        productNameField = false;
+        showErrorMsg(productNameErrorMsg);
+    };
 
     if (!selectCategory) {
-        selectCategoryErrorMsg.style.display = "block";
+        selectCategoryField = false;
+        showErrorMsg(selectCategoryErrorMsg);
+    };
+    
+    if (!brand) {
+        brandField = false;
+        showErrorMsg(brandErrorsg);
+    };
+
+    if (!sku) {
+        skuField = false;
+        showErrorMsg(skuErrorMsg);
+    };
+
+    if (!upc) {
+        upcField = false;
+        showErrorMsg(upcErrorMsg)
+    };
+
+    if (!shortDescription) {
+        shortDescriptionField = false;
+        showErrorMsg(shortDescriptionErrorMsg)
+    }
+
+    
+    if (productNameField && selectCategoryField && brandField && skuField && upcField && shortDescriptionField) {
+
+        const addProduct = getAddProductDictOrCreate();
+
+        addProduct.productName       = productName;
+        addProduct.selectCategory    = selectCategory;
+        addProduct.addCategory       = addCategory;
+        addProduct.brand             = brand;
+        addProduct.sku               = sku;
+        addProduct.upc               = upc;
+        addProduct.shortDescription  =  shortDescription;
+
+        saveToLocalStorage("addProduct", addProduct, true);
+        redirectToNewPage(pageNumber);
+
+    } else {
+        // alert for now - later change to a more message
+        alert("One or more of the elements are missing!!1");
     }
     
-
-
-    
-
-
+   
+  
 
 }
 
 populateCountrySelect();
+
+
+function showErrorMsg(msgElement, show=true) {
+    msgElement.style.display = show ? "block": "none"
+}
