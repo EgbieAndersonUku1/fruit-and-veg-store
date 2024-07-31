@@ -86,8 +86,12 @@ function nextPage(event, step) {
     if (pageNumber - 1 === 1) {
        handleBasicInformationForm(pageNumber)
     }
+    if (pageNumber - 1 === 2) {
+        // handleBasicInformationForm(pageNumber)
+        null;
+     }
 
-    // redirectToNewPage(page);
+   
 }
 
 
@@ -151,90 +155,53 @@ function getAddProductDictOrCreate() {
 
 function handleBasicInformationForm(pageNumber) {
     const form = document.getElementById("basic-product-information-form");
+    let formComplete = true;
 
     if (!form) {
-        throw new Error("Something went wrong and the form elements couldn't be found!!!")
-    };
-
-   
-
-   
-    const formData = new FormData(form);
-
-    let productNameField      = true;
-    let selectCategoryField   = true;
-    let addCategoryField      = true;
-    let brandField            = true;
-    let skuField              = true;
-    let upcField              = true;
-    let shortDescriptionField = true;
-     
-
-    const {productName, selectCategory, addCategory, brand, sku, upc, shortDescription } = {
-            productName: formData.get("product-name"),
-            selectCategory: formData.get("select-category"),
-            addCategory: formData.get("add-category"),
-            brand: formData.get("brand"),
-            sku: formData.get("sku"),
-            upc: formData.get("upc"),
-            shortDescription: formData.get("short-description")
-      };
-
-    if (!productName) {
-        productNameField = false;
-        showErrorMsg(productNameErrorMsg);
-    };
-
-    if (!selectCategory) {
-        selectCategoryField = false;
-        showErrorMsg(selectCategoryErrorMsg);
-    };
-    
-    if (!brand) {
-        brandField = false;
-        showErrorMsg(brandErrorsg);
-    };
-
-    if (!sku) {
-        skuField = false;
-        showErrorMsg(skuErrorMsg);
-    };
-
-    if (!upc) {
-        upcField = false;
-        showErrorMsg(upcErrorMsg)
-    };
-
-    if (!shortDescription) {
-        shortDescriptionField = false;
-        showErrorMsg(shortDescriptionErrorMsg)
+        throw new Error("Something went wrong and the form elements couldn't be found!!!");
     }
 
-    
-    if (productNameField && selectCategoryField && brandField && skuField && upcField && shortDescriptionField) {
+    const addProductObj = getAddProductDictOrCreate();
+    const formEntries = getFormEntries(form);
 
-        const addProduct = getAddProductDictOrCreate();
+    const fields = [
+        {name: 'product-name', value: formEntries['product-name'], errorMsg: productNameErrorMsg},
+        {name: 'select-category', value: formEntries['select-category'], errorMsg: selectCategoryErrorMsg},
+        {name: 'brand', value: formEntries['brand'], errorMsg: brandErrorsg},
+        {name: 'sku', value: formEntries['sku'], errorMsg: skuErrorMsg},
+        {name: 'upc', value: formEntries['upc'], errorMsg: upcErrorMsg},
+        {name: 'short-description', value: formEntries['short-description'], errorMsg: shortDescriptionErrorMsg}
+    ];
 
-        addProduct.productName       = productName;
-        addProduct.selectCategory    = selectCategory;
-        addProduct.addCategory       = addCategory;
-        addProduct.brand             = brand;
-        addProduct.sku               = sku;
-        addProduct.upc               = upc;
-        addProduct.shortDescription  =  shortDescription;
+    fields.forEach((field) => {
+        if (!field.value) {
+            showErrorMsg(field.errorMsg);
+            formComplete = false;
+        } else {
+            addProductObj[field.name] = field.value;
+        }
+    });
 
-        saveToLocalStorage("addProduct", addProduct, true);
-        redirectToNewPage(pageNumber);
-
+    if (!formComplete) {
+        alert("One or more of the form details is incomplete");
     } else {
-        // alert for now - later change to a more message
-        alert("One or more of the elements are missing!!1");
+        saveToLocalStorage("addProduct", addProductObj, true);
+        redirectToNewPage(pageNumber);
     }
-    
-   
-  
-
 }
+
+function getFormEntries(form) {
+    const formData = new FormData(form);
+    const formEntries = {};
+
+    for (const [key, value] of formData.entries()) {
+        formEntries[key] = value;
+    }
+
+    return formEntries;
+}
+
+
 
 populateCountrySelect();
 
