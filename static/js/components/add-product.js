@@ -162,15 +162,15 @@ function handleBasicInformationForm(pageNumber) {
     }
 
     const addProductObj = getAddProductDictOrCreate();
-    const formEntries = getFormEntries(form);
+    const formEntries   = getFormEntries(form);
 
     const fields = [
-        {name: 'product-name', errorMsg: productNameErrorMsg},
-        {name: 'select-category', errorMsg: selectCategoryErrorMsg},
-        {name: 'brand', errorMsg: brandErrorsg},
-        {name: 'sku', errorMsg: skuErrorMsg},
-        {name: 'upc', errorMsg: upcErrorMsg},
-        {name: 'short-description', errorMsg: shortDescriptionErrorMsg}
+        {name: 'product-name', value: formEntries['product-name'], errorMsg: productNameErrorMsg},
+        {name: 'select-category', value: formEntries['select-category'], errorMsg: selectCategoryErrorMsg},
+        {name: 'brand', value: formEntries['brand'], errorMsg: brandErrorsg},
+        {name: 'sku', value: formEntries['sku'], errorMsg: skuErrorMsg},
+        {name: 'upc', value: formEntries['upc'], errorMsg: upcErrorMsg},
+        {name: 'short-description', value: formEntries['short-description'], errorMsg: shortDescriptionErrorMsg}
     ];
 
     const formComplete = validateAndProcessFields(formEntries, fields, addProductObj);
@@ -183,7 +183,7 @@ function validateAndProcessFields(formEntries, fields, addProductObj) {
     let formComplete = true;
 
     fields.forEach((field) => {
-        if (!formEntries[field.name]) {
+        if (!formEntries[field.value]) {
             showErrorMsg(field.errorMsg);
             formComplete = false;
         } else {
