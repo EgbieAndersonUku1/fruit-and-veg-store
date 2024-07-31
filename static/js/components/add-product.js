@@ -11,7 +11,8 @@ const skuErrorMsg               = document.getElementById("sku-error-msg");
 const upcErrorMsg               = document.getElementById("upc-error-msg");
 const shortDescriptionErrorMsg  = document.getElementById("short-description-error-msg");
 
-
+// forms
+const basicForm = document.getElementById("basic-product-information-form");
 
 const detailDescriptionTextAreaSelector   = "#detailed-description";
 const shortDescriptionTextAreaSelector    = "#short-description";
@@ -116,6 +117,11 @@ window.prevPage = prevPage;
 
 async function populateCountrySelect() {
     const countriesSelectForm = document.querySelector("#countries");
+
+    if (!countriesSelectForm) {
+        console.warn("The countries elements selector wasn't found!!")
+        return;
+    }
     try {
         const filePath      = "../../../../countries.txt";
         const countriesData = await loadFile(filePath);
@@ -155,14 +161,14 @@ function getAddProductDictOrCreate() {
 
 
 function handleBasicInformationForm(pageNumber) {
-    const form = document.getElementById("basic-product-information-form");
+   
 
-    if (!form) {
+    if (!basicForm) {
         throw new Error("Something went wrong and the form elements couldn't be found!!!");
     }
 
     const addProductObj = getAddProductDictOrCreate();
-    const formEntries   = getFormEntries(form);
+    const formEntries   = getFormEntries(basicForm);
 
     const fields = [
         {name: 'product-name', value: formEntries['product-name'], errorMsg: productNameErrorMsg},
@@ -173,21 +179,25 @@ function handleBasicInformationForm(pageNumber) {
         {name: 'short-description', value: formEntries['short-description'], errorMsg: shortDescriptionErrorMsg}
     ];
 
-    const formComplete = validateAndProcessFields(formEntries, fields, addProductObj);
+    const formComplete = validateAndProcessFields(fields, addProductObj);
     handleFormCompletion(formComplete, addProductObj, pageNumber);
    
 }
 
 
-function validateAndProcessFields(formEntries, fields, addProductObj) {
+function validateAndProcessFields(fields, addProductObj) {
     let formComplete = true;
 
     fields.forEach((field) => {
-        if (!formEntries[field.value]) {
+        // console.log(field)
+        if (!field.value) {
             showErrorMsg(field.errorMsg);
             formComplete = false;
         } else {
-            addProductObj[field.name] = formEntries[field.name];
+            addProductObj[field.name] = field.value;
+            console.log(field.value);
+            showErrorMsg(field.errorMsg, false);
+            console.log("hereee")
         }
     });
 
