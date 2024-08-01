@@ -2934,3 +2934,10 @@ legend {
     opacity: 0.8;
     display: none;
 }
+
+
+/* add new category input field */
+#add-category-label,
+#add-category {
+    display: none;
+}

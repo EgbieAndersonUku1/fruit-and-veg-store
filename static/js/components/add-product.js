@@ -3,6 +3,8 @@ import { redirectToNewPage } from "../utils/utils.js";
 import { minimumCharactersToUse } from "./characterCounter.js";
 import loadFile from "../utils/loader.js";
 import { getItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
+import { getFormEntries, getMinCharCount } from "../utils/formUtils.js";
+
 
 const productNameErrorMsg       = document.getElementById("product-name-error-msg");
 const selectCategoryErrorMsg    = document.getElementById("select-category-error-msg");
@@ -11,13 +13,25 @@ const skuErrorMsg               = document.getElementById("sku-error-msg");
 const upcErrorMsg               = document.getElementById("upc-error-msg");
 const shortDescriptionErrorMsg  = document.getElementById("short-description-error-msg");
 
-// forms
+
+// form
 const basicForm = document.getElementById("basic-product-information-form");
 
+
+// field selectors for textArea fields
 const detailDescriptionTextAreaSelector   = "#detailed-description";
 const shortDescriptionTextAreaSelector    = "#short-description";
 const metaDescriptionTextAreaSelector     = "#meta-description";
 const warrantyDescriptionTextAreaSelector = "#warranty-description";
+
+
+// basic category fields
+const selectProductCategoryElement  = document.getElementById("select-category");
+const addCategoryLabelElement       = document.getElementById("add-category-label");
+const addCategoryInputFieldElement  =  document.getElementById("add-category");
+const basicFormTextAreaFieldElement = document.getElementById("short-description");
+
+
 
 
 // Text area field inside inside the detail description specs page
@@ -68,6 +82,26 @@ minimumCharactersToUse(warrantyDescriptionTextAreaSelector, {
 
 
 
+// handle select category event listener
+selectProductCategoryElement?.addEventListener("change", handleSelectClick);
+
+
+function handleSelectClick(e) {
+    const value = selectProductCategoryElement.value.toLowerCase();
+    
+    if (value === "new-category") {
+        addCategoryLabelElement.style.display = "block";
+        addCategoryInputFieldElement.style.display = "block";
+    } else {
+        addCategoryLabelElement.style.display = "none";
+        addCategoryInputFieldElement.style.display = "none";
+    }
+}
+
+
+
+
+
 function nextPage(event, step) {
     event.preventDefault();
 
@@ -111,10 +145,14 @@ function prevPage(event, pageNumber) {
     redirectToNewPage(page);
 }
 
+
 window.nextPage = nextPage;
 window.prevPage = prevPage;
 
 
+
+
+// populate field
 async function populateCountrySelect() {
     const countriesSelectForm = document.querySelector("#countries");
 
@@ -150,6 +188,79 @@ function createOption(value, text) {
 }
 
 
+
+function handleBasicInformationForm(pageNumber) {
+    if (!basicForm) {
+        throw new Error("Something went wrong and the form elements couldn't be found!!!");
+    }
+
+    const addProductObj = getAddProductDictOrCreate();
+    const formEntries = getFormEntries(basicForm);
+
+    const fields = [
+        {name: 'product-name', value: formEntries['product-name'], errorMsg: productNameErrorMsg, 
+         fieldType: "text", minCharCount: null
+        },
+
+        {name: 'select-product-category', value: formEntries['select-a-category'], 
+         errorMsg: selectCategoryErrorMsg, fieldType: "select", minCharCount: null
+        },
+
+        {name: 'brand', value: formEntries['brand'], errorMsg: brandErrorsg, fieldType: "text", minCharCount: null},
+
+        {name: 'sku', value: formEntries['sku'], errorMsg: skuErrorMsg, fieldType: "text", minCharCount: null},
+
+        {name: 'upc', value: formEntries['upc'], errorMsg: upcErrorMsg, fieldType: "text", minCharCount: null},
+
+        {name: 'short-description', value: formEntries['short-description'], 
+         errorMsg: shortDescriptionErrorMsg, fieldType: "textarea", 
+         minCharCount: getMinCharCount(basicFormTextAreaFieldElement)}
+    ];
+
+    const formComplete = validateAndProcessFields(fields, addProductObj);
+    handleFormCompletion(formComplete, addProductObj, pageNumber);
+}
+
+
+function validateAndProcessFields(fields, addProductObj) {
+    let formComplete = true;
+
+    fields.forEach((field) => {
+      
+        if (!field.value) {
+            showErrorMsg(field.errorMsg);
+            formComplete = false;
+        } else {
+            addProductObj[field.name]  = field.value;  
+            showErrorMsg(field.errorMsg, false);
+          
+        }
+
+        // Check if the user has entered the minimum number of characters for textarea fields
+        if (field.fieldType === "textarea"  && field.value.length < field.minCharCount) {
+            formComplete = false;
+        } 
+           
+    });
+
+
+    return formComplete;
+}
+
+
+function handleFormCompletion(formComplete, addProductObj, pageNumber) {
+    
+    if (!formComplete) {
+        alert("One or more of the form details is incomplete");
+    } else {
+       
+        saveToLocalStorage("addProduct", addProductObj, true);
+        redirectToNewPage(addNewProductPages[pageNumber]);
+    }
+}
+
+
+
 function getAddProductDictOrCreate() {
     let addProduct = getItemFromLocalStorage("addProduct", true);
 
@@ -160,77 +271,12 @@ function getAddProductDictOrCreate() {
 }
 
 
-function handleBasicInformationForm(pageNumber) {
-   
-
-    if (!basicForm) {
-        throw new Error("Something went wrong and the form elements couldn't be found!!!");
-    }
-
-    const addProductObj = getAddProductDictOrCreate();
-    const formEntries   = getFormEntries(basicForm);
-
-    const fields = [
-        {name: 'product-name', value: formEntries['product-name'], errorMsg: productNameErrorMsg},
-        {name: 'select-category', value: formEntries['select-category'], errorMsg: selectCategoryErrorMsg},
-        {name: 'brand', value: formEntries['brand'], errorMsg: brandErrorsg},
-        {name: 'sku', value: formEntries['sku'], errorMsg: skuErrorMsg},
-        {name: 'upc', value: formEntries['upc'], errorMsg: upcErrorMsg},
-        {name: 'short-description', value: formEntries['short-description'], errorMsg: shortDescriptionErrorMsg}
-    ];
-
-    const formComplete = validateAndProcessFields(fields, addProductObj);
-    handleFormCompletion(formComplete, addProductObj, pageNumber);
-   
-}
-
-
-function validateAndProcessFields(fields, addProductObj) {
-    let formComplete = true;
-
-    fields.forEach((field) => {
-        // console.log(field)
-        if (!field.value) {
-            showErrorMsg(field.errorMsg);
-            formComplete = false;
-        } else {
-            addProductObj[field.name] = field.value;
-            console.log(field.value);
-            showErrorMsg(field.errorMsg, false);
-            console.log("hereee")
-        }
-    });
-
-    return formComplete;
-}
-
-
-function handleFormCompletion(formComplete, addProductObj, pageNumber) {
-    if (!formComplete) {
-        alert("One or more of the form details is incomplete");
-    } else {
-        saveToLocalStorage("addProduct", addProductObj, true);
-        redirectToNewPage(pageNumber);
-    }
-}
-
-
-function getFormEntries(form) {
-    const formData = new FormData(form);
-    const formEntries = {};
-
-    for (const [key, value] of formData.entries()) {
-        formEntries[key] = value;
-    }
-
-    return formEntries;
-}
-
-
-
-populateCountrySelect();
 
 
 function showErrorMsg(msgElement, show=true) {
     msgElement.style.display = show ? "block": "none"
 }
+
+
+populateCountrySelect();
+
