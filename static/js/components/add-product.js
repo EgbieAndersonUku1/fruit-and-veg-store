@@ -3,12 +3,13 @@ import { redirectToNewPage } from "../utils/utils.js";
 import { minimumCharactersToUse } from "./characterCounter.js";
 import { getItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
 import { getFormEntries } from "../utils/formUtils.js";
-import { populateCountrySelect } from "../builders/formBuilder.js";
+import { populateSelectField } from "../builders/formBuilder.js";
 
 
 
 // populate the select function
-populateCountrySelect("#countries", "../../../../countries.txt");
+// populateCountrySelect("#countries", "../../../../countries.txt");
+populateSelectField("#countries", "../../../../countries.txt")
 
 
 
