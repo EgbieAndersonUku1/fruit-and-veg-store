@@ -1,12 +1,15 @@
 import addNewProductPages from "../pages/pages.js";
 import { redirectToNewPage } from "../utils/utils.js";
 import { minimumCharactersToUse } from "./characterCounter.js";
-import loadFile from "../utils/loader.js";
 import { getItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
 import { getFormEntries } from "../utils/formUtils.js";
+import { populateCountrySelect } from "../builders/formBuilder.js";
 
 
-// form
+
+// populate the select function
+populateCountrySelect("#countries", "../../../../countries.txt");
+
 
 
 const basicForm = document.getElementById("basic-product-information-form");
@@ -117,41 +120,6 @@ window.prevPage = prevPage;
 
 
 
-// populate field
-async function populateCountrySelect() {
-    const countriesSelectForm = document.querySelector("#countries");
-
-    if (!countriesSelectForm) {
-        console.warn("The countries elements selector wasn't found!!")
-        return;
-    }
-    try {
-        const filePath      = "../../../../countries.txt";
-        const countriesData = await loadFile(filePath);
-
-        if (countriesData) {
-            const countries = countriesData.split('\n');
-
-            countries.forEach((country) => {
-                const value = country;
-                const text  = country;
-
-                const option = createOption(value, text);
-                countriesSelectForm.appendChild(option);
-            });
-        }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-}
-
-function createOption(value, text) {
-    const option = document.createElement("option");
-    option.value = value;
-    option.textContent = text;
-    return option
-}
-
 
 
 function handleBasicInformationForm(e) {
@@ -161,7 +129,7 @@ function handleBasicInformationForm(e) {
 
     if (basicForm.reportValidity()) {
         const formEntries = getFormEntries(basicForm);
-        handleFormCompletion(formEntries, pageNumber)
+        handleFormCompletion(formEntries, pageNumber);
     } else {
         console.log("not passed")
     }
@@ -178,12 +146,4 @@ function handleFormCompletion(addProductObj, pageNumber) {
 
 
 
-
-
-function showErrorMsg(msgElement, show=true) {
-    msgElement.style.display = show ? "block": "none"
-}
-
-
-populateCountrySelect();
 
