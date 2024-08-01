@@ -15,6 +15,7 @@
 <body>
     <div class="dim-overlay" id="dimOverlay"></div>
 
+    
     <!-- The navigation  -->
     <nav aria-label="Main navigation">
         <div class="nav-container">
@@ -178,34 +179,93 @@
                 <p class="account-info">Basic product information</p>
                
                 <hr class="dividor">
-
+                
                 <section id="basic-production-information" aria-labelledby="basic-product-information" class="add-prodct-section">
                     <div class="add-product-container">
-                        <form action="" method="post" class="add-product-form">
+            
+
+                        <form action="" method="post" class="add-product-form" id="basic-product-information-form">
+                           
                             <label for="product-name">Product name</label>
                             <input type="text" name="product-name" id="product-name">
+                            <p class="highlight error-msg" id="product-name-error-msg">The field cannot be empty</p>
                 
                             <label for="select-category">Select a product category</label>
-                            <select name="select-category" id="select-category" class="select-category">
+                            
+                            <select name="select-a-category" id="select-category" class="select-category">
                                 <option value=""></option>
-                                <option value="option">Option 1 (to be added)</option>
-                                <option value="option">Option 2 (to be added)</option>
+                                <option value="new-category">New Category</option>
+                            
+                                <optgroup label="Fruits & Vegetables">
+                                    <option value="fresh-fruits">Fresh Fruits</option>
+                                    <option value="fresh-vegetables">Fresh Vegetables</option>
+                                    <option value="organic-greens">Organic Greens</option>
+                            
+                                </optgroup>
+                                <optgroup label="Dairy Products">
+                                    <option value="milk">Milk</option>
+                                    <option value="cheese">Cheese</option>
+                                    <option value="yogurt">Yogurt</option>
+                                </optgroup>
+                                <optgroup label="Meat & Seafood">
+                                    <option value="meat">Meat</option>
+                                    <option value="poultry">Poultry</option>
+                                    <option value="seafood">Seafood</option>
+                                </optgroup>
+                                <optgroup label="Pantry Staples">
+                                    <option value="grains-rice">Grains & Rice</option>
+                                    <option value="pasta-noodles">Pasta & Noodles</option>
+                                    <option value="baking-essentials">Baking Essentials</option>
+                                    <option value="canned-goods">Canned Goods</option>
+                                </optgroup>
+                                <optgroup label="Beverages">
+                                    <option value="juices">Juices</option>
+                                    <option value="teas">Teas</option>
+                                    <option value="coffee">Coffee</option>
+                                    <option value="smoothies">Smoothies</option>
+                                </optgroup>
+                                <optgroup label="Snacks & Sweets">
+                                    <option value="chips-crackers">Chips & Crackers</option>
+                                    <option value="cookies-bars">Cookies & Bars</option>
+                                    <option value="dried-fruits-nuts">Dried Fruits & Nuts</option>
+                                    <option value="chocolates-candies">Chocolates & Candies</option>
+                                </optgroup>
+                                <optgroup label="Frozen Foods">
+                                    <option value="frozen-meals">Frozen Meals</option>
+                                    <option value="frozen-vegetables-fruits">Frozen Vegetables & Fruits</option>
+                                    <option value="frozen-desserts">Frozen Desserts</option>
+                                </optgroup>
+                                <optgroup label="Baby & Kids">
+                                    <option value="baby-food">Baby Food</option>
+                                    <option value="snacks-for-kids">Snacks for Kids</option>
+                                    <option value="baby-formula">Baby Formula</option>
+                                </optgroup>
                             </select>
-                
-                            <label for="add-category">Add new category</label>
+                    
+                            <p class="highlight error-msg" id="select-category-error-msg">The field cannot be empty</p>
+
+                            <label for="add-category" id="add-category-label">Add new category</label>
                             <input type="text" name="add-category" id="add-category">
+                            <p class="highlight error-msg" id="add-category-error-msg">The field cannot be empty</p>
+
                 
                             <label for="brand">Brand</label>
                             <input type="text" name="brand" id="brand">
+                            <p class="brand-error-msg highlight error-msg" id="brand-error-msg">The field cannot be empty</p>
+
                 
                             <label for="sku">SKU (Stock Keeping unit)</label>
                             <input type="text" name="sku" id="sku">
+                            <p class="highlight error-msg" id="sku-error-msg">The field cannot be empty</p>
+
                 
                             <label for="upc">UPC (Universal Product code)</label>
                             <input type="text" name="upc" id="upc">
+                            <p class="highlight error-msg" id="upc-error-msg">The field cannot be empty</p>
                 
                             <label for="short-description">Short Description</label>
                             <textarea name="short-description" id="short-description" rows="5" cols="10"></textarea>
+                            <p class="highlight error-msg" id="short-description-error-msg">The field cannot be empty</p>
                             <p class="flex-end minimum-characters">Minimum characters to use: 50</p>
                             <p class="maximum-characters flex-end">Number of characters remaining: 255</p>
     
