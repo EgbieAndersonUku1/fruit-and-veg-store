@@ -3,19 +3,14 @@ import { redirectToNewPage } from "../utils/utils.js";
 import { minimumCharactersToUse } from "./characterCounter.js";
 import loadFile from "../utils/loader.js";
 import { getItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
-import { getFormEntries, getMinCharCount } from "../utils/formUtils.js";
-
-
-const productNameErrorMsg       = document.getElementById("product-name-error-msg");
-const selectCategoryErrorMsg    = document.getElementById("select-category-error-msg");
-const brandErrorsg              = document.getElementById("brand-error-msg");
-const skuErrorMsg               = document.getElementById("sku-error-msg");
-const upcErrorMsg               = document.getElementById("upc-error-msg");
-const shortDescriptionErrorMsg  = document.getElementById("short-description-error-msg");
+import { getFormEntries } from "../utils/formUtils.js";
 
 
 // form
+
+
 const basicForm = document.getElementById("basic-product-information-form");
+basicForm.addEventListener("submit", handleBasicInformationForm)
 
 
 // field selectors for textArea fields
@@ -100,58 +95,6 @@ function handleSelectClick(e) {
 
 
 
-
-
-function nextPage(event, step) {
-    event.preventDefault();
-
-    const pageNumber = parseInt(step);
-    const page = addNewProductPages[pageNumber];
-
-   
-
-    // TODO: Handle form data for each page here.
-    // For now, just redirect to the next page as part of the Minimum Viable Product (MVP).
-
-    if (!page) {
-        throw new Error("Something went wrong and the page number couldn't be found!!!");
-    }
-
-    // use the if-statement for now, later switch it to a switch statement
-    if (pageNumber - 1 === 1) {
-       handleBasicInformationForm(pageNumber)
-    }
-    if (pageNumber - 1 === 2) {
-        // handleBasicInformationForm(pageNumber)
-        null;
-     }
-
-   
-}
-
-
-function prevPage(event, pageNumber) {
-    event.preventDefault();
-    const page = addNewProductPages[parseInt(pageNumber)];
-
-    
-     // TODO: Handle form data for each page here.
-    // For now, just redirect to the previous page as part of the Minimum Viable Product (MVP).
-
-    if (!page) {
-        throw new Error("Something went wrong and the page number couldn't be found!!!");
-    }
-
-    redirectToNewPage(page);
-}
-
-
-window.nextPage = nextPage;
-window.prevPage = prevPage;
-
-
-
-
 // populate field
 async function populateCountrySelect() {
     const countriesSelectForm = document.querySelector("#countries");
@@ -189,86 +132,32 @@ function createOption(value, text) {
 
 
 
-function handleBasicInformationForm(pageNumber) {
-    if (!basicForm) {
-        throw new Error("Something went wrong and the form elements couldn't be found!!!");
-    }
+function handleBasicInformationForm(e) {
 
-    const addProductObj = getAddProductDictOrCreate();
-    const formEntries = getFormEntries(basicForm);
+    e.preventDefault();
+    const pageNumber = 2;
 
-    const fields = [
-        {name: 'product-name', value: formEntries['product-name'], errorMsg: productNameErrorMsg, 
-         fieldType: "text", minCharCount: null
-        },
-
-        {name: 'select-product-category', value: formEntries['select-a-category'], 
-         errorMsg: selectCategoryErrorMsg, fieldType: "select", minCharCount: null
-        },
-
-        {name: 'brand', value: formEntries['brand'], errorMsg: brandErrorsg, fieldType: "text", minCharCount: null},
-
-        {name: 'sku', value: formEntries['sku'], errorMsg: skuErrorMsg, fieldType: "text", minCharCount: null},
-
-        {name: 'upc', value: formEntries['upc'], errorMsg: upcErrorMsg, fieldType: "text", minCharCount: null},
-
-        {name: 'short-description', value: formEntries['short-description'], 
-         errorMsg: shortDescriptionErrorMsg, fieldType: "textarea", 
-         minCharCount: getMinCharCount(basicFormTextAreaFieldElement)}
-    ];
-
-    const formComplete = validateAndProcessFields(fields, addProductObj);
-    handleFormCompletion(formComplete, addProductObj, pageNumber);
-}
-
-
-function validateAndProcessFields(fields, addProductObj) {
-    let formComplete = true;
-
-    fields.forEach((field) => {
-      
-        if (!field.value) {
-            showErrorMsg(field.errorMsg);
-            formComplete = false;
-        } else {
-            addProductObj[field.name]  = field.value;  
-            showErrorMsg(field.errorMsg, false);
-          
-        }
-
-        // Check if the user has entered the minimum number of characters for textarea fields
-        if (field.fieldType === "textarea"  && field.value.length < field.minCharCount) {
-            formComplete = false;
-        } 
-           
-    });
-
-
-    return formComplete;
-}
-
-
-function handleFormCompletion(formComplete, addProductObj, pageNumber) {
-    
-    if (!formComplete) {
-        alert("One or more of the form details is incomplete");
+    if (basicForm.reportValidity()) {
+        const formEntries = getFormEntries(basicForm);
+        handleFormCompletion(formEntries, pageNumber)
     } else {
-       
-        saveToLocalStorage("addProduct", addProductObj, true);
-        redirectToNewPage(addNewProductPages[pageNumber]);
+        console.log("not passed")
     }
+  
 }
 
 
 
-function getAddProductDictOrCreate() {
-    let addProduct = getItemFromLocalStorage("addProduct", true);
 
-    if (!addProduct) {
-        addProduct = {};
-    };
-    return addProduct;
+
+function handleFormCompletion(addProductObj, pageNumber) {
+           
+    saveToLocalStorage("addProduct", addProductObj, true);
+    redirectToNewPage(addNewProductPages[pageNumber])
+    
 }
+
+
 
 
 
