@@ -91,6 +91,11 @@ function getAllCheckBoxElementsValue(checkboxElements) {
     });
 
     return selectedValues;
+};
+
+
+function getCurrentUrl() {
+    return window.location.href.split("/");
 }
 
   
@@ -102,4 +107,5 @@ export {
     redirectToNewPage,
     getFormattedCurrentDate,
     getAllCheckBoxElementsValue,
+    getCurrentUrl,
 };

@@ -1,9 +1,12 @@
 import addNewProductPages from "../pages/pages.js";
-import { redirectToNewPage } from "../utils/utils.js";
 import { minimumCharactersToUse } from "./characterCounter.js";
-import { getItemFromLocalStorage, saveToLocalStorage, getAllCheckBoxElementsValue } from "../utils/utils.js";
+import { getItemFromLocalStorage, saveToLocalStorage, getAllCheckBoxElementsValue, 
+        redirectToNewPage, getCurrentUrl } from "../utils/utils.js";
 import { getFormEntries } from "../utils/formUtils.js";
 import { populateSelectField } from "../builders/formBuilder.js";
+
+
+window.prevPage = prevPage;
 
 
 
@@ -35,6 +38,10 @@ imageAndMediaForm?.addEventListener("submit", handleImageAndMediaForm);
 shippingAndDeliveryForm?.addEventListener("submit", handleShippingAndDeliveryForm);
 seoAndMetaForm?.addEventListener("submit", handleSeoAndMetaForm);
 additionInformationForm?.addEventListener("submit", handleAdditionalFormInfo);
+
+
+// update the current form values when the user hits prevPage button
+
 
 
 // field selectors for textArea fields
@@ -119,17 +126,55 @@ function handleSelectClick(e) {
 
 function prevPage(event, pageNumber) {
     event.preventDefault();
+
     const page = addNewProductPages[parseInt(pageNumber)];
+    
 
     if (!page) {
         throw new Error("Something went wrong and the page number couldn't be found!!!");
     }
 
     redirectToNewPage(page);
+  
+  
 }
 
 
-window.prevPage = prevPage;
+
+
+function updateFormValue() {
+    const currentPage = getCurrentUrl()?.pop();
+    
+    const formElements = {
+        "basic-product-information.html": basicForm,
+        "detailed-description-specs.html": detailedForm,
+        "pricing-inventory.html": pricingInventoryForm,
+        "images-and-media.html": imageAndMediaForm,
+        "shipping-and-delivery.html": shippingAndDeliveryForm,
+        "SEO-and-meta-information.html": seoAndMetaForm,
+        "additonal-information.html": additionInformationForm,
+    }
+
+    if (formElements[currentPage] === "undefined") {
+        return;
+    }
+  
+  
+    const formDetails   = formElements[currentPage];
+    const productValues = getItemFromLocalStorage(formDetails.id, true);
+
+    // Iterate over the form elements and update their values using their saved data
+    for (let element of formDetails.elements) {
+        // console.log(element.name)
+        if (element.name) {
+            element.value = productValues[element.name];
+        }
+    }
+
+}
+
+
+
 
 
 
@@ -265,8 +310,7 @@ function handleFormComplete(form, formEntries, pageNumber) {
 
 
 
-
-
+window.onload = updateFormValue;
 
 
 
