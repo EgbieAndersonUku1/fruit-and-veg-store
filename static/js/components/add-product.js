@@ -1,7 +1,7 @@
 import addNewProductPages from "../pages/pages.js";
 import { minimumCharactersToUse } from "./characterCounter.js";
 import { getItemFromLocalStorage, saveToLocalStorage, getAllCheckBoxElementsValue, 
-        redirectToNewPage, getCurrentUrl } from "../utils/utils.js";
+        redirectToNewPage, getCurrentPage } from "../utils/utils.js";
 import { getFormEntries } from "../utils/formUtils.js";
 import { populateSelectField } from "../builders/formBuilder.js";
 
@@ -143,7 +143,7 @@ function prevPage(event, pageNumber) {
 
 
 function updateFormValue() {
-    const currentPage = getCurrentUrl()?.split("/")?.pop();
+    const currentPage = getCurrentPage();
     // console.log(currentPage)
     
     const formElements = {
