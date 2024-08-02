@@ -186,10 +186,10 @@
 
                 <section id="additional-information">
                     <div class="add-product-container">
-                        <form action="" method="post" class="add-product-form">
+                        <form action="" method="post" class="add-product-form" id="additional-information-form">
                           
                             <label for="manafacturer-title" class="text-capitalize" id="manafacturer-title">Manufacturer title</label>
-                            <input type="text" name="manafacturer-title" id="manafacturer-title">
+                            <input type="text" name="manafacturer-title" id="manafacturer-title" required>
                             
                             <label for="countries" class="text-capitalize">Country of origin</label>
                             <select name="country-of-origin" id="countries">
@@ -197,19 +197,19 @@
                             </select>
 
                             <label for="return-policy" class="text-capitalize">Return policy</label>
-                            <select name="return-policy" id="return-policy">
+                            <select name="return-policy" id="return-policy" required>
                                 <option value="no">No</option>
                                 <option value="yes">Yes</option>
                             </select>
 
                             <label for="warranty-description">Warranty description</label>
-                            <textarea name="warranty-description" id="warranty-description" rows="15" cols="10"></textarea>
+                            <textarea name="warranty-description" id="warranty-description" rows="15" cols="10" required></textarea>
                             <p class="flex-end minimum-characters">Minimum characters to use: 50</p>
                             <p class="maximum-characters flex-end">Number of characters remaining: 2000</p>
 
                             <div class="button space-between">
-                                <button class="prev-button" onclick="prevPage(event, 6)"> &lt; prev</button>
-                                <button class="next-button" onclick="nextPage(event, 8)">next &gt;</button>
+                                <button class="prev-button" type="button" onclick="prevPage(event, 6)"> &lt; prev</button>
+                                <button class="next-button" type="submit">next &gt;</button>
                             </div>
                         </form>
 

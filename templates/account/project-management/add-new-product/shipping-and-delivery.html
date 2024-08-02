@@ -188,7 +188,7 @@
 
                 <section id="shipping-and-delivery" class="add-prodct-section">
                     <div class="add-product-container">
-                        <form action="" method="post" class="add-product-form">
+                        <form action="" method="post" class="add-product-form" id="shipping-and-delivery-form">
 
                             <legend>Shipping Dimensions</legend>
                             <hr class="dividor">
@@ -250,9 +250,9 @@
                                     Free Shipping (orders over £50) - Free
                                 </label><br>
 
-
-
                             </fieldset>
+                            <p class="error-msg" id="delivery-error-msg">You must select at least one delivery option</p>
+
 
                             <div class="button space-between">
                                 <button class="prev-button"  type="button" onclick="prevPage(event, 4)"> &lt; prev</button>

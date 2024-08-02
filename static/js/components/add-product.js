@@ -11,24 +11,30 @@ import { populateSelectField } from "../builders/formBuilder.js";
 populateSelectField("#countries", "../../../../countries.txt")
 
 
-// detailed-description-specs.html page checkboxes error msg selector
-const selectColorErrorMsg = document.getElementById("color-error-msg");
-const selectSizesErrorMsg = document.getElementById("size-error-msg");
+// checkboxes error msg selector
+const selectColorErrorMsg    = document.getElementById("color-error-msg");
+const selectSizesErrorMsg    = document.getElementById("size-error-msg");
+const selectDeliveryErrorMsg = document.getElementById("delivery-error-msg");
 
 
 // forms
-const basicForm            = document.getElementById("basic-product-information-form");
-const detailedForm         = document.getElementById("detailed-description-form");
-const pricingInventoryForm = document.getElementById("pricing-inventory-form");
-const imageAndMediaForm    = document.getElementById("image-media-form");
+const basicForm               = document.getElementById("basic-product-information-form");
+const detailedForm            = document.getElementById("detailed-description-form");
+const pricingInventoryForm    = document.getElementById("pricing-inventory-form");
+const imageAndMediaForm       = document.getElementById("image-media-form");
+const shippingAndDeliveryForm = document.getElementById("shipping-and-delivery-form");
+const seoAndMetaForm          = document.getElementById("seo-and-meta-form");
+const additionInformationForm = document.getElementById("additional-information-form");
 
 
+// AddEventListners for the forms
 basicForm?.addEventListener("submit", handleBasicInformationForm);
 detailedForm?.addEventListener("submit", handleDetailedInformationForm);
 pricingInventoryForm?.addEventListener("submit", handlePriceInventoryForm);
 imageAndMediaForm?.addEventListener("submit", handleImageAndMediaForm);
-
-
+shippingAndDeliveryForm?.addEventListener("submit", handleShippingAndDeliveryForm);
+seoAndMetaForm?.addEventListener("submit", handleSeoAndMetaForm);
+additionInformationForm?.addEventListener("submit", handleAdditionalFormInfo);
 
 
 // field selectors for textArea fields
@@ -38,7 +44,7 @@ const metaDescriptionTextAreaSelector     = "#meta-description";
 const warrantyDescriptionTextAreaSelector = "#warranty-description";
 
 
-// basic category fields
+// basic category  form fields
 const selectProductCategoryElement  = document.getElementById("select-category");
 const addCategoryLabelElement       = document.getElementById("add-category-label");
 const addCategoryInputFieldElement  =  document.getElementById("add-category");
@@ -128,6 +134,7 @@ window.prevPage = prevPage;
 
 
 
+// handles basic-product-information.html
 function handleBasicInformationForm(e) {
     e.preventDefault();
     const pageNumber = 2;
@@ -136,7 +143,7 @@ function handleBasicInformationForm(e) {
 };
 
 
-
+// handles detailed-description-specs.html
 function handleDetailedInformationForm(e) {
 
     e.preventDefault();
@@ -169,8 +176,8 @@ function handleDetailedInformationForm(e) {
         const sizes       = getAllCheckBoxElementsValue(sizeCheckBoxes);
         const formEntries = getFormEntries(detailedForm);
 
-        formEntries.colors = colors;
-        formEntries.sizes  = sizes;
+        formEntries.colorsOptions = colors;
+        formEntries.sizesOptions  = sizes;
 
         handleFormComplete(detailedForm, formEntries, pageNumber);
         
@@ -178,6 +185,7 @@ function handleDetailedInformationForm(e) {
 }
 
 
+// handles pricing-inventory.html
 function handlePriceInventoryForm(e) {
     e.preventDefault();
     const pageNumber = 4;
@@ -187,8 +195,7 @@ function handlePriceInventoryForm(e) {
 
 
 
-
-
+// handles images-and-media.html
 function handleImageAndMediaForm(e) {
     e.preventDefault();
     const pageNumber = 5; 
@@ -197,6 +204,49 @@ function handleImageAndMediaForm(e) {
 
 };
     
+
+
+// handles shipping-and-delivery.html
+function handleShippingAndDeliveryForm(e) {
+    e.preventDefault();
+
+    const pageNumber = 6; 
+    let formComplete = true;
+
+    const deliveryCheckboxes = document.querySelectorAll(".shipping-options label input[name='shipping']:checked");
+
+    if (deliveryCheckboxes.length === 0) {
+        selectDeliveryErrorMsg.style.display = "block";
+        formComplete = false; 
+
+        // replace this later with a more beautiful custom message
+        alert("Select at least one delivery option");
+    }; 
+
+    if (shippingAndDeliveryForm.reportValidity() && formComplete) {
+        const formEntries           = getFormEntries(shippingAndDeliveryForm)
+        formEntries.deliveryOptions = getAllCheckBoxElementsValue(deliveryCheckboxes)
+        handleFormComplete(shippingAndDeliveryForm, formEntries, pageNumber);
+    }
+
+}
+
+
+// handles seo-and-meta-information.html
+function handleSeoAndMetaForm(e) {
+    e.preventDefault();
+    const pageNumber = 7;
+    handleFormSubmission(seoAndMetaForm, pageNumber);
+};
+
+
+// handles additional-information.html
+function handleAdditionalFormInfo(e) {
+    e.preventDefault();
+    const pageNumber = 8;
+    handleFormSubmission(additionInformationForm, pageNumber);
+}
+
 
 
 

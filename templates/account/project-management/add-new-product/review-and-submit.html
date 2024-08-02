@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.2/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../../../static/img/display/jpg/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../../static/img/display/jpg/logo.png" type="image/x-icon">
+
+
+    <link rel="stylesheet" href="../../../../static/css/csss.css">
+    <title>Review and submit</title>
+</head>
+
+<body>
+    <div class="dim-overlay" id="dimOverlay"></div>
+
+    <!-- The navigation  -->
+    <nav aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-info nav-body">
+                <div class="nav-container__shipping">
+                    <a href="#" aria-label="Free shipping information" class="nav-link">Free shipping</a>
+                </div>
+            </div>
+
+            <div class="nav-info nav-footer">
+                <div class="nav-container__account">
+                    <a href="#" aria-label="View account" class="nav-link">My account</a>
+
+                    <div class="nav-container__account__dropdown-menu my-account">
+                        <div class="my-account__container">
+                            <div class="buy-it-again">
+                                <h4>Buy it Again</h4>
+                                <a href="#" class="dropdown-menu-link">View All && Manage</a>
+
+                                <div class="buy-it-again__container">
+                                    <div class="item">
+                                        <div class="item-img">
+                                            <a href="#"><img src="../../../../static/img/display/jpg/avacodo.jpg"
+                                                    alt="An image of item bought" class="bought-item-img"></a>
+                                        </div>
+
+                                        <div class="item-info">
+                                            <ul>
+                                                <li><a href="#" class="dropdown-menu-link">Avacado</a></li>
+                                                <li>£5.99</li>
+                                                <li><button class="button-sm buy-it-again-btn">Add to cart</button></li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- item 2 -->
+                                    <div class="item">
+                                        <div class="item-img">
+                                            <a href="#"><img
+                                                    src="../../../../static/img/display/jpg/box-of-oranges.jpeg"
+                                                    alt="An image of item bought" class="bought-item-img"></a>
+
+                                        </div>
+
+                                        <div class="item-info">
+                                            <ul>
+
+                                                <li><a href="#" class="dropdown-menu-link">Bulk Pack Organic Sicilian
+                                                        Orange</a></li>
+
+                                                <li>£15.99</li>
+                                                <li><button class="button-sm buy-it-again-btn">Add to cart</button></li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- item 3 -->
+                                    <div class="item">
+                                        <div class="item-img">
+                                            <a href="#"><img src="../../../../static/img/display/jpg/cashew.jpg"
+                                                    alt="An image of item bought" class="bought-item-img"></a>
+
+                                        </div>
+
+                                        <div class="item-info">
+                                            <ul>
+
+                                                <li><a href="#" class="dropdown-menu-link">Cashew, Almonds And Mint
+                                                        Seeds</a></li>
+
+                                                <li>£10.49</li>
+                                                <li><button class="button-sm buy-it-again-btn">Add to cart</button></li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- item 4 -->
+                                    <div class="item">
+                                        <div class="item-img">
+                                            <a href="#"><img
+                                                    src="../../../../static/img/display/jpg/turkish-mullberries.jpg"
+                                                    alt="An image of item bought" class="bought-item-img"></a>
+
+                                        </div>
+
+                                        <div class="item-info">
+                                            <ul>
+                                                <li><a href="#" class="dropdown-menu-link">Natural Kashmiri Turkish
+                                                        Walnuts</a></li>
+                                                <li>£20.99</li>
+                                                <li><button class="button-sm buy-it-again-btn">Add to cart</button></li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="my-account__main">
+                                <div class="header center">
+                                    <a href="#" class="dropdown-menu-link">Manage profiles &gt;</a>
+                                </div>
+                                <div class="my-account__main__container">
+                                    <div class="your-lists">
+                                        <h4>My Lists</h4>
+                                        <ul class="my-account__links">
+                                            <li><a href="#" class="dropdown-menu-link">Wishlist</a></li>
+                                            <li><a href="#" class="dropdown-menu-link">Create a wishlist</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="my-account">
+                                        <h4>Account</h4>
+                                        <ul class="my-account__links">
+                                            <li><a href="../../account/account.html" class="dropdown-menu-link">my
+                                                    account</a></li>
+                                            <li><a href="../../orders/orders.html" class="dropdown-menu-link">my
+                                                    orders</a></li>
+                                            <li><a href="#" class="dropdown-menu-link">my list</a></li>
+                                            <li><a href="#" class="dropdown-menu-link">My addresses</a></li>
+                                            <li><a href="#" class="dropdown-menu-link">Payment methods</a></li>
+                                            <li><a href="#" class="dropdown-menu-link">Account settings</a></li>
+                                            <li><a href="#" class="dropdown-menu-link">Change password</a></li>
+                                            <li><a href="#" class="dropdown-menu-link">Sign out</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="administration__container">
+
+                        </div>
+                    </div>
+                    <a href="#" aria-label="logged in" class="nav-link logged-in">Hi, Egbie (logged in)</a>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="additonal-information" aria-labelledby="additional-info-heading" class="add-prodct-section">
+            <div class="content-container">
+                <div class="logo center">
+                    <img src="../../../../static/img/display/jpg/logo.png" alt="The logo" class="account-logo-img">
+                </div>
+
+                <ul class="breadcrumb">
+
+                    <li><a href="../../../../index.html">Home</a></li>
+                    <li><a href="../../account/account.html">My account</a></li>
+                    <li><a href="../../project-management/add-new-product/project-management-overview.html">Product
+                            management overview</a></li>
+                    <li>Add new product</li>
+                </ul>
+                <h1 id="seo-heading" class="padding-top-md lighten text-capitalize">Add new product</h1>
+                <p class="account-info">Review section</p>
+
+                <hr class="dividor">
+
+                <section id="additional-information">
+                    <div class="add-product-container review-product-container">
+                        <div class="review-section">
+
+                            <!-- basic product information -->
+                            <div id="basic-product-info">
+
+                                <h3 class="product-section-header">Basic product information</h3>
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Product Name</h3>
+                                        <p>The product name here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 1)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+                                    <div class="info">
+                                        <h3>product category</h3>
+                                        <p>The product category</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 1)">Edit</button>
+                                    </div>
+                                </div>
+
+                                <div class="product-info space-between">
+                                    <div class="info">
+                                        <h3>Brand</h3>
+                                        <p>The brand here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 1)">Edit</button>
+                                    </div>
+                                </div>
+
+                                <div class="product-info space-between">
+                                    <div class="info">
+                                        <h3>SKU (Stock Keeping unit)</h3>
+                                        <p>Stock keeping unit</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 1)">Edit</button>
+                                    </div>
+                                </div>
+
+                                <div class="product-info space-between">
+                                    <div class="info">
+                                        <h3>UPC (Universal Product code)</h3>
+                                        <p>UPC here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 1)">Edit</button>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="product-info space-between">
+                                    <div class="info">
+                                        <h3>Short Desciption</h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ipsum iste quia?
+                                            Labore quaerat earum quod laboriosam soluta asperiores, impedit in
+                                            consequatur esse officiis maiores aspernatur dolor veritatis enim vel!</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 1)">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="dividor">
+
+                            <!-- detailed product information -->
+                            <div id="detail-product-info">
+                                <h3 class="product-section-header">Detailed Description and Specifications</h3>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Color options</h3>
+                                        <p>List of color options here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 2)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Product dimensions</h3>
+                                        <p>Dimensions of the product here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 2)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Size options</h3>
+                                        <p>Size options to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 2)">Edit</button>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Weight options</h3>
+                                        <p>Weight options to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 2)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Description</h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur,
+                                            consequatur? Ea quaerat explicabo repellat ratione! Tempore quia, omnis ad
+                                            corporis illum quasi architecto fugiat exercitationem quaerat reprehenderit
+                                            quis provident asperiores!</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 2)">Edit</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <hr class="dividor">
+
+                            <!-- product pricing -->
+                            <div id="product-pricing-info">
+                                <h3 class="product-section-header">Price and inventory</h3>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Price</h3>
+                                        <p>Price to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 3)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Availability</h3>
+                                        <p>Availability options to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 3)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Add discount</h3>
+                                        <p>yes or no choice</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 3)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Discount price</h3>
+                                        <p>Depending on choice of either "yes" or "no" result will be price or n/a to go
+                                            here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 3)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Quanity in stock</h3>
+                                        <p>Quantity in stock to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 3)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Minimum order quantity</h3>
+                                        <p>Minimum quantity order to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 3)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Maximum order quantity</h3>
+                                        <p>Maximum quantity order to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 3)">Edit</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <hr class="dividor">
+
+                            <!-- images and media -->
+                            <div id="product-pricing-info">
+
+                                <div class="product-info space-between">
+                                    <h3 class="product-section-header">Image and media</h3>
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 4)">Edit</button>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="product-info flex-col">
+
+                                    <p class="highlight padding-bottom-md padding-top-md">
+                                        Warning: Due to security restrictions in web browsers, JavaScript cannot access
+                                        or display local file paths
+                                        directly. As a result, images cannot be shown in the review section because
+                                        their local file paths are not
+                                        accessible only the file name, and so the file paths cannot be stored for later.
+                                        Since the backend for image handling isn’t set up yet,
+                                        selected images won’t be displayed until the backend is operational.
+                                        However, you can still view the name of the image file you selected under the
+                                        placeholder image.
+                                    </p>
+
+
+                                    <div class="product-info img-review">
+                                        <div class="primary-img review-product-img">
+                                            <img src="../../../../static/img/display/jpg/placeholder.jpg"
+                                                alt="placeholder img" class="review-img">
+                                            <p>Primary image name here</p>
+                                        </div>
+
+                                        <div class="secondary-img review-product-img">
+                                            <img src="../../../../static/img/display/jpg/placeholder.jpg"
+                                                alt="placeholder img" class="review-img">
+                                            <p>Side image to go here</p>
+                                        </div>
+
+                                        <div class="secondary-img review-product-img">
+                                            <img src="../../../../static/img/display/jpg/placeholder.jpg"
+                                                alt="placeholder img" class="review-img">
+                                            <p>Side image to go here</p>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+
+
+                            </div>
+
+                            <hr class="dividor">
+                             <!-- shipping and delivery -->
+                            <div id="shipping-and-delivery">
+                                <h3 class="product-section-header">Shipping and delivery</h3>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Length</h3>
+                                        <p>Length to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 5)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Width</h3>
+                                        <p>Width to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 5)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Height</h3>
+                                        <p>Height to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 5)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Shipping weight (kg)</h3>
+                                        <p>Shipping weight to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 5)">Edit</button>
+                                    </div>
+
+                                </div>
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Shipping options</h3>
+                                        <p>Shipping options choices to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 5)">Edit</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <hr class="dividor">
+
+                            <!-- SEO and meta information -->
+                            <div id="seo-and-meta-information">
+                                <h3 class="product-section-header"> SEO and Meta Information</h3>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Meta title</h3>
+                                        <p>Meta title to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 6)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Meta keywords</h3>
+                                        <p>Meta keywords to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 6)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Meta description</h3>
+                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque, tempore?
+                                            Dolorum, fuga sit ab hic sapiente velit voluptates, nesciunt inventore quas
+                                            eum repudiandae culpa numquam distinctio voluptatem odio maiores eos?</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 6)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <hr class="dividor">
+
+                            <!-- Additional information -->
+                            <div id="additional-information">
+                                <h3 class="product-section-header">Additional information</h3>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Manufacturer title</h3>
+                                        <p>Manufacturer title to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 7)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Country of origin</h3>
+                                        <p>Selected country to go here</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 7)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Add discount</h3>
+                                        <p>yes or no choice</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 7)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Return policy</h3>
+                                        <p>Return policy option to go here e.g yes or no</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 7)">Edit</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="product-info space-between">
+
+                                    <div class="info">
+                                        <h3>Warranty</h3>
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit deserunt
+                                            molestias iure doloribus tempore veniam expedita quas repellat repudiandae
+                                            natus, cupiditate tempora ipsa amet. Vitae corporis tempora nobis
+                                            repellendus amet.</p>
+                                    </div>
+
+                                    <div class="edit">
+                                        <button onclick="prevPage(event, 7)">Edit</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="button flex-end padding-top-md">
+                                <button class="next-button" type="submit">Submit &gt;</button>
+                            </div>
+                        </div>
+
+
+
+                        <div class="progress-list review-progress-list">
+                            <p id="basic-product-information" class="progress-link">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg"
+                                        alt="a check mark icon" class="icon"></span>
+                                Basic Product information
+                            </p>
+                            <p id="detailed-description-specs" class="progress-link">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg"
+                                        alt="a check mark icon" class="icon"></span>
+                                Description and Specifications
+                            </p>
+                            <p id="pricing-inventory" class="progress-link">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg"
+                                        alt="a check mark icon" class="icon"></span>
+                                Pricing and Inventory
+                            </p>
+                            <p id="images-media" class="progress-link">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg"
+                                        alt="a check mark icon" class="icon"></span>
+                                Images and media
+                            </p>
+                            <p id="shipping-delivery" class="progress-link">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg"
+                                        alt="a check mark icon" class="icon"></span>
+                                Shipping and delivery
+                            </p>
+                            <p id="seo-meta-info" class="progress-link">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg"
+                                        alt="a check mark icon" class="icon"></span>
+                                SEO & Meta Information
+                            </p>
+                            <p id="additional-info" class="progress-link">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg"
+                                        alt="a check mark icon" class="icon"></span>
+                                Additional information
+                            </p>
+                            <p id="review-submit" class="opacity-md">
+                                <span><img src="../../../../static/img/icons/checkmark-running.svg"
+                                        alt="a check mark icon" class="icon"></span>
+                                Review and Submit (current page)
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+
+
+            </div>
+        </section>
+
+
+    </main>
+
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-section" aria-labelledby="quick-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section" aria-labelledby="customer-service">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#">Help Center / FAQs</a></li>
+                    <li><a href="#">Shipping & Delivery</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                    <li><a href="#">Track Your Order</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section" aria-labelledby="my-account">
+                <h4>My Account</h4>
+                <ul>
+                    <li><a href="#">My Account</a></li>
+                    <li><a href="#">Sign In / Register</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Subscription Preferences</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section" aria-labelledby="company-information">
+                <h4>Company Information</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press & Media</a></li>
+                    <li><a href="#">Affiliate Program</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section" aria-labelledby="Policies">
+                <h4>Policies</h4>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Sustainability Practices</a></li>
+                    <li><a href="#">Supplier Standards</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section" aria-labelledby="Engage with us">
+                <h4>Engage with Us</h4>
+                <ul>
+                    <li><a href="#">Newsletter Signup</a></li>
+                    <li><a href="#" target="_blank">Follow Us on Facebook</a></li>
+                    <li><a href="#" target="_blank">Follow Us on Instagram</a></li>
+                    <li><a href="#" target="_blank">Follow Us on Twitter</a></li>
+                    <li><a href="#" target="_blank">Follow Us on Pinterest</a></li>
+                    <li><a href="#">Customer Reviews</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Recipe Ideas</a></li>
+                    <li><a href="#">Seasonal Produce Guide</a></li>
+                    <li><a href="#">Nutritional Information</a></li>
+                    <li><a href="#">Cooking Tips</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section contact-us">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li>Email: <a href="mailto:egbieuku@hotmail.com" class="email-footer-link">egbieuku@hotmail.com</a>
+                    </li>
+                    <li>Phone: <a href="#">+44(079) 572 04547</a></li>
+                    <li>Address: <a href="https://www.google.com/maps?q=123+Market+Street,+City,+Country"
+                            target="_blank">
+                            123 Madeup Street, London, United Kingdom</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Secure Shopping</h4>
+                <ul>
+                    <li><a href="#">Payment Methods</a></li>
+                    <li><a href="#">Secure Shopping Information</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="static/js/modules/auth.js" type="module"></script>
+    <script src="../../../../static/js/components/add-product.js" type="module"></script>
+
+</body>
+
+</html>
