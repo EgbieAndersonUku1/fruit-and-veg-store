@@ -1,20 +1,29 @@
 import addNewProductPages from "../pages/pages.js";
 import { redirectToNewPage } from "../utils/utils.js";
 import { minimumCharactersToUse } from "./characterCounter.js";
-import { getItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
+import { getItemFromLocalStorage, saveToLocalStorage, getAllCheckBoxElementsValue } from "../utils/utils.js";
 import { getFormEntries } from "../utils/formUtils.js";
 import { populateSelectField } from "../builders/formBuilder.js";
 
 
 
 // populate the select function
-// populateCountrySelect("#countries", "../../../../countries.txt");
 populateSelectField("#countries", "../../../../countries.txt")
 
 
+// detailed-description-specs.html page checkboxes error msg selector
+const selectColorErrorMsg = document.getElementById("color-error-msg");
+const selectSizesErrorMsg = document.getElementById("size-error-msg");
+
 
 const basicForm = document.getElementById("basic-product-information-form");
-basicForm.addEventListener("submit", handleBasicInformationForm)
+const detailedForm = document.getElementById("detailed-description-form");
+
+
+basicForm?.addEventListener("submit", handleBasicInformationForm);
+detailedForm?.addEventListener("submit", handleDetailedInformationForm)
+
+
 
 
 // field selectors for textArea fields
@@ -28,9 +37,6 @@ const warrantyDescriptionTextAreaSelector = "#warranty-description";
 const selectProductCategoryElement  = document.getElementById("select-category");
 const addCategoryLabelElement       = document.getElementById("add-category-label");
 const addCategoryInputFieldElement  =  document.getElementById("add-category");
-const basicFormTextAreaFieldElement = document.getElementById("short-description");
-
-
 
 
 // Text area field inside inside the detail description specs page
@@ -104,10 +110,6 @@ function prevPage(event, pageNumber) {
     event.preventDefault();
     const page = addNewProductPages[parseInt(pageNumber)];
 
-    
-     // TODO: Handle form data for each page here.
-    // For now, just redirect to the previous page as part of the Minimum Viable Product (MVP).
-
     if (!page) {
         throw new Error("Something went wrong and the page number couldn't be found!!!");
     }
@@ -121,28 +123,67 @@ window.prevPage = prevPage;
 
 
 
-
-
 function handleBasicInformationForm(e) {
-
     e.preventDefault();
     const pageNumber = 2;
 
     if (basicForm.reportValidity()) {
-        const formEntries = getFormEntries(basicForm);
-        handleFormCompletion(formEntries, pageNumber);
-    } else {
-        console.log("not passed")
-    }
-  
-}
+        handleFormComplete(basicForm, getFormEntries(basicForm), pageNumber);
+    }; 
 
-function handleFormCompletion(addProductObj, pageNumber) {
-           
-    saveToLocalStorage("addProduct", addProductObj, true);
-    redirectToNewPage(addNewProductPages[pageNumber])
+  
+};
+
+
+
+
+function handleDetailedInformationForm(e) {
+
+    e.preventDefault();
+
+    const colorsCheckboxes = document.querySelectorAll(".colors .color input[name='color']:checked");
+    const sizeCheckBoxes   = document.querySelectorAll(".sizes .size input[name='size']:checked");
+
+    let formComplete       = true;
+    const pageNumber       = 3;
+
+    if (colorsCheckboxes.length === 0) {
+        selectColorErrorMsg.style.display = "block";
+        formComplete = false; 
+    }; 
+    
+    if (sizeCheckBoxes.length === 0) {
+        selectSizesErrorMsg.style.display = "block";
+        formComplete = false;
+    }; 
+
+
+    if (formComplete) {
+        const colors      = getAllCheckBoxElementsValue(colorsCheckboxes);
+        const sizes       = getAllCheckBoxElementsValue(sizeCheckBoxes);
+        const formEntries = getFormEntries(detailedForm);
+
+        formEntries.colors = colors;
+        formEntries.sizes  = sizes;
+
+        handleFormComplete(detailedForm, formEntries, pageNumber);
+        
+    }
+    
     
 }
+
+
+function handleFormComplete(form, formEntries, pageNumber) {
+    saveToLocalStorage(form.id, formEntries, pageNumber);
+    redirectToNewPage(addNewProductPages[pageNumber]);
+}
+
+
+
+
+
+
 
 
 

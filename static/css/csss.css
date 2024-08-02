@@ -2929,6 +2929,7 @@ legend {
 }
 
 .error-msg {
+    color: red;
     font-size: var(--font-size-sm);
     margin-bottom: var(--padding-md);
     opacity: 0.8;
