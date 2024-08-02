@@ -144,7 +144,7 @@ function prevPage(event, pageNumber) {
 
 function updateFormValue() {
     const currentPage = getCurrentPage();
-    // console.log(currentPage)
+    // console.log(currentPage);
     
     const formElements = {
         "basic-product-information.html": basicForm,
@@ -154,25 +154,25 @@ function updateFormValue() {
         "shipping-and-delivery.html": shippingAndDeliveryForm,
         "SEO-and-meta-information.html": seoAndMetaForm,
         "additonal-information.html": additionInformationForm,
-    }
+    };
 
-    if (formElements[currentPage] === "undefined") {
+    if (!currentPage || formElements[currentPage] === undefined) {
+        console.warn(`No form element found for current page: ${currentPage}`);
         return;
     }
   
-  
-    const formDetails   = formElements[currentPage];
+    const formDetails = formElements[currentPage];
     const productValues = getItemFromLocalStorage(formDetails.id, true);
 
     // Iterate over the form elements and update their values using their saved data
     for (let element of formDetails.elements) {
-        // console.log(element.name)
+       
         if (element.name) {
-            element.value = productValues[element.name];
+            element.value = productValues[element.name] || '';   // Fallback to empty string if no value
         }
     }
-
 }
+
 
 
 
