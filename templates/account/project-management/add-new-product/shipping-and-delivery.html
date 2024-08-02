@@ -194,20 +194,20 @@
                             <hr class="dividor">
                             <fieldset class="dimensions">
                                 <label for="length">Length</label>
-                                <input type="number" name="length" id="length" min="1" max="10000" step="0.1">
+                                <input type="number" name="length" id="length" min="1" max="10000" step="0.1" required>
 
                                 <label for="width">Width</label>
-                                <input type="number" name="width" id="width" min="1" max="10000" step="0.1">
+                                <input type="number" name="width" id="width" min="1" max="10000" step="0.1" required>
 
                                 <label for="height">Height</label>
-                                <input type="number" name="height" id="height" min="1" max="10000" step="0.1">
+                                <input type="number" name="height" id="height" min="1" max="10000" step="0.1" required>
                             </fieldset>
 
 
                             <legend class="text-capitalize">Shipping Weight</legend>
                             <hr class="dividor">
                             <label for="weight">Weight (kg)</label>
-                            <input type="number" name="weight" id="weight" min="1" max="10000" step="0.1">
+                            <input type="number" name="weight" id="weight" min="1" max="10000" step="0.1" required>
 
 
                             <legend>Shipping Options</legend>
@@ -255,8 +255,8 @@
                             </fieldset>
 
                             <div class="button space-between">
-                                <button class="prev-button" onclick="prevPage(event, 4)"> &lt; prev</button>
-                                <button class="next-button" onclick="nextPage(event, 6)">next &gt;</button>
+                                <button class="prev-button"  type="button" onclick="prevPage(event, 4)"> &lt; prev</button>
+                                <button class="next-button" type="submit">next &gt;</button>
                             </div>
                         </form>
 

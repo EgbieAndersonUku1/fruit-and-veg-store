@@ -131,11 +131,7 @@ window.prevPage = prevPage;
 function handleBasicInformationForm(e) {
     e.preventDefault();
     const pageNumber = 2;
-
-    if (basicForm.reportValidity()) {
-        handleFormComplete(basicForm, getFormEntries(basicForm), pageNumber);
-    }; 
-
+    handleFormSubmission(basicForm, pageNumber);
   
 };
 
@@ -185,10 +181,8 @@ function handleDetailedInformationForm(e) {
 function handlePriceInventoryForm(e) {
     e.preventDefault();
     const pageNumber = 4;
-
-    if (pricingInventoryForm.reportValidity()) {
-        handleFormComplete(pricingInventoryForm, getFormEntries(pricingInventoryForm), pageNumber);
-    }; 
+    handleFormSubmission(pricingInventoryForm, pageNumber);
+   
 };
 
 
@@ -198,16 +192,19 @@ function handlePriceInventoryForm(e) {
 function handleImageAndMediaForm(e) {
     e.preventDefault();
     const pageNumber = 5; 
-   
-    if (imageAndMediaForm.reportValidity()) {
-        handleFormComplete(imageAndMediaForm, getFormEntries(imageAndMediaForm), pageNumber);
-    }
+    
+    handleFormSubmission(imageAndMediaForm, pageNumber);
 
 };
     
 
 
 
+function handleFormSubmission(form, pageNumber) {
+    if (form.reportValidity()) {
+        handleFormComplete(form, getFormEntries(form), pageNumber);
+    }
+}
 
 
 function handleFormComplete(form, formEntries, pageNumber) {
