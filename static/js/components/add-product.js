@@ -143,7 +143,8 @@ function prevPage(event, pageNumber) {
 
 
 function updateFormValue() {
-    const currentPage = getCurrentUrl()?.pop();
+    const currentPage = getCurrentUrl()?.split("/")?.pop();
+    // console.log(currentPage)
     
     const formElements = {
         "basic-product-information.html": basicForm,
