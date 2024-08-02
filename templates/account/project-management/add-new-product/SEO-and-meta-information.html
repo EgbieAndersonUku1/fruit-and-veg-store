@@ -186,24 +186,26 @@
 
                 <section id="SEO">
                     <div class="add-product-container">
-                        <form action="" method="post" class="add-product-form">
+                        <form action="" method="post" class="add-product-form" id="seo-and-meta-form">
                           
 
                             <label for="meta-title" class="text-capitalize" id="meta-title">Meta title</label>
-                            <input type="text" name="meta-title" id="meta-title">
+                            <input type="text" name="meta-title" id="meta-title" required>
                             
+
+                            <!-- TODO: Add checks e.g eventListener to check if the word are separated by a comma -->
                             <label for="meta-keywords" class="text-capitalize" id="meta-keywords">Add Meta keywords separated by a comma (delicious, creamy, etc)</label>
-                            <input type="text" name="meta-title" id="meta-keywords">
+                            <input type="text" name="meta-title" id="meta-keywords" required>
                 
                         
                             <label for="meta-description">Meta Description</label>
-                            <textarea name="short-description" id="meta-description" rows="10" cols="10"></textarea>
+                            <textarea name="short-description" id="meta-description" rows="10" cols="10" required></textarea>
                             <p class="flex-end minimum-characters">Minimum characters to use: 10</p>
                             <p class="maximum-characters flex-end">Number of characters remaining: 500</p>
 
                             <div class="button space-between">
-                                <button class="prev-button" onclick="prevPage(event, 5)"> &lt; prev</button>
-                                <button class="next-button" onclick="nextPage(event, 7)">next &gt;</button>
+                                <button class="prev-button" type="button" onclick="prevPage(event, 5)"> &lt; prev</button>
+                                <button class="next-button" type="submit">next &gt;</button>
                             </div>
                         </form>
 

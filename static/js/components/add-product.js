@@ -1,21 +1,40 @@
 import addNewProductPages from "../pages/pages.js";
 import { redirectToNewPage } from "../utils/utils.js";
 import { minimumCharactersToUse } from "./characterCounter.js";
-import loadFile from "../utils/loader.js";
-import { getItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
-import { getFormEntries, getMinCharCount } from "../utils/formUtils.js";
+import { getItemFromLocalStorage, saveToLocalStorage, getAllCheckBoxElementsValue } from "../utils/utils.js";
+import { getFormEntries } from "../utils/formUtils.js";
+import { populateSelectField } from "../builders/formBuilder.js";
 
 
-const productNameErrorMsg       = document.getElementById("product-name-error-msg");
-const selectCategoryErrorMsg    = document.getElementById("select-category-error-msg");
-const brandErrorsg              = document.getElementById("brand-error-msg");
-const skuErrorMsg               = document.getElementById("sku-error-msg");
-const upcErrorMsg               = document.getElementById("upc-error-msg");
-const shortDescriptionErrorMsg  = document.getElementById("short-description-error-msg");
+
+// populate the select function
+populateSelectField("#countries", "../../../../countries.txt")
 
 
-// form
-const basicForm = document.getElementById("basic-product-information-form");
+// checkboxes error msg selector
+const selectColorErrorMsg    = document.getElementById("color-error-msg");
+const selectSizesErrorMsg    = document.getElementById("size-error-msg");
+const selectDeliveryErrorMsg = document.getElementById("delivery-error-msg");
+
+
+// forms
+const basicForm               = document.getElementById("basic-product-information-form");
+const detailedForm            = document.getElementById("detailed-description-form");
+const pricingInventoryForm    = document.getElementById("pricing-inventory-form");
+const imageAndMediaForm       = document.getElementById("image-media-form");
+const shippingAndDeliveryForm = document.getElementById("shipping-and-delivery-form");
+const seoAndMetaForm          = document.getElementById("seo-and-meta-form");
+const additionInformationForm = document.getElementById("additional-information-form");
+
+
+// AddEventListners for the forms
+basicForm?.addEventListener("submit", handleBasicInformationForm);
+detailedForm?.addEventListener("submit", handleDetailedInformationForm);
+pricingInventoryForm?.addEventListener("submit", handlePriceInventoryForm);
+imageAndMediaForm?.addEventListener("submit", handleImageAndMediaForm);
+shippingAndDeliveryForm?.addEventListener("submit", handleShippingAndDeliveryForm);
+seoAndMetaForm?.addEventListener("submit", handleSeoAndMetaForm);
+additionInformationForm?.addEventListener("submit", handleAdditionalFormInfo);
 
 
 // field selectors for textArea fields
@@ -25,13 +44,10 @@ const metaDescriptionTextAreaSelector     = "#meta-description";
 const warrantyDescriptionTextAreaSelector = "#warranty-description";
 
 
-// basic category fields
+// basic category  form fields
 const selectProductCategoryElement  = document.getElementById("select-category");
 const addCategoryLabelElement       = document.getElementById("add-category-label");
 const addCategoryInputFieldElement  =  document.getElementById("add-category");
-const basicFormTextAreaFieldElement = document.getElementById("short-description");
-
-
 
 
 // Text area field inside inside the detail description specs page
@@ -101,42 +117,9 @@ function handleSelectClick(e) {
 
 
 
-
-function nextPage(event, step) {
-    event.preventDefault();
-
-    const pageNumber = parseInt(step);
-    const page = addNewProductPages[pageNumber];
-
-   
-
-    // TODO: Handle form data for each page here.
-    // For now, just redirect to the next page as part of the Minimum Viable Product (MVP).
-
-    if (!page) {
-        throw new Error("Something went wrong and the page number couldn't be found!!!");
-    }
-
-    // use the if-statement for now, later switch it to a switch statement
-    if (pageNumber - 1 === 1) {
-       handleBasicInformationForm(pageNumber)
-    }
-    if (pageNumber - 1 === 2) {
-        // handleBasicInformationForm(pageNumber)
-        null;
-     }
-
-   
-}
-
-
 function prevPage(event, pageNumber) {
     event.preventDefault();
     const page = addNewProductPages[parseInt(pageNumber)];
-
-    
-     // TODO: Handle form data for each page here.
-    // For now, just redirect to the previous page as part of the Minimum Viable Product (MVP).
 
     if (!page) {
         throw new Error("Something went wrong and the page number couldn't be found!!!");
@@ -146,137 +129,146 @@ function prevPage(event, pageNumber) {
 }
 
 
-window.nextPage = nextPage;
 window.prevPage = prevPage;
 
 
 
 
-// populate field
-async function populateCountrySelect() {
-    const countriesSelectForm = document.querySelector("#countries");
+// handles basic-product-information.html
+function handleBasicInformationForm(e) {
+    e.preventDefault();
+    const pageNumber = 2;
+    handleFormSubmission(basicForm, pageNumber);
+  
+};
 
-    if (!countriesSelectForm) {
-        console.warn("The countries elements selector wasn't found!!")
-        return;
-    }
-    try {
-        const filePath      = "../../../../countries.txt";
-        const countriesData = await loadFile(filePath);
 
-        if (countriesData) {
-            const countries = countriesData.split('\n');
+// handles detailed-description-specs.html
+function handleDetailedInformationForm(e) {
 
-            countries.forEach((country) => {
-                const value = country;
-                const text  = country;
+    e.preventDefault();
 
-                const option = createOption(value, text);
-                countriesSelectForm.appendChild(option);
-            });
-        }
-    } catch (error) {
-        console.error('Error:', error);
+    const colorsCheckboxes = document.querySelectorAll(".colors .color input[name='color']:checked");
+    const sizeCheckBoxes   = document.querySelectorAll(".sizes .size input[name='size']:checked");
+
+    let formComplete       = true;
+    const pageNumber       = 3;
+
+    if (colorsCheckboxes.length === 0) {
+        selectColorErrorMsg.style.display = "block";
+        formComplete = false; 
+
+        // replace this later with a more beautiful custom message
+        alert("Select at least one color");
+    }; 
+    
+    if (sizeCheckBoxes.length === 0) {
+        selectSizesErrorMsg.style.display = "block";
+        formComplete = false;
+
+        // replace this later with a more beautiful custom message
+        alert("Select at least one size");
+    }; 
+
+
+    if  (detailedForm.reportValidity() && formComplete) {
+        const colors      = getAllCheckBoxElementsValue(colorsCheckboxes);
+        const sizes       = getAllCheckBoxElementsValue(sizeCheckBoxes);
+        const formEntries = getFormEntries(detailedForm);
+
+        formEntries.colorsOptions = colors;
+        formEntries.sizesOptions  = sizes;
+
+        handleFormComplete(detailedForm, formEntries, pageNumber);
+        
     }
 }
 
-function createOption(value, text) {
-    const option = document.createElement("option");
-    option.value = value;
-    option.textContent = text;
-    return option
-}
+
+// handles pricing-inventory.html
+function handlePriceInventoryForm(e) {
+    e.preventDefault();
+    const pageNumber = 4;
+    handleFormSubmission(pricingInventoryForm, pageNumber);
+   
+};
 
 
 
-function handleBasicInformationForm(pageNumber) {
-    if (!basicForm) {
-        throw new Error("Something went wrong and the form elements couldn't be found!!!");
-    }
+// handles images-and-media.html
+function handleImageAndMediaForm(e) {
+    e.preventDefault();
+    const pageNumber = 5; 
+    
+    handleFormSubmission(imageAndMediaForm, pageNumber);
 
-    const addProductObj = getAddProductDictOrCreate();
-    const formEntries = getFormEntries(basicForm);
-
-    const fields = [
-        {name: 'product-name', value: formEntries['product-name'], errorMsg: productNameErrorMsg, 
-         fieldType: "text", minCharCount: null
-        },
-
-        {name: 'select-product-category', value: formEntries['select-a-category'], 
-         errorMsg: selectCategoryErrorMsg, fieldType: "select", minCharCount: null
-        },
-
-        {name: 'brand', value: formEntries['brand'], errorMsg: brandErrorsg, fieldType: "text", minCharCount: null},
-
-        {name: 'sku', value: formEntries['sku'], errorMsg: skuErrorMsg, fieldType: "text", minCharCount: null},
-
-        {name: 'upc', value: formEntries['upc'], errorMsg: upcErrorMsg, fieldType: "text", minCharCount: null},
-
-        {name: 'short-description', value: formEntries['short-description'], 
-         errorMsg: shortDescriptionErrorMsg, fieldType: "textarea", 
-         minCharCount: getMinCharCount(basicFormTextAreaFieldElement)}
-    ];
-
-    const formComplete = validateAndProcessFields(fields, addProductObj);
-    handleFormCompletion(formComplete, addProductObj, pageNumber);
-}
+};
+    
 
 
-function validateAndProcessFields(fields, addProductObj) {
+// handles shipping-and-delivery.html
+function handleShippingAndDeliveryForm(e) {
+    e.preventDefault();
+
+    const pageNumber = 6; 
     let formComplete = true;
 
-    fields.forEach((field) => {
-      
-        if (!field.value) {
-            showErrorMsg(field.errorMsg);
-            formComplete = false;
-        } else {
-            addProductObj[field.name]  = field.value;  
-            showErrorMsg(field.errorMsg, false);
-          
-        }
+    const deliveryCheckboxes = document.querySelectorAll(".shipping-options label input[name='shipping']:checked");
 
-        // Check if the user has entered the minimum number of characters for textarea fields
-        if (field.fieldType === "textarea"  && field.value.length < field.minCharCount) {
-            formComplete = false;
-        } 
-           
-    });
+    if (deliveryCheckboxes.length === 0) {
+        selectDeliveryErrorMsg.style.display = "block";
+        formComplete = false; 
 
+        // replace this later with a more beautiful custom message
+        alert("Select at least one delivery option");
+    }; 
 
-    return formComplete;
+    if (shippingAndDeliveryForm.reportValidity() && formComplete) {
+        const formEntries           = getFormEntries(shippingAndDeliveryForm)
+        formEntries.deliveryOptions = getAllCheckBoxElementsValue(deliveryCheckboxes)
+        handleFormComplete(shippingAndDeliveryForm, formEntries, pageNumber);
+    }
+
 }
 
 
-function handleFormCompletion(formComplete, addProductObj, pageNumber) {
-    
-    if (!formComplete) {
-        alert("One or more of the form details is incomplete");
-    } else {
-       
-        saveToLocalStorage("addProduct", addProductObj, true);
-        redirectToNewPage(addNewProductPages[pageNumber]);
+// handles seo-and-meta-information.html
+function handleSeoAndMetaForm(e) {
+    e.preventDefault();
+    const pageNumber = 7;
+    handleFormSubmission(seoAndMetaForm, pageNumber);
+};
+
+
+// handles additional-information.html
+function handleAdditionalFormInfo(e) {
+    e.preventDefault();
+    const pageNumber = 8;
+    handleFormSubmission(additionInformationForm, pageNumber);
+}
+
+
+
+
+function handleFormSubmission(form, pageNumber) {
+    if (form.reportValidity()) {
+        handleFormComplete(form, getFormEntries(form), pageNumber);
     }
 }
 
 
-
-function getAddProductDictOrCreate() {
-    let addProduct = getItemFromLocalStorage("addProduct", true);
-
-    if (!addProduct) {
-        addProduct = {};
-    };
-    return addProduct;
+function handleFormComplete(form, formEntries, pageNumber) {
+    saveToLocalStorage(form.id, formEntries, pageNumber);
+    redirectToNewPage(addNewProductPages[pageNumber]);
 }
 
 
 
 
-function showErrorMsg(msgElement, show=true) {
-    msgElement.style.display = show ? "block": "none"
-}
 
 
-populateCountrySelect();
+
+
+
+
 

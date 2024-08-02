@@ -61,6 +61,38 @@ function getFormattedCurrentDate() {
   }
   
 
+
+/**
+ * Retrieves the values of all checkbox elements in the provided collection.
+ *
+ * This reusable function takes a collection of checkbox elements (either an array or NodeList)
+ * and returns an array of their values. It throws an error if the input is not a valid collection
+ * of elements. Only the values of input elements of type "checkbox" are included in the output.
+ *
+ * @param {Array|NodeList} checkboxElements - The collection of checkbox elements.
+ * @returns {Array} - An array containing the values of the checkbox elements.
+ * @throws {Error} - If the input is not a valid collection of elements.
+ *
+ * @example
+ * const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+ * const values = getAllCheckBoxElementsValue(checkboxes);
+ * console.log(values); // Output: Array of values of all checkboxes
+ */
+function getAllCheckBoxElementsValue(checkboxElements) {
+    if (!checkboxElements || (!Array.isArray(checkboxElements) && !(checkboxElements instanceof NodeList))) {
+        throw new Error("The input is not a valid collection of elements");
+    }
+
+    const selectedValues = [];
+    checkboxElements.forEach((element) => {
+        if (element instanceof HTMLInputElement && element.type === 'checkbox') {
+            selectedValues.push(element.value);
+        }
+    });
+
+    return selectedValues;
+}
+
   
 export {
     generateSessionKey,
@@ -69,4 +101,5 @@ export {
     removeItemFromLocalStorage,
     redirectToNewPage,
     getFormattedCurrentDate,
+    getAllCheckBoxElementsValue,
 };

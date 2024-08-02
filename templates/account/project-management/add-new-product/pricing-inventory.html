@@ -188,43 +188,43 @@
 
                 <section id="pricing-inventory">
                     <div class="add-product-container">
-                        <form action="" method="post" class="add-product-form">
+                        <form action="" method="post" class="add-product-form" id="pricing-inventory-form">
                             <label for="price">Price</label>
-                            <input type="number" name="price" id="price" min="1" max="10000" step="0.01">
+                            <input type="number" name="price" id="price" min="1" max="10000" step="0.01" required>
                             
                             <label for="availability">Availability</label>
-                            <select name="availability" id="availability" class="select-category">
+                            <select name="availability" id="availability" class="select-category" required>
                                 <option value="in-stock">In stock</option>
                                 <option value="out-of-stock">Out of stock</option>
                                 <option value="pre-order">Pre-order</option>
                             </select>
 
                             <label for="add-discount">Add discount</label>
-                            <select name="add-discount" id="add-discount" class="select-category">
+                            <select name="add-discount" id="add-discount" class="select-category" required>
                                 <option value="no">No</option>
                                 <option value="yes">Yes</option>
                             </select>
                             
                             <!-- TODO: This will be appear and disapppeard based on yes and no in the select option -->
                             <label for="add-discount">Add a discount</label>
-                            <input type="number" name="add-discount" id="add-discount" min="1" max="10000" step="0.01">
+                            <input type="number" name="add-discount" id="add-discount" min="1" max="10000" step="0.01" required>
                 
                            
                             <label for="quantity-stock">Quantity in stock</label>
-                            <input type="number" name="quantity-stock" id="quantity-stock" min="1" max="10000" step="1">
+                            <input type="number" name="quantity-stock" id="quantity-stock" min="1" max="10000" step="1" required>
                             
                             <label for="minimum-order-quantity">Minimum order quantity</label>
-                            <input type="number" name="minimum-order-quantity" id="minimum-order-quantity" min="1" max="10000" step="1">
+                            <input type="number" name="minimum-order-quantity" id="minimum-order-quantity" min="1" max="10000" step="1" required>
                             
                             <label for="maximum-order-quantity">Maximum order quantity</label>
-                            <input type="number" name="maximum-order-quantity" id="maximum-order-quantity" min="1" max="10000" step="1">
+                            <input type="number" name="maximum-order-quantity" id="maximum-order-quantity" min="1" max="10000" step="1" required>
                 
                            
                            
 
                             <div class="button space-between add-product-btn-container">
-                                <button class="prev-button" onclick="prevPage(event, 2)">&lt; prev</button>
-                                <button class="next-button" onclick="nextPage(event, 4)">next &gt;</button>
+                                <button class="prev-button"  type="button" onclick="prevPage(event, 2)">&lt; prev</button>
+                                <button class="next-button" type="submit"">next &gt;</button>
                             </div>
                         </form>
                 

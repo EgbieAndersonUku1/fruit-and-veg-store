@@ -1,27 +1,3 @@
-
-
-/**
- * Retrieves the minimum character count for a text or textarea field.
- *
- * @param {HTMLInputElement|HTMLTextAreaElement} fieldElement - The input or textarea element.
- * @returns {number|null} - The minimum character count, or null if not specified.
- * @throws {Error} - Throws an error if the element is not a text or textarea field.
- */
-function getMinCharCount(fieldElement) {
-    if (!fieldElement) {
-        throw new Error("The element returned is blank");
-    }
-
-    if (fieldElement.type === "textarea" || fieldElement.type === "text") {
-        const minChar = fieldElement.getAttribute("minlength");
-        return minChar ? parseInt(minChar, 10) : null;
-    }   
-   
-    throw new Error("The field must be either a text or textarea field");
-}
-
-
-
 /**
  * Retrieves all form entries from a given form element.
  *
@@ -46,5 +22,4 @@ function getFormEntries(form) {
 
 export {
     getFormEntries,
-    getMinCharCount
 }
