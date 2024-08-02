@@ -3010,7 +3010,6 @@ legend {
     cursor: pointer;
     background-color: #007bff; 
     padding: 8px;
-    /* font-size: 1rem; */
     font-size: var(--font-size-sm);
     text-transform: capitalize;
     color: white;
