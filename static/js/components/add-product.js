@@ -16,12 +16,17 @@ const selectColorErrorMsg = document.getElementById("color-error-msg");
 const selectSizesErrorMsg = document.getElementById("size-error-msg");
 
 
-const basicForm = document.getElementById("basic-product-information-form");
-const detailedForm = document.getElementById("detailed-description-form");
+// forms
+const basicForm            = document.getElementById("basic-product-information-form");
+const detailedForm         = document.getElementById("detailed-description-form");
+const pricingInventoryForm = document.getElementById("pricing-inventory-form");
+const imageAndMediaForm    = document.getElementById("image-media-form");
 
 
 basicForm?.addEventListener("submit", handleBasicInformationForm);
-detailedForm?.addEventListener("submit", handleDetailedInformationForm)
+detailedForm?.addEventListener("submit", handleDetailedInformationForm);
+pricingInventoryForm?.addEventListener("submit", handlePriceInventoryForm);
+imageAndMediaForm?.addEventListener("submit", handleImageAndMediaForm);
 
 
 
@@ -136,7 +141,6 @@ function handleBasicInformationForm(e) {
 
 
 
-
 function handleDetailedInformationForm(e) {
 
     e.preventDefault();
@@ -150,15 +154,21 @@ function handleDetailedInformationForm(e) {
     if (colorsCheckboxes.length === 0) {
         selectColorErrorMsg.style.display = "block";
         formComplete = false; 
+
+        // replace this later with a more beautiful custom message
+        alert("Select at least one color");
     }; 
     
     if (sizeCheckBoxes.length === 0) {
         selectSizesErrorMsg.style.display = "block";
         formComplete = false;
+
+        // replace this later with a more beautiful custom message
+        alert("Select at least one size");
     }; 
 
 
-    if (formComplete) {
+    if  (detailedForm.reportValidity() && formComplete) {
         const colors      = getAllCheckBoxElementsValue(colorsCheckboxes);
         const sizes       = getAllCheckBoxElementsValue(sizeCheckBoxes);
         const formEntries = getFormEntries(detailedForm);
@@ -169,9 +179,35 @@ function handleDetailedInformationForm(e) {
         handleFormComplete(detailedForm, formEntries, pageNumber);
         
     }
-    
-    
 }
+
+
+function handlePriceInventoryForm(e) {
+    e.preventDefault();
+    const pageNumber = 4;
+
+    if (pricingInventoryForm.reportValidity()) {
+        handleFormComplete(pricingInventoryForm, getFormEntries(pricingInventoryForm), pageNumber);
+    }; 
+};
+
+
+
+
+
+function handleImageAndMediaForm(e) {
+    e.preventDefault();
+    const pageNumber = 5; 
+   
+    if (imageAndMediaForm.reportValidity()) {
+        handleFormComplete(imageAndMediaForm, getFormEntries(imageAndMediaForm), pageNumber);
+    }
+
+};
+    
+
+
+
 
 
 function handleFormComplete(form, formEntries, pageNumber) {

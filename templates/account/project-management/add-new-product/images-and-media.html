@@ -188,23 +188,23 @@
 
                 <section id="images-media">
                     <div class="add-product-container">
-                        <form action="" method="post" class="add-product-form image-media-form">
+                        <form action="" method="post" class="add-product-form image-media-form" id="image-media-form">
                             
                             <label for="primary-image">Upload primary image <span class="highlight">(required)</span></label>
-                            <input type="file" name="primary-image" id="primary-image">
+                            <input type="file" name="primary-image" id="primary-image" required accept="image/">
 
                             <label for="primary-image">Upload Side image 1 <span class="highlight">(required)</span></label>
-                            <input type="file" name="primary-image" id="primary-image">
+                            <input type="file" name="side-image" id="side-image" required accept="image/">
 
                             <label for="primary-image">Upload Side image 2 <span class="highlight">(required)</span></label>
-                            <input type="file" name="primary-image" id="primary-image">
+                            <input type="file" name="side-image2" id="side-image-2" required accept="image/">
                           
                             <label for="primary-video">Upload primary video <span>(Optional)</span></label>
                             <input type="file" name="primary-video" id="primary-video" accept="video/*">
 
                             <div class="button space-between padding-top-md">
-                                <button class="prev-button" onclick="prevPage(event, 3)"> &lt; prev</button>
-                                <button class="next-button" onclick="nextPage(event, 5)">next &gt;</button>
+                                <button class="prev-button" type="button"  onclick="prevPage(event, 3)"> &lt; prev</button>
+                                <button class="next-button" type="submit">next &gt;</button>
                             </div>
                         </form>
 
