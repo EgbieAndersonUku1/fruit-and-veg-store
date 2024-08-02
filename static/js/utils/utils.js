@@ -98,6 +98,10 @@ function getCurrentUrl() {
     return window.location.href;
 }
 
+function getCurrentPage() {
+    return getCurrentUrl()?.split("/")?.pop();
+}
+
   
 export {
     generateSessionKey,
@@ -108,4 +112,5 @@ export {
     getFormattedCurrentDate,
     getAllCheckBoxElementsValue,
     getCurrentUrl,
+    getCurrentPage,
 };
