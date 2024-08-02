@@ -95,7 +95,7 @@ function getAllCheckBoxElementsValue(checkboxElements) {
 
 
 function getCurrentUrl() {
-    return window.location.href.split("/");
+    return window.location.href;
 }
 
   
