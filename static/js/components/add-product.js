@@ -258,7 +258,7 @@ function handleFormSubmission(form, pageNumber) {
 
 
 function handleFormComplete(form, formEntries, pageNumber) {
-    saveToLocalStorage(form.id, formEntries, pageNumber);
+    saveToLocalStorage(form.id, formEntries, true);
     redirectToNewPage(addNewProductPages[pageNumber]);
 }
 
