@@ -61,37 +61,63 @@ function getFormattedCurrentDate() {
   }
   
 
-
 /**
- * Retrieves the values of all checkbox elements in the provided collection.
+ * Retrieves the values of all checked checkbox elements in the provided collection.
  *
  * This reusable function takes a collection of checkbox elements (either an array or NodeList)
- * and returns an array of their values. It throws an error if the input is not a valid collection
- * of elements. Only the values of input elements of type "checkbox" are included in the output.
+ * and returns an array of their values based on the specified attribute. It checks if the input is 
+ * a valid collection of elements and includes only the values of input elements of type "checkbox" 
+ * that are currently checked. The attribute must be provided, and it can be any valid attribute 
+ * including custom data attributes (e.g., `data-size`). Ensure that the attribute name is consistent 
+ * across all relevant elements.
  *
  * @param {Array|NodeList} checkboxElements - The collection of checkbox elements.
- * @returns {Array} - An array containing the values of the checkbox elements.
- * @throws {Error} - If the input is not a valid collection of elements.
+ * @param {string} attribute - The attribute to retrieve the value from. Must be provided.
+ * @returns {Array} - An array containing the values of the checked checkbox elements based on the specified attribute.
+ * @throws {Error} - If the input is not a valid collection of elements or if the attribute is not provided.
  *
  * @example
- * const checkboxes = document.querySelectorAll('input[type="checkbox"]');
- * const values = getAllCheckBoxElementsValue(checkboxes);
- * console.log(values); // Output: Array of values of all checkboxes
+ * // Example 1: Retrieving values using a consistent data attribute
+ * const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+ * const values = getAllCheckBoxElementsValue(checkboxes, 'data-size');
+ * console.log(values); // Output: ["medium", "large"]
+ * 
+ * // Example HTML for Example 1:
+ * // <input type="checkbox" name="item" data-size="small">
+ * // <input type="checkbox" name="item" data-size="medium" checked>
+ * // <input type="checkbox" name="item" data-size="large" checked>
+ * 
+ * @example
+ * // Example 2: Handling an invalid call without the required attribute parameter
+ * try {
+ *     const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+ *     const values = getAllCheckBoxElementsValue(checkboxes); // Throws an error
+ * } catch (error) {
+ *     console.error(error.message); // Output: "The attribute must be provided"
+ * }
  */
-function getAllCheckBoxElementsValue(checkboxElements) {
+function getAllCheckBoxElementsValue(checkboxElements, attribute) {
     if (!checkboxElements || (!Array.isArray(checkboxElements) && !(checkboxElements instanceof NodeList))) {
         throw new Error("The input is not a valid collection of elements");
     }
+    if (!attribute) {
+        throw new Error("The attribute must be provided");
+    }
 
-    const selectedValues = [];
-    checkboxElements.forEach((element) => {
-        if (element instanceof HTMLInputElement && element.type === 'checkbox') {
-            selectedValues.push(element.value);
+    const checkedValues = [];
+
+    checkboxElements.forEach((checkbox) => {
+        if (checkbox.checked) {
+            const value = checkbox.getAttribute(attribute);
+            if (value) {
+                checkedValues.push(value);
+            }
         }
     });
 
-    return selectedValues;
-};
+    return checkedValues;
+}
+
 
 
 function getCurrentUrl() {
@@ -102,7 +128,16 @@ function getCurrentPage() {
     return getCurrentUrl()?.split("/")?.pop();
 }
 
+
+function capitalize(str) {
+    if (typeof str !== 'string' || str.length === 0) {
+        return str;
+    }
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
   
+
+
 export {
     generateSessionKey,
     saveToLocalStorage,
@@ -113,4 +148,6 @@ export {
     getAllCheckBoxElementsValue,
     getCurrentUrl,
     getCurrentPage,
+    capitalize,
+    
 };
