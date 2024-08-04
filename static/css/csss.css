@@ -2746,10 +2746,15 @@ footer .container h4 {
 }
 
 label {
-    font-weight: 400;
+    font-weight: 500;
     text-transform: capitalize;
 }
 
+
+
+label:not(label:first-child){
+    padding-top: var(--padding-sm);
+}
 
 .requirement.met {
     color: green;
@@ -2802,11 +2807,13 @@ label {
 .add-product-form textarea {
     text-align: left;
     font-size: var(--font-size-normal);
+    font-weight: 300;
 }
 
 .add-product-form input,
 .add-product-form select{
     height: 35px;
+    font-weight: 300;
     font-size: var(--font-size-normal);
     width: 100%;
 }
@@ -2837,6 +2844,16 @@ label {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
 }
+
+.sizes label,
+.color label  {
+    font-weight: 400;
+}
+
+.shipping-options label {
+    font-weight: 300;
+}
+
 .colors {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -2910,6 +2927,8 @@ legend {
 }
 
 
+
+
 .shipping-options input {
     height: auto;
     width: auto;
@@ -2938,8 +2957,11 @@ legend {
 
 
 /* add new category input field */
+
 #add-category-label,
-#add-category {
+#add-category,
+#add-discount-label,
+#add-discount {
     display: none;
 }
 
@@ -2949,6 +2971,7 @@ legend {
 .review-section {
     height: 600px;
     overflow-y: scroll;
+    overflow-x: hidden;
     padding: 8px;
 }
 
@@ -2980,6 +3003,7 @@ legend {
 .product-section-header {
     text-decoration: underline;
     padding-top: var(--padding-md);
+    padding-bottom: var(--padding-md);
 }
 
 .review-product-container {
@@ -2998,13 +3022,14 @@ legend {
     width: 220px;
 }
 
-.img-review  {
+.img-preview  {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
-    column-gap: 3px;
+    column-gap: 2px;
     margin-bottom: var(--padding-lg);
 }
+
 
 .product-info .edit button {
     cursor: pointer;
@@ -3018,4 +3043,11 @@ legend {
 
 .product-info .edit button:hover {
     background-color: #0056b3; 
+}
+
+.product-info .info {
+    width: 85%;
+    word-wrap: break-word;
+    white-space: normal;
+    hyphens: auto;
 }

@@ -188,6 +188,7 @@
 
                 <section id="pricing-inventory">
                     <div class="add-product-container">
+
                         <form action="" method="post" class="add-product-form" id="pricing-inventory-form">
                             <label for="price">Price</label>
                             <input type="number" name="price" id="price" min="1" max="10000" step="0.01" required>
@@ -200,13 +201,14 @@
                             </select>
 
                             <label for="add-discount">Add discount</label>
-                            <select name="add-discount" id="add-discount" class="select-category" required>
-                                <option value="no">No</option>
+                            <select name="select-discount" id="select-discount" class="select-category" required>
+                                <option value="default" selected disabled>Select a category</option>
+                              
                                 <option value="yes">Yes</option>
+                                <option value="no">No</option>
                             </select>
                             
-                            <!-- TODO: This will be appear and disapppeard based on yes and no in the select option -->
-                            <label for="add-discount">Add a discount</label>
+                            <label for="add-discount" id="add-discount-label">Add a discount</label>
                             <input type="number" name="add-discount" id="add-discount" min="1" max="10000" step="0.01" required>
                 
                            
@@ -224,7 +226,7 @@
 
                             <div class="button space-between add-product-btn-container">
                                 <button class="prev-button"  type="button" onclick="prevPage(event, 2)">&lt; prev</button>
-                                <button class="next-button" type="submit"">next &gt;</button>
+                                <button class="next-button" type="submit">next &gt;</button>
                             </div>
                         </form>
                 
