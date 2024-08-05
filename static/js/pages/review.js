@@ -320,7 +320,6 @@ function removeStoredProductForms() {
 
 function getProductsOrCreate() {
     let products = getItemFromLocalStorage("products-list", true);
-    console.log(products);
     if (!products) {
         products = [];
     };
@@ -338,4 +337,3 @@ getSEOAndMetaInformation();
 getAdditionalInformation();
 
 
-console.log(formArrayObjects)
