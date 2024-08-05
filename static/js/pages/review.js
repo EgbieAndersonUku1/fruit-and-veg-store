@@ -3,6 +3,7 @@ import addNewProductPages from "./pages.js";
 import { redirectToNewPage } from "../utils/utils.js";
 
 import mergeObjects from "../utils/mergeObjects.js";
+import AlertUtils from "../utils/alerts.js";
 
 
 const basicProductInformation              = document.getElementById("basic-product-info");
@@ -222,7 +223,12 @@ function addToArrayIfValid(validationFunction, formObject, message) {
 
 function validateFormSection(formInfo, message) {
     if (!formInfo) {
-        alert(message);
+
+        AlertUtils.showAlert({title: "Not all product attributes have been added",
+            text:message,
+            icon: 'error',
+            confirmButtonText: 'Incomplete!!'
+        })
         throw new Error(message);
     }
     return true;
@@ -232,13 +238,26 @@ function validateFormSection(formInfo, message) {
 
 function handleReviewButtonClick(e) {
     // e.preventDefault();
-    console.log("clicked")
+   
     const EXPECTED_REVIEWS = 7;
     const SAVE_AS          = "products-list";
 
+    if (typeof formArrayObjects === 'undefined') {
+        console.error("formArrayObjects is not defined.");
+        return;
+    }
+
     if (EXPECTED_REVIEWS !== formArrayObjects.length) {
-        alert("One or more reviews are missing - go back and add them before submitting");
-        throw new Error("One or more reviews are missing - go back and add them before submitting");
+        const ERR_MESSAGE = "One or more reviews are missing - go back and add them before submitting";
+
+
+        AlertUtils.showAlert({
+            "title": "Incomple form entries",
+            text: ERR_MESSAGE,
+            icon: "warning",
+            confirmButtonText: "Incomplete form entry"
+        })
+        return;
     }
 
     const item     = mergeObjects(...formArrayObjects);
@@ -251,18 +270,14 @@ function handleReviewButtonClick(e) {
         
         removeStoredProductForms();
 
-        Swal.fire({
-            title: 'Product Added!',
-            text: 'Your product has been successfully added to the store.',
-            icon: 'success',
-            confirmButtonText: 'Great!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-               const PAGE = 1;
-               redirectToNewPage(addNewProductPages[PAGE]);
-               
-            }
-        });
+        AlertUtils.showAlertWithRedirect({
+                title: 'Product Added!',
+                text: 'Your product has been successfully added to the store.',
+                icon: 'success',
+                confirmButtonText: 'Great!',
+                redirectUrl: addNewProductPages[1]
+        })
+       
         
     }
   
