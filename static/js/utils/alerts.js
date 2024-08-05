@@ -1,4 +1,3 @@
-import addNewProductPages from "../pages/pages.js";
 import { redirectToNewPage } from "./utils.js";
 
 

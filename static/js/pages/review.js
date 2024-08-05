@@ -1,6 +1,5 @@
 import { getItemFromLocalStorage, saveToLocalStorage, removeItemFromLocalStorage } from "../utils/utils.js";
 import addNewProductPages from "./pages.js";
-import { redirectToNewPage } from "../utils/utils.js";
 
 import mergeObjects from "../utils/mergeObjects.js";
 import AlertUtils from "../utils/alerts.js";
