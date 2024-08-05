@@ -3,6 +3,8 @@ import {
     displaySubscribedMessage, 
     removeSubscriptionForm }  from "../builders/subscribeElements.js";
 
+import AlertUtils from "../utils/alerts.js";
+
 import { JWT } from "../services/jwtToken.js";
 
     
@@ -30,11 +32,14 @@ async function handleSubscribeForm(e, subscribeForm, secret_key) {
     //     body: JSON.stringify({ email: emailAddress })
     // });
 
-    Swal.fire({
+  
+    AlertUtils.showAlert({
         title: "Subscription Successful!",
         text: "Thank you for subscribing to our site. Stay tuned for updates!",
-        icon: "success"
-    });
+        icon: "success",
+        confirmButtonText: "Great!!"
+
+    })
 
     const jwt       = new JWT();
     const milliseconds = 1000;

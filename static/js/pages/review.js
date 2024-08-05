@@ -1,4 +1,9 @@
-import { getItemFromLocalStorage, saveToLocalStorage, removeItemFromLocalStorage } from "../utils/utils.js";
+import { getItemFromLocalStorage, 
+         saveToLocalStorage, 
+         removeItemFromLocalStorage, 
+         getFormattedCurrentDate 
+      } from "../utils/utils.js";
+
 import addNewProductPages from "./pages.js";
 
 import mergeObjects from "../utils/mergeObjects.js";
@@ -35,7 +40,7 @@ function getBasicInformation() {
     validateProductInformation(basicProductInformation, basicProductInformationPElements, REQUIRED_ELEMENTS_COUNT);
 
     const formInfo    = getItemFromLocalStorage("basic-product-information-form", true);
-    const ERR_MESSAGE = "Please ensure all required product attributes are filled out before submitting.";
+    const ERR_MESSAGE = "Basic product section is incomplete";
 
     addToArrayIfValid(validateFormSection, formInfo, ERR_MESSAGE);
     populateProductInfo(basicProductInformationPElements, formInfo, updateProduct);
@@ -55,7 +60,7 @@ function getDetailedProductInformation() {
     validateProductInformation(detailedProductInformation, detailedProductInformationPElements, REQUIRED_ELEMENTS_COUNT)
 
     const formInfo = getItemFromLocalStorage("detailed-description-form", true);
-    const ERR_MESSAGE = "Go back to section 2 and complete the form details";
+    const ERR_MESSAGE = "Detailed product section is incomplete";
  
     addToArrayIfValid(validateFormSection, formInfo, ERR_MESSAGE);
 
@@ -79,7 +84,7 @@ function getPricingInventoryInformation() {
     
     validateProductInformation(pricingInventoryInformation, pricingInventoryInformationPElements, REQUIRED_ELEMENTS_COUNT);
     const formInfo    = getItemFromLocalStorage("pricing-inventory-form", true);
-    const ERR_MESSAGE = "Go back to section 3 and complete the form details";
+    const ERR_MESSAGE = "Pricing & inventory section is incomplete";
 
     addToArrayIfValid(validateFormSection, formInfo, ERR_MESSAGE);
     populateProductInfo(pricingInventoryInformationPElements, formInfo, updateProduct);
@@ -93,7 +98,7 @@ function getImageAndMediaInformation() {
     const REQUIRED_ELEMENTS_COUNT = 3;
     validateProductInformation(imageAndMediaInformation, imageAndMediaPElements, REQUIRED_ELEMENTS_COUNT);
     const formInfo  = getItemFromLocalStorage("image-media-form", true);
-    const ERR_MESSAGE = "Go back to the image and media section and complete the form details";
+    const ERR_MESSAGE = "Image & media section is incomplete";
 
     addToArrayIfValid(validateFormSection, formInfo, ERR_MESSAGE);
 
@@ -108,14 +113,16 @@ function getImageAndMediaInformation() {
 function getShippingInformation() {
 
     const REQUIRED_ELEMENTS_COUNT = 3;
-    validateProductInformation(shippingInformation, seoAndMetaInformationPElements, REQUIRED_ELEMENTS_COUNT);
+    validateProductInformation(shippingInformation, shippingInformationPElements, REQUIRED_ELEMENTS_COUNT);
 
+    // Turn the `shippingInformationPElements` nodeList into an array, so that the shipping 'p' elements and shipping 
+    // delivery `select options` elements can be extracted and handled separately
     const pElementsList           = Array.from(shippingInformationPElements);
     const shippingPElements       = pElementsList.slice(0, -1);
     const shippingDeliveryElement = pElementsList.slice(-1)[0];
     const formInfo                = getItemFromLocalStorage("shipping-and-delivery-form", true);
 
-    const ERR_MESSAGE = "Go back to section shipping section and complete the form details";
+    const ERR_MESSAGE = "Shipping section is incomplete";
     addToArrayIfValid(validateFormSection, formInfo, ERR_MESSAGE);
     populateProductInfo(shippingPElements, formInfo, updateProduct);
     updateProduct(shippingDeliveryElement, formInfo.deliveryOptions ? formInfo.deliveryOptions.join(', ') : '');
@@ -131,7 +138,7 @@ function getSEOAndMetaInformation() {
     validateProductInformation(seoAndMetaInformationElements, seoAndMetaInformationPElements, REQUIRED_ELEMENTS_COUNT);
 
     const formInfo    = getItemFromLocalStorage("seo-and-meta-form", true);
-    const ERR_MESSAGE = "Go back to section SEO section and complete the form details";
+    const ERR_MESSAGE = "SEO & meta section is incomplete";
 
     addToArrayIfValid(validateFormSection, formInfo, ERR_MESSAGE);
     populateProductInfo(seoAndMetaInformationPElements, formInfo, updateProduct);
@@ -148,7 +155,7 @@ function getAdditionalInformation() {
     validateProductInformation(additionalInformationElements, additionalInformationPElements, REQUIRED_ELEMENTS_COUNT);
 
     const formInfo    = getItemFromLocalStorage("additional-information-form", true);
-    const ERR_MESSAGE = "Go back to section additional information section and complete the  form details";
+    const ERR_MESSAGE = "Additional information section is incomplete";
 
     addToArrayIfValid(validateFormSection, formInfo, ERR_MESSAGE);
     populateProductInfo(additionalInformationPElements, formInfo, updateProduct);
@@ -236,7 +243,6 @@ function validateFormSection(formInfo, message) {
 
 
 function handleReviewButtonClick(e) {
-    // e.preventDefault();
    
     const EXPECTED_REVIEWS = 7;
     const SAVE_AS          = "products-list";
@@ -249,13 +255,13 @@ function handleReviewButtonClick(e) {
     if (EXPECTED_REVIEWS !== formArrayObjects.length) {
         const ERR_MESSAGE = "One or more reviews are missing - go back and add them before submitting";
 
-
         AlertUtils.showAlert({
             "title": "Incomple form entries",
             text: ERR_MESSAGE,
             icon: "warning",
             confirmButtonText: "Incomplete form entry"
         })
+        console.log("There are missing form entries");
         return;
     }
 
@@ -263,7 +269,10 @@ function handleReviewButtonClick(e) {
     const products = getProductsOrCreate();
 
     if (products) {
-        item.itemID = products.length + 1;
+        item.itemID      = products.length + 1;
+        item.isLive      = false;
+        item.dateCreated = getFormattedCurrentDate();
+
         products.push(item);
         saveToLocalStorage(SAVE_AS, products, true);
         
