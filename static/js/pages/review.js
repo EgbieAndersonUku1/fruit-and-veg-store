@@ -36,7 +36,7 @@ function getBasicInformation() {
     validateProductInformation(basicProductInformation, basicProductInformationPElements, REQUIRED_ELEMENTS_COUNT);
 
     const formInfo    = getItemFromLocalStorage("basic-product-information-form", true);
-    const ERR_MESSAGE = "Go back to section 1 and complete the basic form details";
+    const ERR_MESSAGE = "Please ensure all required product attributes are filled out before submitting.";
 
     addToArrayIfValid(validateFormSection, formInfo, ERR_MESSAGE);
     populateProductInfo(basicProductInformationPElements, formInfo, updateProduct);
@@ -224,12 +224,12 @@ function addToArrayIfValid(validationFunction, formObject, message) {
 function validateFormSection(formInfo, message) {
     if (!formInfo) {
 
-        AlertUtils.showAlert({title: "Not all product attributes have been added",
+        AlertUtils.showAlert({ title: "Incomplete Product Information",
             text:message,
             icon: 'error',
             confirmButtonText: 'Incomplete!!'
         })
-        throw new Error(message);
+       return;
     }
     return true;
 }
