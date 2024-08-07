@@ -13,7 +13,7 @@ function createProductTable(orders, show=true) {
     if (!productReviewTable) {
         return;
     }
-    if (!show) {
+    if (!show || orders.length === 0) {
         productReviewTable.style.display = "none";
         pagination.style.display         = "none";
         notFound.style.display           = "block";
@@ -88,8 +88,6 @@ function getReviewStatus(product) {
       reviewsFound = false;
       reviews = orders;
     }
-
-
 
     for (let review of reviews) {
         if (!reviewsFound) {
