@@ -56,8 +56,8 @@ function buildTableBody(orders) {
         const tableImg = createTableImage(order);
 
 
-        const NUMBER_OF_COLS_TO_CREATE = 6; // Define the number of columns to create
-        const tableDataElements = [];
+        const NUMBER_OF_COLS_TO_CREATE = 6; 
+        const tableDataElements       = [];
 
         // Create the <td> elements and store them in an array
         for (let i = 0; i < NUMBER_OF_COLS_TO_CREATE; i++) {
