@@ -40,7 +40,7 @@ function createProductTable(orders, show=true) {
 }
 
 
-function buildTableBody(orders, headers) {
+function buildTableBody(orders) {
     const fragment = document.createDocumentFragment();
 
     if (!orders || !Array.isArray(orders)) {
