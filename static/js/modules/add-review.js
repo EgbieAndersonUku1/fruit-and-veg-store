@@ -14,7 +14,7 @@ import orders from "../../../order.js";
 import { minimumCharactersToUse } from "../components/characterCounter.js";
 import { handleFormFieldElement } from "../handlers/handleTextCharInput.js";
 
-const REVIEW_DESCRIPTION_TEXT_AREA = "#review-description-textArea";
+const REVIEW_DESCRIPTION_TEXT_AREA = document.getElementById("review-description-textArea");
 const clearBtnElement              = document.getElementById("clear-btn");
 const createReviewForm             = document.getElementById("product-review-form");
 const messageDivElement            = document.querySelector(".messages");
@@ -247,7 +247,8 @@ minimumCharactersToUse(REVIEW_DESCRIPTION_TEXT_AREA, {minCharClass: ".minimum-ch
                                                       minCharMessage: "Minimum characters to use: ",
                                                       maxCharMessage: "Number of characters remaining: ",
                                                       minCharsLimit: 50,
-                                                      maxCharsLimit: 1000
+                                                      maxCharsLimit: 1000,
+                                                      disablePaste: true,
 });
 
 

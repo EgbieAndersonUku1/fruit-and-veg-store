@@ -1,5 +1,5 @@
 import orders from "../../../order.js";
-import createTableHeaderRow from "../utils/createTableHeaders.js";
+import {createTableHeaderRow, createTableRow} from "../utils/createTableElements.js";
 import { getItemFromLocalStorage,  saveToLocalStorage, redirectToNewPage } from "../utils/utils.js";
 
 
@@ -40,46 +40,37 @@ function createProductTable(orders, show=true) {
 }
 
 
-function buildTableBody(orders) {
+function buildTableBody(orders, headers) {
     const fragment = document.createDocumentFragment();
 
     if (!orders || !Array.isArray(orders)) {
         console.error("Orders data is not available or not an array.");
         return fragment;
-    }
+    };
 
 
     orders.forEach((order) => {
 
-        const tableMainRow = document.createElement("tr");
         const tableALink = createTableLink("Add/Edit", `${order.id}`);
         const tableImg = createTableImage(order);
 
-
-        const NUMBER_OF_COLS_TO_CREATE = 6; 
-        const tableDataElements       = [];
-
-        // Create the <td> elements and store them in an array
-        for (let i = 0; i < NUMBER_OF_COLS_TO_CREATE; i++) {
-            tableDataElements.push(document.createElement("td"));
+        const listOfDataColumns = [order.id,
+                            order.name,
+                            order.dateOrderPlaced,
+                            getReviewStatus(order),
+                            "",  // placeholder for the link
+                            "",  // placeholder for the image
+                          ]
+    
+        
+        const additionalElements = {
+            4: tableALink,
+            5: tableImg,
         }
-
-        let [tableData1, tableData2, tableData3, tableData4, tableData5, tableData6] = tableDataElements;
-
-        tableData1.textContent = `${order.id}`;
-        tableData2.textContent = `${order.name}`;
-        tableData3.textContent = `${order.dateOrderPlaced}`;
-        tableData4             = getReviewStatus(tableData4, order);
-        tableData5.appendChild(tableALink);
-        tableData6.appendChild(tableImg);
-
-       tableDataElements.forEach((tableData) => {
-            tableMainRow.appendChild(tableData);
-
-        })
-
-
+        const tableMainRow = createTableRow(listOfDataColumns, additionalElements);
         fragment.appendChild(tableMainRow);
+       
+
     })
 
     return fragment;
@@ -87,29 +78,34 @@ function buildTableBody(orders) {
 }
 
 
-
-function getReviewStatus(tableRowToUpdate, product) {
+function getReviewStatus(product) {
 
     let reviews = getItemFromLocalStorage("productReviews", true);
     let reviewsFound = true;
+    let status;
 
     if (!reviews) {
       reviewsFound = false;
       reviews = orders;
     }
 
-    reviews.forEach((review) => {
-        
-        if (!reviewsFound) {
-            tableRowToUpdate.textContent = "Not reviewed";
-        } else if (reviewsFound && review.id === product.id && tableRowToUpdate.textContent !== "Pending review") {
-            tableRowToUpdate.textContent = "Pending review";
-        } else if (tableRowToUpdate.textContent !== "Pending review") {
-            tableRowToUpdate.textContent = "Not reviewed";
-        }
-    })
 
-    return tableRowToUpdate
+
+    for (let review of reviews) {
+        if (!reviewsFound) {
+            status = "Not reviewed";
+            break
+          
+        } else if (reviewsFound && review.id === product.id) {
+            status = "Pending review";
+            break;
+         
+        } else {
+            status = "Not reviewed";
+        }
+    }
+
+    return status
 }
 
 
