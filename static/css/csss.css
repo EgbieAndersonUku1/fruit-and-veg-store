@@ -3051,3 +3051,22 @@ legend {
     white-space: normal;
     hyphens: auto;
 }
+
+
+/* The view product section */
+.view-product-dividor {
+    opacity: 0.2;
+    color: lavender;
+}
+
+.tabs {
+    margin-top: 40px;
+}
+
+.tab {
+    text-transform: capitalize;
+}
+
+.tab.active {
+    border-bottom: 3px solid var(--dark-green);
+}

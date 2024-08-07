@@ -1,4 +1,5 @@
 import orders from "../../../order.js";
+import createTableHeaderRow from "../utils/createTableHeaders.js";
 import { getItemFromLocalStorage,  saveToLocalStorage, redirectToNewPage } from "../utils/utils.js";
 
 
@@ -25,43 +26,16 @@ function createProductTable(orders, show=true) {
 
 
         productReviewTable.innerHTML = "";
-    
-        const tableHeading = createTableHeading();
-        const tableBody = buildTableBody(orders);
+        const headers = ["Product ID", "Product Name", "Purchase Date", "Review Status", "Action", "Product Image"];
+        
+        const tableHeading = createTableHeaderRow(headers);
+        const tableBody    = buildTableBody(orders);
 
         if (productReviewTable) {
             productReviewTable.appendChild(tableHeading);
             productReviewTable.appendChild(tableBody);
         }
     
-
-}
-
-function createTableHeading() {
-
-    const tableMainRow = document.createElement("tr");
-    const tableHeader1 = document.createElement("th");
-    const tableHeader2 = document.createElement("th");
-    const tableHeader3 = document.createElement("th");
-    const tableHeader4 = document.createElement("th");
-    const tableHeader5 = document.createElement("th");
-    const tableHeader6 = document.createElement("th");
-
-    tableHeader1.textContent = "Product ID";
-    tableHeader2.textContent = "Product Name";
-    tableHeader3.textContent = "Purchase Date";
-    tableHeader4.textContent = "Review Status";
-    tableHeader5.textContent = "Action";
-    tableHeader6.textContent = "Product Image";
-
-    tableMainRow.appendChild(tableHeader1);
-    tableMainRow.appendChild(tableHeader2);
-    tableMainRow.appendChild(tableHeader3);
-    tableMainRow.appendChild(tableHeader4);
-    tableMainRow.appendChild(tableHeader5);
-    tableMainRow.appendChild(tableHeader6);
-
-    return tableMainRow;
 
 }
 
@@ -79,26 +53,27 @@ function buildTableBody(orders) {
 
         const tableMainRow = document.createElement("tr");
         const tableALink = createTableLink("Add/Edit", `${order.id}`);
-        const tableImg = createTableImage(order)
+        const tableImg = createTableImage(order);
 
-        let [tableData1, tableData2, tableData3, tableData4, tableData5, tableData6] = [
-            document.createElement("td"),
-            document.createElement("td"),
-            document.createElement("td"),
-            document.createElement("td"),
-            document.createElement("td"),
-            document.createElement("td")
-        ]
 
+        const NUMBER_OF_COLS_TO_CREATE = 6; 
+        const tableDataElements       = [];
+
+        // Create the <td> elements and store them in an array
+        for (let i = 0; i < NUMBER_OF_COLS_TO_CREATE; i++) {
+            tableDataElements.push(document.createElement("td"));
+        }
+
+        let [tableData1, tableData2, tableData3, tableData4, tableData5, tableData6] = tableDataElements;
 
         tableData1.textContent = `${order.id}`;
         tableData2.textContent = `${order.name}`;
         tableData3.textContent = `${order.dateOrderPlaced}`;
-        tableData4 = getReviewStatus(tableData4, order);
+        tableData4             = getReviewStatus(tableData4, order);
         tableData5.appendChild(tableALink);
         tableData6.appendChild(tableImg);
 
-        [tableData1, tableData2, tableData3, tableData4, tableData5, tableData6].forEach((tableData) => {
+       tableDataElements.forEach((tableData) => {
             tableMainRow.appendChild(tableData);
 
         })
@@ -110,6 +85,8 @@ function buildTableBody(orders) {
     return fragment;
 
 }
+
+
 
 function getReviewStatus(tableRowToUpdate, product) {
 
