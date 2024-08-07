@@ -89,7 +89,6 @@ function handleDropDown(e) {
             pendingReviews === null ? createProductTable(pendingReviews, false) : createProductTable(pendingReviews, true);
             break;
         case selectTarget.toLowerCase() === "not-reviewed":
-            
             createProductTable(getNotReviewed());
             break;
         case selectTarget.toLowerCase() === "latest":
