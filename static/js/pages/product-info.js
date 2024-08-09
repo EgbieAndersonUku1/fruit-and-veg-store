@@ -7,9 +7,14 @@ import AlertUtils from "../utils/alerts.js";
 const allProductsDivElement = document.getElementById("all-products");
 const productMessage        = document.getElementById("product-msg");
 const clearProductButtonElement = document.getElementById("clearBtn");
+
+
 const SAVE_TABLE_NAME = "products-list";
 
 clearProductButtonElement.addEventListener("click", handleClearButton);
+
+
+
 
 function showMessage(msg) {
     productMessage.textContent = msg;
@@ -29,7 +34,8 @@ function createTable() {
         return;
     }
 
-    const headers = ["ID", "Product Name", "Category", "Stock Quantity", "is Live", "Date created", "Action", "Action"];
+   
+    const headers     = ["ID", "Product Name", "Category", "Stock Quantity", "is Live", "Date created", "Action", "Action"];
 
     const table    = document.createElement("table");
     const tHeaders = createTableHeaderRow(headers);
@@ -41,6 +47,8 @@ function createTable() {
 
     table.appendChild(fragment);
     allProductsDivElement.appendChild(table);
+
+   
 }
 
 
@@ -84,6 +92,7 @@ function appendTableRows(fragment, productEntries) {
             fragment.appendChild(row);
         }
     });
+   
 }
 
 
@@ -99,7 +108,7 @@ function createTableRowData(productData) {
     const linkText = isLive ? "Deactivate" : "Go live";
     const additionalInformation = {
         6: createTableLink({ linkText: linkText, productID: id, className: "go-live", handleClick: handleVisibilityToggle }),
-        7: createTableLink({ linkText: "Edit/Delete", productID: id, className: "action-link", handleClick: handleDeleteLinkClick }),
+        7: createTableLink({ linkText: "Edit/Delete", productID: id, className: "action-link",  handleClick: handleActionClick}),
     };
 
     return createTableRow(listOfDataColumns, additionalInformation);
@@ -110,6 +119,8 @@ function createTableRowData(productData) {
 function handleVisibilityToggle(e) {
     e.preventDefault();
     console.log(e);
+    console.log(this);
+    console.log("I am here")
 
     // for now do nothing - later we handle the indvidual clicks
 }
@@ -117,7 +128,8 @@ function handleVisibilityToggle(e) {
 
 function handleDeleteLinkClick(e) {
     e.preventDefault();
-    console.log(e);
+    // console.log(e);
+    // console.log(e.dataset.productID);
 
     // for now do nothing - later we handle the indvidual clicks
 }
@@ -166,4 +178,10 @@ function handleClearButton() {
   
 }
 
+
+function handleActionClick() {
+
+}
+
 createTable();
+
