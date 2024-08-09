@@ -82,6 +82,7 @@ const AlertUtils = {
         }).then((result) => {
             if (result.isConfirmed) {
                 const funcResult = func();
+                console.log(funcResult)
                 if (funcResult && typeof funcResult.then === 'function') {
                     // If func() is a promise, wait for it to resolve
                     funcResult.then(() => {

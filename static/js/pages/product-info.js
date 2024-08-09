@@ -132,7 +132,10 @@ function handleClearButton() {
             text: "There are no items available to delete.",
             icon: "info",
             confirmButtonText: "OK",
-        });        
+        });   
+        
+        clearTable();
+        showMessage("You have not yet added a product");
         return;
     };
 
@@ -147,7 +150,9 @@ function handleClearButton() {
             cancelButtonColor: "#d33",
         },
         func: () => {
-            removeItemFromLocalStorage(SAVE_TABLE_NAME)
+            removeItemFromLocalStorage(SAVE_TABLE_NAME);
+            clearTable();
+            showMessage("You have not yet added a product");
             // console.log("Test")
         }, 
         followUpAlertAttrs: {
@@ -158,8 +163,7 @@ function handleClearButton() {
         
     });
 
-    clearTable();
-    showMessage("You have not yet added a product");
+  
 }
 
 createTable();
