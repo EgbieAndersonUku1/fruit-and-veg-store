@@ -132,7 +132,10 @@ function handleClearButton() {
             text: "There are no items available to delete.",
             icon: "info",
             confirmButtonText: "OK",
-        });        
+        });   
+        
+        clearTable();
+        showMessage("You have not yet added a product");
         return;
     };
 
@@ -158,8 +161,7 @@ function handleClearButton() {
         
     });
 
-    clearTable();
-    showMessage("You have not yet added a product");
+  
 }
 
 createTable();
