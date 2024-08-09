@@ -150,7 +150,9 @@ function handleClearButton() {
             cancelButtonColor: "#d33",
         },
         func: () => {
-            removeItemFromLocalStorage(SAVE_TABLE_NAME)
+            removeItemFromLocalStorage(SAVE_TABLE_NAME);
+            clearTable();
+            showMessage("You have not yet added a product");
             // console.log("Test")
         }, 
         followUpAlertAttrs: {
