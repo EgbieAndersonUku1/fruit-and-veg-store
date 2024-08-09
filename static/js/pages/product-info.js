@@ -22,7 +22,7 @@ function createTable() {
         return;
     }
 
-    const headers = ["ID", "Product Name", "Category", "Stock Quantity", "is Live", "Date created", "Action", "Edit"];
+    const headers = ["ID", "Product Name", "Category", "Stock Quantity", "is Live", "Date created", "Action", "Action"];
 
     const table    = document.createElement("table");
     const tHeaders = createTableHeaderRow(headers);
@@ -85,14 +85,14 @@ function createTableRowData(productData) {
     
     const listOfDataColumns = [
         id, name, productCategory, stock, isLive, dateCreated,
-        "", // placeholder for the edit link
-        ""  // placeholder for the delete link
+        "", // placeholder for the go live link
+        ""  // placeholder for the action link
     ];
 
     const linkText = isLive ? "Deactivate" : "Go live";
     const additionalInformation = {
         6: createTableLink({ linkText: linkText, productID: id, className: "go-live", handleClick: handleVisibilityToggle }),
-        7: createTableLink({ linkText: "Edit", productID: id, className: "delete-link", handleClick: handleDeleteLinkClick }),
+        7: createTableLink({ linkText: "Edit/Delete", productID: id, className: "action-link", handleClick: handleDeleteLinkClick }),
     };
 
     return createTableRow(listOfDataColumns, additionalInformation);
