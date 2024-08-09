@@ -124,6 +124,19 @@ function handleDeleteLinkClick(e) {
 
 
 function handleClearButton() {
+    const productEntries = getItemFromLocalStorage(SAVE_TABLE_NAME, true);
+
+    if (!productEntries) {
+        AlertUtils.showAlert({
+            title: "No Items to Delete",
+            text: "There are no items available to delete.",
+            icon: "info",
+            confirmButtonText: "OK",
+        });        
+        return;
+    };
+
+
     AlertUtils.showConfirmationAlert({
         title:  "Are you sure?",
         text: "You won't be able to revert this!",
