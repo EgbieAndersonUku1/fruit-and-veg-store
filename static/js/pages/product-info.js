@@ -1,18 +1,21 @@
 
 import { createTableHeaderRow, createTableRow } from "../utils/createTableElements.js";
 import { createTableLink } from "../utils/linkUtils.js";
-import { getItemFromLocalStorage } from "../utils/utils.js";
+import { getItemFromLocalStorage, removeItemFromLocalStorage } from "../utils/utils.js";
+import AlertUtils from "../utils/alerts.js";
 
 const allProductsDivElement = document.getElementById("all-products");
 const productMessage        = document.getElementById("product-msg");
+const clearProductButtonElement = document.getElementById("clearBtn");
+const SAVE_TABLE_NAME = "products-list";
 
-
+clearProductButtonElement.addEventListener("click", handleClearButton);
 
 
 function createTable() {
     if (!validateElements()) return;
 
-    const SAVE_TABLE_NAME = "products-list";
+  
     const productEntries = getItemFromLocalStorage(SAVE_TABLE_NAME, true);
 
     clearTable();
@@ -22,7 +25,7 @@ function createTable() {
         return;
     }
 
-    const headers = ["ID", "Product Name", "Category", "Stock Quantity", "is Live", "Date created", "Action", "Edit"];
+    const headers = ["ID", "Product Name", "Category", "Stock Quantity", "is Live", "Date created", "Action", "Action"];
 
     const table    = document.createElement("table");
     const tHeaders = createTableHeaderRow(headers);
@@ -85,14 +88,14 @@ function createTableRowData(productData) {
     
     const listOfDataColumns = [
         id, name, productCategory, stock, isLive, dateCreated,
-        "", // placeholder for the edit link
-        ""  // placeholder for the delete link
+        "", // placeholder for the go live link
+        ""  // placeholder for the action link
     ];
 
     const linkText = isLive ? "Deactivate" : "Go live";
     const additionalInformation = {
         6: createTableLink({ linkText: linkText, productID: id, className: "go-live", handleClick: handleVisibilityToggle }),
-        7: createTableLink({ linkText: "Edit", productID: id, className: "delete-link", handleClick: handleDeleteLinkClick }),
+        7: createTableLink({ linkText: "Edit/Delete", productID: id, className: "action-link", handleClick: handleDeleteLinkClick }),
     };
 
     return createTableRow(listOfDataColumns, additionalInformation);
@@ -115,5 +118,28 @@ function handleDeleteLinkClick(e) {
     // for now do nothing - later we handle the indvidual clicks
 }
 
+
+function handleClearButton() {
+    AlertUtils.showConfirmationAlert({
+        title:  "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        confirmButtonText: "Yes, delete it",
+        colorButtonOptions: {
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+        },
+        func: () => {
+            removeItemFromLocalStorage(SAVE_TABLE_NAME)
+            // console.log("Test")
+        }, 
+        followUpAlertAttrs: {
+            title: "Completed!",
+            text: "The action has been successfully completed.",
+            icon: "success"
+        }
+        
+    })
+}
 
 createTable();

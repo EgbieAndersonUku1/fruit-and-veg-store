@@ -276,8 +276,6 @@ function displayProductAttribute() {
         return;
     }
 
-    const [divImage, divDescription] = divs;
-
     
     if (!productInfo) {
         console.warn("Couldn't find the table ID associated with this product.");
@@ -289,6 +287,8 @@ function displayProductAttribute() {
         console.warn("Couldn't find the product with the given ID.");
         return;
     }
+
+    const [divImage, divDescription] = divs;
 
     setReviewProductImage(product, divImage);
     setReviewProductDescription(product, divDescription);

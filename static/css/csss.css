@@ -3073,3 +3073,10 @@ legend {
     border-bottom: 3px solid var(--dark-green);
 }
 
+.clearBtn button {
+    padding: 4px;
+    width: 15%;
+    background: #c83838;
+    color: white;
+    text-transform: capitalize;
+}
