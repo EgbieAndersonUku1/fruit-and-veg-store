@@ -1,6 +1,7 @@
 import orders from "../../../order.js";
 import {createTableHeaderRow, createTableRow} from "../utils/createTableElements.js";
 import { getItemFromLocalStorage,  saveToLocalStorage, redirectToNewPage } from "../utils/utils.js";
+import { createTableLink } from "../utils/linkUtils.js";
 
 
 const productReviewTable = document.getElementById("products-review-table");
@@ -8,36 +9,46 @@ const pagination          = document.querySelector(".table-pagination");
 const notFound            = document.querySelector(".not-found");
 
 
+
+function toggleTableVisibility(show, orders) {
+    if (!show || orders.length === 0) {
+        productReviewTable.style.display = "none";
+        pagination.style.display         = "none";
+        notFound.style.display           = "block";
+    } else {
+      
+        // Clear the table content before showing the table
+        productReviewTable.innerHTML = "";
+        productReviewTable.style.display = "table";
+        pagination.style.display         = "flex";
+        notFound.style.display           = "none";
+    }
+}
+
 function createProductTable(orders, show=true) {
 
     if (!productReviewTable) {
         return;
     }
+
+    // Call the new function to handle visibility
+    toggleTableVisibility(show, orders);
+
     if (!show || orders.length === 0) {
-        productReviewTable.style.display = "none";
-        pagination.style.display         = "none";
-        notFound.style.display           = "block";
         return;
-    } else {
-        productReviewTable.style.display = "table";
-        pagination.style.display         = "flex";
-        notFound.style.display           = "none";
     }
 
-
-        productReviewTable.innerHTML = "";
-        const headers = ["Product ID", "Product Name", "Purchase Date", "Review Status", "Action", "Product Image"];
+    const headers = ["Product ID", "Product Name", "Purchase Date", "Review Status", "Action", "Product Image"];
         
-        const tableHeading = createTableHeaderRow(headers);
-        const tableBody    = buildTableBody(orders);
+    const tableHeading = createTableHeaderRow(headers);
+    const tableBody    = buildTableBody(orders);
 
-        if (productReviewTable) {
-            productReviewTable.appendChild(tableHeading);
-            productReviewTable.appendChild(tableBody);
-        }
-    
-
+    if (productReviewTable) {
+        productReviewTable.appendChild(tableHeading);
+        productReviewTable.appendChild(tableBody);
+    }
 }
+
 
 
 function buildTableBody(orders) {
@@ -45,21 +56,19 @@ function buildTableBody(orders) {
 
     if (!orders || !Array.isArray(orders)) {
         console.error("Orders data is not available or not an array.");
-        return fragment;
     };
 
 
     orders.forEach((order) => {
-
-        const tableALink = createTableLink("Add/Edit", `${order.id}`);
+        const tableALink = createTableLink({linkText: "Add/Edit", productID: order.id, handleClick: handleLinkClick})
         const tableImg = createTableImage(order);
 
         const listOfDataColumns = [order.id,
-                            order.name,
-                            order.dateOrderPlaced,
-                            getReviewStatus(order),
-                            "",  // placeholder for the link
-                            "",  // placeholder for the image
+                                   order.name,
+                                   order.dateOrderPlaced,
+                                   getReviewStatus(order),
+                                   "",  // placeholder for the link
+                                   "",  // placeholder for the image
                           ]
     
         
@@ -107,21 +116,6 @@ function getReviewStatus(product) {
 }
 
 
-function createTableLink(linkText, productID, hrefTag = "#", className = "table-link") {
-
-    const tableLink = document.createElement("a");
-    tableLink.href = hrefTag;
-    tableLink.className = className;
-    tableLink.textContent = linkText;
-    tableLink.dataset.productID = productID;
-
-
-    tableLink.addEventListener("click", handleLinkClick);
-
-    return tableLink;
-
-}
-
 function createTableImage(order, className = "table-img") {
     const tableImg     = document.createElement("img");
     tableImg.src       = order.img;
@@ -129,6 +123,9 @@ function createTableImage(order, className = "table-img") {
     tableImg.className = className;
     return tableImg;
 }
+
+
+
 
 
 function handleLinkClick(e) {

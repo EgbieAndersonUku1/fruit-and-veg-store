@@ -213,13 +213,14 @@ table tr td:hover {
 
 table tr td:hover a {
     color: white;
+    
 }
 
-table tr td:nth-child(6):hover {
+/* This applies only to the review table where the 6th element contains an image */
+#products-review-table tr td:nth-child(6):hover {
     transform: scale(1.1);
     background: none;
 }
-
 
 .table-img {
     height: 40px;
@@ -227,6 +228,7 @@ table tr td:nth-child(6):hover {
     padding: 4px;
     border-radius: 4%;
   }
+
 
 .table-link:hover {
     text-decoration: underline;
@@ -3070,3 +3072,4 @@ legend {
 .tab.active {
     border-bottom: 3px solid var(--dark-green);
 }
+
