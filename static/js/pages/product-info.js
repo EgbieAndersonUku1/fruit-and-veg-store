@@ -22,7 +22,7 @@ function createTable() {
         return;
     }
 
-    const headers = ["ID", "Product Name", "Category", "Stock Quantity", "is Live", "Date created", "Edit", "Delete"];
+    const headers = ["ID", "Product Name", "Category", "Stock Quantity", "is Live", "Date created", "Action", "Edit"];
 
     const table    = document.createElement("table");
     const tHeaders = createTableHeaderRow(headers);
@@ -89,9 +89,10 @@ function createTableRowData(productData) {
         ""  // placeholder for the delete link
     ];
 
+    const linkText = isLive ? "Deactivate" : "Go live";
     const additionalInformation = {
-        6: createTableLink({ linkText: "Edit", productID: id, className: "edit-link", handleClick: handleEditClick }),
-        7: createTableLink({ linkText: "Delete", productID: id, className: "delete-link", handleClick: handleDeleteLinkClick }),
+        6: createTableLink({ linkText: linkText, productID: id, className: "go-live", handleClick: handleVisibilityToggle }),
+        7: createTableLink({ linkText: "Edit", productID: id, className: "delete-link", handleClick: handleDeleteLinkClick }),
     };
 
     return createTableRow(listOfDataColumns, additionalInformation);
@@ -99,7 +100,7 @@ function createTableRowData(productData) {
 
 
 
-function handleEditClick(e) {
+function handleVisibilityToggle(e) {
     e.preventDefault();
     console.log(e);
 
