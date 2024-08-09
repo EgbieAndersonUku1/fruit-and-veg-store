@@ -11,6 +11,10 @@ const SAVE_TABLE_NAME = "products-list";
 
 clearProductButtonElement.addEventListener("click", handleClearButton);
 
+function showMessage(msg) {
+    productMessage.textContent = msg;
+    return;
+}
 
 function createTable() {
     if (!validateElements()) return;
@@ -21,7 +25,7 @@ function createTable() {
     clearTable();
     
     if (!productEntries || productEntries.length === 0 || productEntries == null) {
-        productMessage.textContent = "You have not yet added a product";
+        showMessage("You have not yet added a product");
         return;
     }
 
@@ -139,7 +143,10 @@ function handleClearButton() {
             icon: "success"
         }
         
-    })
+    });
+
+    clearTable();
+    showMessage("You have not yet added a product");
 }
 
 createTable();
