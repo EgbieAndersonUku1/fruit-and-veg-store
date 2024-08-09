@@ -1,18 +1,21 @@
 
 import { createTableHeaderRow, createTableRow } from "../utils/createTableElements.js";
 import { createTableLink } from "../utils/linkUtils.js";
-import { getItemFromLocalStorage } from "../utils/utils.js";
+import { getItemFromLocalStorage, removeItemFromLocalStorage } from "../utils/utils.js";
+import AlertUtils from "../utils/alerts.js";
 
 const allProductsDivElement = document.getElementById("all-products");
 const productMessage        = document.getElementById("product-msg");
+const clearProductButtonElement = document.getElementById("clearBtn");
+const SAVE_TABLE_NAME = "products-list";
 
-
+clearProductButtonElement.addEventListener("click", handleClearButton);
 
 
 function createTable() {
     if (!validateElements()) return;
 
-    const SAVE_TABLE_NAME = "products-list";
+  
     const productEntries = getItemFromLocalStorage(SAVE_TABLE_NAME, true);
 
     clearTable();
@@ -115,5 +118,28 @@ function handleDeleteLinkClick(e) {
     // for now do nothing - later we handle the indvidual clicks
 }
 
+
+function handleClearButton() {
+    AlertUtils.showConfirmationAlert({
+        title:  "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        confirmButtonText: "Yes, delete it",
+        colorButtonOptions: {
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+        },
+        func: () => {
+            removeItemFromLocalStorage(SAVE_TABLE_NAME)
+            // console.log("Test")
+        }, 
+        followUpAlertAttrs: {
+            title: "Completed!",
+            text: "The action has been successfully completed.",
+            icon: "success"
+        }
+        
+    })
+}
 
 createTable();
