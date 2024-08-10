@@ -89,28 +89,18 @@ const AlertUtils = {
                         Swal.fire({
                             title: followUpAlertAttrs.title,
                             text: followUpAlertAttrs.text,
-<<<<<<< Updated upstream
-                            icon: followUpAlertAttrs.icon
-                        });
-=======
                             icon: followUpAlertAttrs.icon,
                             confirmButtonText: confirmButtonText,
                         })
->>>>>>> Stashed changes
                     });
                 } else {
                     // If func() is not a promise, immediately show the follow-up alert
                     Swal.fire({
                         title: followUpAlertAttrs.title,
                         text: followUpAlertAttrs.text,
-<<<<<<< Updated upstream
-                        icon: followUpAlertAttrs.icon
-                    });
-=======
                         icon: followUpAlertAttrs.icon,
                         confirmButtonText: confirmButtonText,
                     })
->>>>>>> Stashed changes
                 }
             }
         });
