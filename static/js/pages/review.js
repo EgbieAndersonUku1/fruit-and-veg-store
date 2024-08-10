@@ -269,7 +269,7 @@ function handleReviewButtonClick(e) {
     const products = getProductsOrCreate();
 
     if (products) {
-        item.itemID      = products.length + 1;
+        item.id          = products.length + 1;
         item.isLive      = false;
         item.dateCreated = getFormattedCurrentDate();
 
