@@ -86,16 +86,17 @@ const AlertUtils = {
                 if (funcResult && typeof funcResult.then === 'function') {
                     // If func() is a promise, wait for it to resolve
                     funcResult.then(() => {
-                        Swal.fire({
+                        this.showAlert({
                             title: followUpAlertAttrs.title,
                             text: followUpAlertAttrs.text,
                             icon: followUpAlertAttrs.icon,
                             confirmButtonText: confirmButtonText,
                         })
+                       
                     });
                 } else {
                     // If func() is not a promise, immediately show the follow-up alert
-                    Swal.fire({
+                    this.showAlert({
                         title: followUpAlertAttrs.title,
                         text: followUpAlertAttrs.text,
                         icon: followUpAlertAttrs.icon,
