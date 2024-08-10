@@ -37,7 +37,6 @@ function createTable() {
         showMessage("You have not yet added a product");
         return;
     }
-
    
     const headers     = ["ID", "Product Name", "Category", "Stock Quantity", "is Live", "Date created", "Action", "Action"];
     const table       = document.createElement("table");
@@ -176,7 +175,8 @@ function handleClearButton() {
         followUpAlertAttrs: {
             title: "Completed!",
             text: "The action has been successfully completed.",
-            icon: "success"
+            icon: "success",
+            confirmButtonText: "Great"
         }
         
     });
