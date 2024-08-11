@@ -5,9 +5,16 @@ import { getItemIndexAndValueByID } from "../utils/itemUtils.js";
 
 import AlertUtils from "../utils/alerts.js";
 
-const allProductsDivElement     = document.getElementById("all-products");
-const productMessage            = document.getElementById("product-msg");
-const clearProductButtonElement = document.getElementById("clearBtn");
+const allProductsDivElement     =  document.getElementById("all-products");
+const liveProductDivElement     =  document.getElementById("live-products");
+const notLiveProductDivElement  =  document.getElementById("not-live");
+const productMessage            =  document.getElementById("product-msg");
+const clearProductButtonElement =  document.getElementById("clearBtn");
+const tabDivElement             =  document.getElementById("tabs");
+const tabsElements              =  document.querySelectorAll(".tab");
+const tabContents               =  document.querySelectorAll(".tab-content");
+
+
 let productTableElement;        // to be assigned later when the `createTable` function is called
 
 
@@ -19,8 +26,11 @@ const ACTION_LINK_CLASS    = "action-link";
 
 const productEntries       = getItemFromLocalStorage(SAVE_TABLE_NAME, true);
 
-
+document.addEventListener("DOMContentLoaded", setUp);
 clearProductButtonElement.addEventListener("click", handleClearButton);
+tabDivElement.addEventListener("click", handleTabDelegation);
+
+
 
 
 function showMessage(msg) {
@@ -200,13 +210,98 @@ function handleEventDelegation(e) {
         processGoLiveCell(clickedCell);
     }
  
+};
+
+// Constants for Tab IDs
+const ALL_PRODUCT_TAB_ID      = "all-products-tab";
+const LIVE_PRODUCT_TAB_ID     = "live-products-tab";
+const NOT_LIVE_PRODUCT_TAB_ID = "not-live-products-tab";
+
+
+
+// Map of tab IDs to their corresponding content and tab elements
+const tabMap = {
+    [ALL_PRODUCT_TAB_ID]: {
+        contentElement: allProductsDivElement,
+        tabElement: tabsElements[0],
+    },
+    [LIVE_PRODUCT_TAB_ID]: {
+        contentElement: liveProductDivElement,
+        tabElement: tabsElements[1],
+    },
+    [NOT_LIVE_PRODUCT_TAB_ID]: {
+        contentElement: notLiveProductDivElement,
+        tabElement: tabsElements[2],
+    }
+};
+
+// Function to handle tab delegation
+function handleTabDelegation(e) {
+    e.preventDefault();
+
+    const clickedTab = e.target;
+    const tabInfo    = tabMap[clickedTab.id];
+
+    if (!tabInfo) {
+        console.warn(`Unhandled tab ID: ${clickedTab.id}`);
+        return;
+    }
+
+    hideAllTabContent();
+    removeActiveFromTabs();
+
+    toggleTabContentVisibility(tabInfo.contentElement);
+    toggleActiveTabVisibility(tabInfo.tabElement);
 }
+
+// Function to hide all tab content
+function hideAllTabContent() {
+    tabContents.forEach((tabElement) => {
+        if (!tabElement) {
+            console.warn(`Element not found: ${tabElement}`);
+            return;
+        }
+
+        tabElement.classList.add("hide");
+    });
+}
+
+// Function to remove the 'active' class from all tabs
+function removeActiveFromTabs() {
+    tabsElements.forEach((tabElement) => {
+        if (!tabElement) {
+            console.warn(`Tab element not found: ${tabElement}`);
+            return;
+        }
+
+        tabElement.classList.remove("active");
+    });
+}
+
+function toggleTabContentVisibility(tabElement) {
+    tabElement.classList.toggle("hide");
+}
+
+function toggleActiveTabVisibility(tabElement) {
+    tabElement.classList.toggle("active");
+}
+
+
+function setUp() {
+    hideAllTabContent();
+
+    toggleTabContentVisibility(allProductsDivElement);
+    removeActiveFromTabs();
+
+    const firstTab = tabsElements[0];
+    toggleActiveTabVisibility(firstTab);
+}
+
 
 
 function processGoLiveCell(clickedCell) {
     const productID         = clickedCell.dataset.productID;
     const [index, product]  = getItemIndexAndValueByID(productID, productEntries);
-
 
     const row               = clickedCell.closest('tr'); // Find the closest 'tr' element that is the table row element
     const rowIndex          = Array.prototype.indexOf.call(row.parentNode.children, row); 
@@ -257,19 +352,19 @@ function updateProductElements(index, product, link) {
 
             link.textContent             = DEACTIVATE_TEXT;
             product.isLive               = true;
-            text                         = "Your product is now live";
+            text                         = "Your Product Is Now Live";
             productEntries[index].isLive = product.isLive;
             break;
         
         case link.textContent.toUpperCase() === DEACTIVATE_TEXT.toUpperCase():
             link.textContent             = LIVE_TEXT;
             product.isLive               = false;
-            text                         = "Your product has been deactivated";
+            text                         = "Your Product has Been Deactivated";
             productEntries[index].isLive = product.isLive;           
             break;
     }
     
-    AlertUtils.showAlert({"title": "Update successful",
+    AlertUtils.showAlert({"title": "Update Successful",
         text:text,
         icon: "success",
         confirmButtonText: "Great!!",
@@ -294,4 +389,6 @@ function validateLink(link) {
         return false;
     }
     return true;
-}
+};
+
+

@@ -180,10 +180,10 @@
                 <div class="clearBtn flex-end">
                     <button type="button" id="clearBtn">Clear</button>
                 </div>
-                <div class="tabs space-between">
-                    <a href="#" class="tab active">All products</a>
-                    <a href="#" class="tab">Live products</a>
-                    <a href="#"> Not live</a>
+                <div class="space-between" id="tabs">
+                    <a href="#" class="tab active" id="all-products-tab">All products</a>
+                    <a href="#" class="tab" id="live-products-tab">Live products</a>
+                    <a href="#" class="tab" id="not-live-products-tab"> Not live</a>
                 </div>
                 <hr class="dividor view-product-dividor">
                
@@ -191,19 +191,19 @@
 
                 <!-- All products -->
                 
-                <div id="all-products">
+                <div id="all-products" class="tab-content">
                  
                 </div>
                 
 
                 <!-- live products -->
-                <div id="live-products">
-
+                <div id="live-products" class="tab-content">
+                    <p>I am here inside live product</p>
                 </div>
 
                 <!-- not live -->
-                <div id="not-live">
-
+                <div id="not-live" class="tab-content">
+                    <p>I am here inside non-live products</p>
                 </div>
 
 

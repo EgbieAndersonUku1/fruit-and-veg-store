@@ -188,6 +188,7 @@ table th:hover {
 table tr {
     height: 30px;
     font-size: 1rem;
+    font-weight: 300;
 }
 
 table tr:hover{
@@ -216,6 +217,11 @@ table tr td:hover a {
     
 }
 
+
+table tr td:hover a:hover {
+   text-decoration: underline;
+    
+}
 /* This applies only to the review table where the 6th element contains an image */
 #products-review-table tr td:nth-child(6):hover {
     transform: scale(1.1);
@@ -2117,6 +2123,7 @@ footer .container h4 {
     border: 3px solid lavender;
 }
 
+
 .table-pagination a:nth-child(even) {
     background: var(--pale-green);
     color: black;
@@ -3067,7 +3074,7 @@ legend {
     color: lavender;
 }
 
-.tabs {
+#tabs {
     margin-top: 40px;
 }
 
@@ -3079,10 +3086,19 @@ legend {
     border-bottom: 3px solid var(--dark-green);
 }
 
+.tab-content.hide {
+    display: none;
+}
+
 .clearBtn button {
     padding: 4px;
     width: 15%;
     background: #c83838;
     color: white;
     text-transform: capitalize;
+}
+
+
+
+#all-products {
 }
