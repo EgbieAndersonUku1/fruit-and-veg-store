@@ -23,7 +23,6 @@ let liveProductsTable;
 let notLiveProductsTable;
 
 
-
 const tabContents                       = document.querySelectorAll(".tab-content");
 const tabDivElement                     = document.getElementById("tabs");
 const tabsElements                      = document.querySelectorAll(".tab");
@@ -113,7 +112,7 @@ function createTable(productTableEntries, tabElement, className) {
     clearTabContent(tabElement);
 
     if (!productTableEntries || productTableEntries.length === 0) {
-        showMessage("You have not yet added a product");
+        showMessage("There are no products to display");
         return;
     }
 
@@ -150,7 +149,6 @@ function setProductTableElement() {
 
     if (!liveProductsTable) {
         liveProductsTable = document.querySelector(`.${LIVE_PRODUCTS_TABLE_CLASS_NAME}`);
-        console.log(liveProductsTable);
         console.log("Initialized: Live Products Table");
     };
 
@@ -269,9 +267,6 @@ function handleClearButton() {
 
   
 }
-
-
-
 
 
 
@@ -413,21 +408,21 @@ function handleTabDelegation(e) {
             configureTableDisplay(productEntries, allProductsDivElement, ALL_PRODUCTS_TABLE_CLASS_NAME, firstTab);
             break;
         case clickedTab.id.toLowerCase() === LIVE_PRODUCT_TAB_ID.toLowerCase():
-            
-            const secondTab = tabsElements[1];
+            const secondTab    = tabsElements[1];
             const liveProducts = getProductsByStatus();
             configureTableDisplay(liveProducts, liveProductDivElement, LIVE_PRODUCTS_TABLE_CLASS_NAME, secondTab);
             break;
-        
+        case clickedTab.id.toLowerCase() === NOT_LIVE_PRODUCT_TAB_ID.toLowerCase():
+            const thirdTab         = tabsElements[2];
+            const notLiveProducts  = getProductsByStatus(false);
+            configureTableDisplay(notLiveProducts, notLiveProductDivElement, NOT_LIVE_PRODUCTS_TABLE_CLASS_NAME, thirdTab);
+            break;
         default:
             console.warn(`Unhandled tab ID: ${clickedTab.id}`);
             return;
 
-
-
     }
 
-   
 }
 
 // Function to hide all tab content
@@ -483,9 +478,20 @@ function handleEventDelegation(e) {
             // If a product's status changes to "deactivated," it should no longer be displayed.
             // The entire table needs to be re-rendered to exclude the deactivated product.
             const liveProducts = getProductsByStatus();
-            const secondTab = tabsElements[1];
+            const secondTab    = tabsElements[1];
             configureTableDisplay(liveProducts, liveProductDivElement, LIVE_PRODUCTS_TABLE_CLASS_NAME, secondTab);
+            showMessage("There are no live products to display. Please activate products to make them visible to customers.");
             break;
+        
+        case clickedCell.className === GO_LIVE_CLASS && currentTabName.toLowerCase() === NOT_LIVE_PRODUCT_TAB_ID.toLowerCase():
+            processGoLiveCell(clickedCell, liveProductsTable);
+            const notLiveProducts = getProductsByStatus(false);
+            const thirdTab        = tabsElements[2];
+            configureTableDisplay(notLiveProducts, notLiveProductDivElement, NOT_LIVE_PRODUCTS_TABLE_CLASS_NAME, thirdTab);
+            showMessage("There are no deactivated products to display. Visit the products page tab to manage product status.");
+
+            break;
+
     }
 };
 
@@ -510,9 +516,7 @@ function configureTableDisplay(productEntries, tableElement, tableClassName, tab
     removeActiveFromTabs();
     toggleTabContentVisibility(tableElement);
     toggleActiveTabVisibility(tabElement);
-    
-    currentTabName = tabElement.id;
-
+    setCurrentTabName(tabElement.id);
     createTable(productEntries, tableElement, tableClassName);
     tableElement.addEventListener("click", handleEventDelegation);
 }
@@ -525,3 +529,11 @@ function setUp() {
 
 
 
+/**
+ * Sets the current active tab by updating the global or contextual variable.
+ *
+ * @param {string} tabId - The ID of the tab to set as the current active tab.
+ */
+function setCurrentTabName(tabId) {
+    currentTabName = tabId;
+}
