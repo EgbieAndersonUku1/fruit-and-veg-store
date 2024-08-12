@@ -2,25 +2,64 @@ import { createTableHeaderRow, createTableRow } from "../utils/createTableElemen
 import { createTableLink } from "../utils/linkUtils.js";
 import { getItemFromLocalStorage, removeItemFromLocalStorage, saveToLocalStorage } from "../utils/utils.js";
 import { getItemIndexAndValueByID } from "../utils/itemUtils.js";
+import { validateElement } from "../errors/customErrors.js";
 
 import AlertUtils from "../utils/alerts.js";
 
 const allProductsDivElement     = document.getElementById("all-products");
+const liveProductDivElement     = document.getElementById("live-products");
+const notLiveProductDivElement  = document.getElementById("not-live");
+
 const productMessage            = document.getElementById("product-msg");
 const clearProductButtonElement = document.getElementById("clearBtn");
-let productTableElement;        // to be assigned later when the `createTable` function is called
 
 
-const LIVE_TEXT            = "Go live";
-const DEACTIVATE_TEXT      = "Deactivate";
-const SAVE_TABLE_NAME      = "products-list";
-const GO_LIVE_CLASS        = "go-live";
-const ACTION_LINK_CLASS    = "action-link";
-
-const productEntries       = getItemFromLocalStorage(SAVE_TABLE_NAME, true);
+let currentTabName;
 
 
+// to be assigned later when the `createTable` function is called for `all products`, `live products` and `not live`
+let allProductsTable;
+let liveProductsTable;
+let notLiveProductsTable;
+
+
+
+const tabContents                       = document.querySelectorAll(".tab-content");
+const tabDivElement                     = document.getElementById("tabs");
+const tabsElements                      = document.querySelectorAll(".tab");
+
+
+const LIVE_TEXT                          = "Go live";
+const DEACTIVATE_TEXT                    = "Deactivate";
+const SAVE_TABLE_NAME                    = "products-list";
+
+// table anchor link classes
+const GO_LIVE_CLASS                      = "go-live";
+const ACTION_LINK_CLASS                  = "action-link";
+
+
+// Constants for Tab IDs
+const ALL_PRODUCT_TAB_ID                 = "all-products-tab";
+const LIVE_PRODUCT_TAB_ID                = "live-products-tab";
+const NOT_LIVE_PRODUCT_TAB_ID            = "not-live-products-tab";
+
+
+// table class names
+const ALL_PRODUCTS_TABLE_CLASS_NAME       = "all-product-table";
+const LIVE_PRODUCTS_TABLE_CLASS_NAME      = "live-products-table";
+const NOT_LIVE_PRODUCTS_TABLE_CLASS_NAME  = "not-live-produts-table";
+
+
+// all table entries
+const productEntries  = getItemFromLocalStorage(SAVE_TABLE_NAME, true);
+
+
+
+document.addEventListener("DOMContentLoaded", setUp);
 clearProductButtonElement.addEventListener("click", handleClearButton);
+
+tabDivElement.addEventListener("click", handleTabDelegation);
+
 
 
 function showMessage(msg) {
@@ -28,68 +67,115 @@ function showMessage(msg) {
     return;
 }
 
-function createTable() {
-    if (!validateElements()) return;
 
-    clearTable();
+/**
+ * Creates and populates a table with product entries in the specified tab element.
+ * 
+ * This function generates an HTML table with headers and rows based on the provided product entries.
+ * The table is then appended to the specified `tabElement`, replacing any existing content in that tab.
+ * Additionally, the table is assigned a CSS class for styling purposes.
+ * 
+ * @param {Array} productTableEntries - An array of objects representing product entries. 
+ *                                      Each object should have properties such as ID, product name, category, stock quantity, is live status, 
+ *                                      and date created.
+ * @param {HTMLElement} tabElement - The HTML element (tab) where the table should be inserted. This should be a valid instance of HTMLElement.
+ * @param {string} className - The CSS class name to be applied to the created table for styling purposes.
+ * 
+ * @throws {Error} - Throws an error if `tabElement` is not a valid HTMLElement.
+ * 
+ * @example
+ * // Sample product entries
+ * const productEntries = [
+ *     { id: 1, name: 'Product A', category: 'Category 1', stock: 10, isLive: true, dateCreated: '2024-01-01' },
+ *     { id: 2, name: 'Product B', category: 'Category 2', stock: 5, isLive: false, dateCreated: '2024-02-01' }
+ * ];
+ * 
+ * // Get tab elements
+ * const allProductsTab = document.getElementById('allProducts');
+ * const liveTab = document.getElementById('live');
+ * const notLiveTab = document.getElementById('notLive');
+ * 
+ * // Create table in the 'live' tab with a specific class name
+ * createTable(productEntries, liveTab, 'live-products-table');
+ * 
+ * // Create table in the 'allProducts' tab with a specific class name
+ * createTable(productEntries, allProductsTab, 'all-products-table');
+ * 
+ * // Handle empty entries
+ * createTable([], notLiveTab, 'empty-products-table'); // Will show message "You have not yet added a product"
+ */
+function createTable(productTableEntries, tabElement, className) {
+
+    const ERR_MESSAGE = "Tab element is not an instance of HTMLElement.";
     
-    if (!productEntries || productEntries.length === 0 || productEntries == null) {
+    if (!validateElement(tabElement, ERR_MESSAGE)) return;
+
+    clearTabContent(tabElement);
+
+    if (!productTableEntries || productTableEntries.length === 0) {
         showMessage("You have not yet added a product");
         return;
     }
-   
-    const headers     = ["ID", "Product Name", "Category", "Stock Quantity", "is Live", "Date created", "Action", "Action"];
-    const table       = document.createElement("table");
-    table.className   = "product-table";
-    const tHeaders    = createTableHeaderRow(headers);
+
+    const headers   = ["ID", "Product Name", "Category", "Stock Quantity", "is Live", "Date created", "Action", "Action"];
+    const table     = document.createElement("table");
+    table.className = className;
+
+    const tHeaders  = createTableHeaderRow(headers);
+    const fragment  = document.createDocumentFragment();
 
     table.appendChild(tHeaders);
 
-    const fragment = document.createDocumentFragment();
-    appendTableRows(fragment, productEntries);
+    appendTableRows(fragment, productTableEntries);
 
     table.appendChild(fragment);
-    allProductsDivElement.appendChild(table);
-
-    getProductTableElement();
+    tabElement.appendChild(table);
+    
+    setProductTableElement(); 
    
+
 }
 
 
-// The table is dynamically generated when `createTable` is called. As a result,
-// `productTableElement = document.querySelector(".product-table");` will return null 
-// if executed before `createTable` runs, because the `.product-table` class doesn't exist yet.
-//
-// Declaring `productTableElement` at the top of the page won't solve this issue, 
-// as it will remain null if the table is created later. Since `createTable` only 
-// adds the `.product-table` class and generates the table once, `document.querySelector(".product-table")` 
-// needs to be called after the table is created to ensure `productTableElement` is correctly assigned.
-//
-// This function ensures `productTableElement` is assigned only when needed. It checks if 
-// `productTableElement` is null, assigns it if necessary, and logs a message. This ensures 
-// the function is only called once to avoid unnecessary DOM queries.
-function getProductTableElement() {
-    if (!productTableElement) {
-        productTableElement = document.querySelector(".product-table");
-        console.log("called once");
+// This function initializes references to product tables in the DOM. Since the tables are dynamically 
+// generated by `createTable`, querying for them before their creation returns null. To ensure accurate 
+// references, this function checks if each table variable is uninitialized and assigns it accordingly 
+// after the tables exist in the DOM.
+function setProductTableElement() {
+
+    if (!allProductsTable) {
+        allProductsTable = document.querySelector(`.${ALL_PRODUCTS_TABLE_CLASS_NAME}`);
+        console.log("Initialized: All Products Table");
+    };
+
+    if (!liveProductsTable) {
+        liveProductsTable = document.querySelector(`.${LIVE_PRODUCTS_TABLE_CLASS_NAME}`);
+        console.log(liveProductsTable);
+        console.log("Initialized: Live Products Table");
+    };
+
+    if (!notLiveProductsTable) {
+        notLiveProductsTable = document.querySelector(`.${NOT_LIVE_PRODUCTS_TABLE_CLASS_NAME}`);
+        console.log("Initialized: Not Live Products Table");
     }
+ 
+
 }
 
 
 
-function validateElements() {
-    if (!(productMessage instanceof HTMLElement)) {
-        console.warn("productMessage is not an instance of HTMLElement.");
-        return false;
-    }
-    return true;
-}
 
-
-
-function clearTable() {
+function clearTabContent(tableElement) {
     productMessage.textContent = "";
-    allProductsDivElement.innerHTML = ""; // Clear the existing table, if any data exists
+    tableElement.innerHTML     = "";
+};
+
+
+function clearAllTabContents() {
+    productMessage.textContent      = "";
+    allProductsDivElement.innerHTML = "";
+    liveProductDivElement.innerHTML = "";
+    notLiveProductsTable.innerHTML  = "";
 }
 
 
@@ -101,10 +187,10 @@ function validateProductData(product) {
 
     if (id && name && productCategory && stock && isLive !== '' && dateCreated) {
         return { id, name, productCategory, stock, isLive, dateCreated };
-    } else {
-        console.error("One or more elements are missing for product ID:", id);
-        return null;
-    }
+    } 
+    console.error("One or more elements are missing for product ID:", id);
+    return null;
+    
 }
 
 
@@ -151,7 +237,7 @@ function handleClearButton() {
             confirmButtonText: "OK",
         });   
         
-        clearTable();
+        clearAllTabContents();
         showMessage("You have not yet added a product");
         return;
     };
@@ -168,7 +254,7 @@ function handleClearButton() {
         },
         func: () => {
             removeItemFromLocalStorage(SAVE_TABLE_NAME);
-            clearTable();
+            clearAllTabContents();
             showMessage("You have not yet added a product");
             // console.log("Test")
         }, 
@@ -186,24 +272,10 @@ function handleClearButton() {
 
 
 
-createTable();
 
 
-productTableElement?.addEventListener("click", handleEventDelegation);
 
-function handleEventDelegation(e) {
-    e.preventDefault();
-    let clickedCell = e.target;
-
-    switch(true){
-        case clickedCell.className === GO_LIVE_CLASS:
-        processGoLiveCell(clickedCell);
-    }
- 
-}
-
-
-function processGoLiveCell(clickedCell) {
+function processGoLiveCell(clickedCell, currentTableElement) {
     const productID         = clickedCell.dataset.productID;
     const [index, product]  = getItemIndexAndValueByID(productID, productEntries);
 
@@ -213,12 +285,16 @@ function processGoLiveCell(clickedCell) {
     const cellIndexToUpdate = 4;
 
     updateProductElements(index, product, clickedCell); 
-    updateProductLiveStatusCell(rowIndex, cellIndexToUpdate, product);
+    updateProductLiveStatusCell(rowIndex, cellIndexToUpdate, product, currentTableElement);
 }
 
 
-function updateProductLiveStatusCell(rowIndex, cellIndexToUpdate, product) {
-    let rows = productTableElement.querySelectorAll('tr');
+function updateProductLiveStatusCell(rowIndex, cellIndexToUpdate, product, currentTableElement) {
+    let rows = currentTableElement?.querySelectorAll('tr');
+
+    if (!rows) {
+        return;
+    };
 
     // Check if the rowIndex is within the range of available rows
     if (rowIndex >= 0 && rowIndex < rows.length) {
@@ -294,4 +370,158 @@ function validateLink(link) {
         return false;
     }
     return true;
+};
+
+
+
+
+
+/**
+ * Retrieves a list of products from the list that match the specified live status.
+ *
+ * @param {boolean} [live=true] - A boolean indicating the desired status. 
+ *                                If true, returns all live products; if false, returns all not-live products.
+ * @returns {Object[]} - Returns an array of product objects that match the live status. 
+ *                       Returns an empty array if no matching products are found.
+ *
+ * @example
+ * // Get all live products
+ * const liveProducts = getProductsByStatus(true);
+ *
+ * // Get all not-live products
+ * const notLiveProducts = getProductsByStatus(false);
+ */
+function getProductsByStatus(live = true) {
+    if (productEntries.length === 0) {
+        return [];
+    }
+
+    return productEntries.filter((product) => product.isLive === live);
+};
+
+
+
+// Function to handle tab delegation
+function handleTabDelegation(e) {
+    e.preventDefault();
+
+    const clickedTab = e.target;
+    
+    switch(true) {
+        case clickedTab.id.toLowerCase() === ALL_PRODUCT_TAB_ID.toLowerCase():
+            const firstTab = tabsElements[0];
+            configureTableDisplay(productEntries, allProductsDivElement, ALL_PRODUCTS_TABLE_CLASS_NAME, firstTab);
+            break;
+        case clickedTab.id.toLowerCase() === LIVE_PRODUCT_TAB_ID.toLowerCase():
+            
+            const secondTab = tabsElements[1];
+            const liveProducts = getProductsByStatus();
+            configureTableDisplay(liveProducts, liveProductDivElement, LIVE_PRODUCTS_TABLE_CLASS_NAME, secondTab);
+            break;
+        
+        default:
+            console.warn(`Unhandled tab ID: ${clickedTab.id}`);
+            return;
+
+
+
+    }
+
+   
 }
+
+// Function to hide all tab content
+function hideAllTabContent() {
+    tabContents.forEach((tabElement) => {
+        if (!tabElement) {
+            console.warn(`Element not found: ${tabElement}`);
+            return;
+        }
+
+        tabElement.classList.add("hide");
+    });
+}
+
+// Function to remove the 'active' class from all tabs
+function removeActiveFromTabs() {
+    tabsElements.forEach((tabElement) => {
+        if (!tabElement) {
+            console.warn(`Tab element not found: ${tabElement}`);
+            return;
+        }
+
+        tabElement.classList.remove("active");
+    });
+}
+
+function toggleTabContentVisibility(tabElement) {
+    tabElement.classList.toggle("hide");
+}
+
+function toggleActiveTabVisibility(tabElement) {
+    tabElement.classList.toggle("active");
+}
+
+
+function handleEventDelegation(e) {
+    e.preventDefault();
+    let clickedCell = e.target;
+
+    switch(true) {
+        case clickedCell.className === GO_LIVE_CLASS && currentTabName.toLowerCase() === ALL_PRODUCT_TAB_ID.toLowerCase():
+            processGoLiveCell(clickedCell, liveProductsTable);
+            break;
+        
+        case clickedCell.className === GO_LIVE_CLASS && currentTabName.toLowerCase() === LIVE_PRODUCT_TAB_ID.toLowerCase():
+            processGoLiveCell(clickedCell, liveProductsTable);
+
+            // In the "All Products" tab, both "live" and "deactivated" products are displayed.
+            // Only the specific cell that was clicked needs to be updated,
+            // since the product will remain in the table regardless of its status.
+            //
+            // In the "Live Products" tab, only products that are currently "live" are shown.
+            // If a product's status changes to "deactivated," it should no longer be displayed.
+            // The entire table needs to be re-rendered to exclude the deactivated product.
+            const liveProducts = getProductsByStatus();
+            const secondTab = tabsElements[1];
+            configureTableDisplay(liveProducts, liveProductDivElement, LIVE_PRODUCTS_TABLE_CLASS_NAME, secondTab);
+            break;
+    }
+};
+
+
+
+/**
+ * Configures and displays a table within a tab, with optional tab-switching logic.
+ *
+ * This function sets up a table using the provided product entries, associates it with the specified
+ * table element
+ *
+ * @param {Array} productEntries - The data to populate the table with.
+ * @param {HTMLElement} tableElement - The DOM element representing the table container.
+ * @param {string} tableClassName - The class name to apply to the table for styling or identification.
+ * @param {HTMLElement} tabElement - The tab element that corresponds to the table being set up.
+ *
+ * @returns {void}
+ */
+function configureTableDisplay(productEntries, tableElement, tableClassName, tabElement) {
+    
+    hideAllTabContent();
+    removeActiveFromTabs();
+    toggleTabContentVisibility(tableElement);
+    toggleActiveTabVisibility(tabElement);
+    
+    currentTabName = tabElement.id;
+
+    createTable(productEntries, tableElement, tableClassName);
+    tableElement.addEventListener("click", handleEventDelegation);
+}
+
+
+function setUp() {
+    const firstTab = tabsElements[0];
+    configureTableDisplay(productEntries, allProductsDivElement, ALL_PRODUCTS_TABLE_CLASS_NAME, firstTab);
+}
+
+
+

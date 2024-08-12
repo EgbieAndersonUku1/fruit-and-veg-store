@@ -1,7 +1,6 @@
 import addNewProductPages from "../pages/pages.js";
-import { minimumCharactersToUse, disableTextAreaBoxPaste } from "./characterCounter.js";
-import {
-    getItemFromLocalStorage, saveToLocalStorage, getAllCheckBoxElementsValue,
+import { minimumCharactersToUse } from "./characterCounter.js";
+import {getItemFromLocalStorage, saveToLocalStorage, getAllCheckBoxElementsValue,
     redirectToNewPage, getCurrentPage
 } from "../utils/utils.js";
 import { getFormEntries, toggleInputVisibilityBasedOnSelection } from "../utils/formUtils.js";
