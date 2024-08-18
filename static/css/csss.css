@@ -3100,5 +3100,29 @@ legend {
 
 
 
-#all-products {
+
+.image-and-media-edit {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: auto;
+    /* margin-top: var(--padding-lg); */
+}
+
+.edit-label {
+    margin-top: var(--padding-xl);
+   
+}
+
+.product-info input,
+.product-info textarea {
+    width: 100%;
+}
+
+.product-info input {
+    height: 30px;
+    font-size: var(--font-size-normal);
+}
+
+.product-info {
+    margin-top: var(--padding-md);
 }
