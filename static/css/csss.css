@@ -3126,3 +3126,12 @@ legend {
 .product-info {
     margin-top: var(--padding-md);
 }
+
+.shipping-info input[type="checkbox"] {
+    height: auto;
+    width: auto;
+}
+
+#additional-information  select {
+    width: 100%;
+}

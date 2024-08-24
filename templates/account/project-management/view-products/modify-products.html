@@ -174,31 +174,30 @@
                             management overview</a></li>
                     <li>Edit product</li>
                 </ul>
-                <h1 id="product-management-heading" class="padding-top-md lighten text-capitalize">Product Management</h1>
+                <h1 id="product-management-heading" class="padding-top-md lighten text-capitalize">Product Management
+                </h1>
                 <p class="account-info">Edit or delete your product</p>
 
                 <hr class="dividor">
 
-                <section id="edit-or-delete">
                     <div class="container">
 
                         <form action="" class="post" class="edit-product-form">
-                            
+
                             <!-- The product name -->
                             <div class="product-info">
-                                <label for="product-name">Product name</label>
-                                <div class="form-label space-between">
+                                <h4>Product name</h4>
+                                <div class="space-between">
                                     <p>Product name</p>
                                     <a href="#" class="edit-link product-name">Edit</a>
                                 </div>
-
                                 <input type="text" name="product-name" id="product-name" class="input-field">
                             </div>
 
                             <!-- Brand -->
                             <div class="product-info">
-                                <label for="brand">Brand</label>
-                                <div class="form-label space-between">
+                                <h4>Brand</h4>
+                                <div class="space-between">
                                     <p>Brand</p>
                                     <a href="#" class="edit-link brand">Edit</a>
                                 </div>
@@ -208,9 +207,8 @@
 
                             <!-- stock keeping unit -->
                             <div class="product-info">
-                                <label for="sku">SKU</label>
+                                <h4 for="sku">SKU</h4>
                                 <div class="form-label space-between">
-
                                     <p>SKU</p>
                                     <a href="#" class="edit-link sku">Edit</a>
                                 </div>
@@ -220,8 +218,8 @@
 
                             <!-- unit product code -->
                             <div class="product-info">
-                                <label for="sku">UPC (Universal Product code)</label>
-                                <div class="form-label space-between">
+                                <h4 for="sku">UPC (Universal Product code)</h4>
+                                <div class="space-between">
 
                                     <p>UPC</p>
                                     <a href="#" class="edit-link sku">Edit</a>
@@ -232,7 +230,7 @@
 
                             <!-- short description -->
                             <div class="product-info">
-                                <label for="short-description">Short description</label>
+                                <h4 for="short-description">Short description</h4>
                                 <div class="form-label space-between">
 
                                     <p>Short description</p>
@@ -247,7 +245,7 @@
 
                             <!-- colors -->
                             <div class="product-info">
-                                <label for="edit-colors">List of colors</label>
+                                <h4 for="edit-colors">List of colors</h4>
                                 <div class="form-label space-between">
 
                                     <p>List of colors</p>
@@ -438,7 +436,7 @@
 
                             <!-- product length -->
                             <div class="product-info">
-                                <label for="length">Product length</label>
+                                <h4>Product length</h4>
                                 <div class="form-label space-between">
 
                                     <p>length</p>
@@ -450,8 +448,8 @@
 
                             <!-- product width -->
                             <div class="product-info">
-                                <label for="length">Product width</label>
-                                <div class="form-label space-between">
+                                <h4>Product width</h4>
+                                <div class="space-between">
 
                                     <p>Width</p>
                                     <a href="#" class="edit-link product-width">Edit</a>
@@ -462,7 +460,7 @@
 
                             <!-- product height -->
                             <div class="product-info">
-                                <label for="length">Product height</label>
+                                <h4>Product height</h4>
                                 <div class="form-label space-between">
 
                                     <p>Height</p>
@@ -472,11 +470,10 @@
                                 <input type="text" name="product-width" id="product-height" class="input-field">
                             </div>
 
-
                             <!-- product size options -->
                             <div class="product-info">
-                                <label for="size-options">Size options</label>
-                                <div class="form-label space-between">
+                                <h4>Size options</h4>
+                                <div class="space-between">
 
                                     <p>Sizes options here</p>
                                     <a href="#" class="edit-link product-height">Edit</a>
@@ -505,8 +502,8 @@
 
                             <!-- product Weight -->
                             <div class="product-info">
-                                <label for="length">Product Weight</label>
-                                <div class="form-label space-between">
+                                <h4>Product Weight</h4>
+                                <div class="space-between">
 
                                     <p>Height here</p>
                                     <a href="#" class="edit-link product-height">Edit</a>
@@ -515,9 +512,9 @@
                                 <input type="text" name="product-width" id="product-weight" class="input-field">
                             </div>
 
-                            <!-- product Description -->
+                            <!-- product length -->
                             <div class="product-info">
-                                <label for="length">Product description</label>
+                                <h4 for="length">Product description</h4>
                                 <div class="form-label space-between">
 
                                     <p>Product description here</p>
@@ -532,17 +529,161 @@
                             </div>
 
 
+                            <!-- Shipping and delivery -->
+                            <div class="product-info shipping-info">
+                                <h4>Shipping and description</h4>
+                                <div class="space-between">
+
+                                    <p>Shipping and delivery</p>
+                                    <a href="#" class="edit-link product-height">Edit</a>
+                                </div>
+
+                                <h4 class="padding-top-md">Shipping Dimensions</h4>
+                                <hr class="dividor">
+                                <div class="dimensions">
+                                    <label for="length">Length</label>
+                                    <input type="number" name="length" id="length" min="1" max="10000" step="0.1"
+                                        required>
+
+                                    <label for="width">Width</label>
+                                    <input type="number" name="width" id="width" min="1" max="10000" step="0.1"
+                                        required>
+
+                                    <label for="height">Height</label>
+                                    <input type="number" name="height" id="height" min="1" max="10000" step="0.1"
+                                        required>
+                                </div>
+
+                                <h4 class="text-capitalize padding-top-md">Shipping Weight</h4>
+                                <hr class="dividor">
+                                <label for="weight">Weight (kg)</label>
+                                <input type="number" name="weight" id="weight" min="1" max="10000" step="0.1" required>
+
+                                <h4 class="padding-top-md">Shipping Options</h4>
+                                <hr class="dividor">
+                                <fieldset class="shipping-options">
+                                    <label>
+                                        <input type="checkbox" name="shipping" value="standard"
+                                            data-shipping-type="standard" data-cost="3.99"
+                                            data-delivery-time="3-5 business days">
+                                        Standard Shipping (3-5 business days) - £3.99
+                                    </label><br>
+
+                                    <label>
+                                        <input type="checkbox" name="shipping" value="express"
+                                            data-shipping-type="express" data-cost="5.99"
+                                            data-delivery-time="1-2 business days">
+                                        Express Shipping (1-2 business days) - £5.99
+                                    </label><br>
+
+                                    <label>
+                                        <input type="checkbox" name="shipping" value="next-day"
+                                            data-shipping-type="next-day" data-cost="9.99"
+                                            data-delivery-time="Next-Day Delivery">
+                                        Next-Day Delivery - £9.99
+                                    </label><br>
+
+                                    <label>
+                                        <input type="checkbox" name="shipping" value="same-day"
+                                            data-shipping-type="same-day" data-cost="14.99"
+                                            data-delivery-time="Same-Day Delivery (order by 2 PM)">
+                                        Same-Day Delivery (order by 2 PM) - £14.99
+                                    </label><br>
+
+                                    <label>
+                                        <input type="checkbox" name="shipping" value="click-collect"
+                                            data-shipping-type="click-collect" data-cost="0.00"
+                                            data-delivery-time="1-2 days">
+                                        Click and Collect (1-2 days) - Free
+                                    </label><br>
+
+                                    <label>
+                                        <input type="checkbox" name="shipping" value="weekend"
+                                            data-shipping-type="weekend" data-cost="7.99"
+                                            data-delivery-time="Weekend Delivery">
+                                        Weekend Delivery - £7.99
+                                    </label><br>
+
+                                    <label>
+                                        <input type="checkbox" name="shipping" value="free" data-shipping-type="free"
+                                            data-cost="0.00" data-delivery-time="Free Shipping (orders over £50)">
+                                        Free Shipping (orders over £50) - Free
+                                    </label><br>
+                                </fieldset>
 
 
+                                <p class="error-msg" id="delivery-error-msg">You must select at least one delivery
+                                    option</p>
+
+                            </div>
 
 
+                            <!-- SEO management -->
+                            <div class="product-info">
+                                <h4 for="length">SEO and Management</h4>
+                                <div class="form-label space-between">
+
+                                    <p>Product description here</p>
+                                    <a href="#" class="edit-link product-height">Edit</a>
+                                </div>
+
+                                <div class="seo-and-managment">
+                                    <label for="meta-title" class="text-capitalize" id="meta-title">Meta title</label>
+                                    <input type="text" name="meta-title" id="meta-title" required>
 
 
+                                    <label for="meta-keywords" class="text-capitalize" id="meta-keywords">Add Meta
+                                        keywords separated by a comma (delicious, creamy, etc)</label>
+                                    <input type="text" name="meta-keywords" id="meta-keywords" required>
 
 
+                                    <label for="meta-description">Meta Description</label>
+                                    <textarea name="meta-description" id="meta-description" rows="10" cols="10"
+                                        required></textarea>
+                                    <p class="flex-end minimum-characters">Minimum characters to use: 10</p>
+                                    <p class="maximum-characters flex-end">Number of characters remaining: 500</p>
+
+                                </div>
+                            </div>
 
 
+                            <!-- Manufacturing -->
+                            <div class="product-info">
+                                <h4 for="length">Manufacturer description</h4>
+                                <div class="space-between">
 
+                                    <p>Product description here</p>
+                                    <a href="#" class="edit-link product-height">Edit</a>
+                                </div>
+
+                                <div id="additional-information" class="product-info">
+
+                                    <label for="manafacturer-title" class="text-capitalize"
+                                        id="manafacturer-title">Manufacturer title</label>
+                                    <input type="text" name="manafacturer-title" id="manafacturer-title" required>
+
+                                    <label for="countries" class="text-capitalize">Country of origin</label>
+                                    <select name="country-of-origin" id="countries">
+
+                                    </select>
+
+                                    <label for="return-policy" class="text-capitalize">Return policy</label>
+                                    <select name="return-policy" id="return-policy" required>
+                                        <option value="no">No</option>
+                                        <option value="yes">Yes</option>
+                                    </select>
+
+                                    <label for="warranty-description">Warranty description</label>
+                                    <textarea name="warranty-description" id="warranty-description" rows="15" cols="10"
+                                        required></textarea>
+                                    <p class="flex-end minimum-characters">Minimum characters to use: 50</p>
+                                    <p class="maximum-characters flex-end">Number of characters remaining: 2000</p>
+
+
+                                </div>
+                            </div>
+
+                            <!-- images and media -->
                             <div class="product-info">
                                 <h4 for="image-and-media-edit" class="image-and-media-edit-label edit-label">Images and
                                     media</h4>
@@ -577,19 +718,10 @@
                                 </div>
 
                             </div>
-
-
-
-
                         </form>
-
                     </div>
-                </section>
-
             </div>
         </section>
-
-
     </main>
 
     <footer>
