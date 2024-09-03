@@ -1,0 +1,10 @@
+# VS Code settings
+.vscode/
+
+# Exclude workspace storage
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+
+# Exclude any other potential files related to VS Code
+*.code-workspace
