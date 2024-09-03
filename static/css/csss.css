@@ -3261,6 +3261,8 @@ legend {
 
 .profile-container input {
     font-size: var(--font-size-normal);
+    border: 2px solid rgb(217, 217, 247);
+    
 }
 
 .billing-address {
