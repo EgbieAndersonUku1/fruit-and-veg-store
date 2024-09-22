@@ -295,6 +295,12 @@ table tr td a:nth-child(even):hover {
     padding-bottom: var(--padding-sm);
 }
 
+
+.margin-bottom-sm {
+    margin-bottom: var(--padding-sm);
+}
+
+
 /* background colors */
 .green-bg {
     background: var(--light-green);
@@ -380,6 +386,7 @@ table tr td a:nth-child(even):hover {
 .two-column-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    column-gap: 5px;
 }
 
 .col-gap-small {
@@ -938,6 +945,15 @@ nav {
 
 }
 
+/* utilities */
+.underline {
+    text-decoration: underline;
+}
+
+.showcase {
+    border: 3px solid lavender;
+    background: ghostwhite;
+}
 
 /* utilities for the card */
 
@@ -3254,9 +3270,35 @@ legend {
 
 .triple-grid {
     display: grid;
-    grid-template-columns: 35% 35% 30%;
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
     margin-top: 10px;
+    column-gap: 3px;
+
+
+    /* 
+       Adjusted grid alignment to ensure uniform height across items 
+       in cases where nested Flexbox containers (e.g., .center class) 
+       interfere with the default stretch behaviour of grid items. 
+       
+       Context:
+       The .center class, is used extensively throughout the application. It
+       applies `align-items: center;` to any div or element it is attached to, and because of this it
+       can prevent grid items from stretching to the height of the tallest item. 
+       
+       Instead of modifying the .center class and risking unintended side effects across the application, 
+       `align-items: stretch;` was added specifically to grid containers 
+       to maintain consistent height behaviour.
+
+       Purpose:
+       This approach ensures that grid items will always match the height of 
+       the tallest item within their respective rows, preserving a uniform 
+       layout without altering the behaviour of the .center class globally.
+
+       Change Location:
+       This fix is applied only to specific grid elements where the issue is observed. 
+    */
+    align-items: stretch; 
 }
 
 .profile-container input {
@@ -3283,4 +3325,14 @@ legend {
     text-transform: uppercase;
     background: #1c7920;
     font-weight: bold;
+}
+
+.address-link {
+    font-size: 0.8rem;
+    text-transform: lowercase;
+    color: #3737d2;
+}
+
+.address-link:hover {
+    text-decoration: underline;
 }
